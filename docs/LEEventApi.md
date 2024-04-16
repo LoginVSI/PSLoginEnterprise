@@ -1,0 +1,351 @@
+# PSLoginEnterprise.PSLoginEnterprise\Api.LEEventApi
+
+All URIs are relative to */publicApi*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Get-LEEvent**](LEEventApi.md#Get-LEEvent) | **GET** /v6/events/{eventId} | Get event by id
+[**Get-LEEvents**](LEEventApi.md#Get-LEEvents) | **GET** /v6/events | Get paginated list of all events
+[**Get-LEEventsByAppExecution**](LEEventApi.md#Get-LEEventsByAppExecution) | **GET** /v6/test-runs/{testRunId}/app-executions/{appExecutionId}/events | Get paginated list of events by app-execution id
+[**Get-LEEventsByTestRun**](LEEventApi.md#Get-LEEventsByTestRun) | **GET** /v6/test-runs/{testRunId}/events | Get paginated list of events by test-run id
+[**Get-LEEventsByUserSession**](LEEventApi.md#Get-LEEventsByUserSession) | **GET** /v6/test-runs/{testRunId}/user-sessions/{userSessionId}/events | Get paginated list of events by user-session id
+
+
+<a id="Get-LEEvent"></a>
+# **Get-LEEvent**
+> ModelEvent Get-LEEvent<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-EventId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
+
+Get event by id
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-LEConfiguration
+
+# Configure OAuth2 access token for authorization: oauth2
+$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure API key authorization: Bearer
+$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+
+$EventId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Event id
+$Include = "none" # EventInclude[] | Include options (optional)
+
+# Get event by id
+try {
+    $Result = Get-LEEvent -EventId $EventId -Include $Include
+} catch {
+    Write-Host ("Exception occurred when calling Get-LEEvent: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **EventId** | **String**| Event id | 
+ **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 
+
+### Return type
+
+[**ModelEvent**](ModelEvent.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Get-LEEvents"></a>
+# **Get-LEEvents**
+> EventResultSet Get-LEEvents<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
+
+Get paginated list of all events
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-LEConfiguration
+
+# Configure OAuth2 access token for authorization: oauth2
+$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure API key authorization: Bearer
+$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+
+$Direction = "asc" # String | Sort direction (default to "desc")
+$Count = 56 # Int32 | Number of records to return (default to 100)
+$Offset = 56 # Int32 | Start offset (optional) (default to 0)
+$IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
+$From = (Get-Date) # System.DateTime | From date-time (optional)
+$To = (Get-Date) # System.DateTime | To date-time (optional)
+$Include = "none" # EventInclude[] | Include options (optional)
+
+# Get paginated list of all events
+try {
+    $Result = Get-LEEvents -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -From $From -To $To -Include $Include
+} catch {
+    Write-Host ("Exception occurred when calling Get-LEEvents: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Direction** | **String**| Sort direction | [default to &quot;desc&quot;]
+ **Count** | **Int32**| Number of records to return | [default to 100]
+ **Offset** | **Int32**| Start offset | [optional] [default to 0]
+ **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
+ **From** | **System.DateTime**| From date-time | [optional] 
+ **To** | **System.DateTime**| To date-time | [optional] 
+ **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 
+
+### Return type
+
+[**EventResultSet**](EventResultSet.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Get-LEEventsByAppExecution"></a>
+# **Get-LEEventsByAppExecution**
+> EventResultSet Get-LEEventsByAppExecution<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AppExecutionId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
+
+Get paginated list of events by app-execution id
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-LEConfiguration
+
+# Configure OAuth2 access token for authorization: oauth2
+$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure API key authorization: Bearer
+$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+
+$TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
+$AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id
+$Direction = "asc" # String | Sort direction (default to "desc")
+$Count = 56 # Int32 | Number of records to return (default to 100)
+$Offset = 56 # Int32 | Start offset (optional) (default to 0)
+$IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
+$Include = "none" # EventInclude[] | Include options (optional)
+
+# Get paginated list of events by app-execution id
+try {
+    $Result = Get-LEEventsByAppExecution -TestRunId $TestRunId -AppExecutionId $AppExecutionId -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -Include $Include
+} catch {
+    Write-Host ("Exception occurred when calling Get-LEEventsByAppExecution: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **TestRunId** | **String**| Test-run id | 
+ **AppExecutionId** | **String**| App-execution id | 
+ **Direction** | **String**| Sort direction | [default to &quot;desc&quot;]
+ **Count** | **Int32**| Number of records to return | [default to 100]
+ **Offset** | **Int32**| Start offset | [optional] [default to 0]
+ **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
+ **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 
+
+### Return type
+
+[**EventResultSet**](EventResultSet.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Get-LEEventsByTestRun"></a>
+# **Get-LEEventsByTestRun**
+> EventResultSet Get-LEEventsByTestRun<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
+
+Get paginated list of events by test-run id
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-LEConfiguration
+
+# Configure OAuth2 access token for authorization: oauth2
+$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure API key authorization: Bearer
+$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+
+$TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
+$Direction = "asc" # String | Sort direction (default to "desc")
+$Count = 56 # Int32 | Number of records to return (default to 100)
+$Offset = 56 # Int32 | Start offset (optional) (default to 0)
+$IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
+$From = (Get-Date) # System.DateTime | From date-time (optional)
+$To = (Get-Date) # System.DateTime | To date-time (optional)
+$Include = "none" # EventInclude[] | Include options (optional)
+
+# Get paginated list of events by test-run id
+try {
+    $Result = Get-LEEventsByTestRun -TestRunId $TestRunId -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -From $From -To $To -Include $Include
+} catch {
+    Write-Host ("Exception occurred when calling Get-LEEventsByTestRun: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **TestRunId** | **String**| Test-run id | 
+ **Direction** | **String**| Sort direction | [default to &quot;desc&quot;]
+ **Count** | **Int32**| Number of records to return | [default to 100]
+ **Offset** | **Int32**| Start offset | [optional] [default to 0]
+ **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
+ **From** | **System.DateTime**| From date-time | [optional] 
+ **To** | **System.DateTime**| To date-time | [optional] 
+ **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 
+
+### Return type
+
+[**EventResultSet**](EventResultSet.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Get-LEEventsByUserSession"></a>
+# **Get-LEEventsByUserSession**
+> EventResultSet Get-LEEventsByUserSession<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-UserSessionId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
+
+Get paginated list of events by user-session id
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-LEConfiguration
+
+# Configure OAuth2 access token for authorization: oauth2
+$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure API key authorization: Bearer
+$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+
+$TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
+$UserSessionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User-session id
+$Direction = "asc" # String | Sort direction (default to "desc")
+$Count = 56 # Int32 | Number of records to return (default to 100)
+$Offset = 56 # Int32 | Start offset (optional) (default to 0)
+$IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
+$Include = "none" # EventInclude[] | Include options (optional)
+
+# Get paginated list of events by user-session id
+try {
+    $Result = Get-LEEventsByUserSession -TestRunId $TestRunId -UserSessionId $UserSessionId -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -Include $Include
+} catch {
+    Write-Host ("Exception occurred when calling Get-LEEventsByUserSession: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **TestRunId** | **String**| Test-run id | 
+ **UserSessionId** | **String**| User-session id | 
+ **Direction** | **String**| Sort direction | [default to &quot;desc&quot;]
+ **Count** | **Int32**| Number of records to return | [default to 100]
+ **Offset** | **Int32**| Start offset | [optional] [default to 0]
+ **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
+ **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 
+
+### Return type
+
+[**EventResultSet**](EventResultSet.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
