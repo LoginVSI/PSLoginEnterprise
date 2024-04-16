@@ -23,12 +23,10 @@ To install from PowerShell Gallery (https://www.powershellgallery.com/packages/P
 Import-Module -Name PSLoginEnterprise -Verbose
 ```
 
-To install from the source, run the following command to build and install the PowerShell module locally:
+To install from the source, run the following command to install the PowerShell module locally:
 ```powershell
 Import-Module -Name '.\PSLoginEnterprise' -Verbose
 ```
-
-To avoid function name collision, one can use `-Prefix`, e.g. `Import-Module -Name '.\src\PSLoginEnterprise' -Prefix prefix`
 
 To uninstall the module, simply run:
 ```powershell
