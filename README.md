@@ -25,8 +25,7 @@ Import-Module -Name PSLoginEnterprise -Verbose
 
 To install from the source, run the following command to build and install the PowerShell module locally:
 ```powershell
-Build.ps1
-Import-Module -Name '.\src\PSLoginEnterprise' -Verbose
+Import-Module -Name '.\PSLoginEnterprise' -Verbose
 ```
 
 To avoid function name collision, one can use `-Prefix`, e.g. `Import-Module -Name '.\src\PSLoginEnterprise' -Prefix prefix`
