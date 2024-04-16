@@ -1,4 +1,4 @@
-# PSLoginEnterprise - the PowerShell module for the Login Enterprise
+# PSLoginEnterprise - PowerShell module for Login Enterprise
 
 <br><b>API v6 – is the recommended version to use. It is the actively developed version starting with Login Enterprise v4.10.</b></br>
 
