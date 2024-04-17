@@ -26,15 +26,11 @@ Get the eux results for a load test-run or continuous test collected within the 
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
-
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $From = (Get-Date) # System.DateTime | Include aggregated EuxResults where Timestamp is greater than the specified date-time (optional) (optional)
@@ -84,15 +80,15 @@ Get eux-results for a given Load test-run and Continuous test-run
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $From = (Get-Date) # System.DateTime | Include EuxResults where Timestamp is greater than the specified date-time (optional) (optional)
@@ -142,15 +138,15 @@ Get eux-script-executions (raw-data) for a given Load test-run and Continuous te
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Count = 56 # Int32 | Number of records to return (optional) (default to 1000)
@@ -201,15 +197,15 @@ Get the eux timer results for a load test-run or continuous test collected withi
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $EuxTimer = "paintStart" # EuxTimer[] |  (optional)
@@ -262,15 +258,15 @@ Get eux-timer-results for a given Load test-run and Continuous test-run
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $EuxTimer = "paintStart" # EuxTimer[] |  (optional)
@@ -320,15 +316,15 @@ Get Statistics results for a given Load test-run
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 
@@ -373,15 +369,15 @@ Get test-run by id
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Include = "none" # TestRunInclude[] | Include options (optional)
@@ -433,15 +429,15 @@ Get paginated list of test-runs
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Direction = "asc" # String | Sort direction (default to "desc")

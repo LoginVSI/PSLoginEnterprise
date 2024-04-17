@@ -26,15 +26,11 @@ Copy test
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
-
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $TestCopy = Initialize-LETestCopy -Name "MyName" # TestCopy | Object containing the Name of the new Test
@@ -80,15 +76,15 @@ Create test
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $Resolution = Initialize-LEResolution -Width 0 -Height 0
 $TargetHost = Initialize-LETargetHost -Enabled $false -Endpoint "MyEndpoint"
@@ -136,15 +132,15 @@ Delete test
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -188,15 +184,15 @@ Delete multiple tests
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $RequestBody = "MyRequestBody" # String[] | Test ids
 
@@ -241,15 +237,15 @@ Get test by id
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Include = "none" # TestInclude[] | Include options (optional)
@@ -302,15 +298,15 @@ Get paginated list of tests
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $OrderBy = "name" # TestSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -369,15 +365,15 @@ Start test
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $StartRequest = Initialize-LEStartRequest -Comment "MyComment" # StartRequest | Start-request data
@@ -423,15 +419,15 @@ Stop test
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -476,15 +472,15 @@ Update test
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Resolution = Initialize-LEResolution -Width 0 -Height 0

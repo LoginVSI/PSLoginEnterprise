@@ -21,15 +21,11 @@ Get screenshot by app-execution id and screenshot id
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
-
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id
@@ -78,15 +74,15 @@ Get screenshot by event id
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $EventId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Event id
@@ -133,15 +129,15 @@ Get list of screenshot by app-execution id
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id

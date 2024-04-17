@@ -19,15 +19,10 @@ Get list of the current and missing web automation drivers
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
-
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
-
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$accessToken = "YOUR_ACCESS_TOKEN"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
 
 
 # Get list of the current and missing web automation drivers
@@ -67,15 +62,15 @@ Update Driver Update Config
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $Body = $true # Boolean | auto Update Enabled
 
@@ -118,15 +113,15 @@ Download the latest web automation drivers
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 
 # Download the latest web automation drivers
@@ -165,15 +160,15 @@ Get Driver Update Config
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 
 # Get Driver Update Config

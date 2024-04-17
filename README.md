@@ -33,7 +33,7 @@ To avoid function name collision, one can use `-Prefix`, e.g. `Import-Module -Na
 
 To uninstall the module, simply run:
 ```powershell
-Remove-Module -FullyQualifiedName @{ModuleName = "PSLoginEnterprise"; ModuleVersion = "0.0.1"}
+Remove-Module -FullyQualifiedName @{ModuleName = "PSLoginEnterprise"}
 ```
 
 For troubleshooting, please run `$DebugPreference = 'Continue'` to turn on debugging and disable it with `$DebugPreference = 'SilentlyContinue'` when done with the troubleshooting.

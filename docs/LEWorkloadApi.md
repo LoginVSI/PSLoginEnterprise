@@ -23,15 +23,11 @@ Add test-workload steps
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
-
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data
@@ -78,15 +74,15 @@ Remove test-workload step
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $StepId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Step id
@@ -133,15 +129,15 @@ Remove test-workload steps
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $RequestBody = "MyRequestBody" # String[] | Step ids
@@ -187,15 +183,15 @@ Get test-workload by test id
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -240,15 +236,15 @@ Replace test-workload steps
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data (optional)
@@ -296,15 +292,15 @@ Update test-workload step
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-LEConfiguration
+$accessToken = "YOUR_ACCESS_TOKEN"
 
 # Configure OAuth2 access token for authorization: oauth2
 $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure API key authorization: Bearer
-$Configuration.ApiKey.Authorization = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.Authorization = "Bearer"
+$applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $StepId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Step id
