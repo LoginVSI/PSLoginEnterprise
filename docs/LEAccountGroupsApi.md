@@ -26,7 +26,7 @@ Create account-group
 $accessToken = "YOUR_ACCESS_TOKEN"
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $ConfigurationCreateAccountGroupRequest = Initialize-LEConfigurationCreateAccountGroupRequest -Type "MyType" -VarFilter "MyVarFilter" -Name "MyName" -Description "MyDescription" -MemberIds "MyMemberIds" # ConfigurationCreateAccountGroupRequest | Account-group data
@@ -78,7 +78,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
@@ -130,7 +130,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $RequestBody = "MyRequestBody" # String[] | Account-group ids
@@ -183,7 +183,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
@@ -245,7 +245,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $OrderBy = "username" # AccountSortKey | Sort Key
@@ -320,7 +320,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $OrderBy = "name" # AccountGroupSortKey | Sort Key
@@ -387,7 +387,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id

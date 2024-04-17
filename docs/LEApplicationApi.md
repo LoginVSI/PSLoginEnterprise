@@ -26,7 +26,7 @@ Create application.
 $accessToken = "YOUR_ACCESS_TOKEN"
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $ConfigurationCreateApplicationRequest = Initialize-LEConfigurationCreateApplicationRequest -Type "MyType" -BrowserName "chrome" -Url "MyUrl" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -TakeScreenshots $false -ScriptContent "MyScriptContent" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationCreateApplicationRequest | Application data
@@ -78,7 +78,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
@@ -130,7 +130,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $RequestBody = "MyRequestBody" # String[] | Application ids (optional)
@@ -183,7 +183,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
@@ -243,7 +243,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $OrderBy = "name" # ApplicationSortKey | Sort Key
@@ -308,7 +308,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 
@@ -357,7 +357,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id

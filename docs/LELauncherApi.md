@@ -22,7 +22,7 @@ Get launcher by name.
 $accessToken = "YOUR_ACCESS_TOKEN"
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $LauncherName = "MyLauncherName" # String | Launcher name
@@ -81,7 +81,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $OrderBy = "name" # LauncherSortKey | Sort Key
@@ -148,7 +148,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $LauncherName = "MyLauncherName" # String | Launcher name

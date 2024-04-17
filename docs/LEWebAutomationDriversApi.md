@@ -22,7 +22,7 @@ Get list of the current and missing web automation drivers
 $accessToken = "YOUR_ACCESS_TOKEN"
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 # Get list of the current and missing web automation drivers
@@ -69,7 +69,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $Body = $true # Boolean | auto Update Enabled
@@ -120,7 +120,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 
@@ -167,7 +167,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 

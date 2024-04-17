@@ -25,7 +25,7 @@ Create launcher-group
 $accessToken = "YOUR_ACCESS_TOKEN"
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -Type "MyType" -VarFilter "MyVarFilter" -Name "MyName" -Description "MyDescription" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data
@@ -77,7 +77,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
@@ -129,7 +129,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $RequestBody = "MyRequestBody" # String[] | Launcher-group ids (optional)
@@ -182,7 +182,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
@@ -242,7 +242,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $OrderBy = "name" # LauncherGroupSortKey | Sort Key
@@ -307,7 +307,7 @@ $Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
 
 $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken -SkipCertificateCheck
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
