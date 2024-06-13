@@ -36,9 +36,11 @@ Remove-Module -FullyQualifiedName @{ModuleName = "PSLoginEnterprise"}
 For troubleshooting, please run `$DebugPreference = 'Continue'` to turn on debugging and disable it with `$DebugPreference = 'SilentlyContinue'` when done with the troubleshooting.
 
 ## Quick Start
-To get started use the commands above to install the PSLoginEnterprise module (Elevated Powershell Window needed for install).
-Next, you will need an API key from your Login Enterprise Appliance (see https://support.loginvsi.com/hc/en-us/articles/360009534760-Public-API)
-With your API Key in hand, open powershell. We will use some variables to set our configuration:
+To get started use the commands above to install the PSLoginEnterprise module (elevated PowerShell window needed for install).
+
+Next, you will need an API key from your Login Enterprise Appliance (see https://support.loginvsi.com/hc/en-us/articles/360009534760-Public-API).
+
+With your API Key in hand, open PowerShell. Import the newly installed PSLoginEnterprise module and use some variables to set our configuration:
 
 ```powershell
 Import-Module PSLoginEnterprise
