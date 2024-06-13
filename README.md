@@ -67,7 +67,7 @@ try {
 }
 ```
 
-If you are configured properly, you should see:
+View the results (in the $Result variable). If you are configured properly, you should see:
 
 ```powershell
 PS C:\Users\username> $Result
