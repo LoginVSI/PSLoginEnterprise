@@ -35,6 +35,74 @@ Remove-Module -FullyQualifiedName @{ModuleName = "PSLoginEnterprise"}
 
 For troubleshooting, please run `$DebugPreference = 'Continue'` to turn on debugging and disable it with `$DebugPreference = 'SilentlyContinue'` when done with the troubleshooting.
 
+## Quick Start
+To get started use the commands above to install the PSLoginEnterprise module (Elevated Powershell Window needed for install).
+Next, you will need an API key from your Login Enterprise Appliance (see https://support.loginvsi.com/hc/en-us/articles/360009534760-Public-API)
+With your API Key in hand, open powershell. We will use some variables to set our configuration:
+
+```powershell
+Import-Module PSLoginEnterprise
+
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+$applianceName = "YOUR_APPLIANCE_URL" #no prefix, just he host name (ie): demolab.loginvsi.com
+
+# Don't change anything below here
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
+```
+
+With a configuration set, we can start querying. Remember, if you did not grant your API config permissions, don't expect to be able to make changes via the API.
+Example: Get EUX Version of the Login Enterprise Appliance:
+
+```powershell
+# Get eux version of system
+try {
+    $Result = Get-LESystemEuxVersion
+} catch {
+    Write-Host ("Exception occurred when calling Get-LESystemEuxVersion: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+If you are configured properly, you should see:
+
+```powershell
+PS C:\Users\username> $Result
+
+version
+-------
+EUX2023
+
+```
+
+You are all set! You can get help on any of the commands. For Example:
+```powershell
+Get-Help Get-LESystemEuxVersion
+
+NAME
+    Get-LESystemEuxVersion
+
+SYNOPSIS
+    Get eux version of system
+
+
+SYNTAX
+    Get-LESystemEuxVersion [-WithHttpInfo] [<CommonParameters>]
+
+
+DESCRIPTION
+    No description available.
+
+
+RELATED LINKS
+
+REMARKS
+    To see the examples, type: "get-help Get-LESystemEuxVersion -examples".
+    For more information, type: "get-help Get-LESystemEuxVersion -detailed".
+    For technical information, type: "get-help Get-LESystemEuxVersion -full".
+```
+
 ## Documentation for API Endpoints
 
 All URIs are relative to */publicApi*
