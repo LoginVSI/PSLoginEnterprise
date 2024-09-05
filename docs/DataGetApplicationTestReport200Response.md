@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **TestRunId** | **String** | Test run id | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Report id | [optional] 
 **TestId** | **String** | Test id | [optional] 
 **OutputContentUri** | **String** | Output content uri | [optional] 
@@ -19,8 +19,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DataGetApplicationTestReport200Response = Initialize-LEPSLoginEnterpriseDataGetApplicationTestReport200Response  -Type null `
- -TestRunId null `
+$DataGetApplicationTestReport200Response = Initialize-LEPSLoginEnterpriseDataGetApplicationTestReport200Response  -TestRunId null `
+ -Type null `
  -Id null `
  -TestId null `
  -OutputContentUri null `

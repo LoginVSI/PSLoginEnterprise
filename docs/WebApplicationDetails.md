@@ -3,17 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
 **Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
+**Type** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WebApplicationDetails = Initialize-LEPSLoginEnterpriseWebApplicationDetails  -Type null `
- -BrowserName null `
- -Url null
+$WebApplicationDetails = Initialize-LEPSLoginEnterpriseWebApplicationDetails  -BrowserName null `
+ -Url null `
+ -ProfileLocation null `
+ -Type null
 ```
 
 - Convert the resource to JSON

@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
+**TestRunConfigurationSnapshot** | [**LoadTestRunConfigurationSnapshot**](LoadTestRunConfigurationSnapshot.md) |  | [optional] 
 **State** | [**LoadTestState**](LoadTestState.md) |  | [optional] 
 **Result** | [**LoadTestResult**](LoadTestResult.md) |  | [optional] 
 **RampUpCompleted** | **System.DateTime** | Ramp-up completed date-time | [optional] 
@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **EuxScore** | [**EuxScore**](EuxScore.md) |  | [optional] 
 **VsiMax** | [**VsiMax**](VsiMax.md) |  | [optional] 
 **Comment** | **String** | Comment | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Test run id | [optional] 
 **TestId** | **String** | Test id | [optional] 
 **Created** | **System.DateTime** | Created date-time | [optional] 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -Type null `
+$LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -TestRunConfigurationSnapshot null `
  -State null `
  -Result null `
  -RampUpCompleted null `
@@ -40,6 +41,7 @@ $LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -Type null `
  -EuxScore null `
  -VsiMax null `
  -Comment null `
+ -Type null `
  -Id null `
  -TestId null `
  -Created null `

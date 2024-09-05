@@ -3,10 +3,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
-**Application** | [**AppInvocationApplication**](AppInvocationApplication.md) |  | [optional] 
+**Application** | [**OneOfWebApplicationWindowsApplication**](OneOfWebApplicationWindowsApplication.md) | Application | [optional] 
 **RunOnce** | **Boolean** | Run the application only once | [optional] 
 **LeaveRunning** | **Boolean** | Do not close the application | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Step id | [optional] 
 **IsEnabled** | **Boolean** | Enable step | [optional] 
 
@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AppInvocation = Initialize-LEPSLoginEnterpriseAppInvocation  -Type null `
- -Application null `
+$AppInvocation = Initialize-LEPSLoginEnterpriseAppInvocation  -Application null `
  -RunOnce null `
  -LeaveRunning null `
+ -Type null `
  -Id null `
  -IsEnabled null
 ```

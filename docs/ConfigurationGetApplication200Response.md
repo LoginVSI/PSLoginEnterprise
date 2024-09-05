@@ -3,9 +3,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
 **Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Application id | [optional] 
 **Name** | **String** | Application name | [optional] 
 **Description** | **String** | Application description | [optional] 
@@ -25,9 +26,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationGetApplication200Response = Initialize-LEPSLoginEnterpriseConfigurationGetApplication200Response  -Type null `
- -BrowserName null `
+$ConfigurationGetApplication200Response = Initialize-LEPSLoginEnterpriseConfigurationGetApplication200Response  -BrowserName null `
  -Url null `
+ -ProfileLocation null `
+ -Type null `
  -Id null `
  -Name null `
  -Description null `

@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ApplicationGroupId** | **String** | Application id | 
+**Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AppGroupReferenceCreate = Initialize-LEPSLoginEnterpriseAppGroupReferenceCreate  -Type null `
- -ApplicationGroupId null `
+$AppGroupReferenceCreate = Initialize-LEPSLoginEnterpriseAppGroupReferenceCreate  -ApplicationGroupId null `
+ -Type null `
  -IsEnabled null
 ```
 

@@ -3,27 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **IsEmailEnabled** | **Boolean** | Enable email notification | 
 **EmailRecipient** | **String** | Notification email address | [optional] 
 **IncludeSuccessfulApplications** | **Boolean** | Include successful applications in report | 
+**RestartOnComplete** | **Boolean** | Enable restarting on completion | 
+**Type** | **String** |  | 
 **Name** | **String** | Test name | 
 **Description** | **String** | Test description | [optional] 
-**EnvironmentUpdate** | [**EnvironmentUpdate**](EnvironmentUpdate.md) |  | [optional] 
+**ConnectionResourcesUpdate** | [**ConnectionResourcesUpdate**](ConnectionResourcesUpdate.md) |  | [optional] 
+**EnvironmentKey** | **String** | Environment key | [optional] 
 **Steps** | [**ConfigurationReplaceApplicationGroupStepsRequestInner[]**](ConfigurationReplaceApplicationGroupStepsRequestInner.md) | Workload steps creation data | [optional] 
+**LogonTimeTrackingProcess** | **String** | Specify the application to track user login time session and session initiation. The default value is explorer.exe (Windows shell). You can customize it to Citrix, VMWare, or another platform that you&#39;re using. Common values are wfshell.exe (Citrix), mware-view-usbd.exe (VMWare), or rdpshell.exe (Microsoft RDP). | [optional] 
+**EngineStartTimeout** | **String** | Engine start timeout | [optional] 
+**ApplicationDebugModeEnabled** | **Boolean** | Run application scripts in debug mode to capture the error line for scripts failures | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ApplicationTestUpdate = Initialize-LEPSLoginEnterpriseApplicationTestUpdate  -Type null `
- -IsEmailEnabled null `
+$ApplicationTestUpdate = Initialize-LEPSLoginEnterpriseApplicationTestUpdate  -IsEmailEnabled null `
  -EmailRecipient null `
  -IncludeSuccessfulApplications null `
+ -RestartOnComplete null `
+ -Type null `
  -Name null `
  -Description null `
- -EnvironmentUpdate null `
- -Steps null
+ -ConnectionResourcesUpdate null `
+ -EnvironmentKey null `
+ -Steps null `
+ -LogonTimeTrackingProcess null `
+ -EngineStartTimeout null `
+ -ApplicationDebugModeEnabled null
 ```
 
 - Convert the resource to JSON

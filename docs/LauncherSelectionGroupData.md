@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **LauncherNames** | **String[]** | Launcher names | [optional] 
+**Type** | **String** |  | 
 **Name** | **String** | Launcher group name | 
 **Description** | **String** | Launcher group description | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$LauncherSelectionGroupData = Initialize-LEPSLoginEnterpriseLauncherSelectionGroupData  -Type null `
- -LauncherNames null `
+$LauncherSelectionGroupData = Initialize-LEPSLoginEnterpriseLauncherSelectionGroupData  -LauncherNames null `
+ -Type null `
  -Name null `
  -Description null
 ```

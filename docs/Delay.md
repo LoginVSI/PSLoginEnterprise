@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **DelayInSeconds** | **Int32** | Delay in seconds | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Step id | [optional] 
 **IsEnabled** | **Boolean** | Enable step | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$Delay = Initialize-LEPSLoginEnterpriseDelay  -Type null `
- -DelayInSeconds null `
+$Delay = Initialize-LEPSLoginEnterpriseDelay  -DelayInSeconds null `
+ -Type null `
  -Id null `
  -IsEnabled null
 ```

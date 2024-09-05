@@ -3,10 +3,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ApplicationId** | **String** | Application id | 
 **RunOnce** | **Boolean** | Run the application only once | 
 **LeaveRunning** | **Boolean** | Do not close the application | 
+**Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
 **DelayInSeconds** | **Int32** | Delay in seconds | 
 **ApplicationGroupId** | **String** | Application id | 
@@ -15,10 +15,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEPSLoginEnterpriseConfigurationReplaceApplicationGroupStepsRequestInner  -Type null `
- -ApplicationId null `
+$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEPSLoginEnterpriseConfigurationReplaceApplicationGroupStepsRequestInner  -ApplicationId null `
  -RunOnce null `
  -LeaveRunning null `
+ -Type null `
  -IsEnabled null `
  -DelayInSeconds null `
  -ApplicationGroupId null

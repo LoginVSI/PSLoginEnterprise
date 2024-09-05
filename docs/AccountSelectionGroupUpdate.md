@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **MemberIds** | **String[]** | Account group member ids | [optional] 
+**Type** | **String** |  | 
 **Name** | **String** | Account group name | [optional] 
 **Description** | **String** | Account group description | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AccountSelectionGroupUpdate = Initialize-LEPSLoginEnterpriseAccountSelectionGroupUpdate  -Type null `
- -MemberIds null `
+$AccountSelectionGroupUpdate = Initialize-LEPSLoginEnterpriseAccountSelectionGroupUpdate  -MemberIds null `
+ -Type null `
  -Name null `
  -Description null
 ```

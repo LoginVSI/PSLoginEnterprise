@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ConfigurationId** | **String** | Report configuration id | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Report id | [optional] 
 **TestId** | **String** | Test id | [optional] 
 **OutputContentUri** | **String** | Output content uri | [optional] 
@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ContinuousTestReport = Initialize-LEPSLoginEnterpriseContinuousTestReport  -Type null `
- -ConfigurationId null `
+$ContinuousTestReport = Initialize-LEPSLoginEnterpriseContinuousTestReport  -ConfigurationId null `
+ -Type null `
  -Id null `
  -TestId null `
  -OutputContentUri null `

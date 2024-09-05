@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **DelayInSeconds** | **Int32** | Delay in seconds | 
+**Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DelayUpdate = Initialize-LEPSLoginEnterpriseDelayUpdate  -Type null `
- -DelayInSeconds null `
+$DelayUpdate = Initialize-LEPSLoginEnterpriseDelayUpdate  -DelayInSeconds null `
+ -Type null `
  -IsEnabled null
 ```
 

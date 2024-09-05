@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEContinuousTestNotification**](LENotificationApi.md#New-LEContinuousTestNotification) | **POST** /v6/tests/{testId}/notifications | Create test-notification
-[**Invoke-LEDeleteContinuousTestNotification**](LENotificationApi.md#Invoke-LEDeleteContinuousTestNotification) | **DELETE** /v6/tests/{testId}/notifications/{notificationId} | Delete test-notification
-[**Get-LEContinuousTestNotifications**](LENotificationApi.md#Get-LEContinuousTestNotifications) | **GET** /v6/tests/{testId}/notifications | Get list of test-notification
-[**Update-LEContinuousTestNotification**](LENotificationApi.md#Update-LEContinuousTestNotification) | **PUT** /v6/tests/{testId}/notifications/{notificationId} | Update test-notification
+[**New-LEContinuousTestNotification**](LENotificationApi.md#New-LEContinuousTestNotification) | **POST** /v7-preview/tests/{testId}/notifications | Create test-notification
+[**Invoke-LEDeleteContinuousTestNotification**](LENotificationApi.md#Invoke-LEDeleteContinuousTestNotification) | **DELETE** /v7-preview/tests/{testId}/notifications/{notificationId} | Delete test-notification
+[**Get-LEContinuousTestNotifications**](LENotificationApi.md#Get-LEContinuousTestNotifications) | **GET** /v7-preview/tests/{testId}/notifications | Get list of test-notification
+[**Update-LEContinuousTestNotification**](LENotificationApi.md#Update-LEContinuousTestNotification) | **PUT** /v7-preview/tests/{testId}/notifications/{notificationId} | Update test-notification
 
 
 <a id="New-LEContinuousTestNotification"></a>
@@ -22,14 +22,18 @@ Create test-notification
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $AppThresholdCreate = Initialize-LEAppThresholdCreate -ApplicationId "MyApplicationId" -Timer "MyTimer" -IsEnabled $false -Value 0
-$ThresholdNotificationCreate = Initialize-LEThresholdNotificationCreate -Type "MyType" -Threshold $AppThresholdCreate -TimesExceeded 0 -PeriodDuration 0 -IsEnabled $false # ThresholdNotificationCreate | Test-notification date
+$ThresholdNotificationCreate = Initialize-LEThresholdNotificationCreate -Threshold $AppThresholdCreate -Type "MyType" -TimesExceeded 0 -PeriodDuration 0 -IsEnabled $false -EmailRecipients "MyEmailRecipients" -UseCustomMailRecipient $false # ThresholdNotificationCreate | Test-notification date
 
 # Create test-notification
 try {
@@ -75,13 +79,13 @@ Delete test-notification
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $NotificationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-notification id
@@ -129,13 +133,13 @@ Get list of test-notification
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -183,18 +187,18 @@ Update test-notification
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $NotificationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-notification id
 $ThresholdUpdate = Initialize-LEThresholdUpdate -IsEnabled $false -Value 0
-$ConfigurationUpdateContinuousTestNotificationRequest = Initialize-LEConfigurationUpdateContinuousTestNotificationRequest -Type "MyType" -TimesExceeded 0 -PeriodDuration 0 -IsEnabled $false -ThresholdUpdate $ThresholdUpdate # ConfigurationUpdateContinuousTestNotificationRequest | Test-notification data
+$ConfigurationUpdateContinuousTestNotificationRequest = Initialize-LEConfigurationUpdateContinuousTestNotificationRequest -Type "MyType" -TimesExceeded 0 -PeriodDuration 0 -IsEnabled $false -EmailRecipients "MyEmailRecipients" -UseCustomMailRecipient $false -ThresholdUpdate $ThresholdUpdate # ConfigurationUpdateContinuousTestNotificationRequest | Test-notification data
 
 # Update test-notification
 try {

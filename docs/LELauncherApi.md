@@ -4,9 +4,9 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LELauncher**](LELauncherApi.md#Get-LELauncher) | **GET** /v6/launchers/{launcherName} | Get launcher by name.
-[**Get-LELaunchers**](LELauncherApi.md#Get-LELaunchers) | **GET** /v6/launchers | Get paginated list of launchers
-[**Update-LELauncherLocation**](LELauncherApi.md#Update-LELauncherLocation) | **PUT** /v6/launchers/{launcherName}/location | Change launcher&#39;s location
+[**Get-LELauncher**](LELauncherApi.md#Get-LELauncher) | **GET** /v7-preview/launchers/{launcherName} | Get launcher by name.
+[**Get-LELaunchers**](LELauncherApi.md#Get-LELaunchers) | **GET** /v7-preview/launchers | Get paginated list of launchers
+[**Update-LELauncherLocation**](LELauncherApi.md#Update-LELauncherLocation) | **PUT** /v7-preview/launchers/{launcherName}/location | Change launcher&#39;s location
 
 
 <a id="Get-LELauncher"></a>
@@ -20,10 +20,14 @@ Get launcher by name.
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LauncherName = "MyLauncherName" # String | Launcher name
 
@@ -76,13 +80,13 @@ Get paginated list of launchers
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # LauncherSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -143,13 +147,13 @@ Change launcher's location
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LauncherName = "MyLauncherName" # String | Launcher name
 $LauncherLocationUpdate = Initialize-LELauncherLocationUpdate -LocationId 0 # LauncherLocationUpdate | Launcher location data

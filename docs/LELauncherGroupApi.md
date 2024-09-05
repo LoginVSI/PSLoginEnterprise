@@ -4,12 +4,12 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LELauncherGroup**](LELauncherGroupApi.md#New-LELauncherGroup) | **POST** /v6/launcher-groups | Create launcher-group
-[**Invoke-LEDeleteLauncherGroup**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroup) | **DELETE** /v6/launcher-groups/{groupId} | Delete launcher-group
-[**Invoke-LEDeleteLauncherGroups**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroups) | **DELETE** /v6/launcher-groups | delete multiple launcher-groups
-[**Get-LELauncherGroup**](LELauncherGroupApi.md#Get-LELauncherGroup) | **GET** /v6/launcher-groups/{groupId} | Get launcher-group by id
-[**Get-LELauncherGroups**](LELauncherGroupApi.md#Get-LELauncherGroups) | **GET** /v6/launcher-groups | Get paginated list of launcher-groups
-[**Update-LELauncherGroup**](LELauncherGroupApi.md#Update-LELauncherGroup) | **PUT** /v6/launcher-groups/{groupId} | Update launcher-group
+[**New-LELauncherGroup**](LELauncherGroupApi.md#New-LELauncherGroup) | **POST** /v7-preview/launcher-groups | Create launcher-group
+[**Invoke-LEDeleteLauncherGroup**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroup) | **DELETE** /v7-preview/launcher-groups/{groupId} | Delete launcher-group
+[**Invoke-LEDeleteLauncherGroups**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroups) | **DELETE** /v7-preview/launcher-groups | delete multiple launcher-groups
+[**Get-LELauncherGroup**](LELauncherGroupApi.md#Get-LELauncherGroup) | **GET** /v7-preview/launcher-groups/{groupId} | Get launcher-group by id
+[**Get-LELauncherGroups**](LELauncherGroupApi.md#Get-LELauncherGroups) | **GET** /v7-preview/launcher-groups | Get paginated list of launcher-groups
+[**Update-LELauncherGroup**](LELauncherGroupApi.md#Update-LELauncherGroup) | **PUT** /v7-preview/launcher-groups/{groupId} | Update launcher-group
 
 
 <a id="New-LELauncherGroup"></a>
@@ -23,12 +23,16 @@ Create launcher-group
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -Type "MyType" -VarFilter "MyVarFilter" -Name "MyName" -Description "MyDescription" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -VarFilter "MyVarFilter" -Type "MyType" -Name "MyName" -Description "MyDescription" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data
 
 # Create launcher-group
 try {
@@ -72,13 +76,13 @@ Delete launcher-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 
@@ -124,13 +128,13 @@ delete multiple launcher-groups
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Launcher-group ids (optional)
 
@@ -177,13 +181,13 @@ Get launcher-group by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 $Include = "none" # LauncherGroupInclude[] | Include options (optional)
@@ -237,13 +241,13 @@ Get paginated list of launcher-groups
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # LauncherGroupSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -302,16 +306,16 @@ Update launcher-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
-$ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -Type "MyType" -VarFilter "MyVarFilter" -Name "MyName" -Description "MyDescription" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data
+$ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -VarFilter "MyVarFilter" -Type "MyType" -Name "MyName" -Description "MyDescription" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data
 
 # Update launcher-group
 try {

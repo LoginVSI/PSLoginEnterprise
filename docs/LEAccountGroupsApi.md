@@ -4,13 +4,14 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEAccountGroup**](LEAccountGroupsApi.md#New-LEAccountGroup) | **POST** /v6/account-groups | Create account-group
-[**Invoke-LEDeleteAccountGroup**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroup) | **DELETE** /v6/account-groups/{groupId} | Delete account-group
-[**Invoke-LEDeleteAccountGroups**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroups) | **DELETE** /v6/account-groups | Delete multiple account-groups
-[**Get-LEAccountGroup**](LEAccountGroupsApi.md#Get-LEAccountGroup) | **GET** /v6/account-groups/{groupId} | Get account-group by id
-[**Get-LEAccountGroupCandidates**](LEAccountGroupsApi.md#Get-LEAccountGroupCandidates) | **GET** /v6/account-groups/candidates | Get account-group candidates
-[**Get-LEAccountGroups**](LEAccountGroupsApi.md#Get-LEAccountGroups) | **GET** /v6/account-groups | Get paginated list of account-groups
-[**Update-LEAccountGroup**](LEAccountGroupsApi.md#Update-LEAccountGroup) | **PUT** /v6/account-groups/{groupId} | Update account-group
+[**New-LEAccountGroup**](LEAccountGroupsApi.md#New-LEAccountGroup) | **POST** /v7-preview/account-groups | Create account-group
+[**Invoke-LEDeleteAccountGroup**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroup) | **DELETE** /v7-preview/account-groups/{groupId} | Delete account-group
+[**Invoke-LEDeleteAccountGroups**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroups) | **DELETE** /v7-preview/account-groups | Delete multiple account-groups
+[**Get-LEAccountGroup**](LEAccountGroupsApi.md#Get-LEAccountGroup) | **GET** /v7-preview/account-groups/{groupId} | Get account-group by id
+[**Get-LEAccountGroupCandidates**](LEAccountGroupsApi.md#Get-LEAccountGroupCandidates) | **GET** /v7-preview/account-groups/candidates | Get account-group candidates
+[**Get-LEAccountGroups**](LEAccountGroupsApi.md#Get-LEAccountGroups) | **GET** /v7-preview/account-groups | Get paginated list of account-groups
+[**Update-LEAccountGroup**](LEAccountGroupsApi.md#Update-LEAccountGroup) | **PUT** /v7-preview/account-groups/{groupId} | Update account-group
+[**Update-LEAccountsEnabled**](LEAccountGroupsApi.md#Update-LEAccountsEnabled) | **PUT** /v7-preview/account-groups/enabled | Enable or disable accounts in groups
 
 
 <a id="New-LEAccountGroup"></a>
@@ -24,12 +25,16 @@ Create account-group
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$ConfigurationCreateAccountGroupRequest = Initialize-LEConfigurationCreateAccountGroupRequest -Type "MyType" -VarFilter "MyVarFilter" -Name "MyName" -Description "MyDescription" -MemberIds "MyMemberIds" # ConfigurationCreateAccountGroupRequest | Account-group data
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$ConfigurationCreateAccountGroupRequest = Initialize-LEConfigurationCreateAccountGroupRequest -VarFilter "MyVarFilter" -Type "MyType" -Name "MyName" -Description "MyDescription" -MemberIds "MyMemberIds" # ConfigurationCreateAccountGroupRequest | Account-group data
 
 # Create account-group
 try {
@@ -73,13 +78,13 @@ Delete account-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 
@@ -125,13 +130,13 @@ Delete multiple account-groups
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Account-group ids
 
@@ -178,13 +183,13 @@ Get account-group by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $Include = "none" # AccountGroupInclude[] | Include options (optional)
@@ -240,13 +245,13 @@ Get account-group candidates
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "username" # AccountSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -315,13 +320,13 @@ Get paginated list of account-groups
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # AccountGroupSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -382,16 +387,16 @@ Update account-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
-$ConfigurationUpdateAccountGroupRequest = Initialize-LEConfigurationUpdateAccountGroupRequest -Type "MyType" -VarFilter "MyVarFilter" -Name "MyName" -Description "MyDescription" -MemberIds "MyMemberIds" # ConfigurationUpdateAccountGroupRequest | Account-group data
+$ConfigurationUpdateAccountGroupRequest = Initialize-LEConfigurationUpdateAccountGroupRequest -VarFilter "MyVarFilter" -Type "MyType" -Name "MyName" -Description "MyDescription" -MemberIds "MyMemberIds" # ConfigurationUpdateAccountGroupRequest | Account-group data
 
 # Update account-group
 try {
@@ -408,6 +413,58 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **GroupId** | **String**| Account-group id | 
  **ConfigurationUpdateAccountGroupRequest** | [**ConfigurationUpdateAccountGroupRequest**](ConfigurationUpdateAccountGroupRequest.md)| Account-group data | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Update-LEAccountsEnabled"></a>
+# **Update-LEAccountsEnabled**
+> void Update-LEAccountsEnabled<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AccountGroupMemberEnabledUpdate] <PSCustomObject><br>
+
+Enable or disable accounts in groups
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$AccountGroupMemberEnabledUpdate = Initialize-LEAccountGroupMemberEnabledUpdate -GroupIds "MyGroupIds" -Enabled $false # AccountGroupMemberEnabledUpdate | Groups data
+
+# Enable or disable accounts in groups
+try {
+    $Result = Update-LEAccountsEnabled -AccountGroupMemberEnabledUpdate $AccountGroupMemberEnabledUpdate
+} catch {
+    Write-Host ("Exception occurred when calling Update-LEAccountsEnabled: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **AccountGroupMemberEnabledUpdate** | [**AccountGroupMemberEnabledUpdate**](AccountGroupMemberEnabledUpdate.md)| Groups data | 
 
 ### Return type
 

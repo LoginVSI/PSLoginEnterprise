@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **Target** | [**SessionThresholdType**](SessionThresholdType.md) |  | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Threshold id | [optional] 
 **IsEnabled** | **Boolean** | Enable threshold | [optional] 
 **Value** | **Double** | Threshold value | [optional] 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$SessionThreshold = Initialize-LEPSLoginEnterpriseSessionThreshold  -Type null `
- -Target null `
+$SessionThreshold = Initialize-LEPSLoginEnterpriseSessionThreshold  -Target null `
+ -Type null `
  -Id null `
  -IsEnabled null `
  -Value null `

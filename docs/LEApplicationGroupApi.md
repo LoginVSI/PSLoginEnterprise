@@ -4,16 +4,16 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LEStepsToApplicationGroup**](LEApplicationGroupApi.md#Add-LEStepsToApplicationGroup) | **POST** /v6/application-groups/{groupId}/steps | Add steps to application-group
-[**New-LEApplicationGroup**](LEApplicationGroupApi.md#New-LEApplicationGroup) | **POST** /v6/application-groups | Create application-group
-[**Invoke-LEDeleteApplicationGroup**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroup) | **DELETE** /v6/application-groups/{groupId} | Delete application-group
-[**Invoke-LEDeleteApplicationGroupList**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroupList) | **DELETE** /v6/application-groups | Delete multiple application-groups
-[**Get-LEApplicationGroup**](LEApplicationGroupApi.md#Get-LEApplicationGroup) | **GET** /v6/application-groups/{groupId} | Get application-group by id
-[**Get-LEApplicationGroups**](LEApplicationGroupApi.md#Get-LEApplicationGroups) | **GET** /v6/application-groups | Get paginated list of application-groups
-[**Remove-LEStepsFromApplicationGroup**](LEApplicationGroupApi.md#Remove-LEStepsFromApplicationGroup) | **DELETE** /v6/application-groups/{groupId}/steps | Remove steps from application-group
-[**Invoke-LEReplaceApplicationGroupSteps**](LEApplicationGroupApi.md#Invoke-LEReplaceApplicationGroupSteps) | **PUT** /v6/application-groups/{groupId}/steps | Replace application-group Steps
-[**Update-LEApplicationGroup**](LEApplicationGroupApi.md#Update-LEApplicationGroup) | **PUT** /v6/application-groups/{groupId} | Update application-group
-[**Update-LEStepInApplicationGroup**](LEApplicationGroupApi.md#Update-LEStepInApplicationGroup) | **PUT** /v6/application-groups/{groupId}/steps/{stepId} | Update single step in application-group
+[**Add-LEStepsToApplicationGroup**](LEApplicationGroupApi.md#Add-LEStepsToApplicationGroup) | **POST** /v7-preview/application-groups/{groupId}/steps | Add steps to application-group
+[**New-LEApplicationGroup**](LEApplicationGroupApi.md#New-LEApplicationGroup) | **POST** /v7-preview/application-groups | Create application-group
+[**Invoke-LEDeleteApplicationGroup**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroup) | **DELETE** /v7-preview/application-groups/{groupId} | Delete application-group
+[**Invoke-LEDeleteApplicationGroupList**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroupList) | **DELETE** /v7-preview/application-groups | Delete multiple application-groups
+[**Get-LEApplicationGroup**](LEApplicationGroupApi.md#Get-LEApplicationGroup) | **GET** /v7-preview/application-groups/{groupId} | Get application-group by id
+[**Get-LEApplicationGroups**](LEApplicationGroupApi.md#Get-LEApplicationGroups) | **GET** /v7-preview/application-groups | Get paginated list of application-groups
+[**Remove-LEStepsFromApplicationGroup**](LEApplicationGroupApi.md#Remove-LEStepsFromApplicationGroup) | **DELETE** /v7-preview/application-groups/{groupId}/steps | Remove steps from application-group
+[**Invoke-LEReplaceApplicationGroupSteps**](LEApplicationGroupApi.md#Invoke-LEReplaceApplicationGroupSteps) | **PUT** /v7-preview/application-groups/{groupId}/steps | Replace application-group Steps
+[**Update-LEApplicationGroup**](LEApplicationGroupApi.md#Update-LEApplicationGroup) | **PUT** /v7-preview/application-groups/{groupId} | Update application-group
+[**Update-LEStepInApplicationGroup**](LEApplicationGroupApi.md#Update-LEStepInApplicationGroup) | **PUT** /v7-preview/application-groups/{groupId}/steps/{stepId} | Update single step in application-group
 
 
 <a id="Add-LEStepsToApplicationGroup"></a>
@@ -28,13 +28,17 @@ Add steps to application-group
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
-$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data
+$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -Type "MyType" -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data
 
 # Add steps to application-group
 try {
@@ -79,15 +83,15 @@ Create application-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
-
-$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId"
+$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -Type "MyType" -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId"
 $ApplicationGroupCreate = Initialize-LEApplicationGroupCreate -Name "MyName" -Description "MyDescription" -Steps $ConfigurationReplaceApplicationGroupStepsRequestInner # ApplicationGroupCreate | Application-group data
 
 # Create application-group
@@ -132,13 +136,13 @@ Delete application-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 
@@ -184,13 +188,13 @@ Delete multiple application-groups
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Application-group ids
 
@@ -237,13 +241,13 @@ Get application-group by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $Include = "none" # ApplicationGroupInclude[] | Include options (optional)
@@ -297,13 +301,13 @@ Get paginated list of application-groups
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # ApplicationGroupSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -362,13 +366,13 @@ Remove steps from application-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $RequestBody = "MyRequestBody" # String[] | Step ids
@@ -417,16 +421,16 @@ Replace application-group Steps
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
-$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | Application-group data
+$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -Type "MyType" -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | Application-group data
 
 # Replace application-group Steps
 try {
@@ -472,16 +476,16 @@ Update application-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
-$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId"
+$ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -Type "MyType" -IsEnabled $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId"
 $ApplicationGroupUpdate = Initialize-LEApplicationGroupUpdate -Name "MyName" -Description "MyDescription" -Steps $ConfigurationReplaceApplicationGroupStepsRequestInner # ApplicationGroupUpdate | Application-group data
 
 # Update application-group
@@ -529,17 +533,17 @@ Update single step in application-group
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $StepId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Step id
-$ConfigurationUpdateStepInApplicationGroupRequest = Initialize-LEConfigurationUpdateStepInApplicationGroupRequest -Type "MyType" -RunOnce $false -LeaveRunning $false -IsEnabled $false -DelayInSeconds 0 # ConfigurationUpdateStepInApplicationGroupRequest | Step data (optional)
+$ConfigurationUpdateStepInApplicationGroupRequest = Initialize-LEConfigurationUpdateStepInApplicationGroupRequest -RunOnce $false -LeaveRunning $false -Type "MyType" -IsEnabled $false -DelayInSeconds 0 # ConfigurationUpdateStepInApplicationGroupRequest | Step data (optional)
 
 # Update single step in application-group
 try {

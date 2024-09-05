@@ -6,9 +6,11 @@ Name | Type | Description | Notes
 **Type** | **String** |  | 
 **Name** | **String** | Test name | 
 **Description** | **String** | Test description | [optional] 
-**Connector** | [**ApplicationTestCreateConnector**](ApplicationTestCreateConnector.md) |  | 
+**Connector** | [**TestCreateConnector**](TestCreateConnector.md) |  | 
 **AccountGroups** | **String[]** | Account group id | [optional] 
 **LauncherGroups** | **String[]** | Launcher group ids | [optional] 
+**EnvironmentKey** | **String** | Environment key | [optional] 
+**ApplicationDebugModeEnabled** | **Boolean** | Run application scripts in debug mode to capture the error line for scripts failures | [optional] 
 
 ## Examples
 
@@ -19,7 +21,9 @@ $ApplicationTestCreate = Initialize-LEPSLoginEnterpriseApplicationTestCreate  -T
  -Description null `
  -Connector null `
  -AccountGroups null `
- -LauncherGroups null
+ -LauncherGroups null `
+ -EnvironmentKey null `
+ -ApplicationDebugModeEnabled null
 ```
 
 - Convert the resource to JSON

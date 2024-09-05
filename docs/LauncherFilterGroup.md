@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Launcher group id | [optional] 
 **Name** | **String** | Launcher group name | [optional] 
 **MemberCount** | **Int32** | Launcher group member count | [optional] 
@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$LauncherFilterGroup = Initialize-LEPSLoginEnterpriseLauncherFilterGroup  -Type null `
- -VarFilter null `
+$LauncherFilterGroup = Initialize-LEPSLoginEnterpriseLauncherFilterGroup  -VarFilter null `
+ -Type null `
  -Id null `
  -Name null `
  -MemberCount null `

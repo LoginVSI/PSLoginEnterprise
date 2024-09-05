@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEUserSession**](LEUserSessionApi.md#Get-LEUserSession) | **GET** /v6/test-runs/{testRunId}/user-sessions/{userSessionId} | Get user-session by id
-[**Get-LEUserSessions**](LEUserSessionApi.md#Get-LEUserSessions) | **GET** /v6/test-runs/{testRunId}/user-sessions | Get paginated list of user-sessions
+[**Get-LEUserSession**](LEUserSessionApi.md#Get-LEUserSession) | **GET** /v7-preview/test-runs/{testRunId}/user-sessions/{userSessionId} | Get user-session by id
+[**Get-LEUserSessions**](LEUserSessionApi.md#Get-LEUserSessions) | **GET** /v7-preview/test-runs/{testRunId}/user-sessions | Get paginated list of user-sessions
 
 
 <a id="Get-LEUserSession"></a>
@@ -21,10 +21,14 @@ Get user-session by id
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $UserSessionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User-session id
@@ -82,13 +86,13 @@ Get paginated list of user-sessions
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Direction = "asc" # String | Sort direction (default to "desc")

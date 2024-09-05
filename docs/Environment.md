@@ -3,17 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Connector** | [**EnvironmentUpdateConnector**](EnvironmentUpdateConnector.md) |  | [optional] 
-**LauncherGroups** | [**ConfigurationGetLauncherGroup200Response[]**](ConfigurationGetLauncherGroup200Response.md) | Launcher groups | [optional] 
-**AccountGroups** | [**ConfigurationGetAccountGroup200Response[]**](ConfigurationGetAccountGroup200Response.md) | Account groups | [optional] 
+**Id** | **String** | Environment Id | [optional] 
+**Name** | **String** | Environment Name | [optional] 
+**Description** | **String** | Description | [optional] 
+**EnableEnvironmentDataCollection** | **Boolean** | Enable environment data collection | [optional] 
+**EnvironmentCost** | [**EnvironmentCost**](EnvironmentCost.md) |  | [optional] 
+**EnvironmentAttributes** | [**EnvironmentAttributes**](EnvironmentAttributes.md) |  | [optional] 
+**Provider** | [**EnvironmentProvider**](EnvironmentProvider.md) |  | [optional] 
+**Tests** | [**TestReference[]**](TestReference.md) | Tests associated to this environment | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$Environment = Initialize-LEPSLoginEnterpriseEnvironment  -Connector null `
- -LauncherGroups null `
- -AccountGroups null
+$Environment = Initialize-LEPSLoginEnterpriseEnvironment  -Id null `
+ -Name null `
+ -Description null `
+ -EnableEnvironmentDataCollection null `
+ -EnvironmentCost null `
+ -EnvironmentAttributes null `
+ -Provider null `
+ -Tests null
 ```
 
 - Convert the resource to JSON

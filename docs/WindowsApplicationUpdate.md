@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **CommandLine** | **String** | Command line arguments | 
 **WorkingDirectory** | **String** | Working directory | [optional] 
+**Type** | **String** |  | 
 **Name** | **String** | Application name | 
 **Description** | **String** | Application description | [optional] 
 **Username** | **String** | Application user name | [optional] 
@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$WindowsApplicationUpdate = Initialize-LEPSLoginEnterpriseWindowsApplicationUpdate  -Type null `
- -CommandLine null `
+$WindowsApplicationUpdate = Initialize-LEPSLoginEnterpriseWindowsApplicationUpdate  -CommandLine null `
  -WorkingDirectory null `
+ -Type null `
  -Name null `
  -Description null `
  -Username null `

@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **RunOnce** | **Boolean** | Run the application only once | 
 **LeaveRunning** | **Boolean** | Do not close the application | 
+**Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AppInvocationUpdate = Initialize-LEPSLoginEnterpriseAppInvocationUpdate  -Type null `
- -RunOnce null `
+$AppInvocationUpdate = Initialize-LEPSLoginEnterpriseAppInvocationUpdate  -RunOnce null `
  -LeaveRunning null `
+ -Type null `
  -IsEnabled null
 ```
 

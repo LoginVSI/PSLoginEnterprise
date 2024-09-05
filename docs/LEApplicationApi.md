@@ -4,13 +4,13 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEApplication**](LEApplicationApi.md#New-LEApplication) | **POST** /v6/applications | Create application.
-[**Invoke-LEDeleteApplication**](LEApplicationApi.md#Invoke-LEDeleteApplication) | **DELETE** /v6/applications/{applicationId} | Delete application
-[**Invoke-LEDeleteApplications**](LEApplicationApi.md#Invoke-LEDeleteApplications) | **DELETE** /v6/applications | Delete multiple applications
-[**Get-LEApplication**](LEApplicationApi.md#Get-LEApplication) | **GET** /v6/applications/{applicationId} | Get application by id
-[**Get-LEApplications**](LEApplicationApi.md#Get-LEApplications) | **GET** /v6/applications | Gets a paginated list of applications
-[**Invoke-LEParseApplicationDetails**](LEApplicationApi.md#Invoke-LEParseApplicationDetails) | **POST** /v6/applications/parse | Parse application details from script content
-[**Update-LEApplication**](LEApplicationApi.md#Update-LEApplication) | **PUT** /v6/applications/{applicationId} | Update application
+[**New-LEApplication**](LEApplicationApi.md#New-LEApplication) | **POST** /v7-preview/applications | Create application.
+[**Invoke-LEDeleteApplication**](LEApplicationApi.md#Invoke-LEDeleteApplication) | **DELETE** /v7-preview/applications/{applicationId} | Delete application
+[**Invoke-LEDeleteApplications**](LEApplicationApi.md#Invoke-LEDeleteApplications) | **DELETE** /v7-preview/applications | Delete multiple applications
+[**Get-LEApplication**](LEApplicationApi.md#Get-LEApplication) | **GET** /v7-preview/applications/{applicationId} | Get application by id
+[**Get-LEApplications**](LEApplicationApi.md#Get-LEApplications) | **GET** /v7-preview/applications | Gets a paginated list of applications
+[**Invoke-LEParseApplicationDetails**](LEApplicationApi.md#Invoke-LEParseApplicationDetails) | **POST** /v7-preview/applications/parse | Parse application details from script content
+[**Update-LEApplication**](LEApplicationApi.md#Update-LEApplication) | **PUT** /v7-preview/applications/{applicationId} | Update application
 
 
 <a id="New-LEApplication"></a>
@@ -24,12 +24,16 @@ Create application.
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$ConfigurationCreateApplicationRequest = Initialize-LEConfigurationCreateApplicationRequest -Type "MyType" -BrowserName "chrome" -Url "MyUrl" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -TakeScreenshots $false -ScriptContent "MyScriptContent" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationCreateApplicationRequest | Application data
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$ConfigurationCreateApplicationRequest = Initialize-LEConfigurationCreateApplicationRequest -BrowserName "chrome" -Url "MyUrl" -ProfileLocation "MyProfileLocation" -Type "MyType" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -TakeScreenshots $false -ScriptContent "MyScriptContent" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationCreateApplicationRequest | Application data
 
 # Create application.
 try {
@@ -73,13 +77,13 @@ Delete application
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 
@@ -125,13 +129,13 @@ Delete multiple applications
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Application ids (optional)
 
@@ -178,13 +182,13 @@ Get application by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 $Include = "none" # ApplicationInclude[] | Include options (optional)
@@ -238,13 +242,13 @@ Gets a paginated list of applications
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # ApplicationSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -296,20 +300,20 @@ Name | Type | Description  | Notes
 
 Parse application details from script content
 
-To specify a Script, the following payloads may be added to the POST request:    a) A script file with valid script content (.cs file extension)<br />  b) A manual input of text via the POST request's text payload
+To specify a Script, the following payloads may be added to the POST request:    a) A script file with valid script content (.cs file extension)   b) A manual input of text via the POST request's text payload
 
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Parse application details from script content
@@ -352,16 +356,16 @@ Update application
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
-$ConfigurationUpdateApplicationRequest = Initialize-LEConfigurationUpdateApplicationRequest -Type "MyType" -BrowserName "chrome" -Url "MyUrl" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -MustUpdatePassword $false -TakeScreenshots $false -ScriptContent "MyScriptContent" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationUpdateApplicationRequest | Application data
+$ConfigurationUpdateApplicationRequest = Initialize-LEConfigurationUpdateApplicationRequest -BrowserName "chrome" -Url "MyUrl" -ProfileLocation "MyProfileLocation" -Type "MyType" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -MustUpdatePassword $false -TakeScreenshots $false -ScriptContent "MyScriptContent" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationUpdateApplicationRequest | Application data
 
 # Update application
 try {

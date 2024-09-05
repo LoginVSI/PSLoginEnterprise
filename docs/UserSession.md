@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **LoginStartTime** | **System.DateTime** | Login start date-time | [optional] 
 **LoginEndTime** | **System.DateTime** | Login end date-time | [optional] 
 **SessionEndTime** | **System.DateTime** | Session end date-time | [optional] 
+**SessionMetricEnabled** | **Boolean** | User Session Metrics Enabled | [optional] 
 **Properties** | [**Property[]**](Property.md) | Session properties | [optional] 
 
 ## Examples
@@ -35,6 +36,7 @@ $UserSession = Initialize-LEPSLoginEnterpriseUserSession  -Id null `
  -LoginStartTime null `
  -LoginEndTime null `
  -SessionEndTime null `
+ -SessionMetricEnabled null `
  -Properties null
 ```
 

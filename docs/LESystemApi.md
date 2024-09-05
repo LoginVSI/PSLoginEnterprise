@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LESystemEuxVersion**](LESystemApi.md#Get-LESystemEuxVersion) | **GET** /v6/system/eux-version | Get eux version of system
-[**Get-LESystemVersions**](LESystemApi.md#Get-LESystemVersions) | **GET** /v6/system/version | Get current and latest versions of system
+[**Get-LESystemEuxVersion**](LESystemApi.md#Get-LESystemEuxVersion) | **GET** /v7-preview/system/eux-version | Get eux version of system
+[**Get-LESystemVersions**](LESystemApi.md#Get-LESystemVersions) | **GET** /v7-preview/system/version | Get current and latest versions of system
 
 
 <a id="Get-LESystemEuxVersion"></a>
@@ -18,9 +18,14 @@ Get eux version of system
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get eux version of system
@@ -61,13 +66,13 @@ Get current and latest versions of system
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get current and latest versions of system

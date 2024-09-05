@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ApplicationId** | **String** | Application id | [optional] 
 **Timer** | **String** | Application timer | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Threshold id | [optional] 
 **IsEnabled** | **Boolean** | Enable threshold | [optional] 
 **Value** | **Double** | Threshold value | [optional] 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AppThreshold = Initialize-LEPSLoginEnterpriseAppThreshold  -Type null `
- -ApplicationId null `
+$AppThreshold = Initialize-LEPSLoginEnterpriseAppThreshold  -ApplicationId null `
  -Timer null `
+ -Type null `
  -Id null `
  -IsEnabled null `
  -Value null `

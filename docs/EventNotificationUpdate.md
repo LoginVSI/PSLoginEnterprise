@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **TimesExceeded** | **Int32** | Number of times the event occurred | 
 **PeriodDuration** | **Int32** | Time range for calculation | 
 **IsEnabled** | **Boolean** | Enables notification | 
+**EmailRecipients** | **String** | Email recipients | [optional] 
+**UseCustomMailRecipient** | **Boolean** | Use custom mail recipient | [optional] 
 
 ## Examples
 
@@ -15,7 +17,9 @@ Name | Type | Description | Notes
 $EventNotificationUpdate = Initialize-LEPSLoginEnterpriseEventNotificationUpdate  -Type null `
  -TimesExceeded null `
  -PeriodDuration null `
- -IsEnabled null
+ -IsEnabled null `
+ -EmailRecipients null `
+ -UseCustomMailRecipient null
 ```
 
 - Convert the resource to JSON

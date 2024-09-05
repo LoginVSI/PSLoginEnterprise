@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **TestRunId** | **String** | Test run id | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Report id | [optional] 
 **TestId** | **String** | Test id | [optional] 
 **OutputContentUri** | **String** | Output content uri | [optional] 
@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ApplicationTestReport = Initialize-LEPSLoginEnterpriseApplicationTestReport  -Type null `
- -TestRunId null `
+$ApplicationTestReport = Initialize-LEPSLoginEnterpriseApplicationTestReport  -TestRunId null `
+ -Type null `
  -Id null `
  -TestId null `
  -OutputContentUri null `

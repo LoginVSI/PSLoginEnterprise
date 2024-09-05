@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Invoke-LECheckUpdateDriverVersions**](LEWebAutomationDriversApi.md#Invoke-LECheckUpdateDriverVersions) | **GET** /v6/web-automation-drivers/status | Get list of the current and missing web automation drivers
-[**Set-LEAutomaticWebDriverUpdate**](LEWebAutomationDriversApi.md#Set-LEAutomaticWebDriverUpdate) | **PUT** /v6/web-automation-drivers/automatic-update/configure | Update Driver Update Config
-[**Invoke-LEDownloadLatestWebAutomationDrivers**](LEWebAutomationDriversApi.md#Invoke-LEDownloadLatestWebAutomationDrivers) | **GET** /v6/web-automation-drivers/download | Download the latest web automation drivers
-[**Get-LEWebDriverUpdateInfo**](LEWebAutomationDriversApi.md#Get-LEWebDriverUpdateInfo) | **GET** /v6/web-automation-drivers/automatic-update/configure | Get Driver Update Config
+[**Invoke-LECheckUpdateDriverVersions**](LEWebAutomationDriversApi.md#Invoke-LECheckUpdateDriverVersions) | **GET** /v7-preview/web-automation-drivers/status | Get list of the current and missing web automation drivers
+[**Set-LEAutomaticWebDriverUpdate**](LEWebAutomationDriversApi.md#Set-LEAutomaticWebDriverUpdate) | **PUT** /v7-preview/web-automation-drivers/automatic-update/configure | Update Driver Update Config
+[**Invoke-LEDownloadLatestWebAutomationDrivers**](LEWebAutomationDriversApi.md#Invoke-LEDownloadLatestWebAutomationDrivers) | **GET** /v7-preview/web-automation-drivers/download | Download the latest web automation drivers
+[**Get-LEWebDriverUpdateInfo**](LEWebAutomationDriversApi.md#Get-LEWebDriverUpdateInfo) | **GET** /v7-preview/web-automation-drivers/automatic-update/configure | Get Driver Update Config
 
 
 <a id="Invoke-LECheckUpdateDriverVersions"></a>
@@ -20,9 +20,14 @@ Get list of the current and missing web automation drivers
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get list of the current and missing web automation drivers
@@ -64,13 +69,13 @@ Update Driver Update Config
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $Body = $true # Boolean | auto Update Enabled
 
@@ -115,13 +120,13 @@ Download the latest web automation drivers
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Download the latest web automation drivers
@@ -162,13 +167,13 @@ Get Driver Update Config
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get Driver Update Config

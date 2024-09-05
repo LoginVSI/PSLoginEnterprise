@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
+**Type** | **String** |  | 
 **Name** | **String** | Account group name | [optional] 
 **Description** | **String** | Account group description | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AccountFilterGroupCreate = Initialize-LEPSLoginEnterpriseAccountFilterGroupCreate  -Type null `
- -VarFilter null `
+$AccountFilterGroupCreate = Initialize-LEPSLoginEnterpriseAccountFilterGroupCreate  -VarFilter null `
+ -Type null `
  -Name null `
  -Description null
 ```

@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEScript**](LEScriptApi.md#New-LEScript) | **POST** /v6/applications/{applicationId}/script | Create script via a text or file payload
-[**Get-LEScript**](LEScriptApi.md#Get-LEScript) | **GET** /v6/applications/{applicationId}/script | Get script content by application id
+[**New-LEScript**](LEScriptApi.md#New-LEScript) | **POST** /v7-preview/applications/{applicationId}/script | Create script via a text or file payload
+[**Get-LEScript**](LEScriptApi.md#Get-LEScript) | **GET** /v7-preview/applications/{applicationId}/script | Get script content by application id
 
 
 <a id="New-LEScript"></a>
@@ -15,16 +15,20 @@ Method | HTTP request | Description
 
 Create script via a text or file payload
 
-To create a Script,  the following payloads may be added to the POST request:    a) A script file with valid script content (.cs file extension)<br />  b) A manual input of text via the POST request's text payload
+To create a Script,  the following payloads may be added to the POST request:    a) A script file with valid script content (.cs file extension)   b) A manual input of text via the POST request's text payload
 
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 
@@ -70,13 +74,13 @@ Get script content by application id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 

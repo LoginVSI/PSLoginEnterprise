@@ -4,11 +4,11 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Invoke-LEDownloadApplicationTestReport**](LEReportApi.md#Invoke-LEDownloadApplicationTestReport) | **GET** /v6/test-runs/{testRunId}/reports/pdf | Download application-test report PDF file by test-run id
-[**Invoke-LEDownloadContinuousTestReport**](LEReportApi.md#Invoke-LEDownloadContinuousTestReport) | **GET** /v6/reports/{reportId}/pdf | Download report PDF file by id
-[**Get-LEApplicationTestReport**](LEReportApi.md#Get-LEApplicationTestReport) | **GET** /v6/test-runs/{testRunId}/reports | Get application-test report by test-run id
-[**Get-LEContinuousTestReport**](LEReportApi.md#Get-LEContinuousTestReport) | **GET** /v6/reports/{reportId} | Get report by id
-[**Get-LEContinuousTestReports**](LEReportApi.md#Get-LEContinuousTestReports) | **GET** /v6/tests/{testId}/report-configurations/{configurationId}/reports | Get paginated list of continuous-test reports by configuration id
+[**Invoke-LEDownloadApplicationTestReport**](LEReportApi.md#Invoke-LEDownloadApplicationTestReport) | **GET** /v7-preview/test-runs/{testRunId}/reports/pdf | Download application-test report PDF file by test-run id
+[**Invoke-LEDownloadContinuousTestReport**](LEReportApi.md#Invoke-LEDownloadContinuousTestReport) | **GET** /v7-preview/reports/{reportId}/pdf | Download report PDF file by id
+[**Get-LEApplicationTestReport**](LEReportApi.md#Get-LEApplicationTestReport) | **GET** /v7-preview/test-runs/{testRunId}/reports | Get application-test report by test-run id
+[**Get-LEContinuousTestReport**](LEReportApi.md#Get-LEContinuousTestReport) | **GET** /v7-preview/reports/{reportId} | Get report by id
+[**Get-LEContinuousTestReports**](LEReportApi.md#Get-LEContinuousTestReports) | **GET** /v7-preview/tests/{testId}/report-configurations/{configurationId}/reports | Get paginated list of continuous-test reports by configuration id
 
 
 <a id="Invoke-LEDownloadApplicationTestReport"></a>
@@ -22,10 +22,14 @@ Download application-test report PDF file by test-run id
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 
@@ -71,13 +75,13 @@ Download report PDF file by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ReportId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report id
 
@@ -123,13 +127,13 @@ Get application-test report by test-run id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 
@@ -175,13 +179,13 @@ Get report by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ReportId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report id
 
@@ -232,13 +236,13 @@ Get paginated list of continuous-test reports by configuration id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Configuration id

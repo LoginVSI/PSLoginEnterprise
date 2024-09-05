@@ -4,9 +4,9 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEScreenshotByAppExecution**](LEScreenshotApi.md#Get-LEScreenshotByAppExecution) | **GET** /v6/test-runs/{testRunId}/app-executions/{appExecutionId}/screenshots/{screenshotId} | Get screenshot by app-execution id and screenshot id
-[**Get-LEScreenshotByEvent**](LEScreenshotApi.md#Get-LEScreenshotByEvent) | **GET** /v6/test-runs/{testRunId}/events/{eventId}/screenshots | Get screenshot by event id
-[**Get-LEScreenshotsByAppExecution**](LEScreenshotApi.md#Get-LEScreenshotsByAppExecution) | **GET** /v6/test-runs/{testRunId}/app-executions/{appExecutionId}/screenshots | Get list of screenshot by app-execution id
+[**Get-LEScreenshotByAppExecution**](LEScreenshotApi.md#Get-LEScreenshotByAppExecution) | **GET** /v7-preview/test-runs/{testRunId}/app-executions/{appExecutionId}/screenshots/{screenshotId} | Get screenshot by app-execution id and screenshot id
+[**Get-LEScreenshotByEvent**](LEScreenshotApi.md#Get-LEScreenshotByEvent) | **GET** /v7-preview/test-runs/{testRunId}/events/{eventId}/screenshots | Get screenshot by event id
+[**Get-LEScreenshotsByAppExecution**](LEScreenshotApi.md#Get-LEScreenshotsByAppExecution) | **GET** /v7-preview/test-runs/{testRunId}/app-executions/{appExecutionId}/screenshots | Get list of screenshot by app-execution id
 
 
 <a id="Get-LEScreenshotByAppExecution"></a>
@@ -22,14 +22,18 @@ Get screenshot by app-execution id and screenshot id
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id
-$ScreenshotId = "MyScreenshotId" # String | Screenshot id
+$ScreenshotId = "MyScreenshotId" # String | Screenshot name
 
 # Get screenshot by app-execution id and screenshot id
 try {
@@ -46,7 +50,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestRunId** | **String**| Test-run id | 
  **AppExecutionId** | **String**| App-execution id | 
- **ScreenshotId** | **String**| Screenshot id | 
+ **ScreenshotId** | **String**| Screenshot name | 
 
 ### Return type
 
@@ -76,13 +80,13 @@ Get screenshot by event id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $EventId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Event id
@@ -131,13 +135,13 @@ Get list of screenshot by app-execution id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id

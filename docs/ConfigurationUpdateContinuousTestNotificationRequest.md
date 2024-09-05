@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **TimesExceeded** | **Int32** | Number of times the event occurred | 
 **PeriodDuration** | **Int32** | Time range for calculation | 
 **IsEnabled** | **Boolean** | Enables notification | 
+**EmailRecipients** | **String** | Email recipients | [optional] 
+**UseCustomMailRecipient** | **Boolean** | Use custom mail recipient | [optional] 
 **ThresholdUpdate** | [**ThresholdUpdate**](ThresholdUpdate.md) |  | 
 
 ## Examples
@@ -17,6 +19,8 @@ $ConfigurationUpdateContinuousTestNotificationRequest = Initialize-LEPSLoginEnte
  -TimesExceeded null `
  -PeriodDuration null `
  -IsEnabled null `
+ -EmailRecipients null `
+ -UseCustomMailRecipient null `
  -ThresholdUpdate null
 ```
 

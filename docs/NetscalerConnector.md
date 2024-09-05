@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ServerUrl** | **String** | Server Url | 
 **Resource** | **String** | Resource | 
 **DisplayResolution** | [**Resolution**](Resolution.md) |  | [optional] 
+**Type** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NetscalerConnector = Initialize-LEPSLoginEnterpriseNetscalerConnector  -Type null `
- -ServerUrl null `
+$NetscalerConnector = Initialize-LEPSLoginEnterpriseNetscalerConnector  -ServerUrl null `
  -Resource null `
- -DisplayResolution null
+ -DisplayResolution null `
+ -Type null
 ```
 
 - Convert the resource to JSON

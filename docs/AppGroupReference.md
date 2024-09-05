@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ApplicationGroup** | [**ApplicationGroup**](ApplicationGroup.md) |  | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Step id | [optional] 
 **IsEnabled** | **Boolean** | Enable step | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AppGroupReference = Initialize-LEPSLoginEnterpriseAppGroupReference  -Type null `
- -ApplicationGroup null `
+$AppGroupReference = Initialize-LEPSLoginEnterpriseAppGroupReference  -ApplicationGroup null `
+ -Type null `
  -Id null `
  -IsEnabled null
 ```

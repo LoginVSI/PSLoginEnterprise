@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
+**Type** | **String** |  | 
 **GroupId** | **String** | Account group id | [optional] 
 **Name** | **String** | Account group name | [optional] 
 **MemberCount** | **Int32** | Account group member count | [optional] 
@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationGetAccountGroup200Response = Initialize-LEPSLoginEnterpriseConfigurationGetAccountGroup200Response  -Type null `
- -VarFilter null `
+$ConfigurationGetAccountGroup200Response = Initialize-LEPSLoginEnterpriseConfigurationGetAccountGroup200Response  -VarFilter null `
+ -Type null `
  -GroupId null `
  -Name null `
  -MemberCount null `

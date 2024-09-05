@@ -3,13 +3,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
+**TestRunConfigurationSnapshot** | [**AppTestRunConfigurationSnapshot**](AppTestRunConfigurationSnapshot.md) |  | [optional] 
 **State** | [**ApplicationTestState**](ApplicationTestState.md) |  | [optional] 
 **Result** | [**ApplicationTestResult**](ApplicationTestResult.md) |  | [optional] 
 **AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
 **Comment** | **String** | Comment | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Test run id | [optional] 
 **TestId** | **String** | Test id | [optional] 
 **Created** | **System.DateTime** | Created date-time | [optional] 
@@ -21,13 +22,14 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ApplicationTestRun = Initialize-LEPSLoginEnterpriseApplicationTestRun  -Type null `
+$ApplicationTestRun = Initialize-LEPSLoginEnterpriseApplicationTestRun  -TestRunConfigurationSnapshot null `
  -State null `
  -Result null `
  -AppFailureResults null `
  -AppPerformanceResults null `
  -Properties null `
  -Comment null `
+ -Type null `
  -Id null `
  -TestId null `
  -Created null `

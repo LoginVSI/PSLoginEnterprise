@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **RunOnce** | **Boolean** | Run the application only once | 
 **LeaveRunning** | **Boolean** | Do not close the application | 
+**Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
 **DelayInSeconds** | **Int32** | Delay in seconds | 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateStepInApplicationGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateStepInApplicationGroupRequest  -Type null `
- -RunOnce null `
+$ConfigurationUpdateStepInApplicationGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateStepInApplicationGroupRequest  -RunOnce null `
  -LeaveRunning null `
+ -Type null `
  -IsEnabled null `
  -DelayInSeconds null
 ```

@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **ScheduleType** | [**ContinuousScheduleType**](ContinuousScheduleType.md) |  | 
 **IntervalInMinutes** | **Int32** | Schedule interval in minutes | 
 **NumberOfSessions** | **Int32** | Number of sessions | 
@@ -13,17 +12,25 @@ Name | Type | Description | Notes
 **IsEnabled** | **Boolean** | Enable schedule | 
 **RestartOnComplete** | **Boolean** | Enable restarting on completion | 
 **EuxEnabled** | **Boolean** | Enable Eux Analysis | 
+**EuxWorkFolders** | [**EuxWorkFolders**](EuxWorkFolders.md) |  | [optional] 
+**SessionMetricsEnabled** | **Boolean** | Enable Session Metrics Collection | 
+**SessionMetricScheduleRate** | **Int32** | Session Metric Schedule Rate | [optional] 
+**SessionMetricGroupKey** | **String** | Session metric group key | [optional] 
+**Type** | **String** |  | 
 **Name** | **String** | Test name | 
 **Description** | **String** | Test description | [optional] 
-**EnvironmentUpdate** | [**EnvironmentUpdate**](EnvironmentUpdate.md) |  | [optional] 
+**ConnectionResourcesUpdate** | [**ConnectionResourcesUpdate**](ConnectionResourcesUpdate.md) |  | [optional] 
+**EnvironmentKey** | **String** | Environment key | [optional] 
 **Steps** | [**ConfigurationReplaceApplicationGroupStepsRequestInner[]**](ConfigurationReplaceApplicationGroupStepsRequestInner.md) | Workload steps creation data | [optional] 
+**LogonTimeTrackingProcess** | **String** | Specify the application to track user login time session and session initiation. The default value is explorer.exe (Windows shell). You can customize it to Citrix, VMWare, or another platform that you&#39;re using. Common values are wfshell.exe (Citrix), mware-view-usbd.exe (VMWare), or rdpshell.exe (Microsoft RDP). | [optional] 
+**EngineStartTimeout** | **String** | Engine start timeout | [optional] 
+**ApplicationDebugModeEnabled** | **Boolean** | Run application scripts in debug mode to capture the error line for scripts failures | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ContinuousTestUpdate = Initialize-LEPSLoginEnterpriseContinuousTestUpdate  -Type null `
- -ScheduleType null `
+$ContinuousTestUpdate = Initialize-LEPSLoginEnterpriseContinuousTestUpdate  -ScheduleType null `
  -IntervalInMinutes null `
  -NumberOfSessions null `
  -EnableCustomScreenshots null `
@@ -32,10 +39,19 @@ $ContinuousTestUpdate = Initialize-LEPSLoginEnterpriseContinuousTestUpdate  -Typ
  -IsEnabled null `
  -RestartOnComplete null `
  -EuxEnabled null `
+ -EuxWorkFolders null `
+ -SessionMetricsEnabled null `
+ -SessionMetricScheduleRate null `
+ -SessionMetricGroupKey null `
+ -Type null `
  -Name null `
  -Description null `
- -EnvironmentUpdate null `
- -Steps null
+ -ConnectionResourcesUpdate null `
+ -EnvironmentKey null `
+ -Steps null `
+ -LogonTimeTrackingProcess null `
+ -EngineStartTimeout null `
+ -ApplicationDebugModeEnabled null
 ```
 
 - Convert the resource to JSON

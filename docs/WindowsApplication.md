@@ -3,11 +3,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **CommandLine** | **String** | Command line arguments | [optional] 
 **WorkingDirectory** | **String** | Working directory | [optional] 
 **MainWindowTitle** | **String** | Main window title | [optional] 
 **MainProcessName** | **String** | Main process name | [optional] 
+**Type** | **String** |  | 
 **Id** | **String** | Application id | [optional] 
 **Name** | **String** | Application name | [optional] 
 **Description** | **String** | Application description | [optional] 
@@ -23,11 +23,11 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$WindowsApplication = Initialize-LEPSLoginEnterpriseWindowsApplication  -Type null `
- -CommandLine null `
+$WindowsApplication = Initialize-LEPSLoginEnterpriseWindowsApplication  -CommandLine null `
  -WorkingDirectory null `
  -MainWindowTitle null `
  -MainProcessName null `
+ -Type null `
  -Id null `
  -Name null `
  -Description null `

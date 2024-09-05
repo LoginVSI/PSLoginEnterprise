@@ -4,12 +4,12 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LELocation**](LELocationApi.md#New-LELocation) | **POST** /v6/locations | Create location
-[**Invoke-LEDeleteLocation**](LELocationApi.md#Invoke-LEDeleteLocation) | **DELETE** /v6/locations/{locationId} | Delete location
-[**Invoke-LEDeleteLocations**](LELocationApi.md#Invoke-LEDeleteLocations) | **DELETE** /v6/locations | Delete multiple locations
-[**Get-LELocation**](LELocationApi.md#Get-LELocation) | **GET** /v6/locations/{locationId} | Get location by id
-[**Get-LELocations**](LELocationApi.md#Get-LELocations) | **GET** /v6/locations | Get paginated list of locations
-[**Update-LELocation**](LELocationApi.md#Update-LELocation) | **PUT** /v6/locations/{locationId} | Update location
+[**New-LELocation**](LELocationApi.md#New-LELocation) | **POST** /v7-preview/locations | Create location
+[**Invoke-LEDeleteLocation**](LELocationApi.md#Invoke-LEDeleteLocation) | **DELETE** /v7-preview/locations/{locationId} | Delete location
+[**Invoke-LEDeleteLocations**](LELocationApi.md#Invoke-LEDeleteLocations) | **DELETE** /v7-preview/locations | Delete multiple locations
+[**Get-LELocation**](LELocationApi.md#Get-LELocation) | **GET** /v7-preview/locations/{locationId} | Get location by id
+[**Get-LELocations**](LELocationApi.md#Get-LELocations) | **GET** /v7-preview/locations | Get paginated list of locations
+[**Update-LELocation**](LELocationApi.md#Update-LELocation) | **PUT** /v7-preview/locations/{locationId} | Update location
 
 
 <a id="New-LELocation"></a>
@@ -23,10 +23,14 @@ Create location
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationCreate = Initialize-LELocationCreate -Name "MyName" -Latitude 0 -Longitude 0 -Description "MyDescription" # LocationCreate | Location data
 
@@ -72,13 +76,13 @@ Delete location
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationId = 56 # Int32 | Location id
 
@@ -124,13 +128,13 @@ Delete multiple locations
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = 0 # Int32[] | Location ids (optional)
 
@@ -177,13 +181,13 @@ Get location by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationId = 56 # Int32 | Location id
 $Include = "none" # LocationInclude[] | Include options (optional)
@@ -237,13 +241,13 @@ Get paginated list of locations
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # LocationSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -302,13 +306,13 @@ Update location
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationId = 56 # Int32 | Location id
 $LocationUpdate = Initialize-LELocationUpdate -Name "MyName" -Latitude 0 -Longitude 0 -Description "MyDescription" # LocationUpdate | Location data

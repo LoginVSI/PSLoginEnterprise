@@ -3,9 +3,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | 
 **BrowserName** | [**BrowserName**](BrowserName.md) |  | 
 **Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
+**Type** | **String** |  | 
 **Name** | **String** | Application name | 
 **Description** | **String** | Application description | [optional] 
 **Username** | **String** | Application user name | [optional] 
@@ -20,9 +21,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateApplicationRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateApplicationRequest  -Type null `
- -BrowserName null `
+$ConfigurationUpdateApplicationRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateApplicationRequest  -BrowserName null `
  -Url null `
+ -ProfileLocation null `
+ -Type null `
  -Name null `
  -Description null `
  -Username null `

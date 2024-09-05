@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **MaxSessions** | **Int32** | Amount of sessions when VSImax was reached | [optional] 
 **Version** | **String** | VSImax version | [optional] 
 **State** | [**VsiMaxState**](VsiMaxState.md) |  | [optional] 
+**Timestamp** | **System.DateTime** | VSImax reached date-time | [optional] 
 
 ## Examples
 
@@ -13,7 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $VsiMax = Initialize-LEPSLoginEnterpriseVsiMax  -MaxSessions null `
  -Version null `
- -State null
+ -State null `
+ -Timestamp null
 ```
 
 - Convert the resource to JSON

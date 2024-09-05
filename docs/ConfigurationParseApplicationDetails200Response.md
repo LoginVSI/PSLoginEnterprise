@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **Type** | **String** |  | 
 **BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
 **Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
 **CommandLine** | **String** | Command line arguments | [optional] 
 **WorkingDirectory** | **String** | Working directory | [optional] 
 
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 $ConfigurationParseApplicationDetails200Response = Initialize-LEPSLoginEnterpriseConfigurationParseApplicationDetails200Response  -Type null `
  -BrowserName null `
  -Url null `
+ -ProfileLocation null `
  -CommandLine null `
  -WorkingDirectory null
 ```

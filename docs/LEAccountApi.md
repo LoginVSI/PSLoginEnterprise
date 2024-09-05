@@ -4,15 +4,15 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEAccount**](LEAccountApi.md#New-LEAccount) | **POST** /v6/accounts | Create account
-[**New-LEAccounts**](LEAccountApi.md#New-LEAccounts) | **POST** /v6/accounts/bulk | Create account in bulk
-[**Invoke-LEDeleteAccount**](LEAccountApi.md#Invoke-LEDeleteAccount) | **DELETE** /v6/accounts/{accountId} | Delete account
-[**Invoke-LEDeleteAccounts**](LEAccountApi.md#Invoke-LEDeleteAccounts) | **DELETE** /v6/accounts | Delete multiple accounts
-[**Get-LEAccount**](LEAccountApi.md#Get-LEAccount) | **GET** /v6/accounts/{accountId} | Get account by id
-[**Get-LEAccounts**](LEAccountApi.md#Get-LEAccounts) | **GET** /v6/accounts | Get paginated list of accounts
-[**Update-LEAccount**](LEAccountApi.md#Update-LEAccount) | **PUT** /v6/accounts/{accountId} | Update account
-[**Update-LEAccountEnabled**](LEAccountApi.md#Update-LEAccountEnabled) | **PUT** /v6/accounts/{accountId}/enabled | Enable or disable account
-[**Update-LEAccountsEnabled**](LEAccountApi.md#Update-LEAccountsEnabled) | **PUT** /v6/accounts/enabled | Enable or disable accounts
+[**New-LEAccount**](LEAccountApi.md#New-LEAccount) | **POST** /v7-preview/accounts | Create account
+[**New-LEAccounts**](LEAccountApi.md#New-LEAccounts) | **POST** /v7-preview/accounts/bulk | Create account in bulk
+[**Invoke-LEDeleteAccount**](LEAccountApi.md#Invoke-LEDeleteAccount) | **DELETE** /v7-preview/accounts/{accountId} | Delete account
+[**Invoke-LEDeleteAccounts**](LEAccountApi.md#Invoke-LEDeleteAccounts) | **DELETE** /v7-preview/accounts | Delete multiple accounts
+[**Get-LEAccount**](LEAccountApi.md#Get-LEAccount) | **GET** /v7-preview/accounts/{accountId} | Get account by id
+[**Get-LEAccounts**](LEAccountApi.md#Get-LEAccounts) | **GET** /v7-preview/accounts | Get paginated list of accounts
+[**Update-LEAccount**](LEAccountApi.md#Update-LEAccount) | **PUT** /v7-preview/accounts/{accountId} | Update account
+[**Update-LEAccountEnabled**](LEAccountApi.md#Update-LEAccountEnabled) | **PUT** /v7-preview/accounts/{accountId}/enabled | Enable or disable account
+[**Update-LEAccountsEnabled**](LEAccountApi.md#Update-LEAccountsEnabled) | **PUT** /v7-preview/accounts/enabled | Enable or disable accounts
 
 
 <a id="New-LEAccount"></a>
@@ -26,10 +26,14 @@ Create account
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
 $AccountCreate = Initialize-LEAccountCreate -Username "MyUsername" -Domain "MyDomain" -Email "MyEmail" -Password "MyPassword" -Fields $AccountField # AccountCreate | Account data
@@ -76,13 +80,13 @@ Create account in bulk
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
 $AccountBulkCreate = Initialize-LEAccountBulkCreate -NumberOfDigits 0 -NumberOfAccounts 0 -Username "MyUsername" -Domain "MyDomain" -Email "MyEmail" -Password "MyPassword" -Fields $AccountField # AccountBulkCreate | Account data
@@ -129,13 +133,13 @@ Delete account
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 
@@ -171,23 +175,25 @@ void (empty response body)
 
 <a id="Invoke-LEDeleteAccounts"></a>
 # **Invoke-LEDeleteAccounts**
-> void Invoke-LEDeleteAccounts<br>
+> Affected Invoke-LEDeleteAccounts<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-RequestBody] <String[]><br>
 
 Delete multiple accounts
+
+InUsed and Locked (reserved for running load-test) accounts cannot be deleted
 
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Account ids
 
@@ -208,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**Affected**](Affected.md) (PSCustomObject)
 
 ### Authorization
 
@@ -233,13 +239,13 @@ Get account by id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 
@@ -290,13 +296,13 @@ Get paginated list of accounts
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "username" # AccountSortKey | Sort Key
 $Direction = "asc" # String | Sort direction (default to "asc")
@@ -353,13 +359,13 @@ Update account
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
@@ -409,13 +415,13 @@ Enable or disable account
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 $Body = $true # Boolean | Enabled state of account
@@ -463,13 +469,13 @@ Enable or disable accounts
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountEnabledUpdate = Initialize-LEAccountEnabledUpdate -AccountIds "MyAccountIds" -Enabled $false # AccountEnabledUpdate | Accounts data
 

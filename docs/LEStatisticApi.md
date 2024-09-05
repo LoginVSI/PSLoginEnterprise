@@ -4,9 +4,9 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEApplicationDiagnostics**](LEStatisticApi.md#Get-LEApplicationDiagnostics) | **GET** /v6/tests/{testId}/application-diagnostics | Get application diagnostics by test id
-[**Get-LEContinuousTestDiagnostic**](LEStatisticApi.md#Get-LEContinuousTestDiagnostic) | **GET** /v6/tests/{testId}/test-diagnostics | Get continuous test diagnostic by test id
-[**Get-LEContinuousTestDiagnostics**](LEStatisticApi.md#Get-LEContinuousTestDiagnostics) | **GET** /v6/test-diagnostics | Get continuous test diagnostics
+[**Get-LEApplicationDiagnostics**](LEStatisticApi.md#Get-LEApplicationDiagnostics) | **GET** /v7-preview/tests/{testId}/application-diagnostics | Get application diagnostics by test id
+[**Get-LEContinuousTestDiagnostic**](LEStatisticApi.md#Get-LEContinuousTestDiagnostic) | **GET** /v7-preview/tests/{testId}/test-diagnostics | Get continuous test diagnostic by test id
+[**Get-LEContinuousTestDiagnostics**](LEStatisticApi.md#Get-LEContinuousTestDiagnostics) | **GET** /v7-preview/test-diagnostics | Get continuous test diagnostics
 
 
 <a id="Get-LEApplicationDiagnostics"></a>
@@ -22,10 +22,14 @@ Get application diagnostics by test id
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
 
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $TimeRange = "last15Minutes" # String | Time range (optional) (default to "last15Minutes")
@@ -77,13 +81,13 @@ Get continuous test diagnostic by test id
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $TimeRange = "last15Minutes" # String | Time range (optional) (default to "last15Minutes")
@@ -133,13 +137,13 @@ Get continuous test diagnostics
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $accessToken = "YOUR_ACCESS_TOKEN"
 
-# Configure OAuth2 access token for authorization: oauth2
-$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-$applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken 
-
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TimeRange = "last15Minutes" # String | Time range (optional) (default to "last15Minutes")
 
