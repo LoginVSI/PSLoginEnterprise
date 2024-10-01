@@ -12,7 +12,7 @@
 RootModule = 'PSLoginEnterprise.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.4'
+ModuleVersion = '1.0.5'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -21,13 +21,13 @@ ModuleVersion = '1.0.4'
 GUID = 'e4848b95-3695-4d55-92b9-744a153d2bc8'
 
 # Author of this module
-Author = 'OpenAPI Generator Team'
+Author = 'LoginVSI'
 
 # Company or vendor of this module
-CompanyName = 'openapitools.org'
+CompanyName = 'LoginVSI'
 
 # Copyright statement for this module
-Copyright = '(c) OpenAPI Generator Team. All rights reserved.'
+Copyright = '(c) LoginVSI'
 
 # Description of the functionality provided by this module
 Description = 'PSLoginEnterprise - the PowerShell module for Login Enterprise'
@@ -426,7 +426,9 @@ FunctionsToExport = 'New-LEAccount', 'New-LEAccounts', 'Invoke-LEDeleteAccount',
                'Initialize-LEPerformanceResults', 
                'ConvertFrom-LEJsonToPerformanceResults', 
                'Initialize-LEPlatformSummary', 
-               'ConvertFrom-LEJsonToPlatformSummary', 
+               'ConvertFrom-LEJsonToPlatformSummary',
+			   'Get-LEPlatformMetrics',
+			   'Add-LEPlatformMetrics',
                'Initialize-LEProblemDetails', 'ConvertFrom-LEJsonToProblemDetails', 
                'Initialize-LEProperty', 'ConvertFrom-LEJsonToProperty', 
                'Initialize-LEProvider', 'ConvertFrom-LEJsonToProvider', 
@@ -601,7 +603,7 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+         ProjectUri = 'https://github.com/LoginVSI/PSLoginEnterprise'
 
         # A URL to an icon representing this module.
         # IconUri = ''
