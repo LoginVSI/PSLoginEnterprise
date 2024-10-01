@@ -121,7 +121,7 @@ Start offset
 Include total number of records
 
 .PARAMETER Include
-No description available.
+Include options for test run
 
 .PARAMETER WithHttpInfo
 
@@ -141,8 +141,7 @@ function Get-LEAllTestRuns {
         [PSCustomObject]
         ${OrderBy},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -1870,8 +1869,7 @@ function Get-LETestRuns {
         [PSCustomObject]
         ${OrderBy},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]

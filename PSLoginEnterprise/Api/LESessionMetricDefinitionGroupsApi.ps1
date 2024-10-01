@@ -334,8 +334,7 @@ function Get-LETestsBySessionMetricDefinitionGroup {
         [PSCustomObject]
         ${OrderBy},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -575,8 +574,7 @@ function Get-LEUserSessionMetricGroups {
         [PSCustomObject]
         ${OrderBy},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]

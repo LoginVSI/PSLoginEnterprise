@@ -8,35 +8,26 @@
 <#
 .SYNOPSIS
 
-Get list of user session metrics
+Retrieves a collection of appliance health metrics based on the specified filters.
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER TestRunId
-Test-run id
-
-.PARAMETER OrderBy
-Sort Key
-
-.PARAMETER Direction
-Sort direction
-
-.PARAMETER Count
-Number of records to return
-
 .PARAMETER From
-From date-time
+The start date and time for the metrics to be retrieved. (Defaults to 24 hours before the current time if null)
 
 .PARAMETER To
-To date-time
+The end date and time for the metrics to be retrieved. (Defaults to 24 hours after the 'from' date if null)
 
-.PARAMETER Offset
-Start offset
+.PARAMETER MetricIds
+An array of metric identifiers to filter the results.
 
-.PARAMETER IncludeTotalCount
-Include total number of records
+.PARAMETER AggregationWindowEvery
+The time interval at which the metrics should be aggregated (e.g., ""10m"", ""1h"", ""30m"").
+
+.PARAMETER AggregationWindowFn
+The aggregation function to be applied to the metrics within each aggregation window (e.g., ""mean"", ""median"", ""min).
 
 .PARAMETER WithHttpInfo
 
@@ -44,41 +35,32 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-UserSessionMetricResultResultSet
+ApplianceHealthMetricSeries[]
 #>
-function Get-LEUserSessionMetrics {
+function Get-LEApplianceHealthMetricsAsync {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${TestRunId},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[System.DateTime]]
         ${From},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[System.DateTime]]
         ${To},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Offset},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Boolean]]
-        ${IncludeTotalCount},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${MetricIds},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${AggregationWindowEvery},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${AggregationWindowFn},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Get-LEUserSessionMetrics' | Write-Debug
+        'Calling method: Get-LEApplianceHealthMetricsAsync' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -94,37 +76,22 @@ function Get-LEUserSessionMetrics {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/v7-preview/user-session-metrics/{testRunId}'
-        if (!$TestRunId) {
-            throw "Error! The required parameter `TestRunId` missing when calling getUserSessionMetrics."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{testRunId}', [System.Web.HTTPUtility]::UrlEncode($TestRunId))
+        $LocalVarUri = '/v7-preview/appliance-health'
 
         $LocalVarQueryParameters['from'] = $From
 
         $LocalVarQueryParameters['to'] = $To
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getUserSessionMetrics."
-        }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
-
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getUserSessionMetrics."
-        }
-        $LocalVarQueryParameters['direction'] = $Direction
-
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getUserSessionMetrics."
-        }
-        $LocalVarQueryParameters['count'] = $Count
-
-        if ($Offset) {
-            $LocalVarQueryParameters['offset'] = $Offset
+        if ($MetricIds) {
+            $LocalVarQueryParameters['metricIds'] = $MetricIds
         }
 
-        if ($IncludeTotalCount) {
-            $LocalVarQueryParameters['includeTotalCount'] = $IncludeTotalCount
+        if ($AggregationWindowEvery) {
+            $LocalVarQueryParameters['aggregationWindowEvery'] = $AggregationWindowEvery
+        }
+
+        if ($AggregationWindowFn) {
+            $LocalVarQueryParameters['aggregationWindowFn'] = $AggregationWindowFn
         }
 
 
@@ -148,7 +115,7 @@ function Get-LEUserSessionMetrics {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "UserSessionMetricResultResultSet" `
+                                -ReturnType "ApplianceHealthMetricSeries[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {

@@ -18,7 +18,7 @@ ModuleVersion = '1.0.4'
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'e4848b95-3695-4d55-92b9-744a153d2bc7'
+GUID = 'e4848b95-3695-4d55-92b9-744a153d2bc8'
 
 # Author of this module
 Author = 'OpenAPI Generator Team'

@@ -142,8 +142,7 @@ function Get-LEEvents {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -292,8 +291,7 @@ function Get-LEEventsByAppExecution {
         [String]
         ${AppExecutionId},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -440,8 +438,7 @@ function Get-LEEventsByTestRun {
         [String]
         ${TestRunId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -594,8 +591,7 @@ function Get-LEEventsByUserSession {
         [String]
         ${UserSessionId},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]

@@ -53,8 +53,7 @@ function Get-LEMeasurements {
         [String]
         ${TestRunId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -207,8 +206,7 @@ function Get-LEMeasurementsByAppExecution {
         [String]
         ${AppExecutionId},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -355,8 +353,7 @@ function Get-LEMeasurementsByUserSession {
         [String]
         ${UserSessionId},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]

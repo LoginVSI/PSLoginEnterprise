@@ -8,20 +8,14 @@
 <#
 .SYNOPSIS
 
-Get user-session by id
+Adds a collection of platform metrics for a specified environment.
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER TestRunId
-Test-run id
-
-.PARAMETER UserSessionId
-User-session id
-
-.PARAMETER Include
-Include options
+.PARAMETER PlatformMetric
+An array of PlatformMetric objects containing the metrics to be added.
 
 .PARAMETER WithHttpInfo
 
@@ -29,26 +23,20 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-UserSession
+AddPlatformMetricsResult
 #>
-function Get-LEUserSession {
+function Add-LEPlatformMetrics {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${TestRunId},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${UserSessionId},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject[]]
-        ${Include},
+        ${PlatformMetric},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Get-LEUserSession' | Write-Debug
+        'Calling method: Add-LEPlatformMetrics' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -64,19 +52,16 @@ function Get-LEUserSession {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/v7-preview/test-runs/{testRunId}/user-sessions/{userSessionId}'
-        if (!$TestRunId) {
-            throw "Error! The required parameter `TestRunId` missing when calling getUserSession."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{testRunId}', [System.Web.HTTPUtility]::UrlEncode($TestRunId))
-        if (!$UserSessionId) {
-            throw "Error! The required parameter `UserSessionId` missing when calling getUserSession."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{userSessionId}', [System.Web.HTTPUtility]::UrlEncode($UserSessionId))
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
 
-        if ($Include) {
-            $LocalVarQueryParameters['include'] = $Include
+        $LocalVarUri = '/v7-preview/platform-metrics'
+
+        if (!$PlatformMetric) {
+            throw "Error! The required parameter `PlatformMetric` missing when calling addPlatformMetrics."
         }
+
+        $LocalVarBodyParameter = ,$PlatformMetric | ConvertTo-Json -Depth 100
 
 
 
@@ -90,7 +75,7 @@ function Get-LEUserSession {
             Write-Verbose ("Using API key 'Authorization' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        $LocalVarResult = Invoke-LEApiClient -Method 'GET' `
+        $LocalVarResult = Invoke-LEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
                                 -ContentTypes $LocalVarContentTypes `
@@ -99,7 +84,7 @@ function Get-LEUserSession {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "UserSession" `
+                                -ReturnType "AddPlatformMetricsResult" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -113,38 +98,44 @@ function Get-LEUserSession {
 <#
 .SYNOPSIS
 
-Get paginated list of user-sessions
+Retrieves a collection of platform metrics based on the specified filters.
 
 .DESCRIPTION
 
 No description available.
 
-.PARAMETER TestRunId
-Test-run id
-
-.PARAMETER Direction
-Sort direction
-
-.PARAMETER Count
-Number of records to return
-
-.PARAMETER Offset
-Start offset
-
-.PARAMETER IncludeTotalCount
-Include total number of records
-
 .PARAMETER From
-From date-time
+The start date and time for the metrics to be retrieved. (Defaults to 24 hours before the current time if null)
 
 .PARAMETER To
-To date-time
+The end date and time for the metrics to be retrieved. (Defaults to 24 hours after the 'from' date if null)
 
-.PARAMETER FilterType
-Specifies scenario which will be used to filter user sessions:  Use LoggedIn option to filter user sessions that were active (logged in) within the specified time range (default option);  Use Created option to filter user sessions that were created within the specified time range
+.PARAMETER EnvironmentIds
+An array of unique identifiers of the environment to filter the metrics.
 
-.PARAMETER Include
-Include options
+.PARAMETER MetricIds
+An array of metric identifiers to filter the results.
+
+.PARAMETER MetricGroups
+An array of strings representing the groups or categories of metrics to filter the results.
+
+.PARAMETER Instances
+An array of strings representing the specific instances or sources associated with the metrics to filter the results.
+
+.PARAMETER ComponentTypes
+An array of strings representing the type of the components associated with the metrics to filter the results.
+
+.PARAMETER AggregationWindowEvery
+The time interval at which the metrics should be aggregated (e.g., ""10m"", ""1h"", ""30m"").
+
+.PARAMETER AggregationWindowFn
+The aggregation function to be applied to the metrics within each aggregation window (e.g., ""mean"", ""median"", ""min).
+
+.PARAMETER GroupColumns
+A list of columns used for grouping the metrics. This parameter allows customization of how metrics are grouped in the results.  When specified, the grouping will always include '_measurement' (representing the metric ID) and 'environment_key'.  Available options for grouping include:  - '_measurement': The metric ID. (always included)  - 'environment_key': The key identifying the environment. (always included)  - 'instance': The specific instance or source associated with the metrics.  - 'group': The group or category of the metrics.  - 'component_type': The type of the components associated with the metrics.  - '{user_defined_custom_tag}': Any user-defined custom tags.
+
+.PARAMETER CustomTagsFilters
+Filters for custom tags. The expected format can be one of the following:  - ""tagKey=tagValue1;tagValue2;tagValue3"": Selects metrics where 'tagKey' is equal to 'tagValue1', 'tagValue2' OR 'tagValue3'.  - ""tagKey=*"": Selects metrics where 'tagKey' is present in the collection of custom tags.
 
 .PARAMETER WithHttpInfo
 
@@ -152,45 +143,50 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-UserSessionResultSet
+PlatformMetricSeries[]
 #>
-function Get-LEUserSessions {
+function Get-LEPlatformMetrics {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${TestRunId},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Offset},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Boolean]]
-        ${IncludeTotalCount},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[System.DateTime]]
         ${From},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[System.DateTime]]
         ${To},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${EnvironmentIds},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${MetricIds},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${MetricGroups},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${Instances},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${ComponentTypes},
         [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("loggedIn", "created")]
         [String]
-        ${FilterType},
+        ${AggregationWindowEvery},
         [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject[]]
-        ${Include},
+        [String]
+        ${AggregationWindowFn},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${GroupColumns},
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String[]]
+        ${CustomTagsFilters},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Get-LEUserSessions' | Write-Debug
+        'Calling method: Get-LEPlatformMetrics' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -206,38 +202,46 @@ function Get-LEUserSessions {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/v7-preview/test-runs/{testRunId}/user-sessions'
-        if (!$TestRunId) {
-            throw "Error! The required parameter `TestRunId` missing when calling getUserSessions."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{testRunId}', [System.Web.HTTPUtility]::UrlEncode($TestRunId))
-
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getUserSessions."
-        }
-        $LocalVarQueryParameters['direction'] = $Direction
-
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getUserSessions."
-        }
-        $LocalVarQueryParameters['count'] = $Count
-
-        if ($Offset) {
-            $LocalVarQueryParameters['offset'] = $Offset
-        }
-
-        if ($IncludeTotalCount) {
-            $LocalVarQueryParameters['includeTotalCount'] = $IncludeTotalCount
-        }
+        $LocalVarUri = '/v7-preview/platform-metrics'
 
         $LocalVarQueryParameters['from'] = $From
 
         $LocalVarQueryParameters['to'] = $To
 
-        $LocalVarQueryParameters['filterType'] = $FilterType
+        if ($EnvironmentIds) {
+            $LocalVarQueryParameters['environmentIds'] = $EnvironmentIds
+        }
 
-        if ($Include) {
-            $LocalVarQueryParameters['include'] = $Include
+        if ($MetricIds) {
+            $LocalVarQueryParameters['metricIds'] = $MetricIds
+        }
+
+        if ($MetricGroups) {
+            $LocalVarQueryParameters['metricGroups'] = $MetricGroups
+        }
+
+        if ($Instances) {
+            $LocalVarQueryParameters['instances'] = $Instances
+        }
+
+        if ($ComponentTypes) {
+            $LocalVarQueryParameters['componentTypes'] = $ComponentTypes
+        }
+
+        if ($AggregationWindowEvery) {
+            $LocalVarQueryParameters['aggregationWindowEvery'] = $AggregationWindowEvery
+        }
+
+        if ($AggregationWindowFn) {
+            $LocalVarQueryParameters['aggregationWindowFn'] = $AggregationWindowFn
+        }
+
+        if ($GroupColumns) {
+            $LocalVarQueryParameters['groupColumns'] = $GroupColumns
+        }
+
+        if ($CustomTagsFilters) {
+            $LocalVarQueryParameters['customTagsFilters'] = $CustomTagsFilters
         }
 
 
@@ -261,7 +265,7 @@ function Get-LEUserSessions {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "UserSessionResultSet" `
+                                -ReturnType "PlatformMetricSeries[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {

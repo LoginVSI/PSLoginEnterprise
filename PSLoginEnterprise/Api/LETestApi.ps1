@@ -781,8 +781,7 @@ function Get-LETests {
         [PSCustomObject]
         ${OrderBy},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("asc", "desc")]
-        [String]
+        [PSCustomObject]
         ${Direction},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [Int32]
@@ -1112,7 +1111,7 @@ No description available.
 ApplicationId id
 
 .PARAMETER Include
-No description available.
+Include options for test
 
 .PARAMETER WithHttpInfo
 

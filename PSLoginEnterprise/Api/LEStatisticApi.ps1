@@ -38,8 +38,7 @@ function Get-LEApplicationDiagnostics {
         [String]
         ${TestId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("last15Minutes", "last30Minutes", "lastHour")]
-        [String]
+        [PSCustomObject]
         ${TimeRange},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -142,8 +141,7 @@ function Get-LEContinuousTestDiagnostic {
         [String]
         ${TestId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("last15Minutes", "last30Minutes", "lastHour")]
-        [String]
+        [PSCustomObject]
         ${TimeRange},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -237,8 +235,7 @@ function Get-LEContinuousTestDiagnostics {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("last15Minutes", "last30Minutes", "lastHour")]
-        [String]
+        [PSCustomObject]
         ${TimeRange},
         [Switch]
         $WithHttpInfo
