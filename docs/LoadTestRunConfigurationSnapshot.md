@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EnvironmentKey** | **String** | Environment key | [optional] 
+**EnvironmentName** | **String** | Environment key | [optional] 
 **NumberOfSessions** | **Int32** | Number of sessions | [optional] 
 **RampUpDurationInMinutes** | **Int32** | Ramp up duration in minutes | [optional] 
 **RampDownDurationInMinutes** | **Int32** | Ramp down duration in minutes | [optional] 
@@ -25,6 +26,7 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $LoadTestRunConfigurationSnapshot = Initialize-LEPSLoginEnterpriseLoadTestRunConfigurationSnapshot  -EnvironmentKey null `
+ -EnvironmentName null `
  -NumberOfSessions null `
  -RampUpDurationInMinutes null `
  -RampDownDurationInMinutes null `

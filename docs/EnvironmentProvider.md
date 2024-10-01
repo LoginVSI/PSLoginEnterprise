@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TenantId** | **String** | Tenant Id | [optional] 
-**ApplicationId** | **String** | Application Id | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Provider Id | [optional] 
 **Name** | **String** | Provider Name | [optional] 
 **Description** | **String** | Provider Description | [optional] 
 **Environments** | [**Environment[]**](Environment.md) | Environments associated to this provider | [optional] 
+**TenantId** | **String** | Tenant Id | [optional] 
+**ApplicationId** | **String** | Application Id | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$EnvironmentProvider = Initialize-LEPSLoginEnterpriseEnvironmentProvider  -TenantId null `
- -ApplicationId null `
- -Type null `
+$EnvironmentProvider = Initialize-LEPSLoginEnterpriseEnvironmentProvider  -Type null `
  -Id null `
  -Name null `
  -Description null `
- -Environments null
+ -Environments null `
+ -TenantId null `
+ -ApplicationId null
 ```
 
 - Convert the resource to JSON

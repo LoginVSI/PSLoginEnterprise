@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Threshold** | [**OneOfAppThresholdSessionThreshold**](OneOfAppThresholdSessionThreshold.md) | Threshold | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Notification id | [optional] 
 **TimesExceeded** | **Int32** | Number of times the event occurred | [optional] 
@@ -12,6 +11,7 @@ Name | Type | Description | Notes
 **IsEnabled** | **Boolean** | Enables notification | [optional] 
 **EmailRecipients** | **String** | Email recipients | [optional] 
 **UseCustomMailRecipient** | **Boolean** | Use custom mail recipient | [optional] 
+**Threshold** | [**ThresholdNotificationAllOfThreshold**](ThresholdNotificationAllOfThreshold.md) |  | [optional] 
 **VarEvent** | [**NotificationEventType**](NotificationEventType.md) |  | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
 
@@ -19,8 +19,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationGetContinuousTestNotifications200ResponseInner = Initialize-LEPSLoginEnterpriseConfigurationGetContinuousTestNotifications200ResponseInner  -Threshold null `
- -Type null `
+$ConfigurationGetContinuousTestNotifications200ResponseInner = Initialize-LEPSLoginEnterpriseConfigurationGetContinuousTestNotifications200ResponseInner  -Type null `
  -Id null `
  -TimesExceeded null `
  -PeriodDuration null `
@@ -28,6 +27,7 @@ $ConfigurationGetContinuousTestNotifications200ResponseInner = Initialize-LEPSLo
  -IsEnabled null `
  -EmailRecipients null `
  -UseCustomMailRecipient null `
+ -Threshold null `
  -VarEvent null `
  -LastModified null
 ```

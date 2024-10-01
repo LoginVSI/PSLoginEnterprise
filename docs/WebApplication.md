@@ -3,9 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
-**Url** | **String** | Start URL | [optional] 
-**ProfileLocation** | **String** | Profile location | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Application id | [optional] 
 **Name** | **String** | Application name | [optional] 
@@ -17,15 +14,15 @@ Name | Type | Description | Notes
 **Timers** | **String[]** | Application timers | [optional] 
 **TakeScreenshots** | **Boolean** | If set to true, it is allowed taking screenshots in case of application error | [optional] 
 **HasPassword** | **Boolean** | Has password | [optional] 
+**BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
+**Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WebApplication = Initialize-LEPSLoginEnterpriseWebApplication  -BrowserName null `
- -Url null `
- -ProfileLocation null `
- -Type null `
+$WebApplication = Initialize-LEPSLoginEnterpriseWebApplication  -Type null `
  -Id null `
  -Name null `
  -Description null `
@@ -35,7 +32,10 @@ $WebApplication = Initialize-LEPSLoginEnterpriseWebApplication  -BrowserName nul
  -Script null `
  -Timers null `
  -TakeScreenshots null `
- -HasPassword null
+ -HasPassword null `
+ -BrowserName null `
+ -Url null `
+ -ProfileLocation null
 ```
 
 - Convert the resource to JSON

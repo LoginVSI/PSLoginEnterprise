@@ -3,10 +3,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | 
 **VarHost** | **String** | Host | 
 **CommandLine** | **String** | Connection command line | 
 **Resource** | **String** | Resource | 
-**Type** | **String** |  | 
 **ServerUrl** | **String** | Server Url | 
 **DisplayResolution** | [**Resolution**](Resolution.md) |  | [optional] 
 **HostList** | [**TargetHost[]**](TargetHost.md) | Host list | 
@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AppTestRunConfigurationSnapshotConnector = Initialize-LEPSLoginEnterpriseAppTestRunConfigurationSnapshotConnector  -VarHost null `
+$AppTestRunConfigurationSnapshotConnector = Initialize-LEPSLoginEnterpriseAppTestRunConfigurationSnapshotConnector  -Type null `
+ -VarHost null `
  -CommandLine null `
  -Resource null `
- -Type null `
  -ServerUrl null `
  -DisplayResolution null `
  -HostList null `

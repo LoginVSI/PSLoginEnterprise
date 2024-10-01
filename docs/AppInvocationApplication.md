@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AppInvocationApplication = Initialize-LEPSLoginEnterpriseAppInvocationApplication  -Type null `
+$AppInvocationApplication = Initialize-LELEPSLoginEnterpriseAppInvocationApplication  -Type null `
  -BrowserName null `
  -Url null `
  -Id null `

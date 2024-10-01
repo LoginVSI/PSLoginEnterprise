@@ -3,12 +3,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Application** | [**OneOfWebApplicationWindowsApplication**](OneOfWebApplicationWindowsApplication.md) | Application | [optional] 
-**RunOnce** | **Boolean** | Run the application only once | [optional] 
-**LeaveRunning** | **Boolean** | Do not close the application | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Step id | [optional] 
 **IsEnabled** | **Boolean** | Enable step | [optional] 
+**Application** | [**AppInvocationAllOfApplication**](AppInvocationAllOfApplication.md) |  | [optional] 
+**RunOnce** | **Boolean** | Run the application only once | [optional] 
+**LeaveRunning** | **Boolean** | Do not close the application | [optional] 
 **DelayInSeconds** | **Int32** | Delay in seconds | [optional] 
 **ApplicationGroup** | [**ApplicationGroup**](ApplicationGroup.md) |  | [optional] 
 
@@ -16,12 +16,12 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ApplicationGroupStepsInner = Initialize-LEPSLoginEnterpriseApplicationGroupStepsInner  -Application null `
- -RunOnce null `
- -LeaveRunning null `
- -Type null `
+$ApplicationGroupStepsInner = Initialize-LEPSLoginEnterpriseApplicationGroupStepsInner  -Type null `
  -Id null `
  -IsEnabled null `
+ -Application null `
+ -RunOnce null `
+ -LeaveRunning null `
  -DelayInSeconds null `
  -ApplicationGroup null
 ```

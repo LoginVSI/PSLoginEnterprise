@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DelayInSeconds** | **Int32** | Delay in seconds | 
 **Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
+**DelayInSeconds** | **Int32** | Delay in seconds | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DelayUpdate = Initialize-LEPSLoginEnterpriseDelayUpdate  -DelayInSeconds null `
- -Type null `
- -IsEnabled null
+$DelayUpdate = Initialize-LEPSLoginEnterpriseDelayUpdate  -Type null `
+ -IsEnabled null `
+ -DelayInSeconds null
 ```
 
 - Convert the resource to JSON

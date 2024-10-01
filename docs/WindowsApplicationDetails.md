@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | 
 **CommandLine** | **String** | Command line arguments | [optional] 
 **WorkingDirectory** | **String** | Working directory | [optional] 
-**Type** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WindowsApplicationDetails = Initialize-LEPSLoginEnterpriseWindowsApplicationDetails  -CommandLine null `
- -WorkingDirectory null `
- -Type null
+$WindowsApplicationDetails = Initialize-LEPSLoginEnterpriseWindowsApplicationDetails  -Type null `
+ -CommandLine null `
+ -WorkingDirectory null
 ```
 
 - Convert the resource to JSON

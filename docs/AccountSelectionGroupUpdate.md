@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MemberIds** | **String[]** | Account group member ids | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Account group name | [optional] 
 **Description** | **String** | Account group description | [optional] 
+**MemberIds** | **String[]** | Account group member ids | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccountSelectionGroupUpdate = Initialize-LEPSLoginEnterpriseAccountSelectionGroupUpdate  -MemberIds null `
- -Type null `
+$AccountSelectionGroupUpdate = Initialize-LEPSLoginEnterpriseAccountSelectionGroupUpdate  -Type null `
  -Name null `
- -Description null
+ -Description null `
+ -MemberIds null
 ```
 
 - Convert the resource to JSON

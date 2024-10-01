@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ApplicationId** | **String** | Application id | [optional] 
 **ApplicationName** | **String** | Application name | [optional] 
 **ResultStatus** | [**ApplicationResultStatus**](ApplicationResultStatus.md) |  | [optional] 
 **AppExecutionSuccessful** | **Boolean** | Application execution successful | [optional] 
@@ -14,7 +15,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ApplicationSummary = Initialize-LEPSLoginEnterpriseApplicationSummary  -ApplicationName null `
+$ApplicationSummary = Initialize-LEPSLoginEnterpriseApplicationSummary  -ApplicationId null `
+ -ApplicationName null `
  -ResultStatus null `
  -AppExecutionSuccessful null `
  -PerformanceSuccessful null `

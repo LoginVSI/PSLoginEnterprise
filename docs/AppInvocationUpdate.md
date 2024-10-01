@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RunOnce** | **Boolean** | Run the application only once | 
-**LeaveRunning** | **Boolean** | Do not close the application | 
 **Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
+**RunOnce** | **Boolean** | Run the application only once | 
+**LeaveRunning** | **Boolean** | Do not close the application | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AppInvocationUpdate = Initialize-LEPSLoginEnterpriseAppInvocationUpdate  -RunOnce null `
- -LeaveRunning null `
- -Type null `
- -IsEnabled null
+$AppInvocationUpdate = Initialize-LEPSLoginEnterpriseAppInvocationUpdate  -Type null `
+ -IsEnabled null `
+ -RunOnce null `
+ -LeaveRunning null
 ```
 
 - Convert the resource to JSON

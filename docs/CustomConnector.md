@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | 
 **VarHost** | **String** | Host | 
 **CommandLine** | **String** | Connection command line | 
 **Resource** | **String** | Resource | [optional] 
-**Type** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$CustomConnector = Initialize-LEPSLoginEnterpriseCustomConnector  -VarHost null `
+$CustomConnector = Initialize-LEPSLoginEnterpriseCustomConnector  -Type null `
+ -VarHost null `
  -CommandLine null `
- -Resource null `
- -Type null
+ -Resource null
 ```
 
 - Convert the resource to JSON

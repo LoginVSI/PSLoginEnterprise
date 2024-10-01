@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Measurement** | [**PerformanceCounterMeasurementDefinitionCreate**](PerformanceCounterMeasurementDefinitionCreate.md) |  | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Name | [optional] 
 **Description** | **String** | Description | [optional] 
 **Tag** | **String** | Tag | [optional] 
+**Measurement** | [**PerformanceCounterMeasurementDefinitionCreate**](PerformanceCounterMeasurementDefinitionCreate.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PerformanceCounterDefinitionCreate = Initialize-LEPSLoginEnterprisePerformanceCounterDefinitionCreate  -Measurement null `
- -Type null `
+$PerformanceCounterDefinitionCreate = Initialize-LEPSLoginEnterprisePerformanceCounterDefinitionCreate  -Type null `
  -Name null `
  -Description null `
- -Tag null
+ -Tag null `
+ -Measurement null
 ```
 
 - Convert the resource to JSON

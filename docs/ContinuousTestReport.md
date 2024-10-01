@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfigurationId** | **String** | Report configuration id | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Report id | [optional] 
 **TestId** | **String** | Test id | [optional] 
@@ -13,13 +12,13 @@ Name | Type | Description | Notes
 **Created** | **System.DateTime** | Created date-time | [optional] 
 **ReportPeriodStart** | **System.DateTime** | Report period start date-time | [optional] 
 **ReportPeriodEnd** | **System.DateTime** | Report period end date-time | [optional] 
+**ConfigurationId** | **String** | Report configuration id | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ContinuousTestReport = Initialize-LEPSLoginEnterpriseContinuousTestReport  -ConfigurationId null `
- -Type null `
+$ContinuousTestReport = Initialize-LEPSLoginEnterpriseContinuousTestReport  -Type null `
  -Id null `
  -TestId null `
  -OutputContentUri null `
@@ -27,7 +26,8 @@ $ContinuousTestReport = Initialize-LEPSLoginEnterpriseContinuousTestReport  -Con
  -Trigger null `
  -Created null `
  -ReportPeriodStart null `
- -ReportPeriodEnd null
+ -ReportPeriodEnd null `
+ -ConfigurationId null
 ```
 
 - Convert the resource to JSON

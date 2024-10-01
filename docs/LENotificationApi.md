@@ -26,14 +26,14 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $AppThresholdCreate = Initialize-LEAppThresholdCreate -ApplicationId "MyApplicationId" -Timer "MyTimer" -IsEnabled $false -Value 0
-$ThresholdNotificationCreate = Initialize-LEThresholdNotificationCreate -Threshold $AppThresholdCreate -Type "MyType" -TimesExceeded 0 -PeriodDuration 0 -IsEnabled $false -EmailRecipients "MyEmailRecipients" -UseCustomMailRecipient $false # ThresholdNotificationCreate | Test-notification date
+$ThresholdNotificationCreate = Initialize-LEThresholdNotificationCreate -Type "MyType" -TimesExceeded 0 -PeriodDuration 0 -IsEnabled $false -EmailRecipients "MyEmailRecipients" -UseCustomMailRecipient $false -Threshold $AppThresholdCreate # ThresholdNotificationCreate | Test-notification date
 
 # Create test-notification
 try {
@@ -82,10 +82,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $NotificationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-notification id
@@ -136,10 +136,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -190,10 +190,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $NotificationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-notification id

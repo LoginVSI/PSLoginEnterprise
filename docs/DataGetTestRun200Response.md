@@ -3,13 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TestRunConfigurationSnapshot** | [**LoadTestRunConfigurationSnapshot**](LoadTestRunConfigurationSnapshot.md) |  | [optional] 
-**State** | [**LoadTestState**](LoadTestState.md) |  | [optional] 
-**Result** | [**LoadTestResult**](LoadTestResult.md) |  | [optional] 
-**AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
-**AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
-**Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
-**Comment** | **String** | Comment | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Test run id | [optional] 
 **TestId** | **String** | Test id | [optional] 
@@ -17,6 +10,13 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**TestRunConfigurationSnapshot** | [**LoadTestRunConfigurationSnapshot**](LoadTestRunConfigurationSnapshot.md) |  | [optional] 
+**State** | [**LoadTestState**](LoadTestState.md) |  | [optional] 
+**Result** | [**LoadTestResult**](LoadTestResult.md) |  | [optional] 
+**AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
+**AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
+**Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
+**Comment** | **String** | Comment | [optional] 
 **RampUpCompleted** | **System.DateTime** | Ramp-up completed date-time | [optional] 
 **ActiveSessionCount** | **Int32** | Active session count | [optional] 
 **StatisticsReady** | **Boolean** | Statistics are ready | [optional] 
@@ -31,20 +31,20 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DataGetTestRun200Response = Initialize-LEPSLoginEnterpriseDataGetTestRun200Response  -TestRunConfigurationSnapshot null `
- -State null `
- -Result null `
- -AppFailureResults null `
- -AppPerformanceResults null `
- -Properties null `
- -Comment null `
- -Type null `
+$DataGetTestRun200Response = Initialize-LEPSLoginEnterpriseDataGetTestRun200Response  -Type null `
  -Id null `
  -TestId null `
  -Created null `
  -Started null `
  -Finished null `
  -Counter null `
+ -TestRunConfigurationSnapshot null `
+ -State null `
+ -Result null `
+ -AppFailureResults null `
+ -AppPerformanceResults null `
+ -Properties null `
+ -Comment null `
  -RampUpCompleted null `
  -ActiveSessionCount null `
  -StatisticsReady null `

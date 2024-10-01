@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LauncherNames** | **String[]** | Launcher names | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Launcher group name | 
 **Description** | **String** | Launcher group description | [optional] 
+**LauncherNames** | **String[]** | Launcher names | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$LauncherSelectionGroupData = Initialize-LEPSLoginEnterpriseLauncherSelectionGroupData  -LauncherNames null `
- -Type null `
+$LauncherSelectionGroupData = Initialize-LEPSLoginEnterpriseLauncherSelectionGroupData  -Type null `
  -Name null `
- -Description null
+ -Description null `
+ -LauncherNames null
 ```
 
 - Convert the resource to JSON

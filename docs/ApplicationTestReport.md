@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TestRunId** | **String** | Test run id | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Report id | [optional] 
 **TestId** | **String** | Test id | [optional] 
@@ -13,13 +12,13 @@ Name | Type | Description | Notes
 **Created** | **System.DateTime** | Created date-time | [optional] 
 **ReportPeriodStart** | **System.DateTime** | Report period start date-time | [optional] 
 **ReportPeriodEnd** | **System.DateTime** | Report period end date-time | [optional] 
+**TestRunId** | **String** | Test run id | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ApplicationTestReport = Initialize-LEPSLoginEnterpriseApplicationTestReport  -TestRunId null `
- -Type null `
+$ApplicationTestReport = Initialize-LEPSLoginEnterpriseApplicationTestReport  -Type null `
  -Id null `
  -TestId null `
  -OutputContentUri null `
@@ -27,7 +26,8 @@ $ApplicationTestReport = Initialize-LEPSLoginEnterpriseApplicationTestReport  -T
  -Trigger null `
  -Created null `
  -ReportPeriodStart null `
- -ReportPeriodEnd null
+ -ReportPeriodEnd null `
+ -TestRunId null
 ```
 
 - Convert the resource to JSON

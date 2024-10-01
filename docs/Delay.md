@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DelayInSeconds** | **Int32** | Delay in seconds | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Step id | [optional] 
 **IsEnabled** | **Boolean** | Enable step | [optional] 
+**DelayInSeconds** | **Int32** | Delay in seconds | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$Delay = Initialize-LEPSLoginEnterpriseDelay  -DelayInSeconds null `
- -Type null `
+$Delay = Initialize-LEPSLoginEnterpriseDelay  -Type null `
  -Id null `
- -IsEnabled null
+ -IsEnabled null `
+ -DelayInSeconds null
 ```
 
 - Convert the resource to JSON

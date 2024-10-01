@@ -30,10 +30,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
 $AccountCreate = Initialize-LEAccountCreate -Username "MyUsername" -Domain "MyDomain" -Email "MyEmail" -Password "MyPassword" -Fields $AccountField # AccountCreate | Account data
@@ -83,10 +83,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
 $AccountBulkCreate = Initialize-LEAccountBulkCreate -NumberOfDigits 0 -NumberOfAccounts 0 -Username "MyUsername" -Domain "MyDomain" -Email "MyEmail" -Password "MyPassword" -Fields $AccountField # AccountBulkCreate | Account data
@@ -136,10 +136,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 
@@ -190,10 +190,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $RequestBody = "MyRequestBody" # String[] | Account ids
 
@@ -242,10 +242,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 # **Get-LEAccounts**
 > AccountResultSet Get-LEAccounts<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
@@ -299,13 +299,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $OrderBy = "username" # AccountSortKey | Sort Key
-$Direction = "asc" # String | Sort direction (default to "asc")
+$Direction = "asc" # SortOrder | Sort direction
 $Count = 56 # Int32 | Number of records to return (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
@@ -325,7 +325,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **OrderBy** | [**AccountSortKey**](AccountSortKey.md)| Sort Key | 
- **Direction** | **String**| Sort direction | [default to &quot;asc&quot;]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
  **Count** | **Int32**| Number of records to return | [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
@@ -362,10 +362,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
@@ -418,10 +418,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 $Body = $true # Boolean | Enabled state of account
@@ -472,10 +472,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $AccountEnabledUpdate = Initialize-LEAccountEnabledUpdate -AccountIds "MyAccountIds" -Enabled $false # AccountEnabledUpdate | Accounts data
 

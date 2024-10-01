@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationGroupId** | **String** | Application id | 
 **Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
+**ApplicationGroupId** | **String** | Application id | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AppGroupReferenceCreate = Initialize-LEPSLoginEnterpriseAppGroupReferenceCreate  -ApplicationGroupId null `
- -Type null `
- -IsEnabled null
+$AppGroupReferenceCreate = Initialize-LEPSLoginEnterpriseAppGroupReferenceCreate  -Type null `
+ -IsEnabled null `
+ -ApplicationGroupId null
 ```
 
 - Convert the resource to JSON

@@ -3,8 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommandLine** | **String** | Command line arguments | 
-**WorkingDirectory** | **String** | Working directory | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Application name | 
 **Description** | **String** | Application description | [optional] 
@@ -12,20 +10,22 @@ Name | Type | Description | Notes
 **Password** | **String** | Application password | [optional] 
 **TakeScreenshots** | **Boolean** | Enable/disable taking screenshots in case of application error | [optional] 
 **ScriptContent** | **String** | Script content | [optional] 
+**CommandLine** | **String** | Command line arguments | 
+**WorkingDirectory** | **String** | Working directory | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WindowsApplicationCreate = Initialize-LEPSLoginEnterpriseWindowsApplicationCreate  -CommandLine null `
- -WorkingDirectory null `
- -Type null `
+$WindowsApplicationCreate = Initialize-LEPSLoginEnterpriseWindowsApplicationCreate  -Type null `
  -Name null `
  -Description null `
  -Username null `
  -Password null `
  -TakeScreenshots null `
- -ScriptContent null
+ -ScriptContent null `
+ -CommandLine null `
+ -WorkingDirectory null
 ```
 
 - Convert the resource to JSON

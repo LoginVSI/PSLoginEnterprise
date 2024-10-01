@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 **Type** | **String** |  | 
 **GroupId** | **String** | Account group id | [optional] 
 **Name** | **String** | Account group name | [optional] 
@@ -12,20 +11,21 @@ Name | Type | Description | Notes
 **Created** | **System.DateTime** | Created date-time | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
 **Members** | [**Account[]**](Account.md) | Account group members | [optional] 
+**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ConfigurationGetAccountGroup200Response = Initialize-LEPSLoginEnterpriseConfigurationGetAccountGroup200Response  -VarFilter null `
- -Type null `
+$ConfigurationGetAccountGroup200Response = Initialize-LEPSLoginEnterpriseConfigurationGetAccountGroup200Response  -Type null `
  -GroupId null `
  -Name null `
  -MemberCount null `
  -Description null `
  -Created null `
  -LastModified null `
- -Members null
+ -Members null `
+ -VarFilter null
 ```
 
 - Convert the resource to JSON

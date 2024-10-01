@@ -3,10 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsEmailEnabled** | **Boolean** | Enable email notification | 
-**EmailRecipient** | **String** | Notification email address | [optional] 
-**IncludeSuccessfulApplications** | **Boolean** | Include successful applications in report | 
-**RestartOnComplete** | **Boolean** | Enable restarting on completion | 
 **Type** | **String** |  | 
 **Name** | **String** | Test name | 
 **Description** | **String** | Test description | [optional] 
@@ -16,6 +12,10 @@ Name | Type | Description | Notes
 **LogonTimeTrackingProcess** | **String** | Specify the application to track user login time session and session initiation. The default value is explorer.exe (Windows shell). You can customize it to Citrix, VMWare, or another platform that you&#39;re using. Common values are wfshell.exe (Citrix), mware-view-usbd.exe (VMWare), or rdpshell.exe (Microsoft RDP). | [optional] 
 **EngineStartTimeout** | **String** | Engine start timeout | [optional] 
 **ApplicationDebugModeEnabled** | **Boolean** | Run application scripts in debug mode to capture the error line for scripts failures | [optional] 
+**IsEmailEnabled** | **Boolean** | Enable email notification | 
+**EmailRecipient** | **String** | Notification email address | [optional] 
+**IncludeSuccessfulApplications** | **Boolean** | Include successful applications in report | 
+**RestartOnComplete** | **Boolean** | Enable restarting on completion | 
 **NumberOfSessions** | **Int32** | Number of sessions | 
 **RampUpDurationInMinutes** | **Int32** | Ramp up duration in minutes | 
 **TestDurationInMinutes** | **Int32** | Test duration in minutes | 
@@ -35,11 +35,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateTestRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateTestRequest  -IsEmailEnabled null `
- -EmailRecipient null `
- -IncludeSuccessfulApplications null `
- -RestartOnComplete null `
- -Type null `
+$ConfigurationUpdateTestRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateTestRequest  -Type null `
  -Name null `
  -Description null `
  -ConnectionResourcesUpdate null `
@@ -48,6 +44,10 @@ $ConfigurationUpdateTestRequest = Initialize-LEPSLoginEnterpriseConfigurationUpd
  -LogonTimeTrackingProcess null `
  -EngineStartTimeout null `
  -ApplicationDebugModeEnabled null `
+ -IsEmailEnabled null `
+ -EmailRecipient null `
+ -IncludeSuccessfulApplications null `
+ -RestartOnComplete null `
  -NumberOfSessions null `
  -RampUpDurationInMinutes null `
  -TestDurationInMinutes null `

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 # **Get-LEApplicationDiagnostics**
 > ApplicationDiagnostic[] Get-LEApplicationDiagnostics<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TimeRange] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TimeRange] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LocationId] <System.Nullable[Int32]><br>
 
 Get application diagnostics by test id
@@ -26,13 +26,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
-$TimeRange = "last15Minutes" # String | Time range (optional) (default to "last15Minutes")
+$TimeRange = "last15Minutes" # TimeRange | Time range (optional)
 $LocationId = 56 # Int32 | Location id (optional)
 
 # Get application diagnostics by test id
@@ -49,7 +49,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestId** | **String**| Test id | 
- **TimeRange** | **String**| Time range | [optional] [default to &quot;last15Minutes&quot;]
+ **TimeRange** | [**TimeRange**](TimeRange.md)| Time range | [optional] 
  **LocationId** | **Int32**| Location id | [optional] 
 
 ### Return type
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 # **Get-LEContinuousTestDiagnostic**
 > TestDiagnostic Get-LEContinuousTestDiagnostic<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TimeRange] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TimeRange] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LocationId] <System.Nullable[Int32]><br>
 
 Get continuous test diagnostic by test id
@@ -84,13 +84,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
-$TimeRange = "last15Minutes" # String | Time range (optional) (default to "last15Minutes")
+$TimeRange = "last15Minutes" # TimeRange | Time range (optional)
 $LocationId = 56 # Int32 | Location id (optional)
 
 # Get continuous test diagnostic by test id
@@ -107,7 +107,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestId** | **String**| Test id | 
- **TimeRange** | **String**| Time range | [optional] [default to &quot;last15Minutes&quot;]
+ **TimeRange** | [**TimeRange**](TimeRange.md)| Time range | [optional] 
  **LocationId** | **Int32**| Location id | [optional] 
 
 ### Return type
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 <a id="Get-LEContinuousTestDiagnostics"></a>
 # **Get-LEContinuousTestDiagnostics**
 > TestDiagnostic[] Get-LEContinuousTestDiagnostics<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TimeRange] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TimeRange] <PSCustomObject><br>
 
 Get continuous test diagnostics
 
@@ -140,12 +140,12 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
-$TimeRange = "last15Minutes" # String | Time range (optional) (default to "last15Minutes")
+$TimeRange = "last15Minutes" # TimeRange | Time range (optional)
 
 # Get continuous test diagnostics
 try {
@@ -160,7 +160,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **TimeRange** | **String**| Time range | [optional] [default to &quot;last15Minutes&quot;]
+ **TimeRange** | [**TimeRange**](TimeRange.md)| Time range | [optional] 
 
 ### Return type
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 > UserSessionMetricResultResultSet Get-LEUserSessionMetrics<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
@@ -29,14 +29,14 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $OrderBy = "timestamp" # UserSessionMetricSortKey | Sort Key
-$Direction = "asc" # String | Sort direction (default to "asc")
+$Direction = "asc" # SortOrder | Sort direction
 $Count = 56 # Int32 | Number of records to return (default to 100)
 $From = (Get-Date) # System.DateTime | From date-time (optional)
 $To = (Get-Date) # System.DateTime | To date-time (optional)
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestRunId** | **String**| Test-run id | 
  **OrderBy** | [**UserSessionMetricSortKey**](UserSessionMetricSortKey.md)| Sort Key | 
- **Direction** | **String**| Sort direction | [default to &quot;asc&quot;]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
  **Count** | **Int32**| Number of records to return | [default to 100]
  **From** | **System.DateTime**| From date-time | [optional] 
  **To** | **System.DateTime**| To date-time | [optional] 

@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Target** | [**SessionThresholdType**](SessionThresholdType.md) |  | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Threshold id | [optional] 
 **IsEnabled** | **Boolean** | Enable threshold | [optional] 
 **Value** | **Double** | Threshold value | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
+**Target** | [**SessionThresholdType**](SessionThresholdType.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$SessionThreshold = Initialize-LEPSLoginEnterpriseSessionThreshold  -Target null `
- -Type null `
+$SessionThreshold = Initialize-LEPSLoginEnterpriseSessionThreshold  -Type null `
  -Id null `
  -IsEnabled null `
  -Value null `
- -LastModified null
+ -LastModified null `
+ -Target null
 ```
 
 - Convert the resource to JSON

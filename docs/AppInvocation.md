@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Application** | [**OneOfWebApplicationWindowsApplication**](OneOfWebApplicationWindowsApplication.md) | Application | [optional] 
-**RunOnce** | **Boolean** | Run the application only once | [optional] 
-**LeaveRunning** | **Boolean** | Do not close the application | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Step id | [optional] 
 **IsEnabled** | **Boolean** | Enable step | [optional] 
+**Application** | [**AppInvocationAllOfApplication**](AppInvocationAllOfApplication.md) |  | [optional] 
+**RunOnce** | **Boolean** | Run the application only once | [optional] 
+**LeaveRunning** | **Boolean** | Do not close the application | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AppInvocation = Initialize-LEPSLoginEnterpriseAppInvocation  -Application null `
- -RunOnce null `
- -LeaveRunning null `
- -Type null `
+$AppInvocation = Initialize-LEPSLoginEnterpriseAppInvocation  -Type null `
  -Id null `
- -IsEnabled null
+ -IsEnabled null `
+ -Application null `
+ -RunOnce null `
+ -LeaveRunning null
 ```
 
 - Convert the resource to JSON

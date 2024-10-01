@@ -3,13 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TestRunConfigurationSnapshot** | [**AppTestRunConfigurationSnapshot**](AppTestRunConfigurationSnapshot.md) |  | [optional] 
-**State** | [**ApplicationTestState**](ApplicationTestState.md) |  | [optional] 
-**Result** | [**ApplicationTestResult**](ApplicationTestResult.md) |  | [optional] 
-**AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
-**AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
-**Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
-**Comment** | **String** | Comment | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Test run id | [optional] 
 **TestId** | **String** | Test id | [optional] 
@@ -17,25 +10,32 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**TestRunConfigurationSnapshot** | [**AppTestRunConfigurationSnapshot**](AppTestRunConfigurationSnapshot.md) |  | [optional] 
+**State** | [**ApplicationTestState**](ApplicationTestState.md) |  | [optional] 
+**Result** | [**ApplicationTestResult**](ApplicationTestResult.md) |  | [optional] 
+**AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
+**AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
+**Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
+**Comment** | **String** | Comment | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ApplicationTestRun = Initialize-LEPSLoginEnterpriseApplicationTestRun  -TestRunConfigurationSnapshot null `
- -State null `
- -Result null `
- -AppFailureResults null `
- -AppPerformanceResults null `
- -Properties null `
- -Comment null `
- -Type null `
+$ApplicationTestRun = Initialize-LEPSLoginEnterpriseApplicationTestRun  -Type null `
  -Id null `
  -TestId null `
  -Created null `
  -Started null `
  -Finished null `
- -Counter null
+ -Counter null `
+ -TestRunConfigurationSnapshot null `
+ -State null `
+ -Result null `
+ -AppFailureResults null `
+ -AppPerformanceResults null `
+ -Properties null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

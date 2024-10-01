@@ -3,9 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SessionMetricsEnabled** | **Boolean** | Enable Session Metrics Collection | [optional] 
-**SessionMetricScheduleRate** | **Int32** | Session Metric Schedule Rate | [optional] 
-**SessionMetricGroupKey** | **String** | Session metric group key | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Test name | 
 **Description** | **String** | Test description | [optional] 
@@ -14,22 +11,25 @@ Name | Type | Description | Notes
 **LauncherGroups** | **String[]** | Launcher group ids | [optional] 
 **EnvironmentKey** | **String** | Environment key | [optional] 
 **ApplicationDebugModeEnabled** | **Boolean** | Run application scripts in debug mode to capture the error line for scripts failures | [optional] 
+**SessionMetricsEnabled** | **Boolean** | Enable Session Metrics Collection | [optional] 
+**SessionMetricScheduleRate** | **Int32** | Session Metric Schedule Rate | [optional] 
+**SessionMetricGroupKey** | **String** | Session metric group key | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ContinuousTestCreate = Initialize-LEPSLoginEnterpriseContinuousTestCreate  -SessionMetricsEnabled null `
- -SessionMetricScheduleRate null `
- -SessionMetricGroupKey null `
- -Type null `
+$ContinuousTestCreate = Initialize-LEPSLoginEnterpriseContinuousTestCreate  -Type null `
  -Name null `
  -Description null `
  -Connector null `
  -AccountGroups null `
  -LauncherGroups null `
  -EnvironmentKey null `
- -ApplicationDebugModeEnabled null
+ -ApplicationDebugModeEnabled null `
+ -SessionMetricsEnabled null `
+ -SessionMetricScheduleRate null `
+ -SessionMetricGroupKey null
 ```
 
 - Convert the resource to JSON

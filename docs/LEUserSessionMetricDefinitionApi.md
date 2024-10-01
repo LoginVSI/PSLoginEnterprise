@@ -26,14 +26,14 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $PerformanceCounterMeasurementDefinitionCreate = Initialize-LEPerformanceCounterMeasurementDefinitionCreate -CounterCategory "MyCounterCategory" -CounterName "MyCounterName" -CounterInstance "MyCounterInstance" -DisplayName "MyDisplayName" -Unit "MyUnit"
 $WmiQueryMeasurementDefinitionCreate = Initialize-LEWmiQueryMeasurementDefinitionCreate -PropertyName "MyPropertyName" -SummarizeOperation "none" -DisplayName "MyDisplayName" -Unit "MyUnit"
-$DataCreateUserSessionMetricDefinitionRequest = Initialize-LEDataCreateUserSessionMetricDefinitionRequest -Measurement $PerformanceCounterMeasurementDefinitionCreate -Type "MyType" -Name "MyName" -Description "MyDescription" -Tag "MyTag" -WmiQuery "MyWmiQuery" -Namespace "MyNamespace" -InstanceField "MyInstanceField" -Measurements $WmiQueryMeasurementDefinitionCreate # DataCreateUserSessionMetricDefinitionRequest | Session metric definition creation data
+$DataCreateUserSessionMetricDefinitionRequest = Initialize-LEDataCreateUserSessionMetricDefinitionRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -Tag "MyTag" -Measurement $PerformanceCounterMeasurementDefinitionCreate -WmiQuery "MyWmiQuery" -Namespace "MyNamespace" -InstanceField "MyInstanceField" -Measurements $WmiQueryMeasurementDefinitionCreate # DataCreateUserSessionMetricDefinitionRequest | Session metric definition creation data
 
 # Create user session metric definition
 try {
@@ -80,10 +80,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $DefinitionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric definition Id
 
@@ -132,10 +132,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $DefinitionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric definition Id
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 # **Get-LEUserSessionMetricDefinitions**
 > UserSessionMetricDefinitionResultSet Get-LEUserSessionMetricDefinitions<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
@@ -188,13 +188,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $OrderBy = "definitionType" # SessionMetricDefinitionSortKey | Sort Key
-$Direction = "asc" # String | Sort direction (default to "asc")
+$Direction = "asc" # SortOrder | Sort direction
 $Count = 56 # Int32 | Number of records to return (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
@@ -213,7 +213,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **OrderBy** | [**SessionMetricDefinitionSortKey**](SessionMetricDefinitionSortKey.md)| Sort Key | 
- **Direction** | **String**| Sort direction | [default to &quot;asc&quot;]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
  **Count** | **Int32**| Number of records to return | [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
@@ -249,10 +249,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $DefinitionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric definition id
 $UserSessionMetricDefinitionUpdate = Initialize-LEUserSessionMetricDefinitionUpdate -Name "MyName" -Description "MyDescription" # UserSessionMetricDefinitionUpdate | User session metric definition data

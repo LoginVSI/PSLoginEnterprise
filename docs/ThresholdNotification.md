@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Threshold** | [**OneOfAppThresholdSessionThreshold**](OneOfAppThresholdSessionThreshold.md) | Threshold | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Notification id | [optional] 
 **TimesExceeded** | **Int32** | Number of times the event occurred | [optional] 
@@ -12,20 +11,21 @@ Name | Type | Description | Notes
 **IsEnabled** | **Boolean** | Enables notification | [optional] 
 **EmailRecipients** | **String** | Email recipients | [optional] 
 **UseCustomMailRecipient** | **Boolean** | Use custom mail recipient | [optional] 
+**Threshold** | [**ThresholdNotificationAllOfThreshold**](ThresholdNotificationAllOfThreshold.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ThresholdNotification = Initialize-LEPSLoginEnterpriseThresholdNotification  -Threshold null `
- -Type null `
+$ThresholdNotification = Initialize-LEPSLoginEnterpriseThresholdNotification  -Type null `
  -Id null `
  -TimesExceeded null `
  -PeriodDuration null `
  -CooldownDuration null `
  -IsEnabled null `
  -EmailRecipients null `
- -UseCustomMailRecipient null
+ -UseCustomMailRecipient null `
+ -Threshold null
 ```
 
 - Convert the resource to JSON

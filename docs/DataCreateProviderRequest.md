@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TenantId** | **String** | Tenant Id | [optional] 
-**ApplicationId** | **String** | Application Id | [optional] 
-**Secret** | **String** | Secret Code | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Provider Name | [optional] 
 **Description** | **String** | Provider Description | [optional] 
+**TenantId** | **String** | Tenant Id | [optional] 
+**ApplicationId** | **String** | Application Id | [optional] 
+**Secret** | **String** | Secret Code | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DataCreateProviderRequest = Initialize-LEPSLoginEnterpriseDataCreateProviderRequest  -TenantId null `
- -ApplicationId null `
- -Secret null `
- -Type null `
+$DataCreateProviderRequest = Initialize-LEPSLoginEnterpriseDataCreateProviderRequest  -Type null `
  -Name null `
- -Description null
+ -Description null `
+ -TenantId null `
+ -ApplicationId null `
+ -Secret null
 ```
 
 - Convert the resource to JSON

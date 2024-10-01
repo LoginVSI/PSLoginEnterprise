@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RunOnce** | **Boolean** | Run the application only once | 
-**LeaveRunning** | **Boolean** | Do not close the application | 
 **Type** | **String** |  | 
 **IsEnabled** | **Boolean** | Enable step | 
+**RunOnce** | **Boolean** | Run the application only once | 
+**LeaveRunning** | **Boolean** | Do not close the application | 
 **DelayInSeconds** | **Int32** | Delay in seconds | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateStepInApplicationGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateStepInApplicationGroupRequest  -RunOnce null `
- -LeaveRunning null `
- -Type null `
+$ConfigurationUpdateStepInApplicationGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateStepInApplicationGroupRequest  -Type null `
  -IsEnabled null `
+ -RunOnce null `
+ -LeaveRunning null `
  -DelayInSeconds null
 ```
 

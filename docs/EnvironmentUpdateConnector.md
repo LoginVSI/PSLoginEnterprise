@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$EnvironmentUpdateConnector = Initialize-LEPSLoginEnterpriseEnvironmentUpdateConnector  -Type null `
+$EnvironmentUpdateConnector = Initialize-LELEPSLoginEnterpriseEnvironmentUpdateConnector  -Type null `
  -VarHost null `
  -CommandLine null `
  -Resource null `

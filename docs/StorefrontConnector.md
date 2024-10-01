@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | 
 **ServerUrl** | **String** | Server Url | 
 **Resource** | **String** | Resource | 
 **DisplayResolution** | [**Resolution**](Resolution.md) |  | [optional] 
-**Type** | **String** |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$StorefrontConnector = Initialize-LEPSLoginEnterpriseStorefrontConnector  -ServerUrl null `
+$StorefrontConnector = Initialize-LEPSLoginEnterpriseStorefrontConnector  -Type null `
+ -ServerUrl null `
  -Resource null `
- -DisplayResolution null `
- -Type null
+ -DisplayResolution null
 ```
 
 - Convert the resource to JSON

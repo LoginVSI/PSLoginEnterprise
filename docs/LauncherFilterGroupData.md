@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | 
 **Type** | **String** |  | 
 **Name** | **String** | Launcher group name | 
 **Description** | **String** | Launcher group description | [optional] 
+**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$LauncherFilterGroupData = Initialize-LEPSLoginEnterpriseLauncherFilterGroupData  -VarFilter null `
- -Type null `
+$LauncherFilterGroupData = Initialize-LEPSLoginEnterpriseLauncherFilterGroupData  -Type null `
  -Name null `
- -Description null
+ -Description null `
+ -VarFilter null
 ```
 
 - Convert the resource to JSON

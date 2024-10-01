@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Account group name | [optional] 
 **Description** | **String** | Account group description | [optional] 
+**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 **MemberIds** | **String[]** | Account group member ids | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateAccountGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateAccountGroupRequest  -VarFilter null `
- -Type null `
+$ConfigurationUpdateAccountGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateAccountGroupRequest  -Type null `
  -Name null `
  -Description null `
+ -VarFilter null `
  -MemberIds null
 ```
 

@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WmiQuery** | **String** | Wmi Query | [optional] 
-**Namespace** | **String** | Query namespace | [optional] 
-**InstanceField** | **String** | Name of field to identify intended instance from query result | [optional] 
-**Measurements** | [**WmiQueryMeasurementDefinition[]**](WmiQueryMeasurementDefinition.md) | Measurements | [optional] 
 **Type** | **String** |  | 
 **Key** | **String** | Key | [optional] 
 **Name** | **String** | Name | [optional] 
 **Description** | **String** | Description | [optional] 
 **Tag** | **String** | Tag | [optional] 
+**WmiQuery** | **String** | Wmi Query | [optional] 
+**Namespace** | **String** | Query namespace | [optional] 
+**InstanceField** | **String** | Name of field to identify intended instance from query result | [optional] 
+**Measurements** | [**WmiQueryMeasurementDefinition[]**](WmiQueryMeasurementDefinition.md) | Measurements | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WmiQueryDefinition = Initialize-LEPSLoginEnterpriseWmiQueryDefinition  -WmiQuery null `
- -Namespace null `
- -InstanceField null `
- -Measurements null `
- -Type null `
+$WmiQueryDefinition = Initialize-LEPSLoginEnterpriseWmiQueryDefinition  -Type null `
  -Key null `
  -Name null `
  -Description null `
- -Tag null
+ -Tag null `
+ -WmiQuery null `
+ -Namespace null `
+ -InstanceField null `
+ -Measurements null
 ```
 
 - Convert the resource to JSON

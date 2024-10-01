@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Frequency** | [**Frequency**](Frequency.md) |  | [optional] 
 **IsEnabled** | **Boolean** | Enable report configuration | [optional] 
 **Notification** | [**ReportNotification**](ReportNotification.md) |  | [optional] 
-**Thresholds** | [**ConfigurationGetApplicationTestThresholds200ResponseInner[]**](ConfigurationGetApplicationTestThresholds200ResponseInner.md) | Report thresholds | [optional] 
+**Thresholds** | [**ApplicationTestAllOfThresholds[]**](ApplicationTestAllOfThresholds.md) | Report thresholds | [optional] 
 **Created** | **System.DateTime** | Created date-time | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
 **LastReportPeriodStart** | **System.DateTime** | Last report period start date-time | [optional] 

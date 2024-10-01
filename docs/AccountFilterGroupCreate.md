@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Account group name | [optional] 
 **Description** | **String** | Account group description | [optional] 
+**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccountFilterGroupCreate = Initialize-LEPSLoginEnterpriseAccountFilterGroupCreate  -VarFilter null `
- -Type null `
+$AccountFilterGroupCreate = Initialize-LEPSLoginEnterpriseAccountFilterGroupCreate  -Type null `
  -Name null `
- -Description null
+ -Description null `
+ -VarFilter null
 ```
 
 - Convert the resource to JSON

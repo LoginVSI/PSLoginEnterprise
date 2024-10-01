@@ -3,9 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserName** | [**BrowserName**](BrowserName.md) |  | 
-**Url** | **String** | Start URL | [optional] 
-**ProfileLocation** | **String** | Profile location | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Application name | 
 **Description** | **String** | Application description | [optional] 
@@ -13,21 +10,24 @@ Name | Type | Description | Notes
 **Password** | **String** | Application password | [optional] 
 **TakeScreenshots** | **Boolean** | Enable/disable taking screenshots in case of application error | [optional] 
 **ScriptContent** | **String** | Script content | [optional] 
+**BrowserName** | [**BrowserName**](BrowserName.md) |  | 
+**Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WebApplicationCreate = Initialize-LEPSLoginEnterpriseWebApplicationCreate  -BrowserName null `
- -Url null `
- -ProfileLocation null `
- -Type null `
+$WebApplicationCreate = Initialize-LEPSLoginEnterpriseWebApplicationCreate  -Type null `
  -Name null `
  -Description null `
  -Username null `
  -Password null `
  -TakeScreenshots null `
- -ScriptContent null
+ -ScriptContent null `
+ -BrowserName null `
+ -Url null `
+ -ProfileLocation null
 ```
 
 - Convert the resource to JSON

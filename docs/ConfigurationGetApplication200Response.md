@@ -3,9 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
-**Url** | **String** | Start URL | [optional] 
-**ProfileLocation** | **String** | Profile location | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Application id | [optional] 
 **Name** | **String** | Application name | [optional] 
@@ -17,6 +14,9 @@ Name | Type | Description | Notes
 **Timers** | **String[]** | Application timers | [optional] 
 **TakeScreenshots** | **Boolean** | If set to true, it is allowed taking screenshots in case of application error | [optional] 
 **HasPassword** | **Boolean** | Has password | [optional] 
+**BrowserName** | [**BrowserName**](BrowserName.md) |  | [optional] 
+**Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
 **CommandLine** | **String** | Command line arguments | [optional] 
 **WorkingDirectory** | **String** | Working directory | [optional] 
 **MainWindowTitle** | **String** | Main window title | [optional] 
@@ -26,10 +26,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationGetApplication200Response = Initialize-LEPSLoginEnterpriseConfigurationGetApplication200Response  -BrowserName null `
- -Url null `
- -ProfileLocation null `
- -Type null `
+$ConfigurationGetApplication200Response = Initialize-LEPSLoginEnterpriseConfigurationGetApplication200Response  -Type null `
  -Id null `
  -Name null `
  -Description null `
@@ -40,6 +37,9 @@ $ConfigurationGetApplication200Response = Initialize-LEPSLoginEnterpriseConfigur
  -Timers null `
  -TakeScreenshots null `
  -HasPassword null `
+ -BrowserName null `
+ -Url null `
+ -ProfileLocation null `
  -CommandLine null `
  -WorkingDirectory null `
  -MainWindowTitle null `

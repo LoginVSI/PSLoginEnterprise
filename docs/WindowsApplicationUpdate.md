@@ -3,8 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommandLine** | **String** | Command line arguments | 
-**WorkingDirectory** | **String** | Working directory | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Application name | 
 **Description** | **String** | Application description | [optional] 
@@ -13,21 +11,23 @@ Name | Type | Description | Notes
 **MustUpdatePassword** | **Boolean** | True if password must be updated | [optional] 
 **TakeScreenshots** | **Boolean** | Enable/disable taking screenshots in case of application error | [optional] 
 **ScriptContent** | **String** | Script content | [optional] 
+**CommandLine** | **String** | Command line arguments | 
+**WorkingDirectory** | **String** | Working directory | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$WindowsApplicationUpdate = Initialize-LEPSLoginEnterpriseWindowsApplicationUpdate  -CommandLine null `
- -WorkingDirectory null `
- -Type null `
+$WindowsApplicationUpdate = Initialize-LEPSLoginEnterpriseWindowsApplicationUpdate  -Type null `
  -Name null `
  -Description null `
  -Username null `
  -Password null `
  -MustUpdatePassword null `
  -TakeScreenshots null `
- -ScriptContent null
+ -ScriptContent null `
+ -CommandLine null `
+ -WorkingDirectory null
 ```
 
 - Convert the resource to JSON

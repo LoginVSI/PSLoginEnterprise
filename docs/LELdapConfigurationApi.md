@@ -25,10 +25,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -AdminGroupName "MyAdminGroupName" -ReadOnlyGroupName "MyReadOnlyGroupName" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
 
@@ -76,10 +76,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 
 # Delete LDAP configuration.
@@ -123,10 +123,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 
 # Get LDAP configuration.
@@ -171,10 +171,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -AdminGroupName "MyAdminGroupName" -ReadOnlyGroupName "MyReadOnlyGroupName" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
 

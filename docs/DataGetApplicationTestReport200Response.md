@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TestRunId** | **String** | Test run id | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Report id | [optional] 
 **TestId** | **String** | Test id | [optional] 
@@ -13,14 +12,14 @@ Name | Type | Description | Notes
 **Created** | **System.DateTime** | Created date-time | [optional] 
 **ReportPeriodStart** | **System.DateTime** | Report period start date-time | [optional] 
 **ReportPeriodEnd** | **System.DateTime** | Report period end date-time | [optional] 
+**TestRunId** | **String** | Test run id | [optional] 
 **ConfigurationId** | **String** | Report configuration id | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DataGetApplicationTestReport200Response = Initialize-LEPSLoginEnterpriseDataGetApplicationTestReport200Response  -TestRunId null `
- -Type null `
+$DataGetApplicationTestReport200Response = Initialize-LEPSLoginEnterpriseDataGetApplicationTestReport200Response  -Type null `
  -Id null `
  -TestId null `
  -OutputContentUri null `
@@ -29,6 +28,7 @@ $DataGetApplicationTestReport200Response = Initialize-LEPSLoginEnterpriseDataGet
  -Created null `
  -ReportPeriodStart null `
  -ReportPeriodEnd null `
+ -TestRunId null `
  -ConfigurationId null
 ```
 

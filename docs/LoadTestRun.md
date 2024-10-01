@@ -3,6 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | 
+**Id** | **String** | Test run id | [optional] 
+**TestId** | **String** | Test id | [optional] 
+**Created** | **System.DateTime** | Created date-time | [optional] 
+**Started** | **System.DateTime** | Started date-time | [optional] 
+**Finished** | **System.DateTime** | Finished date-time | [optional] 
+**Counter** | **Int32** | Test run counter | [optional] 
 **TestRunConfigurationSnapshot** | [**LoadTestRunConfigurationSnapshot**](LoadTestRunConfigurationSnapshot.md) |  | [optional] 
 **State** | [**LoadTestState**](LoadTestState.md) |  | [optional] 
 **Result** | [**LoadTestResult**](LoadTestResult.md) |  | [optional] 
@@ -16,19 +23,19 @@ Name | Type | Description | Notes
 **EuxScore** | [**EuxScore**](EuxScore.md) |  | [optional] 
 **VsiMax** | [**VsiMax**](VsiMax.md) |  | [optional] 
 **Comment** | **String** | Comment | [optional] 
-**Type** | **String** |  | 
-**Id** | **String** | Test run id | [optional] 
-**TestId** | **String** | Test id | [optional] 
-**Created** | **System.DateTime** | Created date-time | [optional] 
-**Started** | **System.DateTime** | Started date-time | [optional] 
-**Finished** | **System.DateTime** | Finished date-time | [optional] 
-**Counter** | **Int32** | Test run counter | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -TestRunConfigurationSnapshot null `
+$LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -Type null `
+ -Id null `
+ -TestId null `
+ -Created null `
+ -Started null `
+ -Finished null `
+ -Counter null `
+ -TestRunConfigurationSnapshot null `
  -State null `
  -Result null `
  -RampUpCompleted null `
@@ -40,14 +47,7 @@ $LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -TestRunConfigurationS
  -AppExecutionCounts null `
  -EuxScore null `
  -VsiMax null `
- -Comment null `
- -Type null `
- -Id null `
- -TestId null `
- -Created null `
- -Started null `
- -Finished null `
- -Counter null
+ -Comment null
 ```
 
 - Convert the resource to JSON

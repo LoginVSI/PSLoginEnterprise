@@ -3,11 +3,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Measurement** | [**PerformanceCounterMeasurementDefinitionCreate**](PerformanceCounterMeasurementDefinitionCreate.md) |  | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Name | [optional] 
 **Description** | **String** | Description | [optional] 
 **Tag** | **String** | Tag | [optional] 
+**Measurement** | [**PerformanceCounterMeasurementDefinitionCreate**](PerformanceCounterMeasurementDefinitionCreate.md) |  | [optional] 
 **WmiQuery** | **String** | Wmi Query | [optional] 
 **Namespace** | **String** | Query namespace | [optional] 
 **InstanceField** | **String** | Name of field to identify intended instance from query result | [optional] 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DataCreateUserSessionMetricDefinitionRequest = Initialize-LEPSLoginEnterpriseDataCreateUserSessionMetricDefinitionRequest  -Measurement null `
- -Type null `
+$DataCreateUserSessionMetricDefinitionRequest = Initialize-LEPSLoginEnterpriseDataCreateUserSessionMetricDefinitionRequest  -Type null `
  -Name null `
  -Description null `
  -Tag null `
+ -Measurement null `
  -WmiQuery null `
  -Namespace null `
  -InstanceField null `

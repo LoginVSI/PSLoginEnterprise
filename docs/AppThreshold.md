@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationId** | **String** | Application id | [optional] 
-**Timer** | **String** | Application timer | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Threshold id | [optional] 
 **IsEnabled** | **Boolean** | Enable threshold | [optional] 
 **Value** | **Double** | Threshold value | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
+**ApplicationId** | **String** | Application id | [optional] 
+**Timer** | **String** | Application timer | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AppThreshold = Initialize-LEPSLoginEnterpriseAppThreshold  -ApplicationId null `
- -Timer null `
- -Type null `
+$AppThreshold = Initialize-LEPSLoginEnterpriseAppThreshold  -Type null `
  -Id null `
  -IsEnabled null `
  -Value null `
- -LastModified null
+ -LastModified null `
+ -ApplicationId null `
+ -Timer null
 ```
 
 - Convert the resource to JSON

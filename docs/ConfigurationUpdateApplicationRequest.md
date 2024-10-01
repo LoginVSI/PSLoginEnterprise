@@ -3,9 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserName** | [**BrowserName**](BrowserName.md) |  | 
-**Url** | **String** | Start URL | [optional] 
-**ProfileLocation** | **String** | Profile location | [optional] 
 **Type** | **String** |  | 
 **Name** | **String** | Application name | 
 **Description** | **String** | Application description | [optional] 
@@ -14,6 +11,9 @@ Name | Type | Description | Notes
 **MustUpdatePassword** | **Boolean** | True if password must be updated | [optional] 
 **TakeScreenshots** | **Boolean** | Enable/disable taking screenshots in case of application error | [optional] 
 **ScriptContent** | **String** | Script content | [optional] 
+**BrowserName** | [**BrowserName**](BrowserName.md) |  | 
+**Url** | **String** | Start URL | [optional] 
+**ProfileLocation** | **String** | Profile location | [optional] 
 **CommandLine** | **String** | Command line arguments | 
 **WorkingDirectory** | **String** | Working directory | [optional] 
 
@@ -21,10 +21,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateApplicationRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateApplicationRequest  -BrowserName null `
- -Url null `
- -ProfileLocation null `
- -Type null `
+$ConfigurationUpdateApplicationRequest = Initialize-LEPSLoginEnterpriseConfigurationUpdateApplicationRequest  -Type null `
  -Name null `
  -Description null `
  -Username null `
@@ -32,6 +29,9 @@ $ConfigurationUpdateApplicationRequest = Initialize-LEPSLoginEnterpriseConfigura
  -MustUpdatePassword null `
  -TakeScreenshots null `
  -ScriptContent null `
+ -BrowserName null `
+ -Url null `
+ -ProfileLocation null `
  -CommandLine null `
  -WorkingDirectory null
 ```

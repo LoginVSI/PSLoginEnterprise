@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | 
+**ProviderId** | **String** | Provider Id | [optional] 
 **TenantId** | **String** | Tenant Id | [optional] 
 **ApplicationId** | **String** | Application Id | [optional] 
 **Secret** | **String** | Client Secret | [optional] 
-**Type** | **String** |  | 
-**ProviderId** | **String** | Provider Id | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DataTestProviderConnectionRequest = Initialize-LEPSLoginEnterpriseDataTestProviderConnectionRequest  -TenantId null `
+$DataTestProviderConnectionRequest = Initialize-LEPSLoginEnterpriseDataTestProviderConnectionRequest  -Type null `
+ -ProviderId null `
+ -TenantId null `
  -ApplicationId null `
- -Secret null `
- -Type null `
- -ProviderId null
+ -Secret null
 ```
 
 - Convert the resource to JSON

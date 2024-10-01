@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Measurement** | [**BuiltInMetricMeasurementDefinition**](BuiltInMetricMeasurementDefinition.md) |  | [optional] 
 **Type** | **String** |  | 
 **Key** | **String** | Key | [optional] 
 **Name** | **String** | Name | [optional] 
 **Description** | **String** | Description | [optional] 
 **Tag** | **String** | Tag | [optional] 
+**Measurement** | [**BuiltInMetricMeasurementDefinition**](BuiltInMetricMeasurementDefinition.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$BuiltInMetricDefinition = Initialize-LEPSLoginEnterpriseBuiltInMetricDefinition  -Measurement null `
- -Type null `
+$BuiltInMetricDefinition = Initialize-LEPSLoginEnterpriseBuiltInMetricDefinition  -Type null `
  -Key null `
  -Name null `
  -Description null `
- -Tag null
+ -Tag null `
+ -Measurement null
 ```
 
 - Convert the resource to JSON

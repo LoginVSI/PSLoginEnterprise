@@ -3,12 +3,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Measurement** | [**PerformanceCounterMeasurementDefinition**](PerformanceCounterMeasurementDefinition.md) |  | [optional] 
 **Type** | **String** |  | 
 **Key** | **String** | Key | [optional] 
 **Name** | **String** | Name | [optional] 
 **Description** | **String** | Description | [optional] 
 **Tag** | **String** | Tag | [optional] 
+**Measurement** | [**PerformanceCounterMeasurementDefinition**](PerformanceCounterMeasurementDefinition.md) |  | [optional] 
 **WmiQuery** | **String** | Wmi Query | [optional] 
 **Namespace** | **String** | Query namespace | [optional] 
 **InstanceField** | **String** | Name of field to identify intended instance from query result | [optional] 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DataGetUserSessionMetricDefinitionByKey200Response = Initialize-LEPSLoginEnterpriseDataGetUserSessionMetricDefinitionByKey200Response  -Measurement null `
- -Type null `
+$DataGetUserSessionMetricDefinitionByKey200Response = Initialize-LEPSLoginEnterpriseDataGetUserSessionMetricDefinitionByKey200Response  -Type null `
  -Key null `
  -Name null `
  -Description null `
  -Tag null `
+ -Measurement null `
  -WmiQuery null `
  -Namespace null `
  -InstanceField null `

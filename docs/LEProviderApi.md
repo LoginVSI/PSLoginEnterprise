@@ -27,12 +27,12 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
-$DataCreateProviderRequest = Initialize-LEDataCreateProviderRequest -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" -Type "MyType" -Name "MyName" -Description "MyDescription" # DataCreateProviderRequest | Provider data
+$DataCreateProviderRequest = Initialize-LEDataCreateProviderRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" # DataCreateProviderRequest | Provider data
 
 # Create provider
 try {
@@ -79,10 +79,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $ProviderId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Provider id
 
@@ -131,10 +131,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $ProviderId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Provider id
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 # **Get-LEProviders**
 > ProviderResultSet Get-LEProviders<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
@@ -188,13 +188,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $OrderBy = "name" # ProviderSortKey | Sort Key
-$Direction = "asc" # String | Sort direction (default to "asc")
+$Direction = "asc" # SortOrder | Sort direction
 $Count = 56 # Int32 | Number of records to return (default to 100)
 $Filter = "MyFilter" # String | Filter the query by a subtext or keyword in the provider's name or description (optional)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
@@ -214,7 +214,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **OrderBy** | [**ProviderSortKey**](ProviderSortKey.md)| Sort Key | 
- **Direction** | **String**| Sort direction | [default to &quot;asc&quot;]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
  **Count** | **Int32**| Number of records to return | [default to 100]
  **Filter** | **String**| Filter the query by a subtext or keyword in the provider&#39;s name or description | [optional] 
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
@@ -250,12 +250,12 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
-$DataTestProviderConnectionRequest = Initialize-LEDataTestProviderConnectionRequest -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" -Type "MyType" -ProviderId "MyProviderId" # DataTestProviderConnectionRequest | Test Provider Connection
+$DataTestProviderConnectionRequest = Initialize-LEDataTestProviderConnectionRequest -Type "MyType" -ProviderId "MyProviderId" -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" # DataTestProviderConnectionRequest | Test Provider Connection
 
 # Test provider connection
 try {
@@ -303,13 +303,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
-$bearerToken = @{"Authorization"="Bearer $accessToken"}"
+ 
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
-""
+ 
 
 $ProviderId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Provider id
-$DataCreateProviderRequest = Initialize-LEDataCreateProviderRequest -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" -Type "MyType" -Name "MyName" -Description "MyDescription" # DataCreateProviderRequest | Provider data
+$DataCreateProviderRequest = Initialize-LEDataCreateProviderRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" # DataCreateProviderRequest | Provider data
 
 # Update provider
 try {

@@ -3,8 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarEvent** | [**NotificationEventType**](NotificationEventType.md) |  | [optional] 
-**LastModified** | **System.DateTime** | Last modified date-time | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Notification id | [optional] 
 **TimesExceeded** | **Int32** | Number of times the event occurred | [optional] 
@@ -13,21 +11,23 @@ Name | Type | Description | Notes
 **IsEnabled** | **Boolean** | Enables notification | [optional] 
 **EmailRecipients** | **String** | Email recipients | [optional] 
 **UseCustomMailRecipient** | **Boolean** | Use custom mail recipient | [optional] 
+**VarEvent** | [**NotificationEventType**](NotificationEventType.md) |  | [optional] 
+**LastModified** | **System.DateTime** | Last modified date-time | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$EventNotification = Initialize-LEPSLoginEnterpriseEventNotification  -VarEvent null `
- -LastModified null `
- -Type null `
+$EventNotification = Initialize-LEPSLoginEnterpriseEventNotification  -Type null `
  -Id null `
  -TimesExceeded null `
  -PeriodDuration null `
  -CooldownDuration null `
  -IsEnabled null `
  -EmailRecipients null `
- -UseCustomMailRecipient null
+ -UseCustomMailRecipient null `
+ -VarEvent null `
+ -LastModified null
 ```
 
 - Convert the resource to JSON

@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | 
 **Type** | **String** |  | 
 **Name** | **String** | Launcher group name | 
 **Description** | **String** | Launcher group description | [optional] 
+**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | 
 **LauncherNames** | **String[]** | Launcher names | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ConfigurationCreateLauncherGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationCreateLauncherGroupRequest  -VarFilter null `
- -Type null `
+$ConfigurationCreateLauncherGroupRequest = Initialize-LEPSLoginEnterpriseConfigurationCreateLauncherGroupRequest  -Type null `
  -Name null `
  -Description null `
+ -VarFilter null `
  -LauncherNames null
 ```
 

@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 **Type** | **String** |  | 
 **Id** | **String** | Launcher group id | [optional] 
 **Name** | **String** | Launcher group name | [optional] 
@@ -12,20 +11,21 @@ Name | Type | Description | Notes
 **Members** | [**Launcher[]**](Launcher.md) | Launcher group members | [optional] 
 **Created** | **System.DateTime** | Creation date-time | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
+**VarFilter** | **String** | Filter condition (Wildcards available: &quot;&quot;?&quot;&quot; and &quot;&quot;*&quot;&quot;) | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$LauncherFilterGroup = Initialize-LEPSLoginEnterpriseLauncherFilterGroup  -VarFilter null `
- -Type null `
+$LauncherFilterGroup = Initialize-LEPSLoginEnterpriseLauncherFilterGroup  -Type null `
  -Id null `
  -Name null `
  -MemberCount null `
  -Description null `
  -Members null `
  -Created null `
- -LastModified null
+ -LastModified null `
+ -VarFilter null
 ```
 
 - Convert the resource to JSON
