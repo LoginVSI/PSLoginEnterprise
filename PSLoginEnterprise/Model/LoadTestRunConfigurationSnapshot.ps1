@@ -16,6 +16,8 @@ Test configuration at the time of the load test-run execution
 
 .PARAMETER EnvironmentKey
 Environment key
+.PARAMETER EnvironmentName
+Environment key
 .PARAMETER NumberOfSessions
 Number of sessions
 .PARAMETER RampUpDurationInMinutes
@@ -58,48 +60,51 @@ function Initialize-LELoadTestRunConfigurationSnapshot {
         [String]
         ${EnvironmentKey},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${NumberOfSessions},
+        [String]
+        ${EnvironmentName},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${RampUpDurationInMinutes},
+        ${NumberOfSessions},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${RampDownDurationInMinutes},
+        ${RampUpDurationInMinutes},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${TestDurationInMinutes},
+        ${RampDownDurationInMinutes},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${EuxEnabled},
+        [System.Nullable[Int32]]
+        ${TestDurationInMinutes},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${ApplicationDebugModeEnabled},
+        ${EuxEnabled},
         [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${SessionMetricsEnabled},
+        ${ApplicationDebugModeEnabled},
         [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${SessionMetricsEnabled},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${SessionMetricScheduleRate},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TestId},
         [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${TestId},
         [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Workload},
+        [String]
+        ${Name},
         [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Connector},
+        ${Workload},
         [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${LauncherGroups},
+        [PSCustomObject]
+        ${Connector},
         [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${AccountGroups},
+        ${LauncherGroups},
         [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${AccountGroups},
+        [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${SessionMetricDefinition}
     )
@@ -111,6 +116,7 @@ function Initialize-LELoadTestRunConfigurationSnapshot {
 
         $PSO = [PSCustomObject]@{
             "environmentKey" = ${EnvironmentKey}
+            "environmentName" = ${EnvironmentName}
             "numberOfSessions" = ${NumberOfSessions}
             "rampUpDurationInMinutes" = ${RampUpDurationInMinutes}
             "rampDownDurationInMinutes" = ${RampDownDurationInMinutes}
@@ -163,7 +169,7 @@ function ConvertFrom-LEJsonToLoadTestRunConfigurationSnapshot {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELoadTestRunConfigurationSnapshot
-        $AllProperties = ("environmentKey", "numberOfSessions", "rampUpDurationInMinutes", "rampDownDurationInMinutes", "testDurationInMinutes", "euxEnabled", "applicationDebugModeEnabled", "sessionMetricsEnabled", "sessionMetricScheduleRate", "testId", "name", "workload", "connector", "launcherGroups", "accountGroups", "sessionMetricDefinition")
+        $AllProperties = ("environmentKey", "environmentName", "numberOfSessions", "rampUpDurationInMinutes", "rampDownDurationInMinutes", "testDurationInMinutes", "euxEnabled", "applicationDebugModeEnabled", "sessionMetricsEnabled", "sessionMetricScheduleRate", "testId", "name", "workload", "connector", "launcherGroups", "accountGroups", "sessionMetricDefinition")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -174,6 +180,12 @@ function ConvertFrom-LEJsonToLoadTestRunConfigurationSnapshot {
             $EnvironmentKey = $null
         } else {
             $EnvironmentKey = $JsonParameters.PSobject.Properties["environmentKey"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "environmentName"))) { #optional property not found
+            $EnvironmentName = $null
+        } else {
+            $EnvironmentName = $JsonParameters.PSobject.Properties["environmentName"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "numberOfSessions"))) { #optional property not found
@@ -268,6 +280,7 @@ function ConvertFrom-LEJsonToLoadTestRunConfigurationSnapshot {
 
         $PSO = [PSCustomObject]@{
             "environmentKey" = ${EnvironmentKey}
+            "environmentName" = ${EnvironmentName}
             "numberOfSessions" = ${NumberOfSessions}
             "rampUpDurationInMinutes" = ${RampUpDurationInMinutes}
             "rampDownDurationInMinutes" = ${RampDownDurationInMinutes}

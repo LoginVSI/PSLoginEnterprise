@@ -14,18 +14,18 @@ No summary available.
 
 Provider Azure
 
-.PARAMETER TenantId
-Tenant Id
-.PARAMETER ApplicationId
-Application Id
-.PARAMETER Secret
-Secret Code
 .PARAMETER Type
 No description available.
 .PARAMETER Name
 Provider Name
 .PARAMETER Description
 Provider Description
+.PARAMETER TenantId
+Tenant Id
+.PARAMETER ApplicationId
+Application Id
+.PARAMETER Secret
+Secret Code
 .OUTPUTS
 
 ProviderAzureData<PSCustomObject>
@@ -36,22 +36,22 @@ function Initialize-LEProviderAzureData {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${TenantId},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationId},
+        ${Name},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Secret},
+        ${Description},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${TenantId},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${ApplicationId},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${Secret}
     )
 
     Process {
@@ -64,12 +64,12 @@ function Initialize-LEProviderAzureData {
 
 
         $PSO = [PSCustomObject]@{
-            "tenantId" = ${TenantId}
-            "applicationId" = ${ApplicationId}
-            "secret" = ${Secret}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "tenantId" = ${TenantId}
+            "applicationId" = ${ApplicationId}
+            "secret" = ${Secret}
         }
 
 
@@ -107,7 +107,7 @@ function ConvertFrom-LEJsonToProviderAzureData {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEProviderAzureData
-        $AllProperties = ("tenantId", "applicationId", "secret", "type", "name", "description")
+        $AllProperties = ("type", "name", "description", "tenantId", "applicationId", "secret")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -122,6 +122,18 @@ function ConvertFrom-LEJsonToProviderAzureData {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tenantId"))) { #optional property not found
@@ -142,25 +154,13 @@ function ConvertFrom-LEJsonToProviderAzureData {
             $Secret = $JsonParameters.PSobject.Properties["secret"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "tenantId" = ${TenantId}
-            "applicationId" = ${ApplicationId}
-            "secret" = ${Secret}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "tenantId" = ${TenantId}
+            "applicationId" = ${ApplicationId}
+            "secret" = ${Secret}
         }
 
         return $PSO

@@ -14,6 +14,24 @@ No summary available.
 
 Continuous test update data
 
+.PARAMETER Type
+No description available.
+.PARAMETER Name
+Test name
+.PARAMETER Description
+Test description
+.PARAMETER ConnectionResourcesUpdate
+No description available.
+.PARAMETER EnvironmentKey
+Environment key
+.PARAMETER Steps
+Workload steps creation data
+.PARAMETER LogonTimeTrackingProcess
+Specify the application to track user login time session and session initiation. The default value is explorer.exe (Windows shell). You can customize it to Citrix, VMWare, or another platform that you're using. Common values are wfshell.exe (Citrix), mware-view-usbd.exe (VMWare), or rdpshell.exe (Microsoft RDP).
+.PARAMETER EngineStartTimeout
+Engine start timeout
+.PARAMETER ApplicationDebugModeEnabled
+Run application scripts in debug mode to capture the error line for scripts failures
 .PARAMETER ScheduleType
 No description available.
 .PARAMETER IntervalInMinutes
@@ -40,24 +58,6 @@ Enable Session Metrics Collection
 Session Metric Schedule Rate
 .PARAMETER SessionMetricGroupKey
 Session metric group key
-.PARAMETER Type
-No description available.
-.PARAMETER Name
-Test name
-.PARAMETER Description
-Test description
-.PARAMETER ConnectionResourcesUpdate
-No description available.
-.PARAMETER EnvironmentKey
-Environment key
-.PARAMETER Steps
-Workload steps creation data
-.PARAMETER LogonTimeTrackingProcess
-Specify the application to track user login time session and session initiation. The default value is explorer.exe (Windows shell). You can customize it to Citrix, VMWare, or another platform that you're using. Common values are wfshell.exe (Citrix), mware-view-usbd.exe (VMWare), or rdpshell.exe (Microsoft RDP).
-.PARAMETER EngineStartTimeout
-Engine start timeout
-.PARAMETER ApplicationDebugModeEnabled
-Run application scripts in debug mode to capture the error line for scripts failures
 .OUTPUTS
 
 ContinuousTestUpdate<PSCustomObject>
@@ -67,77 +67,89 @@ function Initialize-LEContinuousTestUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${ConnectionResourcesUpdate},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EnvironmentKey},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Steps},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${LogonTimeTrackingProcess},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EngineStartTimeout},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${ApplicationDebugModeEnabled},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("desktop", "interval", "concurrentSessions", "intervalPerLauncher")]
         [PSCustomObject]
         ${ScheduleType},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
         [Int32]
         ${IntervalInMinutes},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
         [Int32]
         ${NumberOfSessions},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${EnableCustomScreenshots},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
         [Int32]
         ${RepeatCount},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${IsRepeatEnabled},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${IsEnabled},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${RestartOnComplete},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 17, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${EuxEnabled},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 18, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${EuxWorkFolders},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 19, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${SessionMetricsEnabled},
-        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 20, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${SessionMetricScheduleRate},
-        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SessionMetricGroupKey},
-        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${ConnectionResourcesUpdate},
-        [Parameter(Position = 17, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${EnvironmentKey},
-        [Parameter(Position = 18, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Steps},
-        [Parameter(Position = 19, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${LogonTimeTrackingProcess},
-        [Parameter(Position = 20, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${EngineStartTimeout},
         [Parameter(Position = 21, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${ApplicationDebugModeEnabled}
+        [String]
+        ${SessionMetricGroupKey}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEContinuousTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
+
+        if ($null -eq $Name) {
+            throw "invalid value for 'Name', 'Name' cannot be null."
+        }
+
+        if ($Name.length -lt 1) {
+            throw "invalid value for 'Name', the character length must be great than or equal to 1."
+        }
 
         if ($null -eq $ScheduleType) {
             throw "invalid value for 'ScheduleType', 'ScheduleType' cannot be null."
@@ -179,20 +191,17 @@ function Initialize-LEContinuousTestUpdate {
             throw "invalid value for 'SessionMetricsEnabled', 'SessionMetricsEnabled' cannot be null."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
-        if ($null -eq $Name) {
-            throw "invalid value for 'Name', 'Name' cannot be null."
-        }
-
-        if ($Name.length -lt 1) {
-            throw "invalid value for 'Name', the character length must be great than or equal to 1."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "name" = ${Name}
+            "description" = ${Description}
+            "connectionResourcesUpdate" = ${ConnectionResourcesUpdate}
+            "environmentKey" = ${EnvironmentKey}
+            "steps" = ${Steps}
+            "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
+            "engineStartTimeout" = ${EngineStartTimeout}
+            "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
             "scheduleType" = ${ScheduleType}
             "intervalInMinutes" = ${IntervalInMinutes}
             "numberOfSessions" = ${NumberOfSessions}
@@ -206,15 +215,6 @@ function Initialize-LEContinuousTestUpdate {
             "sessionMetricsEnabled" = ${SessionMetricsEnabled}
             "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
             "sessionMetricGroupKey" = ${SessionMetricGroupKey}
-            "type" = ${Type}
-            "name" = ${Name}
-            "description" = ${Description}
-            "connectionResourcesUpdate" = ${ConnectionResourcesUpdate}
-            "environmentKey" = ${EnvironmentKey}
-            "steps" = ${Steps}
-            "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
-            "engineStartTimeout" = ${EngineStartTimeout}
-            "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
         }
 
 
@@ -252,7 +252,7 @@ function ConvertFrom-LEJsonToContinuousTestUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEContinuousTestUpdate
-        $AllProperties = ("scheduleType", "intervalInMinutes", "numberOfSessions", "enableCustomScreenshots", "repeatCount", "isRepeatEnabled", "isEnabled", "restartOnComplete", "euxEnabled", "euxWorkFolders", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey", "type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled")
+        $AllProperties = ("type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "scheduleType", "intervalInMinutes", "numberOfSessions", "enableCustomScreenshots", "repeatCount", "isRepeatEnabled", "isEnabled", "restartOnComplete", "euxEnabled", "euxWorkFolders", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -260,7 +260,19 @@ function ConvertFrom-LEJsonToContinuousTestUpdate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'scheduleType' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'name' missing."
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "scheduleType"))) {
@@ -323,36 +335,6 @@ function ConvertFrom-LEJsonToContinuousTestUpdate {
             $SessionMetricsEnabled = $JsonParameters.PSobject.Properties["sessionMetricsEnabled"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'name' missing."
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "euxWorkFolders"))) { #optional property not found
-            $EuxWorkFolders = $null
-        } else {
-            $EuxWorkFolders = $JsonParameters.PSobject.Properties["euxWorkFolders"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricScheduleRate"))) { #optional property not found
-            $SessionMetricScheduleRate = $null
-        } else {
-            $SessionMetricScheduleRate = $JsonParameters.PSobject.Properties["sessionMetricScheduleRate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricGroupKey"))) { #optional property not found
-            $SessionMetricGroupKey = $null
-        } else {
-            $SessionMetricGroupKey = $JsonParameters.PSobject.Properties["sessionMetricGroupKey"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
             $Description = $null
         } else {
@@ -395,7 +377,34 @@ function ConvertFrom-LEJsonToContinuousTestUpdate {
             $ApplicationDebugModeEnabled = $JsonParameters.PSobject.Properties["applicationDebugModeEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "euxWorkFolders"))) { #optional property not found
+            $EuxWorkFolders = $null
+        } else {
+            $EuxWorkFolders = $JsonParameters.PSobject.Properties["euxWorkFolders"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricScheduleRate"))) { #optional property not found
+            $SessionMetricScheduleRate = $null
+        } else {
+            $SessionMetricScheduleRate = $JsonParameters.PSobject.Properties["sessionMetricScheduleRate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricGroupKey"))) { #optional property not found
+            $SessionMetricGroupKey = $null
+        } else {
+            $SessionMetricGroupKey = $JsonParameters.PSobject.Properties["sessionMetricGroupKey"].value
+        }
+
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "name" = ${Name}
+            "description" = ${Description}
+            "connectionResourcesUpdate" = ${ConnectionResourcesUpdate}
+            "environmentKey" = ${EnvironmentKey}
+            "steps" = ${Steps}
+            "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
+            "engineStartTimeout" = ${EngineStartTimeout}
+            "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
             "scheduleType" = ${ScheduleType}
             "intervalInMinutes" = ${IntervalInMinutes}
             "numberOfSessions" = ${NumberOfSessions}
@@ -409,15 +418,6 @@ function ConvertFrom-LEJsonToContinuousTestUpdate {
             "sessionMetricsEnabled" = ${SessionMetricsEnabled}
             "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
             "sessionMetricGroupKey" = ${SessionMetricGroupKey}
-            "type" = ${Type}
-            "name" = ${Name}
-            "description" = ${Description}
-            "connectionResourcesUpdate" = ${ConnectionResourcesUpdate}
-            "environmentKey" = ${EnvironmentKey}
-            "steps" = ${Steps}
-            "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
-            "engineStartTimeout" = ${EngineStartTimeout}
-            "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
         }
 
         return $PSO

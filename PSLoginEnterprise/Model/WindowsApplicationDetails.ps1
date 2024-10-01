@@ -14,12 +14,12 @@ No summary available.
 
 Windows application details
 
+.PARAMETER Type
+No description available.
 .PARAMETER CommandLine
 Command line arguments
 .PARAMETER WorkingDirectory
 Working directory
-.PARAMETER Type
-No description available.
 .OUTPUTS
 
 WindowsApplicationDetails<PSCustomObject>
@@ -30,13 +30,13 @@ function Initialize-LEWindowsApplicationDetails {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CommandLine},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${WorkingDirectory},
+        ${CommandLine},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${WorkingDirectory}
     )
 
     Process {
@@ -49,9 +49,9 @@ function Initialize-LEWindowsApplicationDetails {
 
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "commandLine" = ${CommandLine}
             "workingDirectory" = ${WorkingDirectory}
-            "type" = ${Type}
         }
 
 
@@ -89,7 +89,7 @@ function ConvertFrom-LEJsonToWindowsApplicationDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEWindowsApplicationDetails
-        $AllProperties = ("commandLine", "workingDirectory", "type")
+        $AllProperties = ("type", "commandLine", "workingDirectory")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -119,9 +119,9 @@ function ConvertFrom-LEJsonToWindowsApplicationDetails {
         }
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "commandLine" = ${CommandLine}
             "workingDirectory" = ${WorkingDirectory}
-            "type" = ${Type}
         }
 
         return $PSO

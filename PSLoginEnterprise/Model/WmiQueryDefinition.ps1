@@ -14,14 +14,6 @@ No summary available.
 
 Wmi query definition
 
-.PARAMETER WmiQuery
-Wmi Query
-.PARAMETER Namespace
-Query namespace
-.PARAMETER InstanceField
-Name of field to identify intended instance from query result
-.PARAMETER Measurements
-Measurements
 .PARAMETER Type
 No description available.
 .PARAMETER Key
@@ -32,6 +24,14 @@ Name
 Description
 .PARAMETER Tag
 Tag
+.PARAMETER WmiQuery
+Wmi Query
+.PARAMETER Namespace
+Query namespace
+.PARAMETER InstanceField
+Name of field to identify intended instance from query result
+.PARAMETER Measurements
+Measurements
 .OUTPUTS
 
 WmiQueryDefinition<PSCustomObject>
@@ -42,31 +42,31 @@ function Initialize-LEWmiQueryDefinition {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${WmiQuery},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Namespace},
+        ${Key},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${InstanceField},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Measurements},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Key},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Name},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Tag}
+        ${Tag},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${WmiQuery},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Namespace},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${InstanceField},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Measurements}
     )
 
     Process {
@@ -79,15 +79,15 @@ function Initialize-LEWmiQueryDefinition {
 
 
         $PSO = [PSCustomObject]@{
-            "wmiQuery" = ${WmiQuery}
-            "namespace" = ${Namespace}
-            "instanceField" = ${InstanceField}
-            "measurements" = ${Measurements}
             "type" = ${Type}
             "key" = ${Key}
             "name" = ${Name}
             "description" = ${Description}
             "tag" = ${Tag}
+            "wmiQuery" = ${WmiQuery}
+            "namespace" = ${Namespace}
+            "instanceField" = ${InstanceField}
+            "measurements" = ${Measurements}
         }
 
 
@@ -125,7 +125,7 @@ function ConvertFrom-LEJsonToWmiQueryDefinition {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEWmiQueryDefinition
-        $AllProperties = ("wmiQuery", "namespace", "instanceField", "measurements", "type", "key", "name", "description", "tag")
+        $AllProperties = ("type", "key", "name", "description", "tag", "wmiQuery", "namespace", "instanceField", "measurements")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,30 +140,6 @@ function ConvertFrom-LEJsonToWmiQueryDefinition {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wmiQuery"))) { #optional property not found
-            $WmiQuery = $null
-        } else {
-            $WmiQuery = $JsonParameters.PSobject.Properties["wmiQuery"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "namespace"))) { #optional property not found
-            $Namespace = $null
-        } else {
-            $Namespace = $JsonParameters.PSobject.Properties["namespace"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "instanceField"))) { #optional property not found
-            $InstanceField = $null
-        } else {
-            $InstanceField = $JsonParameters.PSobject.Properties["instanceField"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "measurements"))) { #optional property not found
-            $Measurements = $null
-        } else {
-            $Measurements = $JsonParameters.PSobject.Properties["measurements"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
@@ -190,16 +166,40 @@ function ConvertFrom-LEJsonToWmiQueryDefinition {
             $Tag = $JsonParameters.PSobject.Properties["tag"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wmiQuery"))) { #optional property not found
+            $WmiQuery = $null
+        } else {
+            $WmiQuery = $JsonParameters.PSobject.Properties["wmiQuery"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "namespace"))) { #optional property not found
+            $Namespace = $null
+        } else {
+            $Namespace = $JsonParameters.PSobject.Properties["namespace"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "instanceField"))) { #optional property not found
+            $InstanceField = $null
+        } else {
+            $InstanceField = $JsonParameters.PSobject.Properties["instanceField"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "measurements"))) { #optional property not found
+            $Measurements = $null
+        } else {
+            $Measurements = $JsonParameters.PSobject.Properties["measurements"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "wmiQuery" = ${WmiQuery}
-            "namespace" = ${Namespace}
-            "instanceField" = ${InstanceField}
-            "measurements" = ${Measurements}
             "type" = ${Type}
             "key" = ${Key}
             "name" = ${Name}
             "description" = ${Description}
             "tag" = ${Tag}
+            "wmiQuery" = ${WmiQuery}
+            "namespace" = ${Namespace}
+            "instanceField" = ${InstanceField}
+            "measurements" = ${Measurements}
         }
 
         return $PSO

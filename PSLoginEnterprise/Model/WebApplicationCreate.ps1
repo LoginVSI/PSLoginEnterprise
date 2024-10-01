@@ -14,12 +14,6 @@ No summary available.
 
 Web application creation data
 
-.PARAMETER BrowserName
-No description available.
-.PARAMETER Url
-Start URL
-.PARAMETER ProfileLocation
-Profile location
 .PARAMETER Type
 No description available.
 .PARAMETER Name
@@ -34,6 +28,12 @@ Application password
 Enable/disable taking screenshots in case of application error
 .PARAMETER ScriptContent
 Script content
+.PARAMETER BrowserName
+No description available.
+.PARAMETER Url
+Start URL
+.PARAMETER ProfileLocation
+Profile location
 .OUTPUTS
 
 WebApplicationCreate<PSCustomObject>
@@ -43,49 +43,41 @@ function Initialize-LEWebApplicationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Username},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Password},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${TakeScreenshots},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ScriptContent},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("chrome", "edge42", "edge44", "edgeChromium", "firefox")]
         [PSCustomObject]
         ${BrowserName},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Url},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ProfileLocation},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Username},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Password},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${TakeScreenshots},
         [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ScriptContent}
+        ${ProfileLocation}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEWebApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $BrowserName) {
-            throw "invalid value for 'BrowserName', 'BrowserName' cannot be null."
-        }
-
-        if (!$Url -and $Url.length -gt 256) {
-            throw "invalid value for 'Url', the character length must be smaller than or equal to 256."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -115,11 +107,16 @@ function Initialize-LEWebApplicationCreate {
             throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
         }
 
+        if ($null -eq $BrowserName) {
+            throw "invalid value for 'BrowserName', 'BrowserName' cannot be null."
+        }
+
+        if (!$Url -and $Url.length -gt 256) {
+            throw "invalid value for 'Url', the character length must be smaller than or equal to 256."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "browserName" = ${BrowserName}
-            "url" = ${Url}
-            "profileLocation" = ${ProfileLocation}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -127,6 +124,9 @@ function Initialize-LEWebApplicationCreate {
             "password" = ${Password}
             "takeScreenshots" = ${TakeScreenshots}
             "scriptContent" = ${ScriptContent}
+            "browserName" = ${BrowserName}
+            "url" = ${Url}
+            "profileLocation" = ${ProfileLocation}
         }
 
 
@@ -164,7 +164,7 @@ function ConvertFrom-LEJsonToWebApplicationCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEWebApplicationCreate
-        $AllProperties = ("browserName", "url", "profileLocation", "type", "name", "description", "username", "password", "takeScreenshots", "scriptContent")
+        $AllProperties = ("type", "name", "description", "username", "password", "takeScreenshots", "scriptContent", "browserName", "url", "profileLocation")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -172,13 +172,7 @@ function ConvertFrom-LEJsonToWebApplicationCreate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'browserName' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "browserName"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'browserName' missing."
-        } else {
-            $BrowserName = $JsonParameters.PSobject.Properties["browserName"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
@@ -193,16 +187,10 @@ function ConvertFrom-LEJsonToWebApplicationCreate {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "browserName"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'browserName' missing."
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "profileLocation"))) { #optional property not found
-            $ProfileLocation = $null
-        } else {
-            $ProfileLocation = $JsonParameters.PSobject.Properties["profileLocation"].value
+            $BrowserName = $JsonParameters.PSobject.Properties["browserName"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -235,10 +223,19 @@ function ConvertFrom-LEJsonToWebApplicationCreate {
             $ScriptContent = $JsonParameters.PSobject.Properties["scriptContent"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "profileLocation"))) { #optional property not found
+            $ProfileLocation = $null
+        } else {
+            $ProfileLocation = $JsonParameters.PSobject.Properties["profileLocation"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "browserName" = ${BrowserName}
-            "url" = ${Url}
-            "profileLocation" = ${ProfileLocation}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -246,6 +243,9 @@ function ConvertFrom-LEJsonToWebApplicationCreate {
             "password" = ${Password}
             "takeScreenshots" = ${TakeScreenshots}
             "scriptContent" = ${ScriptContent}
+            "browserName" = ${BrowserName}
+            "url" = ${Url}
+            "profileLocation" = ${ProfileLocation}
         }
 
         return $PSO

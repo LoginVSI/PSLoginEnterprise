@@ -14,14 +14,14 @@ No summary available.
 
 Web application details
 
+.PARAMETER Type
+No description available.
 .PARAMETER BrowserName
 No description available.
 .PARAMETER Url
 Start URL
 .PARAMETER ProfileLocation
 Profile location
-.PARAMETER Type
-No description available.
 .OUTPUTS
 
 WebApplicationDetails<PSCustomObject>
@@ -31,18 +31,18 @@ function Initialize-LEWebApplicationDetails {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("chrome", "edge42", "edge44", "edgeChromium", "firefox")]
         [PSCustomObject]
         ${BrowserName},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Url},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ProfileLocation},
+        ${Url},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${ProfileLocation}
     )
 
     Process {
@@ -55,10 +55,10 @@ function Initialize-LEWebApplicationDetails {
 
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "browserName" = ${BrowserName}
             "url" = ${Url}
             "profileLocation" = ${ProfileLocation}
-            "type" = ${Type}
         }
 
 
@@ -96,7 +96,7 @@ function ConvertFrom-LEJsonToWebApplicationDetails {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEWebApplicationDetails
-        $AllProperties = ("browserName", "url", "profileLocation", "type")
+        $AllProperties = ("type", "browserName", "url", "profileLocation")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -132,10 +132,10 @@ function ConvertFrom-LEJsonToWebApplicationDetails {
         }
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "browserName" = ${BrowserName}
             "url" = ${Url}
             "profileLocation" = ${ProfileLocation}
-            "type" = ${Type}
         }
 
         return $PSO

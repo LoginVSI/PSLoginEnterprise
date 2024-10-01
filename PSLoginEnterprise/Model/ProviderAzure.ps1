@@ -14,10 +14,6 @@ No summary available.
 
 Provider Azure
 
-.PARAMETER TenantId
-Tenant Id
-.PARAMETER ApplicationId
-Application Id
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -28,6 +24,10 @@ Provider Name
 Provider Description
 .PARAMETER Environments
 Environments associated to this provider
+.PARAMETER TenantId
+Tenant Id
+.PARAMETER ApplicationId
+Application Id
 .OUTPUTS
 
 ProviderAzure<PSCustomObject>
@@ -38,25 +38,25 @@ function Initialize-LEProviderAzure {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${TenantId},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationId},
+        ${Id},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Name},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Description},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
+        [PSCustomObject[]]
+        ${Environments},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
+        ${TenantId},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Environments}
+        [String]
+        ${ApplicationId}
     )
 
     Process {
@@ -69,13 +69,13 @@ function Initialize-LEProviderAzure {
 
 
         $PSO = [PSCustomObject]@{
-            "tenantId" = ${TenantId}
-            "applicationId" = ${ApplicationId}
             "type" = ${Type}
             "id" = ${Id}
             "name" = ${Name}
             "description" = ${Description}
             "environments" = ${Environments}
+            "tenantId" = ${TenantId}
+            "applicationId" = ${ApplicationId}
         }
 
 
@@ -113,7 +113,7 @@ function ConvertFrom-LEJsonToProviderAzure {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEProviderAzure
-        $AllProperties = ("tenantId", "applicationId", "type", "id", "name", "description", "environments")
+        $AllProperties = ("type", "id", "name", "description", "environments", "tenantId", "applicationId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -128,18 +128,6 @@ function ConvertFrom-LEJsonToProviderAzure {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tenantId"))) { #optional property not found
-            $TenantId = $null
-        } else {
-            $TenantId = $JsonParameters.PSobject.Properties["tenantId"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationId"))) { #optional property not found
-            $ApplicationId = $null
-        } else {
-            $ApplicationId = $JsonParameters.PSobject.Properties["applicationId"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -166,14 +154,26 @@ function ConvertFrom-LEJsonToProviderAzure {
             $Environments = $JsonParameters.PSobject.Properties["environments"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tenantId"))) { #optional property not found
+            $TenantId = $null
+        } else {
+            $TenantId = $JsonParameters.PSobject.Properties["tenantId"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationId"))) { #optional property not found
+            $ApplicationId = $null
+        } else {
+            $ApplicationId = $JsonParameters.PSobject.Properties["applicationId"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "tenantId" = ${TenantId}
-            "applicationId" = ${ApplicationId}
             "type" = ${Type}
             "id" = ${Id}
             "name" = ${Name}
             "description" = ${Description}
             "environments" = ${Environments}
+            "tenantId" = ${TenantId}
+            "applicationId" = ${ApplicationId}
         }
 
         return $PSO

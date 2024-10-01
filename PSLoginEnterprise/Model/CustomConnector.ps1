@@ -14,14 +14,14 @@ No summary available.
 
 Custom
 
+.PARAMETER Type
+No description available.
 .PARAMETER VarHost
 Host
 .PARAMETER CommandLine
 Connection command line
 .PARAMETER Resource
 Resource
-.PARAMETER Type
-No description available.
 .OUTPUTS
 
 CustomConnector<PSCustomObject>
@@ -32,21 +32,25 @@ function Initialize-LECustomConnector {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarHost},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CommandLine},
+        ${VarHost},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Resource},
+        ${CommandLine},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${Resource}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LECustomConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
 
         if ($null -eq $VarHost) {
             throw "invalid value for 'VarHost', 'VarHost' cannot be null."
@@ -64,16 +68,12 @@ function Initialize-LECustomConnector {
             throw "invalid value for 'CommandLine', the character length must be great than or equal to 1."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "host" = ${VarHost}
             "commandLine" = ${CommandLine}
             "resource" = ${Resource}
-            "type" = ${Type}
         }
 
 
@@ -111,7 +111,7 @@ function ConvertFrom-LEJsonToCustomConnector {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LECustomConnector
-        $AllProperties = ("host", "commandLine", "resource", "type")
+        $AllProperties = ("type", "host", "commandLine", "resource")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -119,7 +119,13 @@ function ConvertFrom-LEJsonToCustomConnector {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'host' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "host"))) {
@@ -134,12 +140,6 @@ function ConvertFrom-LEJsonToCustomConnector {
             $CommandLine = $JsonParameters.PSobject.Properties["commandLine"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "resource"))) { #optional property not found
             $Resource = $null
         } else {
@@ -147,10 +147,10 @@ function ConvertFrom-LEJsonToCustomConnector {
         }
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "host" = ${VarHost}
             "commandLine" = ${CommandLine}
             "resource" = ${Resource}
-            "type" = ${Type}
         }
 
         return $PSO

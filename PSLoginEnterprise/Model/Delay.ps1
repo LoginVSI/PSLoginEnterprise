@@ -14,14 +14,14 @@ No summary available.
 
 Delay step
 
-.PARAMETER DelayInSeconds
-Delay in seconds
 .PARAMETER Type
 No description available.
 .PARAMETER Id
 Step id
 .PARAMETER IsEnabled
 Enable step
+.PARAMETER DelayInSeconds
+Delay in seconds
 .OUTPUTS
 
 Delay<PSCustomObject>
@@ -31,17 +31,17 @@ function Initialize-LEDelay {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${DelayInSeconds},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${IsEnabled}
+        ${IsEnabled},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${DelayInSeconds}
     )
 
     Process {
@@ -54,10 +54,10 @@ function Initialize-LEDelay {
 
 
         $PSO = [PSCustomObject]@{
-            "delayInSeconds" = ${DelayInSeconds}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
+            "delayInSeconds" = ${DelayInSeconds}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-LEJsonToDelay {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEDelay
-        $AllProperties = ("delayInSeconds", "type", "id", "isEnabled")
+        $AllProperties = ("type", "id", "isEnabled", "delayInSeconds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,12 +112,6 @@ function ConvertFrom-LEJsonToDelay {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delayInSeconds"))) { #optional property not found
-            $DelayInSeconds = $null
-        } else {
-            $DelayInSeconds = $JsonParameters.PSobject.Properties["delayInSeconds"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
             $Id = $null
         } else {
@@ -130,11 +124,17 @@ function ConvertFrom-LEJsonToDelay {
             $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delayInSeconds"))) { #optional property not found
+            $DelayInSeconds = $null
+        } else {
+            $DelayInSeconds = $JsonParameters.PSobject.Properties["delayInSeconds"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "delayInSeconds" = ${DelayInSeconds}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
+            "delayInSeconds" = ${DelayInSeconds}
         }
 
         return $PSO

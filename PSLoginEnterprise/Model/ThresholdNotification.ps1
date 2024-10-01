@@ -14,8 +14,6 @@ No summary available.
 
 Threshold notification
 
-.PARAMETER Threshold
-Threshold
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -32,6 +30,8 @@ Enables notification
 Email recipients
 .PARAMETER UseCustomMailRecipient
 Use custom mail recipient
+.PARAMETER Threshold
+No description available.
 .OUTPUTS
 
 ThresholdNotification<PSCustomObject>
@@ -41,32 +41,32 @@ function Initialize-LEThresholdNotification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Threshold},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${TimesExceeded},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${PeriodDuration},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${CooldownDuration},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${IsEnabled},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EmailRecipients},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${UseCustomMailRecipient}
+        ${UseCustomMailRecipient},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Threshold}
     )
 
     Process {
@@ -79,7 +79,6 @@ function Initialize-LEThresholdNotification {
 
 
         $PSO = [PSCustomObject]@{
-            "threshold" = ${Threshold}
             "type" = ${Type}
             "id" = ${Id}
             "timesExceeded" = ${TimesExceeded}
@@ -88,6 +87,7 @@ function Initialize-LEThresholdNotification {
             "isEnabled" = ${IsEnabled}
             "emailRecipients" = ${EmailRecipients}
             "useCustomMailRecipient" = ${UseCustomMailRecipient}
+            "threshold" = ${Threshold}
         }
 
 
@@ -125,7 +125,7 @@ function ConvertFrom-LEJsonToThresholdNotification {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEThresholdNotification
-        $AllProperties = ("threshold", "type", "id", "timesExceeded", "periodDuration", "cooldownDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient")
+        $AllProperties = ("type", "id", "timesExceeded", "periodDuration", "cooldownDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient", "threshold")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,12 +140,6 @@ function ConvertFrom-LEJsonToThresholdNotification {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threshold"))) { #optional property not found
-            $Threshold = $null
-        } else {
-            $Threshold = $JsonParameters.PSobject.Properties["threshold"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -190,8 +184,13 @@ function ConvertFrom-LEJsonToThresholdNotification {
             $UseCustomMailRecipient = $JsonParameters.PSobject.Properties["useCustomMailRecipient"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threshold"))) { #optional property not found
+            $Threshold = $null
+        } else {
+            $Threshold = $JsonParameters.PSobject.Properties["threshold"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "threshold" = ${Threshold}
             "type" = ${Type}
             "id" = ${Id}
             "timesExceeded" = ${TimesExceeded}
@@ -200,6 +199,7 @@ function ConvertFrom-LEJsonToThresholdNotification {
             "isEnabled" = ${IsEnabled}
             "emailRecipients" = ${EmailRecipients}
             "useCustomMailRecipient" = ${UseCustomMailRecipient}
+            "threshold" = ${Threshold}
         }
 
         return $PSO

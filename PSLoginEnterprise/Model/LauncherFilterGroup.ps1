@@ -14,8 +14,6 @@ No summary available.
 
 Launcher filter group
 
-.PARAMETER VarFilter
-Filter condition (Wildcards available: ""?"" and ""*"")
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -32,6 +30,8 @@ Launcher group members
 Creation date-time
 .PARAMETER LastModified
 Last modified date-time
+.PARAMETER VarFilter
+Filter condition (Wildcards available: ""?"" and ""*"")
 .OUTPUTS
 
 LauncherFilterGroup<PSCustomObject>
@@ -42,31 +42,31 @@ function Initialize-LELauncherFilterGroup {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarFilter},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Id},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Name},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MemberCount},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Members},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${Created},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
-        ${LastModified}
+        ${LastModified},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VarFilter}
     )
 
     Process {
@@ -79,7 +79,6 @@ function Initialize-LELauncherFilterGroup {
 
 
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "id" = ${Id}
             "name" = ${Name}
@@ -88,6 +87,7 @@ function Initialize-LELauncherFilterGroup {
             "members" = ${Members}
             "created" = ${Created}
             "lastModified" = ${LastModified}
+            "filter" = ${VarFilter}
         }
 
 
@@ -125,7 +125,7 @@ function ConvertFrom-LEJsonToLauncherFilterGroup {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELauncherFilterGroup
-        $AllProperties = ("filter", "type", "id", "name", "memberCount", "description", "members", "created", "lastModified")
+        $AllProperties = ("type", "id", "name", "memberCount", "description", "members", "created", "lastModified", "filter")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,12 +140,6 @@ function ConvertFrom-LEJsonToLauncherFilterGroup {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) { #optional property not found
-            $VarFilter = $null
-        } else {
-            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -190,8 +184,13 @@ function ConvertFrom-LEJsonToLauncherFilterGroup {
             $LastModified = $JsonParameters.PSobject.Properties["lastModified"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) { #optional property not found
+            $VarFilter = $null
+        } else {
+            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "id" = ${Id}
             "name" = ${Name}
@@ -200,6 +199,7 @@ function ConvertFrom-LEJsonToLauncherFilterGroup {
             "members" = ${Members}
             "created" = ${Created}
             "lastModified" = ${LastModified}
+            "filter" = ${VarFilter}
         }
 
         return $PSO

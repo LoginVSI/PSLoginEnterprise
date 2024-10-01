@@ -14,14 +14,14 @@ No summary available.
 
 Account selection group update data
 
-.PARAMETER MemberIds
-Account group member ids
 .PARAMETER Type
 No description available.
 .PARAMETER Name
 Account group name
 .PARAMETER Description
 Account group description
+.PARAMETER MemberIds
+Account group member ids
 .OUTPUTS
 
 AccountSelectionGroupUpdate<PSCustomObject>
@@ -31,17 +31,17 @@ function Initialize-LEAccountSelectionGroupUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${MemberIds},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${Description},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${MemberIds}
     )
 
     Process {
@@ -54,10 +54,10 @@ function Initialize-LEAccountSelectionGroupUpdate {
 
 
         $PSO = [PSCustomObject]@{
-            "memberIds" = ${MemberIds}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "memberIds" = ${MemberIds}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-LEJsonToAccountSelectionGroupUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAccountSelectionGroupUpdate
-        $AllProperties = ("memberIds", "type", "name", "description")
+        $AllProperties = ("type", "name", "description", "memberIds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,12 +112,6 @@ function ConvertFrom-LEJsonToAccountSelectionGroupUpdate {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "memberIds"))) { #optional property not found
-            $MemberIds = $null
-        } else {
-            $MemberIds = $JsonParameters.PSobject.Properties["memberIds"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
@@ -130,11 +124,17 @@ function ConvertFrom-LEJsonToAccountSelectionGroupUpdate {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "memberIds"))) { #optional property not found
+            $MemberIds = $null
+        } else {
+            $MemberIds = $JsonParameters.PSobject.Properties["memberIds"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "memberIds" = ${MemberIds}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "memberIds" = ${MemberIds}
         }
 
         return $PSO

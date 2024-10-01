@@ -14,8 +14,6 @@ No summary available.
 
 Threshold notification creation data
 
-.PARAMETER Threshold
-No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER TimesExceeded
@@ -28,6 +26,8 @@ Enables notification
 Email recipients
 .PARAMETER UseCustomMailRecipient
 Use custom mail recipient
+.PARAMETER Threshold
+No description available.
 .OUTPUTS
 
 ThresholdNotificationCreate<PSCustomObject>
@@ -37,35 +37,31 @@ function Initialize-LEThresholdNotificationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Threshold},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [Int32]
         ${TimesExceeded},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [Int32]
         ${PeriodDuration},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${IsEnabled},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EmailRecipients},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${UseCustomMailRecipient}
+        ${UseCustomMailRecipient},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Threshold}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEThresholdNotificationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $Threshold) {
-            throw "invalid value for 'Threshold', 'Threshold' cannot be null."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -83,15 +79,19 @@ function Initialize-LEThresholdNotificationCreate {
             throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
         }
 
+        if ($null -eq $Threshold) {
+            throw "invalid value for 'Threshold', 'Threshold' cannot be null."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "threshold" = ${Threshold}
             "type" = ${Type}
             "timesExceeded" = ${TimesExceeded}
             "periodDuration" = ${PeriodDuration}
             "isEnabled" = ${IsEnabled}
             "emailRecipients" = ${EmailRecipients}
             "useCustomMailRecipient" = ${UseCustomMailRecipient}
+            "threshold" = ${Threshold}
         }
 
 
@@ -129,7 +129,7 @@ function ConvertFrom-LEJsonToThresholdNotificationCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEThresholdNotificationCreate
-        $AllProperties = ("threshold", "type", "timesExceeded", "periodDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient")
+        $AllProperties = ("type", "timesExceeded", "periodDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient", "threshold")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -137,13 +137,7 @@ function ConvertFrom-LEJsonToThresholdNotificationCreate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'threshold' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threshold"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'threshold' missing."
-        } else {
-            $Threshold = $JsonParameters.PSobject.Properties["threshold"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
@@ -170,6 +164,12 @@ function ConvertFrom-LEJsonToThresholdNotificationCreate {
             $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "threshold"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'threshold' missing."
+        } else {
+            $Threshold = $JsonParameters.PSobject.Properties["threshold"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "emailRecipients"))) { #optional property not found
             $EmailRecipients = $null
         } else {
@@ -183,13 +183,13 @@ function ConvertFrom-LEJsonToThresholdNotificationCreate {
         }
 
         $PSO = [PSCustomObject]@{
-            "threshold" = ${Threshold}
             "type" = ${Type}
             "timesExceeded" = ${TimesExceeded}
             "periodDuration" = ${PeriodDuration}
             "isEnabled" = ${IsEnabled}
             "emailRecipients" = ${EmailRecipients}
             "useCustomMailRecipient" = ${UseCustomMailRecipient}
+            "threshold" = ${Threshold}
         }
 
         return $PSO

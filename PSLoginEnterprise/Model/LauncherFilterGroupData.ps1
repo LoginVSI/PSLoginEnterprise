@@ -14,14 +14,14 @@ No summary available.
 
 Launcher filter group creation data
 
-.PARAMETER VarFilter
-Filter condition (Wildcards available: ""?"" and ""*"")
 .PARAMETER Type
 No description available.
 .PARAMETER Name
 Launcher group name
 .PARAMETER Description
 Launcher group description
+.PARAMETER VarFilter
+Filter condition (Wildcards available: ""?"" and ""*"")
 .OUTPUTS
 
 LauncherFilterGroupData<PSCustomObject>
@@ -32,29 +32,21 @@ function Initialize-LELauncherFilterGroupData {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarFilter},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Name},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Description},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${VarFilter}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LELauncherFilterGroupData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $VarFilter) {
-            throw "invalid value for 'VarFilter', 'VarFilter' cannot be null."
-        }
-
-        if ($VarFilter.length -lt 1) {
-            throw "invalid value for 'VarFilter', the character length must be great than or equal to 1."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -68,12 +60,20 @@ function Initialize-LELauncherFilterGroupData {
             throw "invalid value for 'Name', the character length must be great than or equal to 1."
         }
 
+        if ($null -eq $VarFilter) {
+            throw "invalid value for 'VarFilter', 'VarFilter' cannot be null."
+        }
+
+        if ($VarFilter.length -lt 1) {
+            throw "invalid value for 'VarFilter', the character length must be great than or equal to 1."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "filter" = ${VarFilter}
         }
 
 
@@ -111,7 +111,7 @@ function ConvertFrom-LEJsonToLauncherFilterGroupData {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELauncherFilterGroupData
-        $AllProperties = ("filter", "type", "name", "description")
+        $AllProperties = ("type", "name", "description", "filter")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -119,13 +119,7 @@ function ConvertFrom-LEJsonToLauncherFilterGroupData {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'filter' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'filter' missing."
-        } else {
-            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
@@ -140,6 +134,12 @@ function ConvertFrom-LEJsonToLauncherFilterGroupData {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'filter' missing."
+        } else {
+            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
             $Description = $null
         } else {
@@ -147,10 +147,10 @@ function ConvertFrom-LEJsonToLauncherFilterGroupData {
         }
 
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "filter" = ${VarFilter}
         }
 
         return $PSO

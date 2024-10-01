@@ -14,12 +14,12 @@ No summary available.
 
 Delay step update data
 
-.PARAMETER DelayInSeconds
-Delay in seconds
 .PARAMETER Type
 No description available.
 .PARAMETER IsEnabled
 Enable step
+.PARAMETER DelayInSeconds
+Delay in seconds
 .OUTPUTS
 
 DelayUpdate<PSCustomObject>
@@ -29,23 +29,19 @@ function Initialize-LEDelayUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${DelayInSeconds},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
-        ${IsEnabled}
+        ${IsEnabled},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Int32]
+        ${DelayInSeconds}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEDelayUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $DelayInSeconds) {
-            throw "invalid value for 'DelayInSeconds', 'DelayInSeconds' cannot be null."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -55,11 +51,15 @@ function Initialize-LEDelayUpdate {
             throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
         }
 
+        if ($null -eq $DelayInSeconds) {
+            throw "invalid value for 'DelayInSeconds', 'DelayInSeconds' cannot be null."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "delayInSeconds" = ${DelayInSeconds}
             "type" = ${Type}
             "isEnabled" = ${IsEnabled}
+            "delayInSeconds" = ${DelayInSeconds}
         }
 
 
@@ -97,7 +97,7 @@ function ConvertFrom-LEJsonToDelayUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEDelayUpdate
-        $AllProperties = ("delayInSeconds", "type", "isEnabled")
+        $AllProperties = ("type", "isEnabled", "delayInSeconds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -105,13 +105,7 @@ function ConvertFrom-LEJsonToDelayUpdate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'delayInSeconds' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delayInSeconds"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'delayInSeconds' missing."
-        } else {
-            $DelayInSeconds = $JsonParameters.PSobject.Properties["delayInSeconds"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
@@ -126,10 +120,16 @@ function ConvertFrom-LEJsonToDelayUpdate {
             $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delayInSeconds"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'delayInSeconds' missing."
+        } else {
+            $DelayInSeconds = $JsonParameters.PSobject.Properties["delayInSeconds"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "delayInSeconds" = ${DelayInSeconds}
             "type" = ${Type}
             "isEnabled" = ${IsEnabled}
+            "delayInSeconds" = ${DelayInSeconds}
         }
 
         return $PSO

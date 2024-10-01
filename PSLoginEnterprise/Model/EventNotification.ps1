@@ -14,10 +14,6 @@ No summary available.
 
 Event notification
 
-.PARAMETER VarEvent
-No description available.
-.PARAMETER LastModified
-Last modified date-time
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -34,6 +30,10 @@ Enables notification
 Email recipients
 .PARAMETER UseCustomMailRecipient
 Use custom mail recipient
+.PARAMETER VarEvent
+No description available.
+.PARAMETER LastModified
+Last modified date-time
 .OUTPUTS
 
 EventNotification<PSCustomObject>
@@ -43,36 +43,36 @@ function Initialize-LEEventNotification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${TimesExceeded},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${PeriodDuration},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${CooldownDuration},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${IsEnabled},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EmailRecipients},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${UseCustomMailRecipient},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("loginFailure", "applicationFailure")]
         [PSCustomObject]
         ${VarEvent},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${LastModified},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${TimesExceeded},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PeriodDuration},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${CooldownDuration},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${IsEnabled},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${EmailRecipients},
         [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${UseCustomMailRecipient}
+        [System.Nullable[System.DateTime]]
+        ${LastModified}
     )
 
     Process {
@@ -85,8 +85,6 @@ function Initialize-LEEventNotification {
 
 
         $PSO = [PSCustomObject]@{
-            "event" = ${VarEvent}
-            "lastModified" = ${LastModified}
             "type" = ${Type}
             "id" = ${Id}
             "timesExceeded" = ${TimesExceeded}
@@ -95,6 +93,8 @@ function Initialize-LEEventNotification {
             "isEnabled" = ${IsEnabled}
             "emailRecipients" = ${EmailRecipients}
             "useCustomMailRecipient" = ${UseCustomMailRecipient}
+            "event" = ${VarEvent}
+            "lastModified" = ${LastModified}
         }
 
 
@@ -132,7 +132,7 @@ function ConvertFrom-LEJsonToEventNotification {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEEventNotification
-        $AllProperties = ("event", "lastModified", "type", "id", "timesExceeded", "periodDuration", "cooldownDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient")
+        $AllProperties = ("type", "id", "timesExceeded", "periodDuration", "cooldownDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient", "event", "lastModified")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -147,18 +147,6 @@ function ConvertFrom-LEJsonToEventNotification {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event"))) { #optional property not found
-            $VarEvent = $null
-        } else {
-            $VarEvent = $JsonParameters.PSobject.Properties["event"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lastModified"))) { #optional property not found
-            $LastModified = $null
-        } else {
-            $LastModified = $JsonParameters.PSobject.Properties["lastModified"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -203,9 +191,19 @@ function ConvertFrom-LEJsonToEventNotification {
             $UseCustomMailRecipient = $JsonParameters.PSobject.Properties["useCustomMailRecipient"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "event"))) { #optional property not found
+            $VarEvent = $null
+        } else {
+            $VarEvent = $JsonParameters.PSobject.Properties["event"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lastModified"))) { #optional property not found
+            $LastModified = $null
+        } else {
+            $LastModified = $JsonParameters.PSobject.Properties["lastModified"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "event" = ${VarEvent}
-            "lastModified" = ${LastModified}
             "type" = ${Type}
             "id" = ${Id}
             "timesExceeded" = ${TimesExceeded}
@@ -214,6 +212,8 @@ function ConvertFrom-LEJsonToEventNotification {
             "isEnabled" = ${IsEnabled}
             "emailRecipients" = ${EmailRecipients}
             "useCustomMailRecipient" = ${UseCustomMailRecipient}
+            "event" = ${VarEvent}
+            "lastModified" = ${LastModified}
         }
 
         return $PSO

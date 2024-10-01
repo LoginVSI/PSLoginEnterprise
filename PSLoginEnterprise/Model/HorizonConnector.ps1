@@ -14,14 +14,14 @@ No summary available.
 
 VMware Horizon View
 
+.PARAMETER Type
+No description available.
 .PARAMETER ServerUrl
 Server Url
 .PARAMETER Resource
 Resource
 .PARAMETER CommandLine
 Connection command line
-.PARAMETER Type
-No description available.
 .OUTPUTS
 
 HorizonConnector<PSCustomObject>
@@ -32,21 +32,25 @@ function Initialize-LEHorizonConnector {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ServerUrl},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Resource},
+        ${ServerUrl},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CommandLine},
+        ${Resource},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${CommandLine}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEHorizonConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
 
         if ($null -eq $ServerUrl) {
             throw "invalid value for 'ServerUrl', 'ServerUrl' cannot be null."
@@ -72,16 +76,12 @@ function Initialize-LEHorizonConnector {
             throw "invalid value for 'CommandLine', the character length must be great than or equal to 1."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "serverUrl" = ${ServerUrl}
             "resource" = ${Resource}
             "commandLine" = ${CommandLine}
-            "type" = ${Type}
         }
 
 
@@ -119,7 +119,7 @@ function ConvertFrom-LEJsonToHorizonConnector {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEHorizonConnector
-        $AllProperties = ("serverUrl", "resource", "commandLine", "type")
+        $AllProperties = ("type", "serverUrl", "resource", "commandLine")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -127,7 +127,13 @@ function ConvertFrom-LEJsonToHorizonConnector {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'serverUrl' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "serverUrl"))) {
@@ -148,17 +154,11 @@ function ConvertFrom-LEJsonToHorizonConnector {
             $CommandLine = $JsonParameters.PSobject.Properties["commandLine"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "serverUrl" = ${ServerUrl}
             "resource" = ${Resource}
             "commandLine" = ${CommandLine}
-            "type" = ${Type}
         }
 
         return $PSO

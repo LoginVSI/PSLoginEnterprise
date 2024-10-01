@@ -12,7 +12,7 @@
 RootModule = 'PSLoginEnterprise.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.5'
+ModuleVersion = '1.0.6'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -429,6 +429,7 @@ FunctionsToExport = 'New-LEAccount', 'New-LEAccounts', 'Invoke-LEDeleteAccount',
                'ConvertFrom-LEJsonToPlatformSummary',
 			   'Get-LEPlatformMetrics',
 			   'Add-LEPlatformMetrics',
+			   'Initialize-LEPlatformMetric'
                'Initialize-LEProblemDetails', 'ConvertFrom-LEJsonToProblemDetails', 
                'Initialize-LEProperty', 'ConvertFrom-LEJsonToProperty', 
                'Initialize-LEProvider', 'ConvertFrom-LEJsonToProvider', 

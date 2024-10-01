@@ -12,54 +12,43 @@ No summary available.
 
 .DESCRIPTION
 
-Delay step creation data
+Represents the response after attempting to add platform metrics.
 
-.PARAMETER Type
+.PARAMETER Status
 No description available.
-.PARAMETER IsEnabled
-Enable step
-.PARAMETER DelayInSeconds
-Delay in seconds
+.PARAMETER SuccessfullyAddedCount
+The count of metrics that were successfully added.
+.PARAMETER Errors
+A list of errors that occurred during the add operation, grouped by metric
 .OUTPUTS
 
-DelayCreate<PSCustomObject>
+AddPlatformMetricsResult<PSCustomObject>
 #>
 
-function Initialize-LEDelayCreate {
+function Initialize-LEAddPlatformMetricsResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
+        [ValidateSet("success", "failure", "partialSuccess")]
+        [PSCustomObject]
+        ${Status},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${IsEnabled},
+        [System.Nullable[Int32]]
+        ${SuccessfullyAddedCount},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${DelayInSeconds}
+        [System.Collections.Hashtable]
+        ${Errors}
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEDelayCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAddPlatformMetricsResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
-        if ($null -eq $IsEnabled) {
-            throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
-        }
-
-        if ($null -eq $DelayInSeconds) {
-            throw "invalid value for 'DelayInSeconds', 'DelayInSeconds' cannot be null."
-        }
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "isEnabled" = ${IsEnabled}
-            "delayInSeconds" = ${DelayInSeconds}
+            "status" = ${Status}
+            "successfullyAddedCount" = ${SuccessfullyAddedCount}
+            "errors" = ${Errors}
         }
 
 
@@ -70,11 +59,11 @@ function Initialize-LEDelayCreate {
 <#
 .SYNOPSIS
 
-Convert from JSON to DelayCreate<PSCustomObject>
+Convert from JSON to AddPlatformMetricsResult<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to DelayCreate<PSCustomObject>
+Convert from JSON to AddPlatformMetricsResult<PSCustomObject>
 
 .PARAMETER Json
 
@@ -82,54 +71,50 @@ Json object
 
 .OUTPUTS
 
-DelayCreate<PSCustomObject>
+AddPlatformMetricsResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToDelayCreate {
+function ConvertFrom-LEJsonToAddPlatformMetricsResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEDelayCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAddPlatformMetricsResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEDelayCreate
-        $AllProperties = ("type", "isEnabled", "delayInSeconds")
+        # check if Json contains properties not defined in LEAddPlatformMetricsResult
+        $AllProperties = ("status", "successfullyAddedCount", "errors")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
+        } else {
+            $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "successfullyAddedCount"))) { #optional property not found
+            $SuccessfullyAddedCount = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $SuccessfullyAddedCount = $JsonParameters.PSobject.Properties["successfullyAddedCount"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEnabled"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'isEnabled' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
+            $Errors = $null
         } else {
-            $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delayInSeconds"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'delayInSeconds' missing."
-        } else {
-            $DelayInSeconds = $JsonParameters.PSobject.Properties["delayInSeconds"].value
+            $Errors = $JsonParameters.PSobject.Properties["errors"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "isEnabled" = ${IsEnabled}
-            "delayInSeconds" = ${DelayInSeconds}
+            "status" = ${Status}
+            "successfullyAddedCount" = ${SuccessfullyAddedCount}
+            "errors" = ${Errors}
         }
 
         return $PSO

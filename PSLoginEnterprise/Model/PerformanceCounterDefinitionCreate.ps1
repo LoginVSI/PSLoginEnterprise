@@ -14,8 +14,6 @@ No summary available.
 
 Performance counter definition creation data
 
-.PARAMETER Measurement
-No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER Name
@@ -24,6 +22,8 @@ Name
 Description
 .PARAMETER Tag
 Tag
+.PARAMETER Measurement
+No description available.
 .OUTPUTS
 
 PerformanceCounterDefinitionCreate<PSCustomObject>
@@ -33,20 +33,20 @@ function Initialize-LEPerformanceCounterDefinitionCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Measurement},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Tag}
+        ${Tag},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Measurement}
     )
 
     Process {
@@ -59,11 +59,11 @@ function Initialize-LEPerformanceCounterDefinitionCreate {
 
 
         $PSO = [PSCustomObject]@{
-            "measurement" = ${Measurement}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
             "tag" = ${Tag}
+            "measurement" = ${Measurement}
         }
 
 
@@ -101,7 +101,7 @@ function ConvertFrom-LEJsonToPerformanceCounterDefinitionCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEPerformanceCounterDefinitionCreate
-        $AllProperties = ("measurement", "type", "name", "description", "tag")
+        $AllProperties = ("type", "name", "description", "tag", "measurement")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -116,12 +116,6 @@ function ConvertFrom-LEJsonToPerformanceCounterDefinitionCreate {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "measurement"))) { #optional property not found
-            $Measurement = $null
-        } else {
-            $Measurement = $JsonParameters.PSobject.Properties["measurement"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -142,12 +136,18 @@ function ConvertFrom-LEJsonToPerformanceCounterDefinitionCreate {
             $Tag = $JsonParameters.PSobject.Properties["tag"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "measurement"))) { #optional property not found
+            $Measurement = $null
+        } else {
+            $Measurement = $JsonParameters.PSobject.Properties["measurement"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "measurement" = ${Measurement}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
             "tag" = ${Tag}
+            "measurement" = ${Measurement}
         }
 
         return $PSO

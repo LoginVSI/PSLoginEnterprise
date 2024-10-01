@@ -14,22 +14,6 @@ No summary available.
 
 Load test update data
 
-.PARAMETER NumberOfSessions
-Number of sessions
-.PARAMETER RampUpDurationInMinutes
-Ramp up duration in minutes
-.PARAMETER TestDurationInMinutes
-Test duration in minutes
-.PARAMETER EuxEnabled
-Enable Eux Analysis
-.PARAMETER EuxWorkFolders
-No description available.
-.PARAMETER SessionMetricsEnabled
-Enable Session Metrics Collection
-.PARAMETER SessionMetricScheduleRate
-Session Metric Schedule Rate
-.PARAMETER SessionMetricGroupKey
-Session metric group key
 .PARAMETER Type
 No description available.
 .PARAMETER Name
@@ -48,6 +32,22 @@ Specify the application to track user login time session and session initiation.
 Engine start timeout
 .PARAMETER ApplicationDebugModeEnabled
 Run application scripts in debug mode to capture the error line for scripts failures
+.PARAMETER NumberOfSessions
+Number of sessions
+.PARAMETER RampUpDurationInMinutes
+Ramp up duration in minutes
+.PARAMETER TestDurationInMinutes
+Test duration in minutes
+.PARAMETER EuxEnabled
+Enable Eux Analysis
+.PARAMETER EuxWorkFolders
+No description available.
+.PARAMETER SessionMetricsEnabled
+Enable Session Metrics Collection
+.PARAMETER SessionMetricScheduleRate
+Session Metric Schedule Rate
+.PARAMETER SessionMetricGroupKey
+Session metric group key
 .OUTPUTS
 
 LoadTestUpdate<PSCustomObject>
@@ -57,61 +57,73 @@ function Initialize-LELoadTestUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${NumberOfSessions},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${RampUpDurationInMinutes},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${TestDurationInMinutes},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${EuxEnabled},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${EuxWorkFolders},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${SessionMetricsEnabled},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SessionMetricScheduleRate},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SessionMetricGroupKey},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${ConnectionResourcesUpdate},
-        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EnvironmentKey},
-        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Steps},
-        [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${LogonTimeTrackingProcess},
-        [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EngineStartTimeout},
-        [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${ApplicationDebugModeEnabled}
+        ${ApplicationDebugModeEnabled},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Int32]
+        ${NumberOfSessions},
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [Int32]
+        ${RampUpDurationInMinutes},
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [Int32]
+        ${TestDurationInMinutes},
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
+        [Boolean]
+        ${EuxEnabled},
+        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${EuxWorkFolders},
+        [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
+        [Boolean]
+        ${SessionMetricsEnabled},
+        [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${SessionMetricScheduleRate},
+        [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${SessionMetricGroupKey}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LELoadTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
+
+        if ($null -eq $Name) {
+            throw "invalid value for 'Name', 'Name' cannot be null."
+        }
+
+        if ($Name.length -lt 1) {
+            throw "invalid value for 'Name', the character length must be great than or equal to 1."
+        }
 
         if ($null -eq $NumberOfSessions) {
             throw "invalid value for 'NumberOfSessions', 'NumberOfSessions' cannot be null."
@@ -133,28 +145,8 @@ function Initialize-LELoadTestUpdate {
             throw "invalid value for 'SessionMetricsEnabled', 'SessionMetricsEnabled' cannot be null."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
-        if ($null -eq $Name) {
-            throw "invalid value for 'Name', 'Name' cannot be null."
-        }
-
-        if ($Name.length -lt 1) {
-            throw "invalid value for 'Name', the character length must be great than or equal to 1."
-        }
-
 
         $PSO = [PSCustomObject]@{
-            "numberOfSessions" = ${NumberOfSessions}
-            "rampUpDurationInMinutes" = ${RampUpDurationInMinutes}
-            "testDurationInMinutes" = ${TestDurationInMinutes}
-            "euxEnabled" = ${EuxEnabled}
-            "euxWorkFolders" = ${EuxWorkFolders}
-            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
-            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
-            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -164,6 +156,14 @@ function Initialize-LELoadTestUpdate {
             "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
             "engineStartTimeout" = ${EngineStartTimeout}
             "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
+            "numberOfSessions" = ${NumberOfSessions}
+            "rampUpDurationInMinutes" = ${RampUpDurationInMinutes}
+            "testDurationInMinutes" = ${TestDurationInMinutes}
+            "euxEnabled" = ${EuxEnabled}
+            "euxWorkFolders" = ${EuxWorkFolders}
+            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
+            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
+            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
         }
 
 
@@ -201,7 +201,7 @@ function ConvertFrom-LEJsonToLoadTestUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELoadTestUpdate
-        $AllProperties = ("numberOfSessions", "rampUpDurationInMinutes", "testDurationInMinutes", "euxEnabled", "euxWorkFolders", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey", "type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled")
+        $AllProperties = ("type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "numberOfSessions", "rampUpDurationInMinutes", "testDurationInMinutes", "euxEnabled", "euxWorkFolders", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -209,7 +209,19 @@ function ConvertFrom-LEJsonToLoadTestUpdate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'numberOfSessions' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'name' missing."
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "numberOfSessions"))) {
@@ -240,36 +252,6 @@ function ConvertFrom-LEJsonToLoadTestUpdate {
             throw "Error! JSON cannot be serialized due to the required property 'sessionMetricsEnabled' missing."
         } else {
             $SessionMetricsEnabled = $JsonParameters.PSobject.Properties["sessionMetricsEnabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'name' missing."
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "euxWorkFolders"))) { #optional property not found
-            $EuxWorkFolders = $null
-        } else {
-            $EuxWorkFolders = $JsonParameters.PSobject.Properties["euxWorkFolders"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricScheduleRate"))) { #optional property not found
-            $SessionMetricScheduleRate = $null
-        } else {
-            $SessionMetricScheduleRate = $JsonParameters.PSobject.Properties["sessionMetricScheduleRate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricGroupKey"))) { #optional property not found
-            $SessionMetricGroupKey = $null
-        } else {
-            $SessionMetricGroupKey = $JsonParameters.PSobject.Properties["sessionMetricGroupKey"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -314,15 +296,25 @@ function ConvertFrom-LEJsonToLoadTestUpdate {
             $ApplicationDebugModeEnabled = $JsonParameters.PSobject.Properties["applicationDebugModeEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "euxWorkFolders"))) { #optional property not found
+            $EuxWorkFolders = $null
+        } else {
+            $EuxWorkFolders = $JsonParameters.PSobject.Properties["euxWorkFolders"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricScheduleRate"))) { #optional property not found
+            $SessionMetricScheduleRate = $null
+        } else {
+            $SessionMetricScheduleRate = $JsonParameters.PSobject.Properties["sessionMetricScheduleRate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricGroupKey"))) { #optional property not found
+            $SessionMetricGroupKey = $null
+        } else {
+            $SessionMetricGroupKey = $JsonParameters.PSobject.Properties["sessionMetricGroupKey"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "numberOfSessions" = ${NumberOfSessions}
-            "rampUpDurationInMinutes" = ${RampUpDurationInMinutes}
-            "testDurationInMinutes" = ${TestDurationInMinutes}
-            "euxEnabled" = ${EuxEnabled}
-            "euxWorkFolders" = ${EuxWorkFolders}
-            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
-            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
-            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -332,6 +324,14 @@ function ConvertFrom-LEJsonToLoadTestUpdate {
             "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
             "engineStartTimeout" = ${EngineStartTimeout}
             "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
+            "numberOfSessions" = ${NumberOfSessions}
+            "rampUpDurationInMinutes" = ${RampUpDurationInMinutes}
+            "testDurationInMinutes" = ${TestDurationInMinutes}
+            "euxEnabled" = ${EuxEnabled}
+            "euxWorkFolders" = ${EuxWorkFolders}
+            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
+            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
+            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
         }
 
         return $PSO

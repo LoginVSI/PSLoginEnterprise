@@ -14,14 +14,14 @@ No summary available.
 
 App group invocation step
 
-.PARAMETER ApplicationGroup
-No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER Id
 Step id
 .PARAMETER IsEnabled
 Enable step
+.PARAMETER ApplicationGroup
+No description available.
 .OUTPUTS
 
 AppGroupReference<PSCustomObject>
@@ -31,17 +31,17 @@ function Initialize-LEAppGroupReference {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${ApplicationGroup},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${IsEnabled}
+        ${IsEnabled},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${ApplicationGroup}
     )
 
     Process {
@@ -54,10 +54,10 @@ function Initialize-LEAppGroupReference {
 
 
         $PSO = [PSCustomObject]@{
-            "applicationGroup" = ${ApplicationGroup}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
+            "applicationGroup" = ${ApplicationGroup}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-LEJsonToAppGroupReference {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAppGroupReference
-        $AllProperties = ("applicationGroup", "type", "id", "isEnabled")
+        $AllProperties = ("type", "id", "isEnabled", "applicationGroup")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,12 +112,6 @@ function ConvertFrom-LEJsonToAppGroupReference {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationGroup"))) { #optional property not found
-            $ApplicationGroup = $null
-        } else {
-            $ApplicationGroup = $JsonParameters.PSobject.Properties["applicationGroup"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
             $Id = $null
         } else {
@@ -130,11 +124,17 @@ function ConvertFrom-LEJsonToAppGroupReference {
             $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationGroup"))) { #optional property not found
+            $ApplicationGroup = $null
+        } else {
+            $ApplicationGroup = $JsonParameters.PSobject.Properties["applicationGroup"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "applicationGroup" = ${ApplicationGroup}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
+            "applicationGroup" = ${ApplicationGroup}
         }
 
         return $PSO

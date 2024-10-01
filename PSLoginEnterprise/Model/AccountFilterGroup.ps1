@@ -14,8 +14,6 @@ No summary available.
 
 Account filter group
 
-.PARAMETER VarFilter
-Filter condition (Wildcards available: ""?"" and ""*"")
 .PARAMETER Type
 No description available.
 .PARAMETER GroupId
@@ -32,6 +30,8 @@ Created date-time
 Last modified date-time
 .PARAMETER Members
 Account group members
+.PARAMETER VarFilter
+Filter condition (Wildcards available: ""?"" and ""*"")
 .OUTPUTS
 
 AccountFilterGroup<PSCustomObject>
@@ -42,31 +42,31 @@ function Initialize-LEAccountFilterGroup {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarFilter},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${GroupId},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${GroupId},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Name},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MemberCount},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${Created},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${LastModified},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Members}
+        ${Members},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VarFilter}
     )
 
     Process {
@@ -79,7 +79,6 @@ function Initialize-LEAccountFilterGroup {
 
 
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "groupId" = ${GroupId}
             "name" = ${Name}
@@ -88,6 +87,7 @@ function Initialize-LEAccountFilterGroup {
             "created" = ${Created}
             "lastModified" = ${LastModified}
             "members" = ${Members}
+            "filter" = ${VarFilter}
         }
 
 
@@ -125,7 +125,7 @@ function ConvertFrom-LEJsonToAccountFilterGroup {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAccountFilterGroup
-        $AllProperties = ("filter", "type", "groupId", "name", "memberCount", "description", "created", "lastModified", "members")
+        $AllProperties = ("type", "groupId", "name", "memberCount", "description", "created", "lastModified", "members", "filter")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,12 +140,6 @@ function ConvertFrom-LEJsonToAccountFilterGroup {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) { #optional property not found
-            $VarFilter = $null
-        } else {
-            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "groupId"))) { #optional property not found
@@ -190,8 +184,13 @@ function ConvertFrom-LEJsonToAccountFilterGroup {
             $Members = $JsonParameters.PSobject.Properties["members"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) { #optional property not found
+            $VarFilter = $null
+        } else {
+            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "groupId" = ${GroupId}
             "name" = ${Name}
@@ -200,6 +199,7 @@ function ConvertFrom-LEJsonToAccountFilterGroup {
             "created" = ${Created}
             "lastModified" = ${LastModified}
             "members" = ${Members}
+            "filter" = ${VarFilter}
         }
 
         return $PSO

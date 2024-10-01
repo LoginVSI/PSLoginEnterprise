@@ -14,14 +14,6 @@ No summary available.
 
 Application test update data
 
-.PARAMETER IsEmailEnabled
-Enable email notification
-.PARAMETER EmailRecipient
-Notification email address
-.PARAMETER IncludeSuccessfulApplications
-Include successful applications in report
-.PARAMETER RestartOnComplete
-Enable restarting on completion
 .PARAMETER Type
 No description available.
 .PARAMETER Name
@@ -40,6 +32,14 @@ Specify the application to track user login time session and session initiation.
 Engine start timeout
 .PARAMETER ApplicationDebugModeEnabled
 Run application scripts in debug mode to capture the error line for scripts failures
+.PARAMETER IsEmailEnabled
+Enable email notification
+.PARAMETER EmailRecipient
+Notification email address
+.PARAMETER IncludeSuccessfulApplications
+Include successful applications in report
+.PARAMETER RestartOnComplete
+Enable restarting on completion
 .OUTPUTS
 
 ApplicationTestUpdate<PSCustomObject>
@@ -49,61 +49,49 @@ function Initialize-LEApplicationTestUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${IsEmailEnabled},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${EmailRecipient},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${IncludeSuccessfulApplications},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${RestartOnComplete},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${ConnectionResourcesUpdate},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EnvironmentKey},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Steps},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${LogonTimeTrackingProcess},
-        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EngineStartTimeout},
-        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${ApplicationDebugModeEnabled}
+        ${ApplicationDebugModeEnabled},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Boolean]
+        ${IsEmailEnabled},
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EmailRecipient},
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [Boolean]
+        ${IncludeSuccessfulApplications},
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
+        [Boolean]
+        ${RestartOnComplete}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $IsEmailEnabled) {
-            throw "invalid value for 'IsEmailEnabled', 'IsEmailEnabled' cannot be null."
-        }
-
-        if ($null -eq $IncludeSuccessfulApplications) {
-            throw "invalid value for 'IncludeSuccessfulApplications', 'IncludeSuccessfulApplications' cannot be null."
-        }
-
-        if ($null -eq $RestartOnComplete) {
-            throw "invalid value for 'RestartOnComplete', 'RestartOnComplete' cannot be null."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -117,12 +105,20 @@ function Initialize-LEApplicationTestUpdate {
             throw "invalid value for 'Name', the character length must be great than or equal to 1."
         }
 
+        if ($null -eq $IsEmailEnabled) {
+            throw "invalid value for 'IsEmailEnabled', 'IsEmailEnabled' cannot be null."
+        }
+
+        if ($null -eq $IncludeSuccessfulApplications) {
+            throw "invalid value for 'IncludeSuccessfulApplications', 'IncludeSuccessfulApplications' cannot be null."
+        }
+
+        if ($null -eq $RestartOnComplete) {
+            throw "invalid value for 'RestartOnComplete', 'RestartOnComplete' cannot be null."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "isEmailEnabled" = ${IsEmailEnabled}
-            "emailRecipient" = ${EmailRecipient}
-            "includeSuccessfulApplications" = ${IncludeSuccessfulApplications}
-            "restartOnComplete" = ${RestartOnComplete}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -132,6 +128,10 @@ function Initialize-LEApplicationTestUpdate {
             "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
             "engineStartTimeout" = ${EngineStartTimeout}
             "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
+            "isEmailEnabled" = ${IsEmailEnabled}
+            "emailRecipient" = ${EmailRecipient}
+            "includeSuccessfulApplications" = ${IncludeSuccessfulApplications}
+            "restartOnComplete" = ${RestartOnComplete}
         }
 
 
@@ -169,7 +169,7 @@ function ConvertFrom-LEJsonToApplicationTestUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEApplicationTestUpdate
-        $AllProperties = ("isEmailEnabled", "emailRecipient", "includeSuccessfulApplications", "restartOnComplete", "type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled")
+        $AllProperties = ("type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "isEmailEnabled", "emailRecipient", "includeSuccessfulApplications", "restartOnComplete")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -177,7 +177,19 @@ function ConvertFrom-LEJsonToApplicationTestUpdate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'isEmailEnabled' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'name' missing."
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEmailEnabled"))) {
@@ -196,24 +208,6 @@ function ConvertFrom-LEJsonToApplicationTestUpdate {
             throw "Error! JSON cannot be serialized due to the required property 'restartOnComplete' missing."
         } else {
             $RestartOnComplete = $JsonParameters.PSobject.Properties["restartOnComplete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'name' missing."
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "emailRecipient"))) { #optional property not found
-            $EmailRecipient = $null
-        } else {
-            $EmailRecipient = $JsonParameters.PSobject.Properties["emailRecipient"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -258,11 +252,13 @@ function ConvertFrom-LEJsonToApplicationTestUpdate {
             $ApplicationDebugModeEnabled = $JsonParameters.PSobject.Properties["applicationDebugModeEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "emailRecipient"))) { #optional property not found
+            $EmailRecipient = $null
+        } else {
+            $EmailRecipient = $JsonParameters.PSobject.Properties["emailRecipient"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "isEmailEnabled" = ${IsEmailEnabled}
-            "emailRecipient" = ${EmailRecipient}
-            "includeSuccessfulApplications" = ${IncludeSuccessfulApplications}
-            "restartOnComplete" = ${RestartOnComplete}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -272,6 +268,10 @@ function ConvertFrom-LEJsonToApplicationTestUpdate {
             "logonTimeTrackingProcess" = ${LogonTimeTrackingProcess}
             "engineStartTimeout" = ${EngineStartTimeout}
             "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
+            "isEmailEnabled" = ${IsEmailEnabled}
+            "emailRecipient" = ${EmailRecipient}
+            "includeSuccessfulApplications" = ${IncludeSuccessfulApplications}
+            "restartOnComplete" = ${RestartOnComplete}
         }
 
         return $PSO

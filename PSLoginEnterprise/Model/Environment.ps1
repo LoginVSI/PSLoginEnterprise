@@ -22,6 +22,8 @@ Environment Name
 Description
 .PARAMETER EnableEnvironmentDataCollection
 Enable environment data collection
+.PARAMETER EnableCostCalculation
+Enable environment cost calculation
 .PARAMETER EnvironmentCost
 No description available.
 .PARAMETER EnvironmentAttributes
@@ -51,15 +53,18 @@ function Initialize-LEEnvironment {
         [System.Nullable[Boolean]]
         ${EnableEnvironmentDataCollection},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${EnvironmentCost},
+        [System.Nullable[Boolean]]
+        ${EnableCostCalculation},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${EnvironmentAttributes},
+        ${EnvironmentCost},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Provider},
+        ${EnvironmentAttributes},
         [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Provider},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Tests}
     )
@@ -74,6 +79,7 @@ function Initialize-LEEnvironment {
             "name" = ${Name}
             "description" = ${Description}
             "enableEnvironmentDataCollection" = ${EnableEnvironmentDataCollection}
+            "enableCostCalculation" = ${EnableCostCalculation}
             "environmentCost" = ${EnvironmentCost}
             "environmentAttributes" = ${EnvironmentAttributes}
             "provider" = ${Provider}
@@ -115,7 +121,7 @@ function ConvertFrom-LEJsonToEnvironment {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEEnvironment
-        $AllProperties = ("id", "name", "description", "enableEnvironmentDataCollection", "environmentCost", "environmentAttributes", "provider", "tests")
+        $AllProperties = ("id", "name", "description", "enableEnvironmentDataCollection", "enableCostCalculation", "environmentCost", "environmentAttributes", "provider", "tests")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -144,6 +150,12 @@ function ConvertFrom-LEJsonToEnvironment {
             $EnableEnvironmentDataCollection = $null
         } else {
             $EnableEnvironmentDataCollection = $JsonParameters.PSobject.Properties["enableEnvironmentDataCollection"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enableCostCalculation"))) { #optional property not found
+            $EnableCostCalculation = $null
+        } else {
+            $EnableCostCalculation = $JsonParameters.PSobject.Properties["enableCostCalculation"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "environmentCost"))) { #optional property not found
@@ -175,6 +187,7 @@ function ConvertFrom-LEJsonToEnvironment {
             "name" = ${Name}
             "description" = ${Description}
             "enableEnvironmentDataCollection" = ${EnableEnvironmentDataCollection}
+            "enableCostCalculation" = ${EnableCostCalculation}
             "environmentCost" = ${EnvironmentCost}
             "environmentAttributes" = ${EnvironmentAttributes}
             "provider" = ${Provider}

@@ -14,8 +14,6 @@ No summary available.
 
 Session threshold
 
-.PARAMETER Target
-No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -26,6 +24,8 @@ Enable threshold
 Threshold value
 .PARAMETER LastModified
 Last modified date-time
+.PARAMETER Target
+No description available.
 .OUTPUTS
 
 SessionThreshold<PSCustomObject>
@@ -35,24 +35,24 @@ function Initialize-LESessionThreshold {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("latency", "loginTime")]
-        [PSCustomObject]
-        ${Target},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${IsEnabled},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Double]]
         ${Value},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
-        ${LastModified}
+        ${LastModified},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("latency", "loginTime")]
+        [PSCustomObject]
+        ${Target}
     )
 
     Process {
@@ -65,12 +65,12 @@ function Initialize-LESessionThreshold {
 
 
         $PSO = [PSCustomObject]@{
-            "target" = ${Target}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
             "value" = ${Value}
             "lastModified" = ${LastModified}
+            "target" = ${Target}
         }
 
 
@@ -108,7 +108,7 @@ function ConvertFrom-LEJsonToSessionThreshold {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LESessionThreshold
-        $AllProperties = ("target", "type", "id", "isEnabled", "value", "lastModified")
+        $AllProperties = ("type", "id", "isEnabled", "value", "lastModified", "target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,12 +123,6 @@ function ConvertFrom-LEJsonToSessionThreshold {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -155,13 +149,19 @@ function ConvertFrom-LEJsonToSessionThreshold {
             $LastModified = $JsonParameters.PSobject.Properties["lastModified"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "target" = ${Target}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
             "value" = ${Value}
             "lastModified" = ${LastModified}
+            "target" = ${Target}
         }
 
         return $PSO

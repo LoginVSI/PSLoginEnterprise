@@ -14,10 +14,6 @@ No summary available.
 
 Windows application update data
 
-.PARAMETER CommandLine
-Command line arguments
-.PARAMETER WorkingDirectory
-Working directory
 .PARAMETER Type
 No description available.
 .PARAMETER Name
@@ -34,6 +30,10 @@ True if password must be updated
 Enable/disable taking screenshots in case of application error
 .PARAMETER ScriptContent
 Script content
+.PARAMETER CommandLine
+Command line arguments
+.PARAMETER WorkingDirectory
+Working directory
 .OUTPUTS
 
 WindowsApplicationUpdate<PSCustomObject>
@@ -44,55 +44,39 @@ function Initialize-LEWindowsApplicationUpdate {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CommandLine},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${WorkingDirectory},
+        ${Name},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Description},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Username},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Username},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Password},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${MustUpdatePassword},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${TakeScreenshots},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ScriptContent},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${CommandLine},
         [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ScriptContent}
+        ${WorkingDirectory}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEWindowsApplicationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $CommandLine) {
-            throw "invalid value for 'CommandLine', 'CommandLine' cannot be null."
-        }
-
-        if ($CommandLine.length -gt 512) {
-            throw "invalid value for 'CommandLine', the character length must be smaller than or equal to 512."
-        }
-
-        if ($CommandLine.length -lt 1) {
-            throw "invalid value for 'CommandLine', the character length must be great than or equal to 1."
-        }
-
-        if (!$WorkingDirectory -and $WorkingDirectory.length -gt 256) {
-            throw "invalid value for 'WorkingDirectory', the character length must be smaller than or equal to 256."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -122,10 +106,24 @@ function Initialize-LEWindowsApplicationUpdate {
             throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
         }
 
+        if ($null -eq $CommandLine) {
+            throw "invalid value for 'CommandLine', 'CommandLine' cannot be null."
+        }
+
+        if ($CommandLine.length -gt 512) {
+            throw "invalid value for 'CommandLine', the character length must be smaller than or equal to 512."
+        }
+
+        if ($CommandLine.length -lt 1) {
+            throw "invalid value for 'CommandLine', the character length must be great than or equal to 1."
+        }
+
+        if (!$WorkingDirectory -and $WorkingDirectory.length -gt 256) {
+            throw "invalid value for 'WorkingDirectory', the character length must be smaller than or equal to 256."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "commandLine" = ${CommandLine}
-            "workingDirectory" = ${WorkingDirectory}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -134,6 +132,8 @@ function Initialize-LEWindowsApplicationUpdate {
             "mustUpdatePassword" = ${MustUpdatePassword}
             "takeScreenshots" = ${TakeScreenshots}
             "scriptContent" = ${ScriptContent}
+            "commandLine" = ${CommandLine}
+            "workingDirectory" = ${WorkingDirectory}
         }
 
 
@@ -171,7 +171,7 @@ function ConvertFrom-LEJsonToWindowsApplicationUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEWindowsApplicationUpdate
-        $AllProperties = ("commandLine", "workingDirectory", "type", "name", "description", "username", "password", "mustUpdatePassword", "takeScreenshots", "scriptContent")
+        $AllProperties = ("type", "name", "description", "username", "password", "mustUpdatePassword", "takeScreenshots", "scriptContent", "commandLine", "workingDirectory")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -179,13 +179,7 @@ function ConvertFrom-LEJsonToWindowsApplicationUpdate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'commandLine' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "commandLine"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'commandLine' missing."
-        } else {
-            $CommandLine = $JsonParameters.PSobject.Properties["commandLine"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
@@ -200,10 +194,10 @@ function ConvertFrom-LEJsonToWindowsApplicationUpdate {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "workingDirectory"))) { #optional property not found
-            $WorkingDirectory = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "commandLine"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'commandLine' missing."
         } else {
-            $WorkingDirectory = $JsonParameters.PSobject.Properties["workingDirectory"].value
+            $CommandLine = $JsonParameters.PSobject.Properties["commandLine"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -242,9 +236,13 @@ function ConvertFrom-LEJsonToWindowsApplicationUpdate {
             $ScriptContent = $JsonParameters.PSobject.Properties["scriptContent"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "workingDirectory"))) { #optional property not found
+            $WorkingDirectory = $null
+        } else {
+            $WorkingDirectory = $JsonParameters.PSobject.Properties["workingDirectory"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "commandLine" = ${CommandLine}
-            "workingDirectory" = ${WorkingDirectory}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -253,6 +251,8 @@ function ConvertFrom-LEJsonToWindowsApplicationUpdate {
             "mustUpdatePassword" = ${MustUpdatePassword}
             "takeScreenshots" = ${TakeScreenshots}
             "scriptContent" = ${ScriptContent}
+            "commandLine" = ${CommandLine}
+            "workingDirectory" = ${WorkingDirectory}
         }
 
         return $PSO

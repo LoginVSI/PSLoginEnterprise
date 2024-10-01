@@ -14,18 +14,18 @@ No summary available.
 
 App invocation step
 
-.PARAMETER Application
-Application
-.PARAMETER RunOnce
-Run the application only once
-.PARAMETER LeaveRunning
-Do not close the application
 .PARAMETER Type
 No description available.
 .PARAMETER Id
 Step id
 .PARAMETER IsEnabled
 Enable step
+.PARAMETER Application
+No description available.
+.PARAMETER RunOnce
+Run the application only once
+.PARAMETER LeaveRunning
+Do not close the application
 .OUTPUTS
 
 AppInvocation<PSCustomObject>
@@ -35,23 +35,23 @@ function Initialize-LEAppInvocation {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Application},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${RunOnce},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${LeaveRunning},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${IsEnabled},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Application},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${RunOnce},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${IsEnabled}
+        ${LeaveRunning}
     )
 
     Process {
@@ -64,12 +64,12 @@ function Initialize-LEAppInvocation {
 
 
         $PSO = [PSCustomObject]@{
-            "application" = ${Application}
-            "runOnce" = ${RunOnce}
-            "leaveRunning" = ${LeaveRunning}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
+            "application" = ${Application}
+            "runOnce" = ${RunOnce}
+            "leaveRunning" = ${LeaveRunning}
         }
 
 
@@ -107,7 +107,7 @@ function ConvertFrom-LEJsonToAppInvocation {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAppInvocation
-        $AllProperties = ("application", "runOnce", "leaveRunning", "type", "id", "isEnabled")
+        $AllProperties = ("type", "id", "isEnabled", "application", "runOnce", "leaveRunning")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -122,6 +122,18 @@ function ConvertFrom-LEJsonToAppInvocation {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEnabled"))) { #optional property not found
+            $IsEnabled = $null
+        } else {
+            $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "application"))) { #optional property not found
@@ -142,25 +154,13 @@ function ConvertFrom-LEJsonToAppInvocation {
             $LeaveRunning = $JsonParameters.PSobject.Properties["leaveRunning"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEnabled"))) { #optional property not found
-            $IsEnabled = $null
-        } else {
-            $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "application" = ${Application}
-            "runOnce" = ${RunOnce}
-            "leaveRunning" = ${LeaveRunning}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
+            "application" = ${Application}
+            "runOnce" = ${RunOnce}
+            "leaveRunning" = ${LeaveRunning}
         }
 
         return $PSO

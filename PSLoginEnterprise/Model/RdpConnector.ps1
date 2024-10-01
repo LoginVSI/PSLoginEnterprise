@@ -14,6 +14,8 @@ No summary available.
 
 Microsoft RDS
 
+.PARAMETER Type
+No description available.
 .PARAMETER HostList
 Host list
 .PARAMETER Resource
@@ -24,8 +26,6 @@ RDS Gateway
 Suppress Certificate Warning
 .PARAMETER DisplayResolution
 No description available.
-.PARAMETER Type
-No description available.
 .OUTPUTS
 
 RdpConnector<PSCustomObject>
@@ -35,28 +35,32 @@ function Initialize-LERdpConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${HostList},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Resource},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Gateway},
+        ${Resource},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Gateway},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
         ${SuppressCertWarn},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${DisplayResolution},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type}
+        [PSCustomObject]
+        ${DisplayResolution}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LERdpConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
 
         if ($null -eq $HostList) {
             throw "invalid value for 'HostList', 'HostList' cannot be null."
@@ -66,18 +70,14 @@ function Initialize-LERdpConnector {
             throw "invalid value for 'SuppressCertWarn', 'SuppressCertWarn' cannot be null."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "hostList" = ${HostList}
             "resource" = ${Resource}
             "gateway" = ${Gateway}
             "suppressCertWarn" = ${SuppressCertWarn}
             "displayResolution" = ${DisplayResolution}
-            "type" = ${Type}
         }
 
 
@@ -115,7 +115,7 @@ function ConvertFrom-LEJsonToRdpConnector {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LERdpConnector
-        $AllProperties = ("hostList", "resource", "gateway", "suppressCertWarn", "displayResolution", "type")
+        $AllProperties = ("type", "hostList", "resource", "gateway", "suppressCertWarn", "displayResolution")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,7 +123,13 @@ function ConvertFrom-LEJsonToRdpConnector {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'hostList' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostList"))) {
@@ -136,12 +142,6 @@ function ConvertFrom-LEJsonToRdpConnector {
             throw "Error! JSON cannot be serialized due to the required property 'suppressCertWarn' missing."
         } else {
             $SuppressCertWarn = $JsonParameters.PSobject.Properties["suppressCertWarn"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "resource"))) { #optional property not found
@@ -163,12 +163,12 @@ function ConvertFrom-LEJsonToRdpConnector {
         }
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "hostList" = ${HostList}
             "resource" = ${Resource}
             "gateway" = ${Gateway}
             "suppressCertWarn" = ${SuppressCertWarn}
             "displayResolution" = ${DisplayResolution}
-            "type" = ${Type}
         }
 
         return $PSO

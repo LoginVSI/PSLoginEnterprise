@@ -14,13 +14,13 @@ No summary available.
 
 Citrix Netscaler 12.1 and 13.0
 
+.PARAMETER Type
+No description available.
 .PARAMETER ServerUrl
 Server Url
 .PARAMETER Resource
 Resource
 .PARAMETER DisplayResolution
-No description available.
-.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -32,21 +32,25 @@ function Initialize-LENetscalerConnector {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ServerUrl},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Resource},
+        ${ServerUrl},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${DisplayResolution},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${Resource},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${DisplayResolution}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LENetscalerConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
 
         if ($null -eq $ServerUrl) {
             throw "invalid value for 'ServerUrl', 'ServerUrl' cannot be null."
@@ -64,16 +68,12 @@ function Initialize-LENetscalerConnector {
             throw "invalid value for 'Resource', the character length must be great than or equal to 1."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "serverUrl" = ${ServerUrl}
             "resource" = ${Resource}
             "displayResolution" = ${DisplayResolution}
-            "type" = ${Type}
         }
 
 
@@ -111,7 +111,7 @@ function ConvertFrom-LEJsonToNetscalerConnector {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LENetscalerConnector
-        $AllProperties = ("serverUrl", "resource", "displayResolution", "type")
+        $AllProperties = ("type", "serverUrl", "resource", "displayResolution")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -119,7 +119,13 @@ function ConvertFrom-LEJsonToNetscalerConnector {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'serverUrl' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "serverUrl"))) {
@@ -134,12 +140,6 @@ function ConvertFrom-LEJsonToNetscalerConnector {
             $Resource = $JsonParameters.PSobject.Properties["resource"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "displayResolution"))) { #optional property not found
             $DisplayResolution = $null
         } else {
@@ -147,10 +147,10 @@ function ConvertFrom-LEJsonToNetscalerConnector {
         }
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
             "serverUrl" = ${ServerUrl}
             "resource" = ${Resource}
             "displayResolution" = ${DisplayResolution}
-            "type" = ${Type}
         }
 
         return $PSO

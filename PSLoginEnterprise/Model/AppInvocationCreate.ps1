@@ -14,16 +14,16 @@ No summary available.
 
 App invocation step creation data
 
+.PARAMETER Type
+No description available.
+.PARAMETER IsEnabled
+Enable step
 .PARAMETER ApplicationId
 Application id
 .PARAMETER RunOnce
 Run the application only once
 .PARAMETER LeaveRunning
 Do not close the application
-.PARAMETER Type
-No description available.
-.PARAMETER IsEnabled
-Enable step
 .OUTPUTS
 
 AppInvocationCreate<PSCustomObject>
@@ -34,24 +34,32 @@ function Initialize-LEAppInvocationCreate {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationId},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
-        ${RunOnce},
+        ${IsEnabled},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${LeaveRunning},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${ApplicationId},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Boolean]
+        ${RunOnce},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
-        ${IsEnabled}
+        ${LeaveRunning}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEAppInvocationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
+
+        if ($null -eq $IsEnabled) {
+            throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
+        }
 
         if ($null -eq $ApplicationId) {
             throw "invalid value for 'ApplicationId', 'ApplicationId' cannot be null."
@@ -65,21 +73,13 @@ function Initialize-LEAppInvocationCreate {
             throw "invalid value for 'LeaveRunning', 'LeaveRunning' cannot be null."
         }
 
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
-        if ($null -eq $IsEnabled) {
-            throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "isEnabled" = ${IsEnabled}
             "applicationId" = ${ApplicationId}
             "runOnce" = ${RunOnce}
             "leaveRunning" = ${LeaveRunning}
-            "type" = ${Type}
-            "isEnabled" = ${IsEnabled}
         }
 
 
@@ -117,7 +117,7 @@ function ConvertFrom-LEJsonToAppInvocationCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAppInvocationCreate
-        $AllProperties = ("applicationId", "runOnce", "leaveRunning", "type", "isEnabled")
+        $AllProperties = ("type", "isEnabled", "applicationId", "runOnce", "leaveRunning")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -125,7 +125,19 @@ function ConvertFrom-LEJsonToAppInvocationCreate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'applicationId' missing."
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEnabled"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'isEnabled' missing."
+        } else {
+            $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationId"))) {
@@ -146,24 +158,12 @@ function ConvertFrom-LEJsonToAppInvocationCreate {
             $LeaveRunning = $JsonParameters.PSobject.Properties["leaveRunning"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEnabled"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'isEnabled' missing."
-        } else {
-            $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "isEnabled" = ${IsEnabled}
             "applicationId" = ${ApplicationId}
             "runOnce" = ${RunOnce}
             "leaveRunning" = ${LeaveRunning}
-            "type" = ${Type}
-            "isEnabled" = ${IsEnabled}
         }
 
         return $PSO

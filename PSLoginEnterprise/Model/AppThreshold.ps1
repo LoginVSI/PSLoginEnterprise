@@ -14,10 +14,6 @@ No summary available.
 
 App threshold
 
-.PARAMETER ApplicationId
-Application id
-.PARAMETER Timer
-Application timer
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -28,6 +24,10 @@ Enable threshold
 Threshold value
 .PARAMETER LastModified
 Last modified date-time
+.PARAMETER ApplicationId
+Application id
+.PARAMETER Timer
+Application timer
 .OUTPUTS
 
 AppThreshold<PSCustomObject>
@@ -38,25 +38,25 @@ function Initialize-LEAppThreshold {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationId},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Timer},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Id},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${IsEnabled},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Double]]
         ${Value},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
-        ${LastModified}
+        ${LastModified},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ApplicationId},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Timer}
     )
 
     Process {
@@ -69,13 +69,13 @@ function Initialize-LEAppThreshold {
 
 
         $PSO = [PSCustomObject]@{
-            "applicationId" = ${ApplicationId}
-            "timer" = ${Timer}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
             "value" = ${Value}
             "lastModified" = ${LastModified}
+            "applicationId" = ${ApplicationId}
+            "timer" = ${Timer}
         }
 
 
@@ -113,7 +113,7 @@ function ConvertFrom-LEJsonToAppThreshold {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAppThreshold
-        $AllProperties = ("applicationId", "timer", "type", "id", "isEnabled", "value", "lastModified")
+        $AllProperties = ("type", "id", "isEnabled", "value", "lastModified", "applicationId", "timer")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -128,18 +128,6 @@ function ConvertFrom-LEJsonToAppThreshold {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationId"))) { #optional property not found
-            $ApplicationId = $null
-        } else {
-            $ApplicationId = $JsonParameters.PSobject.Properties["applicationId"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timer"))) { #optional property not found
-            $Timer = $null
-        } else {
-            $Timer = $JsonParameters.PSobject.Properties["timer"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -166,14 +154,26 @@ function ConvertFrom-LEJsonToAppThreshold {
             $LastModified = $JsonParameters.PSobject.Properties["lastModified"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationId"))) { #optional property not found
+            $ApplicationId = $null
+        } else {
+            $ApplicationId = $JsonParameters.PSobject.Properties["applicationId"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timer"))) { #optional property not found
+            $Timer = $null
+        } else {
+            $Timer = $JsonParameters.PSobject.Properties["timer"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "applicationId" = ${ApplicationId}
-            "timer" = ${Timer}
             "type" = ${Type}
             "id" = ${Id}
             "isEnabled" = ${IsEnabled}
             "value" = ${Value}
             "lastModified" = ${LastModified}
+            "applicationId" = ${ApplicationId}
+            "timer" = ${Timer}
         }
 
         return $PSO

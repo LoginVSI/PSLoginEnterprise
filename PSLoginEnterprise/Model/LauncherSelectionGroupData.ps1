@@ -14,14 +14,14 @@ No summary available.
 
 Launcher selection group creation/update data
 
-.PARAMETER LauncherNames
-Launcher names
 .PARAMETER Type
 No description available.
 .PARAMETER Name
 Launcher group name
 .PARAMETER Description
 Launcher group description
+.PARAMETER LauncherNames
+Launcher names
 .OUTPUTS
 
 LauncherSelectionGroupData<PSCustomObject>
@@ -31,17 +31,17 @@ function Initialize-LELauncherSelectionGroupData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${LauncherNames},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${Description},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${LauncherNames}
     )
 
     Process {
@@ -62,10 +62,10 @@ function Initialize-LELauncherSelectionGroupData {
 
 
         $PSO = [PSCustomObject]@{
-            "launcherNames" = ${LauncherNames}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "launcherNames" = ${LauncherNames}
         }
 
 
@@ -103,7 +103,7 @@ function ConvertFrom-LEJsonToLauncherSelectionGroupData {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELauncherSelectionGroupData
-        $AllProperties = ("launcherNames", "type", "name", "description")
+        $AllProperties = ("type", "name", "description", "launcherNames")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -126,23 +126,23 @@ function ConvertFrom-LEJsonToLauncherSelectionGroupData {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "launcherNames"))) { #optional property not found
-            $LauncherNames = $null
-        } else {
-            $LauncherNames = $JsonParameters.PSobject.Properties["launcherNames"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
             $Description = $null
         } else {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "launcherNames"))) { #optional property not found
+            $LauncherNames = $null
+        } else {
+            $LauncherNames = $JsonParameters.PSobject.Properties["launcherNames"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "launcherNames" = ${LauncherNames}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "launcherNames" = ${LauncherNames}
         }
 
         return $PSO

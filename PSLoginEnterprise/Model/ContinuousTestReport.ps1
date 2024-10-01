@@ -14,8 +14,6 @@ No summary available.
 
 Continuous test report
 
-.PARAMETER ConfigurationId
-Report configuration id
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -34,6 +32,8 @@ Created date-time
 Report period start date-time
 .PARAMETER ReportPeriodEnd
 Report period end date-time
+.PARAMETER ConfigurationId
+Report configuration id
 .OUTPUTS
 
 ContinuousTestReport<PSCustomObject>
@@ -44,36 +44,36 @@ function Initialize-LEContinuousTestReport {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ConfigurationId},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Id},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${TestId},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${TestId},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${OutputContentUri},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("created", "completed", "readyForPdf")]
         [PSCustomObject]
         ${State},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("manual", "scheduled", "automatic")]
         [PSCustomObject]
         ${Trigger},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${Created},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${ReportPeriodStart},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
-        ${ReportPeriodEnd}
+        ${ReportPeriodEnd},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ConfigurationId}
     )
 
     Process {
@@ -86,7 +86,6 @@ function Initialize-LEContinuousTestReport {
 
 
         $PSO = [PSCustomObject]@{
-            "configurationId" = ${ConfigurationId}
             "type" = ${Type}
             "id" = ${Id}
             "testId" = ${TestId}
@@ -96,6 +95,7 @@ function Initialize-LEContinuousTestReport {
             "created" = ${Created}
             "reportPeriodStart" = ${ReportPeriodStart}
             "reportPeriodEnd" = ${ReportPeriodEnd}
+            "configurationId" = ${ConfigurationId}
         }
 
 
@@ -133,7 +133,7 @@ function ConvertFrom-LEJsonToContinuousTestReport {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEContinuousTestReport
-        $AllProperties = ("configurationId", "type", "id", "testId", "outputContentUri", "state", "trigger", "created", "reportPeriodStart", "reportPeriodEnd")
+        $AllProperties = ("type", "id", "testId", "outputContentUri", "state", "trigger", "created", "reportPeriodStart", "reportPeriodEnd", "configurationId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -148,12 +148,6 @@ function ConvertFrom-LEJsonToContinuousTestReport {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "configurationId"))) { #optional property not found
-            $ConfigurationId = $null
-        } else {
-            $ConfigurationId = $JsonParameters.PSobject.Properties["configurationId"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -204,8 +198,13 @@ function ConvertFrom-LEJsonToContinuousTestReport {
             $ReportPeriodEnd = $JsonParameters.PSobject.Properties["reportPeriodEnd"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "configurationId"))) { #optional property not found
+            $ConfigurationId = $null
+        } else {
+            $ConfigurationId = $JsonParameters.PSobject.Properties["configurationId"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "configurationId" = ${ConfigurationId}
             "type" = ${Type}
             "id" = ${Id}
             "testId" = ${TestId}
@@ -215,6 +214,7 @@ function ConvertFrom-LEJsonToContinuousTestReport {
             "created" = ${Created}
             "reportPeriodStart" = ${ReportPeriodStart}
             "reportPeriodEnd" = ${ReportPeriodEnd}
+            "configurationId" = ${ConfigurationId}
         }
 
         return $PSO

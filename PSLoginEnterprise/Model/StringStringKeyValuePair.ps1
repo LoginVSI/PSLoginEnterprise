@@ -12,54 +12,36 @@ No summary available.
 
 .DESCRIPTION
 
-Delay step creation data
-
-.PARAMETER Type
 No description available.
-.PARAMETER IsEnabled
-Enable step
-.PARAMETER DelayInSeconds
-Delay in seconds
+
+.PARAMETER Key
+No description available.
+.PARAMETER Value
+No description available.
 .OUTPUTS
 
-DelayCreate<PSCustomObject>
+StringStringKeyValuePair<PSCustomObject>
 #>
 
-function Initialize-LEDelayCreate {
+function Initialize-LEStringStringKeyValuePair {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Key},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [Boolean]
-        ${IsEnabled},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${DelayInSeconds}
+        [String]
+        ${Value}
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEDelayCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEStringStringKeyValuePair' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
-        if ($null -eq $IsEnabled) {
-            throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
-        }
-
-        if ($null -eq $DelayInSeconds) {
-            throw "invalid value for 'DelayInSeconds', 'DelayInSeconds' cannot be null."
-        }
 
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "isEnabled" = ${IsEnabled}
-            "delayInSeconds" = ${DelayInSeconds}
+            "key" = ${Key}
+            "value" = ${Value}
         }
 
 
@@ -70,11 +52,11 @@ function Initialize-LEDelayCreate {
 <#
 .SYNOPSIS
 
-Convert from JSON to DelayCreate<PSCustomObject>
+Convert from JSON to StringStringKeyValuePair<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to DelayCreate<PSCustomObject>
+Convert from JSON to StringStringKeyValuePair<PSCustomObject>
 
 .PARAMETER Json
 
@@ -82,54 +64,43 @@ Json object
 
 .OUTPUTS
 
-DelayCreate<PSCustomObject>
+StringStringKeyValuePair<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToDelayCreate {
+function ConvertFrom-LEJsonToStringStringKeyValuePair {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEDelayCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEStringStringKeyValuePair' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEDelayCreate
-        $AllProperties = ("type", "isEnabled", "delayInSeconds")
+        # check if Json contains properties not defined in LEStringStringKeyValuePair
+        $AllProperties = ("key", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
+            $Key = $null
+        } else {
+            $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+            $Value = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isEnabled"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'isEnabled' missing."
-        } else {
-            $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delayInSeconds"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'delayInSeconds' missing."
-        } else {
-            $DelayInSeconds = $JsonParameters.PSobject.Properties["delayInSeconds"].value
+            $Value = $JsonParameters.PSobject.Properties["value"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "isEnabled" = ${IsEnabled}
-            "delayInSeconds" = ${DelayInSeconds}
+            "key" = ${Key}
+            "value" = ${Value}
         }
 
         return $PSO

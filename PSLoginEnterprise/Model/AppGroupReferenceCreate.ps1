@@ -14,12 +14,12 @@ No summary available.
 
 App group invocation step creation data
 
-.PARAMETER ApplicationGroupId
-Application id
 .PARAMETER Type
 No description available.
 .PARAMETER IsEnabled
 Enable step
+.PARAMETER ApplicationGroupId
+Application id
 .OUTPUTS
 
 AppGroupReferenceCreate<PSCustomObject>
@@ -30,22 +30,18 @@ function Initialize-LEAppGroupReferenceCreate {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationGroupId},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [Boolean]
-        ${IsEnabled}
+        ${IsEnabled},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ApplicationGroupId}
     )
 
     Process {
         'Creating PSCustomObject: PSLoginEnterprise => LEAppGroupReferenceCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $ApplicationGroupId) {
-            throw "invalid value for 'ApplicationGroupId', 'ApplicationGroupId' cannot be null."
-        }
 
         if ($null -eq $Type) {
             throw "invalid value for 'Type', 'Type' cannot be null."
@@ -55,11 +51,15 @@ function Initialize-LEAppGroupReferenceCreate {
             throw "invalid value for 'IsEnabled', 'IsEnabled' cannot be null."
         }
 
+        if ($null -eq $ApplicationGroupId) {
+            throw "invalid value for 'ApplicationGroupId', 'ApplicationGroupId' cannot be null."
+        }
+
 
         $PSO = [PSCustomObject]@{
-            "applicationGroupId" = ${ApplicationGroupId}
             "type" = ${Type}
             "isEnabled" = ${IsEnabled}
+            "applicationGroupId" = ${ApplicationGroupId}
         }
 
 
@@ -97,7 +97,7 @@ function ConvertFrom-LEJsonToAppGroupReferenceCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAppGroupReferenceCreate
-        $AllProperties = ("applicationGroupId", "type", "isEnabled")
+        $AllProperties = ("type", "isEnabled", "applicationGroupId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -105,13 +105,7 @@ function ConvertFrom-LEJsonToAppGroupReferenceCreate {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'applicationGroupId' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationGroupId"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'applicationGroupId' missing."
-        } else {
-            $ApplicationGroupId = $JsonParameters.PSobject.Properties["applicationGroupId"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
@@ -126,10 +120,16 @@ function ConvertFrom-LEJsonToAppGroupReferenceCreate {
             $IsEnabled = $JsonParameters.PSobject.Properties["isEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationGroupId"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'applicationGroupId' missing."
+        } else {
+            $ApplicationGroupId = $JsonParameters.PSobject.Properties["applicationGroupId"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "applicationGroupId" = ${ApplicationGroupId}
             "type" = ${Type}
             "isEnabled" = ${IsEnabled}
+            "applicationGroupId" = ${ApplicationGroupId}
         }
 
         return $PSO

@@ -14,14 +14,6 @@ No summary available.
 
 Windows application
 
-.PARAMETER CommandLine
-Command line arguments
-.PARAMETER WorkingDirectory
-Working directory
-.PARAMETER MainWindowTitle
-Main window title
-.PARAMETER MainProcessName
-Main process name
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -44,6 +36,14 @@ Application timers
 If set to true, it is allowed taking screenshots in case of application error
 .PARAMETER HasPassword
 Has password
+.PARAMETER CommandLine
+Command line arguments
+.PARAMETER WorkingDirectory
+Working directory
+.PARAMETER MainWindowTitle
+Main window title
+.PARAMETER MainProcessName
+Main process name
 .OUTPUTS
 
 WindowsApplication<PSCustomObject>
@@ -54,49 +54,49 @@ function Initialize-LEWindowsApplication {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CommandLine},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${WorkingDirectory},
+        ${Id},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${MainWindowTitle},
+        ${Name},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${MainProcessName},
+        ${Description},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Username},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${Created},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${LastModified},
-        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Script},
-        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Timers},
-        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${TakeScreenshots},
-        [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${HasPassword}
+        ${HasPassword},
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${CommandLine},
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${WorkingDirectory},
+        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${MainWindowTitle},
+        [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${MainProcessName}
     )
 
     Process {
@@ -109,10 +109,6 @@ function Initialize-LEWindowsApplication {
 
 
         $PSO = [PSCustomObject]@{
-            "commandLine" = ${CommandLine}
-            "workingDirectory" = ${WorkingDirectory}
-            "mainWindowTitle" = ${MainWindowTitle}
-            "mainProcessName" = ${MainProcessName}
             "type" = ${Type}
             "id" = ${Id}
             "name" = ${Name}
@@ -124,6 +120,10 @@ function Initialize-LEWindowsApplication {
             "timers" = ${Timers}
             "takeScreenshots" = ${TakeScreenshots}
             "hasPassword" = ${HasPassword}
+            "commandLine" = ${CommandLine}
+            "workingDirectory" = ${WorkingDirectory}
+            "mainWindowTitle" = ${MainWindowTitle}
+            "mainProcessName" = ${MainProcessName}
         }
 
 
@@ -161,7 +161,7 @@ function ConvertFrom-LEJsonToWindowsApplication {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEWindowsApplication
-        $AllProperties = ("commandLine", "workingDirectory", "mainWindowTitle", "mainProcessName", "type", "id", "name", "description", "username", "created", "lastModified", "script", "timers", "takeScreenshots", "hasPassword")
+        $AllProperties = ("type", "id", "name", "description", "username", "created", "lastModified", "script", "timers", "takeScreenshots", "hasPassword", "commandLine", "workingDirectory", "mainWindowTitle", "mainProcessName")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -176,30 +176,6 @@ function ConvertFrom-LEJsonToWindowsApplication {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "commandLine"))) { #optional property not found
-            $CommandLine = $null
-        } else {
-            $CommandLine = $JsonParameters.PSobject.Properties["commandLine"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "workingDirectory"))) { #optional property not found
-            $WorkingDirectory = $null
-        } else {
-            $WorkingDirectory = $JsonParameters.PSobject.Properties["workingDirectory"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mainWindowTitle"))) { #optional property not found
-            $MainWindowTitle = $null
-        } else {
-            $MainWindowTitle = $JsonParameters.PSobject.Properties["mainWindowTitle"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mainProcessName"))) { #optional property not found
-            $MainProcessName = $null
-        } else {
-            $MainProcessName = $JsonParameters.PSobject.Properties["mainProcessName"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -262,11 +238,31 @@ function ConvertFrom-LEJsonToWindowsApplication {
             $HasPassword = $JsonParameters.PSobject.Properties["hasPassword"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "commandLine"))) { #optional property not found
+            $CommandLine = $null
+        } else {
+            $CommandLine = $JsonParameters.PSobject.Properties["commandLine"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "workingDirectory"))) { #optional property not found
+            $WorkingDirectory = $null
+        } else {
+            $WorkingDirectory = $JsonParameters.PSobject.Properties["workingDirectory"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mainWindowTitle"))) { #optional property not found
+            $MainWindowTitle = $null
+        } else {
+            $MainWindowTitle = $JsonParameters.PSobject.Properties["mainWindowTitle"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mainProcessName"))) { #optional property not found
+            $MainProcessName = $null
+        } else {
+            $MainProcessName = $JsonParameters.PSobject.Properties["mainProcessName"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "commandLine" = ${CommandLine}
-            "workingDirectory" = ${WorkingDirectory}
-            "mainWindowTitle" = ${MainWindowTitle}
-            "mainProcessName" = ${MainProcessName}
             "type" = ${Type}
             "id" = ${Id}
             "name" = ${Name}
@@ -278,6 +274,10 @@ function ConvertFrom-LEJsonToWindowsApplication {
             "timers" = ${Timers}
             "takeScreenshots" = ${TakeScreenshots}
             "hasPassword" = ${HasPassword}
+            "commandLine" = ${CommandLine}
+            "workingDirectory" = ${WorkingDirectory}
+            "mainWindowTitle" = ${MainWindowTitle}
+            "mainProcessName" = ${MainProcessName}
         }
 
         return $PSO

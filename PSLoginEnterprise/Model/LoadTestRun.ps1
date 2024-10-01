@@ -14,6 +14,20 @@ No summary available.
 
 Load test run
 
+.PARAMETER Type
+No description available.
+.PARAMETER Id
+Test run id
+.PARAMETER TestId
+Test id
+.PARAMETER Created
+Created date-time
+.PARAMETER Started
+Started date-time
+.PARAMETER Finished
+Finished date-time
+.PARAMETER Counter
+Test run counter
 .PARAMETER TestRunConfigurationSnapshot
 No description available.
 .PARAMETER State
@@ -40,20 +54,6 @@ No description available.
 No description available.
 .PARAMETER Comment
 Comment
-.PARAMETER Type
-No description available.
-.PARAMETER Id
-Test run id
-.PARAMETER TestId
-Test id
-.PARAMETER Created
-Created date-time
-.PARAMETER Started
-Started date-time
-.PARAMETER Finished
-Finished date-time
-.PARAMETER Counter
-Test run counter
 .OUTPUTS
 
 LoadTestRun<PSCustomObject>
@@ -63,67 +63,67 @@ function Initialize-LELoadTestRun {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${TestId},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.DateTime]]
+        ${Created},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.DateTime]]
+        ${Started},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.DateTime]]
+        ${Finished},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Counter},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${TestRunConfigurationSnapshot},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("allocateResource", "rampingUp", "running", "rampingDown", "freeResources", "completed")]
         [PSCustomObject]
         ${State},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("completed", "aborted", "abandoned")]
         [PSCustomObject]
         ${Result},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[System.DateTime]]
         ${RampUpCompleted},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${ActiveSessionCount},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${StatisticsReady},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ProductVersion},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${LoginCounts},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${EngineCounts},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${AppExecutionCounts},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${EuxScore},
-        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${VsiMax},
-        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
         [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${ProductVersion},
         [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
+        [PSCustomObject]
+        ${LoginCounts},
         [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TestId},
+        [PSCustomObject]
+        ${EngineCounts},
         [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${Created},
+        [PSCustomObject]
+        ${AppExecutionCounts},
         [Parameter(Position = 17, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${Started},
+        [PSCustomObject]
+        ${EuxScore},
         [Parameter(Position = 18, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${Finished},
+        [PSCustomObject]
+        ${VsiMax},
         [Parameter(Position = 19, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Counter}
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -136,6 +136,13 @@ function Initialize-LELoadTestRun {
 
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "id" = ${Id}
+            "testId" = ${TestId}
+            "created" = ${Created}
+            "started" = ${Started}
+            "finished" = ${Finished}
+            "counter" = ${Counter}
             "testRunConfigurationSnapshot" = ${TestRunConfigurationSnapshot}
             "state" = ${State}
             "result" = ${Result}
@@ -149,13 +156,6 @@ function Initialize-LELoadTestRun {
             "euxScore" = ${EuxScore}
             "vsiMax" = ${VsiMax}
             "comment" = ${Comment}
-            "type" = ${Type}
-            "id" = ${Id}
-            "testId" = ${TestId}
-            "created" = ${Created}
-            "started" = ${Started}
-            "finished" = ${Finished}
-            "counter" = ${Counter}
         }
 
 
@@ -193,7 +193,7 @@ function ConvertFrom-LEJsonToLoadTestRun {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELoadTestRun
-        $AllProperties = ("testRunConfigurationSnapshot", "state", "result", "rampUpCompleted", "activeSessionCount", "statisticsReady", "productVersion", "loginCounts", "engineCounts", "appExecutionCounts", "euxScore", "vsiMax", "comment", "type", "id", "testId", "created", "started", "finished", "counter")
+        $AllProperties = ("type", "id", "testId", "created", "started", "finished", "counter", "testRunConfigurationSnapshot", "state", "result", "rampUpCompleted", "activeSessionCount", "statisticsReady", "productVersion", "loginCounts", "engineCounts", "appExecutionCounts", "euxScore", "vsiMax", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -208,6 +208,42 @@ function ConvertFrom-LEJsonToLoadTestRun {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "testId"))) { #optional property not found
+            $TestId = $null
+        } else {
+            $TestId = $JsonParameters.PSobject.Properties["testId"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
+            $Created = $null
+        } else {
+            $Created = $JsonParameters.PSobject.Properties["created"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "started"))) { #optional property not found
+            $Started = $null
+        } else {
+            $Started = $JsonParameters.PSobject.Properties["started"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finished"))) { #optional property not found
+            $Finished = $null
+        } else {
+            $Finished = $JsonParameters.PSobject.Properties["finished"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "counter"))) { #optional property not found
+            $Counter = $null
+        } else {
+            $Counter = $JsonParameters.PSobject.Properties["counter"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "testRunConfigurationSnapshot"))) { #optional property not found
@@ -288,43 +324,14 @@ function ConvertFrom-LEJsonToLoadTestRun {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "testId"))) { #optional property not found
-            $TestId = $null
-        } else {
-            $TestId = $JsonParameters.PSobject.Properties["testId"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
-            $Created = $null
-        } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "started"))) { #optional property not found
-            $Started = $null
-        } else {
-            $Started = $JsonParameters.PSobject.Properties["started"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finished"))) { #optional property not found
-            $Finished = $null
-        } else {
-            $Finished = $JsonParameters.PSobject.Properties["finished"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "counter"))) { #optional property not found
-            $Counter = $null
-        } else {
-            $Counter = $JsonParameters.PSobject.Properties["counter"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "id" = ${Id}
+            "testId" = ${TestId}
+            "created" = ${Created}
+            "started" = ${Started}
+            "finished" = ${Finished}
+            "counter" = ${Counter}
             "testRunConfigurationSnapshot" = ${TestRunConfigurationSnapshot}
             "state" = ${State}
             "result" = ${Result}
@@ -338,13 +345,6 @@ function ConvertFrom-LEJsonToLoadTestRun {
             "euxScore" = ${EuxScore}
             "vsiMax" = ${VsiMax}
             "comment" = ${Comment}
-            "type" = ${Type}
-            "id" = ${Id}
-            "testId" = ${TestId}
-            "created" = ${Created}
-            "started" = ${Started}
-            "finished" = ${Finished}
-            "counter" = ${Counter}
         }
 
         return $PSO

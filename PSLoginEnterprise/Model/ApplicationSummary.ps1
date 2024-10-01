@@ -14,6 +14,8 @@ No summary available.
 
 Application summary
 
+.PARAMETER ApplicationId
+Application id
 .PARAMETER ApplicationName
 Application name
 .PARAMETER ResultStatus
@@ -36,21 +38,24 @@ function Initialize-LEApplicationSummary {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationName},
+        ${ApplicationId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ApplicationName},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("successful", "overThreshold", "error")]
         [PSCustomObject]
         ${ResultStatus},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${AppExecutionSuccessful},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${PerformanceSuccessful},
+        ${AppExecutionSuccessful},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${PerformanceSuccessful},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${TimerResults},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Screenshots}
     )
@@ -61,6 +66,7 @@ function Initialize-LEApplicationSummary {
 
 
         $PSO = [PSCustomObject]@{
+            "applicationId" = ${ApplicationId}
             "applicationName" = ${ApplicationName}
             "resultStatus" = ${ResultStatus}
             "appExecutionSuccessful" = ${AppExecutionSuccessful}
@@ -104,11 +110,17 @@ function ConvertFrom-LEJsonToApplicationSummary {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEApplicationSummary
-        $AllProperties = ("applicationName", "resultStatus", "appExecutionSuccessful", "performanceSuccessful", "timerResults", "screenshots")
+        $AllProperties = ("applicationId", "applicationName", "resultStatus", "appExecutionSuccessful", "performanceSuccessful", "timerResults", "screenshots")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationId"))) { #optional property not found
+            $ApplicationId = $null
+        } else {
+            $ApplicationId = $JsonParameters.PSobject.Properties["applicationId"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "applicationName"))) { #optional property not found
@@ -148,6 +160,7 @@ function ConvertFrom-LEJsonToApplicationSummary {
         }
 
         $PSO = [PSCustomObject]@{
+            "applicationId" = ${ApplicationId}
             "applicationName" = ${ApplicationName}
             "resultStatus" = ${ResultStatus}
             "appExecutionSuccessful" = ${AppExecutionSuccessful}

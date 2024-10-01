@@ -14,20 +14,6 @@ No summary available.
 
 Application test run
 
-.PARAMETER TestRunConfigurationSnapshot
-No description available.
-.PARAMETER State
-No description available.
-.PARAMETER Result
-No description available.
-.PARAMETER AppFailureResults
-No description available.
-.PARAMETER AppPerformanceResults
-No description available.
-.PARAMETER Properties
-Application test run properties
-.PARAMETER Comment
-Comment
 .PARAMETER Type
 No description available.
 .PARAMETER Id
@@ -42,6 +28,20 @@ Started date-time
 Finished date-time
 .PARAMETER Counter
 Test run counter
+.PARAMETER TestRunConfigurationSnapshot
+No description available.
+.PARAMETER State
+No description available.
+.PARAMETER Result
+No description available.
+.PARAMETER AppFailureResults
+No description available.
+.PARAMETER AppPerformanceResults
+No description available.
+.PARAMETER Properties
+Application test run properties
+.PARAMETER Comment
+Comment
 .OUTPUTS
 
 ApplicationTestRun<PSCustomObject>
@@ -51,49 +51,49 @@ function Initialize-LEApplicationTestRun {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${TestId},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.DateTime]]
+        ${Created},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.DateTime]]
+        ${Started},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[System.DateTime]]
+        ${Finished},
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Counter},
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${TestRunConfigurationSnapshot},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("created", "testRunEnded", "completed")]
         [PSCustomObject]
         ${State},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("successful", "internalError", "cancelled", "incomplete")]
         [PSCustomObject]
         ${Result},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${AppFailureResults},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${AppPerformanceResults},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Properties},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TestId},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${Created},
-        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${Started},
-        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[System.DateTime]]
-        ${Finished},
         [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Counter}
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -106,13 +106,6 @@ function Initialize-LEApplicationTestRun {
 
 
         $PSO = [PSCustomObject]@{
-            "testRunConfigurationSnapshot" = ${TestRunConfigurationSnapshot}
-            "state" = ${State}
-            "result" = ${Result}
-            "appFailureResults" = ${AppFailureResults}
-            "appPerformanceResults" = ${AppPerformanceResults}
-            "properties" = ${Properties}
-            "comment" = ${Comment}
             "type" = ${Type}
             "id" = ${Id}
             "testId" = ${TestId}
@@ -120,6 +113,13 @@ function Initialize-LEApplicationTestRun {
             "started" = ${Started}
             "finished" = ${Finished}
             "counter" = ${Counter}
+            "testRunConfigurationSnapshot" = ${TestRunConfigurationSnapshot}
+            "state" = ${State}
+            "result" = ${Result}
+            "appFailureResults" = ${AppFailureResults}
+            "appPerformanceResults" = ${AppPerformanceResults}
+            "properties" = ${Properties}
+            "comment" = ${Comment}
         }
 
 
@@ -157,7 +157,7 @@ function ConvertFrom-LEJsonToApplicationTestRun {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEApplicationTestRun
-        $AllProperties = ("testRunConfigurationSnapshot", "state", "result", "appFailureResults", "appPerformanceResults", "properties", "comment", "type", "id", "testId", "created", "started", "finished", "counter")
+        $AllProperties = ("type", "id", "testId", "created", "started", "finished", "counter", "testRunConfigurationSnapshot", "state", "result", "appFailureResults", "appPerformanceResults", "properties", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -172,6 +172,42 @@ function ConvertFrom-LEJsonToApplicationTestRun {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "testId"))) { #optional property not found
+            $TestId = $null
+        } else {
+            $TestId = $JsonParameters.PSobject.Properties["testId"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
+            $Created = $null
+        } else {
+            $Created = $JsonParameters.PSobject.Properties["created"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "started"))) { #optional property not found
+            $Started = $null
+        } else {
+            $Started = $JsonParameters.PSobject.Properties["started"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finished"))) { #optional property not found
+            $Finished = $null
+        } else {
+            $Finished = $JsonParameters.PSobject.Properties["finished"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "counter"))) { #optional property not found
+            $Counter = $null
+        } else {
+            $Counter = $JsonParameters.PSobject.Properties["counter"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "testRunConfigurationSnapshot"))) { #optional property not found
@@ -216,50 +252,7 @@ function ConvertFrom-LEJsonToApplicationTestRun {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "testId"))) { #optional property not found
-            $TestId = $null
-        } else {
-            $TestId = $JsonParameters.PSobject.Properties["testId"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
-            $Created = $null
-        } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "started"))) { #optional property not found
-            $Started = $null
-        } else {
-            $Started = $JsonParameters.PSobject.Properties["started"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "finished"))) { #optional property not found
-            $Finished = $null
-        } else {
-            $Finished = $JsonParameters.PSobject.Properties["finished"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "counter"))) { #optional property not found
-            $Counter = $null
-        } else {
-            $Counter = $JsonParameters.PSobject.Properties["counter"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "testRunConfigurationSnapshot" = ${TestRunConfigurationSnapshot}
-            "state" = ${State}
-            "result" = ${Result}
-            "appFailureResults" = ${AppFailureResults}
-            "appPerformanceResults" = ${AppPerformanceResults}
-            "properties" = ${Properties}
-            "comment" = ${Comment}
             "type" = ${Type}
             "id" = ${Id}
             "testId" = ${TestId}
@@ -267,6 +260,13 @@ function ConvertFrom-LEJsonToApplicationTestRun {
             "started" = ${Started}
             "finished" = ${Finished}
             "counter" = ${Counter}
+            "testRunConfigurationSnapshot" = ${TestRunConfigurationSnapshot}
+            "state" = ${State}
+            "result" = ${Result}
+            "appFailureResults" = ${AppFailureResults}
+            "appPerformanceResults" = ${AppPerformanceResults}
+            "properties" = ${Properties}
+            "comment" = ${Comment}
         }
 
         return $PSO

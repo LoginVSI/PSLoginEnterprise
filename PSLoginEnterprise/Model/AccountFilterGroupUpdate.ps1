@@ -14,14 +14,14 @@ No summary available.
 
 Account filter group update data
 
-.PARAMETER VarFilter
-Filter condition (Wildcards available: ""?"" and ""*"")
 .PARAMETER Type
 No description available.
 .PARAMETER Name
 Account group name
 .PARAMETER Description
 Account group description
+.PARAMETER VarFilter
+Filter condition (Wildcards available: ""?"" and ""*"")
 .OUTPUTS
 
 AccountFilterGroupUpdate<PSCustomObject>
@@ -32,16 +32,16 @@ function Initialize-LEAccountFilterGroupUpdate {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarFilter},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Name},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Description},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${VarFilter}
     )
 
     Process {
@@ -54,10 +54,10 @@ function Initialize-LEAccountFilterGroupUpdate {
 
 
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "filter" = ${VarFilter}
         }
 
 
@@ -95,7 +95,7 @@ function ConvertFrom-LEJsonToAccountFilterGroupUpdate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LEAccountFilterGroupUpdate
-        $AllProperties = ("filter", "type", "name", "description")
+        $AllProperties = ("type", "name", "description", "filter")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,12 +112,6 @@ function ConvertFrom-LEJsonToAccountFilterGroupUpdate {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) { #optional property not found
-            $VarFilter = $null
-        } else {
-            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
@@ -130,11 +124,17 @@ function ConvertFrom-LEJsonToAccountFilterGroupUpdate {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filter"))) { #optional property not found
+            $VarFilter = $null
+        } else {
+            $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "filter" = ${VarFilter}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "filter" = ${VarFilter}
         }
 
         return $PSO

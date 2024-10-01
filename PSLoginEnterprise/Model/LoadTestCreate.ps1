@@ -14,12 +14,6 @@ No summary available.
 
 Load test creation data
 
-.PARAMETER SessionMetricsEnabled
-Enable Session Metrics Collection
-.PARAMETER SessionMetricScheduleRate
-Session Metric Schedule Rate
-.PARAMETER SessionMetricGroupKey
-Session metric group key
 .PARAMETER Type
 No description available.
 .PARAMETER Name
@@ -36,6 +30,12 @@ Launcher group ids
 Environment key
 .PARAMETER ApplicationDebugModeEnabled
 Run application scripts in debug mode to capture the error line for scripts failures
+.PARAMETER SessionMetricsEnabled
+Enable Session Metrics Collection
+.PARAMETER SessionMetricScheduleRate
+Session Metric Schedule Rate
+.PARAMETER SessionMetricGroupKey
+Session metric group key
 .OUTPUTS
 
 LoadTestCreate<PSCustomObject>
@@ -45,38 +45,38 @@ function Initialize-LELoadTestCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Boolean]]
-        ${SessionMetricsEnabled},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SessionMetricScheduleRate},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SessionMetricGroupKey},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${Connector},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${AccountGroups},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${LauncherGroups},
-        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${EnvironmentKey},
-        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
-        ${ApplicationDebugModeEnabled}
+        ${ApplicationDebugModeEnabled},
+        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${SessionMetricsEnabled},
+        [Parameter(Position = 9, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${SessionMetricScheduleRate},
+        [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${SessionMetricGroupKey}
     )
 
     Process {
@@ -101,9 +101,6 @@ function Initialize-LELoadTestCreate {
 
 
         $PSO = [PSCustomObject]@{
-            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
-            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
-            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -112,6 +109,9 @@ function Initialize-LELoadTestCreate {
             "launcherGroups" = ${LauncherGroups}
             "environmentKey" = ${EnvironmentKey}
             "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
+            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
+            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
+            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
         }
 
 
@@ -149,7 +149,7 @@ function ConvertFrom-LEJsonToLoadTestCreate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LELoadTestCreate
-        $AllProperties = ("sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey", "type", "name", "description", "connector", "accountGroups", "launcherGroups", "environmentKey", "applicationDebugModeEnabled")
+        $AllProperties = ("type", "name", "description", "connector", "accountGroups", "launcherGroups", "environmentKey", "applicationDebugModeEnabled", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -176,24 +176,6 @@ function ConvertFrom-LEJsonToLoadTestCreate {
             throw "Error! JSON cannot be serialized due to the required property 'connector' missing."
         } else {
             $Connector = $JsonParameters.PSobject.Properties["connector"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricsEnabled"))) { #optional property not found
-            $SessionMetricsEnabled = $null
-        } else {
-            $SessionMetricsEnabled = $JsonParameters.PSobject.Properties["sessionMetricsEnabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricScheduleRate"))) { #optional property not found
-            $SessionMetricScheduleRate = $null
-        } else {
-            $SessionMetricScheduleRate = $JsonParameters.PSobject.Properties["sessionMetricScheduleRate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricGroupKey"))) { #optional property not found
-            $SessionMetricGroupKey = $null
-        } else {
-            $SessionMetricGroupKey = $JsonParameters.PSobject.Properties["sessionMetricGroupKey"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -226,10 +208,25 @@ function ConvertFrom-LEJsonToLoadTestCreate {
             $ApplicationDebugModeEnabled = $JsonParameters.PSobject.Properties["applicationDebugModeEnabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricsEnabled"))) { #optional property not found
+            $SessionMetricsEnabled = $null
+        } else {
+            $SessionMetricsEnabled = $JsonParameters.PSobject.Properties["sessionMetricsEnabled"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricScheduleRate"))) { #optional property not found
+            $SessionMetricScheduleRate = $null
+        } else {
+            $SessionMetricScheduleRate = $JsonParameters.PSobject.Properties["sessionMetricScheduleRate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sessionMetricGroupKey"))) { #optional property not found
+            $SessionMetricGroupKey = $null
+        } else {
+            $SessionMetricGroupKey = $JsonParameters.PSobject.Properties["sessionMetricGroupKey"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
-            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
-            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
             "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
@@ -238,6 +235,9 @@ function ConvertFrom-LEJsonToLoadTestCreate {
             "launcherGroups" = ${LauncherGroups}
             "environmentKey" = ${EnvironmentKey}
             "applicationDebugModeEnabled" = ${ApplicationDebugModeEnabled}
+            "sessionMetricsEnabled" = ${SessionMetricsEnabled}
+            "sessionMetricScheduleRate" = ${SessionMetricScheduleRate}
+            "sessionMetricGroupKey" = ${SessionMetricGroupKey}
         }
 
         return $PSO

@@ -14,16 +14,16 @@ No summary available.
 
 Azure Connection Test
 
+.PARAMETER Type
+No description available.
+.PARAMETER ProviderId
+Provider Id
 .PARAMETER TenantId
 Tenant Id
 .PARAMETER ApplicationId
 Application Id
 .PARAMETER Secret
 Client Secret
-.PARAMETER Type
-No description available.
-.PARAMETER ProviderId
-Provider Id
 .OUTPUTS
 
 TestAzureConnectionData<PSCustomObject>
@@ -34,19 +34,19 @@ function Initialize-LETestAzureConnectionData {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${TenantId},
+        ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ApplicationId},
+        ${ProviderId},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Secret},
+        ${TenantId},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${ApplicationId},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ProviderId}
+        ${Secret}
     )
 
     Process {
@@ -59,11 +59,11 @@ function Initialize-LETestAzureConnectionData {
 
 
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "providerId" = ${ProviderId}
             "tenantId" = ${TenantId}
             "applicationId" = ${ApplicationId}
             "secret" = ${Secret}
-            "type" = ${Type}
-            "providerId" = ${ProviderId}
         }
 
 
@@ -101,7 +101,7 @@ function ConvertFrom-LEJsonToTestAzureConnectionData {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in LETestAzureConnectionData
-        $AllProperties = ("tenantId", "applicationId", "secret", "type", "providerId")
+        $AllProperties = ("type", "providerId", "tenantId", "applicationId", "secret")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -116,6 +116,12 @@ function ConvertFrom-LEJsonToTestAzureConnectionData {
             throw "Error! JSON cannot be serialized due to the required property 'type' missing."
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "providerId"))) { #optional property not found
+            $ProviderId = $null
+        } else {
+            $ProviderId = $JsonParameters.PSobject.Properties["providerId"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tenantId"))) { #optional property not found
@@ -136,18 +142,12 @@ function ConvertFrom-LEJsonToTestAzureConnectionData {
             $Secret = $JsonParameters.PSobject.Properties["secret"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "providerId"))) { #optional property not found
-            $ProviderId = $null
-        } else {
-            $ProviderId = $JsonParameters.PSobject.Properties["providerId"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "type" = ${Type}
+            "providerId" = ${ProviderId}
             "tenantId" = ${TenantId}
             "applicationId" = ${ApplicationId}
             "secret" = ${Secret}
-            "type" = ${Type}
-            "providerId" = ${ProviderId}
         }
 
         return $PSO
