@@ -29,7 +29,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $LocationCreate = Initialize-LELocationCreate -Name "MyName" -Latitude 0 -Longitude 0 -Description "MyDescription" # LocationCreate | Location data
@@ -81,7 +81,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $LocationId = 56 # Int32 | Location id
@@ -133,7 +133,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RequestBody = 0 # Int32[] | Location ids (optional)
@@ -186,7 +186,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $LocationId = 56 # Int32 | Location id
@@ -246,7 +246,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $OrderBy = "name" # LocationSortKey | Sort Key
@@ -311,7 +311,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $LocationId = 56 # Int32 | Location id

@@ -33,7 +33,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
@@ -87,7 +87,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentCost = Initialize-LEEnvironmentCost -Currency "usd" -ExpectedUserAmount 0 -ActualUserAmount 0 -CapitalExpenditures 0 -OperationalExpenditures 0
@@ -141,7 +141,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
@@ -194,7 +194,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
@@ -250,7 +250,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
@@ -312,7 +312,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $OrderBy = "name" # EnvironmentSortKey | Sort Key
@@ -384,7 +384,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $Type = "applicationTest" # TestType | Test type (Only continuous and load test types are supported)
@@ -453,7 +453,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
@@ -508,7 +508,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id

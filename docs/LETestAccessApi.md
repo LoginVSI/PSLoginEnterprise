@@ -28,7 +28,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestAccessBulkUpdate = Initialize-LETestAccessBulkUpdate -TestIds "MyTestIds" -RoleIds "MyRoleIds" # TestAccessBulkUpdate | The update request (optional)
@@ -80,7 +80,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestAccessBulkUpdate = Initialize-LETestAccessBulkUpdate -TestIds "MyTestIds" -RoleIds "MyRoleIds" # TestAccessBulkUpdate | The update request (optional)
@@ -132,7 +132,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | The ID of the Test.
@@ -184,7 +184,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RoleId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | The ID of the role used to filter tests. Empty when fetching tests without assigned roles (optional)
@@ -237,7 +237,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | The ID of the Test.
