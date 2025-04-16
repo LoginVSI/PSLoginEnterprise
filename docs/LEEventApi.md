@@ -4,11 +4,11 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEEvent**](LEEventApi.md#Get-LEEvent) | **GET** /v7-preview/events/{eventId} | Get event by id
-[**Get-LEEvents**](LEEventApi.md#Get-LEEvents) | **GET** /v7-preview/events | Get paginated list of all events
-[**Get-LEEventsByAppExecution**](LEEventApi.md#Get-LEEventsByAppExecution) | **GET** /v7-preview/test-runs/{testRunId}/app-executions/{appExecutionId}/events | Get paginated list of events by app-execution id
-[**Get-LEEventsByTestRun**](LEEventApi.md#Get-LEEventsByTestRun) | **GET** /v7-preview/test-runs/{testRunId}/events | Get paginated list of events by test-run id
-[**Get-LEEventsByUserSession**](LEEventApi.md#Get-LEEventsByUserSession) | **GET** /v7-preview/test-runs/{testRunId}/user-sessions/{userSessionId}/events | Get paginated list of events by user-session id
+[**Get-LEEvent**](LEEventApi.md#Get-LEEvent) | **GET** /v7/events/{eventId} | Get event by id
+[**Get-LEEvents**](LEEventApi.md#Get-LEEvents) | **GET** /v7/events | Get paginated list of all events
+[**Get-LEEventsByAppExecution**](LEEventApi.md#Get-LEEventsByAppExecution) | **GET** /v7/test-runs/{testRunId}/app-executions/{appExecutionId}/events | Get paginated list of events by app-execution id
+[**Get-LEEventsByTestRun**](LEEventApi.md#Get-LEEventsByTestRun) | **GET** /v7/test-runs/{testRunId}/events | Get paginated list of events by test-run id
+[**Get-LEEventsByUserSession**](LEEventApi.md#Get-LEEventsByUserSession) | **GET** /v7/test-runs/{testRunId}/user-sessions/{userSessionId}/events | Get paginated list of events by user-session id
 
 
 <a id="Get-LEEvent"></a>
@@ -27,10 +27,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EventId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Event id
 $Include = "none" # EventInclude[] | Include options (optional)
@@ -87,10 +87,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $Direction = "asc" # SortOrder | Sort direction
 $Count = 56 # Int32 | Number of records to return (default to 100)
@@ -157,10 +157,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id
@@ -228,10 +228,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Direction = "asc" # SortOrder | Sort direction
@@ -300,10 +300,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $UserSessionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User-session id

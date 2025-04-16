@@ -4,15 +4,15 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LEEnvironmentToTests**](LEEnvironmentApi.md#Add-LEEnvironmentToTests) | **PUT** /v7-preview/environments/{environmentId}/tests | Add tests to an environment
-[**New-LEEnvironment**](LEEnvironmentApi.md#New-LEEnvironment) | **POST** /v7-preview/environments | Create environment
-[**Invoke-LEDeleteEnvironment**](LEEnvironmentApi.md#Invoke-LEDeleteEnvironment) | **DELETE** /v7-preview/environments/{environmentId} | Delete environment
-[**Get-LEEnvironmentById**](LEEnvironmentApi.md#Get-LEEnvironmentById) | **GET** /v7-preview/environments/{environmentId} | Get environment by id
-[**Get-LEEnvironmentCostHistory**](LEEnvironmentApi.md#Get-LEEnvironmentCostHistory) | **GET** /v7-preview/environments/{environmentId}/cost/history | Get cost history for a given environment
-[**Get-LEEnvironments**](LEEnvironmentApi.md#Get-LEEnvironments) | **GET** /v7-preview/environments | Get a list of environments
-[**Get-LETestsByEnvironmentKey**](LEEnvironmentApi.md#Get-LETestsByEnvironmentKey) | **GET** /v7-preview/environments/tests | Get tests by environment id
-[**Remove-LEEnvironmentFromTests**](LEEnvironmentApi.md#Remove-LEEnvironmentFromTests) | **DELETE** /v7-preview/environments/{environmentId}/tests | Delete tests from environment
-[**Update-LEEnvironment**](LEEnvironmentApi.md#Update-LEEnvironment) | **PUT** /v7-preview/environments/{environmentId} | Update environment
+[**Add-LEEnvironmentToTests**](LEEnvironmentApi.md#Add-LEEnvironmentToTests) | **PUT** /v7/environments/{environmentId}/tests | Add tests to an environment
+[**New-LEEnvironment**](LEEnvironmentApi.md#New-LEEnvironment) | **POST** /v7/environments | Create environment
+[**Invoke-LEDeleteEnvironment**](LEEnvironmentApi.md#Invoke-LEDeleteEnvironment) | **DELETE** /v7/environments/{environmentId} | Delete environment
+[**Get-LEEnvironmentById**](LEEnvironmentApi.md#Get-LEEnvironmentById) | **GET** /v7/environments/{environmentId} | Get environment by id
+[**Get-LEEnvironmentCostHistory**](LEEnvironmentApi.md#Get-LEEnvironmentCostHistory) | **GET** /v7/environments/{environmentId}/cost/history | Get cost history for a given environment
+[**Get-LEEnvironments**](LEEnvironmentApi.md#Get-LEEnvironments) | **GET** /v7/environments | Get a list of environments
+[**Get-LETestsByEnvironmentKey**](LEEnvironmentApi.md#Get-LETestsByEnvironmentKey) | **GET** /v7/environments/tests | Get tests by environment id
+[**Remove-LEEnvironmentFromTests**](LEEnvironmentApi.md#Remove-LEEnvironmentFromTests) | **DELETE** /v7/environments/{environmentId}/tests | Delete tests from environment
+[**Update-LEEnvironment**](LEEnvironmentApi.md#Update-LEEnvironment) | **PUT** /v7/environments/{environmentId} | Update environment
 
 
 <a id="Add-LEEnvironmentToTests"></a>
@@ -31,10 +31,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
 $RequestBody = "MyRequestBody" # String[] | Test Key list
@@ -85,10 +85,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentCost = Initialize-LEEnvironmentCost -Currency "usd" -ExpectedUserAmount 0 -ActualUserAmount 0 -CapitalExpenditures 0 -OperationalExpenditures 0
 $EnvironmentAttributes = Initialize-LEEnvironmentAttributes -ResourceGroup "MyResourceGroup" -HostPool "MyHostPool"
@@ -139,10 +139,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
 
@@ -192,10 +192,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
 $Include = "none" # EnvironmentInclude[] | Include options (optional)
@@ -248,10 +248,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
 $From = (Get-Date) # System.DateTime | Include EnvironmentCost where Timestamp is greater than the specified date-time (optional) (optional)
@@ -310,10 +310,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # EnvironmentSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 
 <a id="Get-LETestsByEnvironmentKey"></a>
 # **Get-LETestsByEnvironmentKey**
-> EnvironmentResultSet Get-LETestsByEnvironmentKey<br>
+> TestResultSet Get-LETestsByEnvironmentKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Type] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
@@ -382,10 +382,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $Type = "applicationTest" # TestType | Test type (Only continuous and load test types are supported)
 $OrderBy = "name" # TestSortKey | Sort Key
@@ -395,7 +395,7 @@ $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | A test's envi
 $Filter = "MyFilter" # String | Filter the tests (optional)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
-$Include = "none" # EnvironmentIncludeOptions[] | Include options (optional)
+$Include = "none" # TestInclude[] | Include options (optional)
 
 # Get tests by environment id
 try {
@@ -418,11 +418,11 @@ Name | Type | Description  | Notes
  **Filter** | **String**| Filter the tests | [optional] 
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
- **Include** | [**EnvironmentIncludeOptions[]**](EnvironmentIncludeOptions.md)| Include options | [optional] 
+ **Include** | [**TestInclude[]**](TestInclude.md)| Include options | [optional] 
 
 ### Return type
 
-[**EnvironmentResultSet**](EnvironmentResultSet.md) (PSCustomObject)
+[**TestResultSet**](TestResultSet.md) (PSCustomObject)
 
 ### Authorization
 
@@ -451,10 +451,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
 $RequestBody = "MyRequestBody" # String[] | Test key list
@@ -506,10 +506,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Environment id
 $EnvironmentCost = Initialize-LEEnvironmentCost -Currency "usd" -ExpectedUserAmount 0 -ActualUserAmount 0 -CapitalExpenditures 0 -OperationalExpenditures 0

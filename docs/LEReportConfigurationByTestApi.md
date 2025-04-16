@@ -4,21 +4,21 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEReportConfiguration**](LEReportConfigurationByTestApi.md#New-LEReportConfiguration) | **POST** /v7-preview/tests/{testId}/report-configurations | Create report-configuration
-[**New-LEReportConfigurationThreshold**](LEReportConfigurationByTestApi.md#New-LEReportConfigurationThreshold) | **POST** /v7-preview/tests/{testId}/report-configurations/{configurationId}/thresholds | Create report-configuration app-threshold
-[**Invoke-LEDeleteReportConfiguration**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfiguration) | **DELETE** /v7-preview/tests/{testId}/report-configurations/{configurationId} | Delete report-configuration
-[**Invoke-LEDeleteReportConfigurationLogo**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurationLogo) | **DELETE** /v7-preview/tests/{testId}/report-configurations/{configurationId}/logo | Delete report-configuration logo
-[**Invoke-LEDeleteReportConfigurationThreshold**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurationThreshold) | **DELETE** /v7-preview/tests/{testId}/report-configurations/{configurationId}/thresholds/{thresholdId} | Delete report-configuration threshold
-[**Invoke-LEDeleteReportConfigurationThresholds**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurationThresholds) | **DELETE** /v7-preview/tests/{testId}/report-configurations/{configurationId}/thresholds | Delete multiple report-configuration thresholds
-[**Invoke-LEDeleteReportConfigurations**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurations) | **DELETE** /v7-preview/tests/{testId}/report-configurations | Delete multiple report-configuration
-[**Get-LEReportConfiguration**](LEReportConfigurationByTestApi.md#Get-LEReportConfiguration) | **GET** /v7-preview/tests/{testId}/report-configurations/{configurationId} | Get report-configuration by id
-[**Get-LEReportConfigurationLogo**](LEReportConfigurationByTestApi.md#Get-LEReportConfigurationLogo) | **GET** /v7-preview/tests/{testId}/report-configurations/{configurationId}/logo | Get report-configuration logo
-[**Get-LEReportConfigurations**](LEReportConfigurationByTestApi.md#Get-LEReportConfigurations) | **GET** /v7-preview/tests/{testId}/report-configurations | Get paginated list of report-configurations
-[**Invoke-LEReplaceReportConfigurationThresholds**](LEReportConfigurationByTestApi.md#Invoke-LEReplaceReportConfigurationThresholds) | **PUT** /v7-preview/tests/{testId}/report-configurations/{configurationId}/thresholds | Replace report-configuration app-thresholds
-[**Request-LEReport**](LEReportConfigurationByTestApi.md#Request-LEReport) | **POST** /v7-preview/tests/{testId}/report-configurations/{configurationId}/report-request | Request report by report-configuration id
-[**Update-LEReportConfiguration**](LEReportConfigurationByTestApi.md#Update-LEReportConfiguration) | **PUT** /v7-preview/tests/{testId}/report-configurations/{configurationId} | Update report-configuration
-[**Update-LEReportConfigurationLogo**](LEReportConfigurationByTestApi.md#Update-LEReportConfigurationLogo) | **PUT** /v7-preview/tests/{testId}/report-configurations/{configurationId}/logo | Upload report-configuration logo (supported file types: .png/.svg/.jpg/.jpeg)
-[**Update-LEReportConfigurationThreshold**](LEReportConfigurationByTestApi.md#Update-LEReportConfigurationThreshold) | **PUT** /v7-preview/tests/{testId}/report-configurations/{configurationId}/thresholds/{thresholdId} | Update report-configuration threshold
+[**New-LEReportConfiguration**](LEReportConfigurationByTestApi.md#New-LEReportConfiguration) | **POST** /v7/tests/{testId}/report-configurations | Create report-configuration
+[**New-LEReportConfigurationThreshold**](LEReportConfigurationByTestApi.md#New-LEReportConfigurationThreshold) | **POST** /v7/tests/{testId}/report-configurations/{configurationId}/thresholds | Create report-configuration app-threshold
+[**Invoke-LEDeleteReportConfiguration**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfiguration) | **DELETE** /v7/tests/{testId}/report-configurations/{configurationId} | Delete report-configuration
+[**Invoke-LEDeleteReportConfigurationLogo**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurationLogo) | **DELETE** /v7/tests/{testId}/report-configurations/{configurationId}/logo | Delete report-configuration logo
+[**Invoke-LEDeleteReportConfigurationThreshold**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurationThreshold) | **DELETE** /v7/tests/{testId}/report-configurations/{configurationId}/thresholds/{thresholdId} | Delete report-configuration threshold
+[**Invoke-LEDeleteReportConfigurationThresholds**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurationThresholds) | **DELETE** /v7/tests/{testId}/report-configurations/{configurationId}/thresholds | Delete multiple report-configuration thresholds
+[**Invoke-LEDeleteReportConfigurations**](LEReportConfigurationByTestApi.md#Invoke-LEDeleteReportConfigurations) | **DELETE** /v7/tests/{testId}/report-configurations | Delete multiple report-configuration
+[**Get-LEReportConfiguration**](LEReportConfigurationByTestApi.md#Get-LEReportConfiguration) | **GET** /v7/tests/{testId}/report-configurations/{configurationId} | Get report-configuration by id
+[**Get-LEReportConfigurationLogo**](LEReportConfigurationByTestApi.md#Get-LEReportConfigurationLogo) | **GET** /v7/tests/{testId}/report-configurations/{configurationId}/logo | Get report-configuration logo
+[**Get-LEReportConfigurations**](LEReportConfigurationByTestApi.md#Get-LEReportConfigurations) | **GET** /v7/tests/{testId}/report-configurations | Get paginated list of report-configurations
+[**Invoke-LEReplaceReportConfigurationThresholds**](LEReportConfigurationByTestApi.md#Invoke-LEReplaceReportConfigurationThresholds) | **PUT** /v7/tests/{testId}/report-configurations/{configurationId}/thresholds | Replace report-configuration app-thresholds
+[**Request-LEReport**](LEReportConfigurationByTestApi.md#Request-LEReport) | **POST** /v7/tests/{testId}/report-configurations/{configurationId}/report-request | Request report by report-configuration id
+[**Update-LEReportConfiguration**](LEReportConfigurationByTestApi.md#Update-LEReportConfiguration) | **PUT** /v7/tests/{testId}/report-configurations/{configurationId} | Update report-configuration
+[**Update-LEReportConfigurationLogo**](LEReportConfigurationByTestApi.md#Update-LEReportConfigurationLogo) | **PUT** /v7/tests/{testId}/report-configurations/{configurationId}/logo | Upload report-configuration logo (supported file types: .png/.svg/.jpg/.jpeg)
+[**Update-LEReportConfigurationThreshold**](LEReportConfigurationByTestApi.md#Update-LEReportConfigurationThreshold) | **PUT** /v7/tests/{testId}/report-configurations/{configurationId}/thresholds/{thresholdId} | Update report-configuration threshold
 
 
 <a id="New-LEReportConfiguration"></a>
@@ -37,10 +37,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ThresholdUpdate = Initialize-LEThresholdUpdate -IsEnabled $false -Value 0
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 <a id="New-LEReportConfigurationThreshold"></a>
 # **New-LEReportConfigurationThreshold**
-> ObjectId New-LEReportConfigurationThreshold<br>
+> void New-LEReportConfigurationThreshold<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ConfigurationId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AppThresholdCreate] <PSCustomObject><br>
@@ -95,10 +95,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectId**](ObjectId.md) (PSCustomObject)
+void (empty response body)
 
 ### Authorization
 
@@ -152,10 +152,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -207,10 +207,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -263,10 +263,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -321,10 +321,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -378,10 +378,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $RequestBody = "MyRequestBody" # String[] | Report-configuration ids
@@ -434,10 +434,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report=configuration id
@@ -491,10 +491,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -551,10 +551,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $OrderBy = "name" # ReportConfigurationSortKey | Sort Key
@@ -617,10 +617,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -660,7 +660,7 @@ void (empty response body)
 
 <a id="Request-LEReport"></a>
 # **Request-LEReport**
-> ObjectId Request-LEReport<br>
+> void Request-LEReport<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ConfigurationId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ReportRequest] <PSCustomObject><br>
@@ -675,10 +675,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -703,7 +703,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectId**](ObjectId.md) (PSCustomObject)
+void (empty response body)
 
 ### Authorization
 
@@ -733,10 +733,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -791,10 +791,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id
@@ -848,10 +848,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Report-configuration id

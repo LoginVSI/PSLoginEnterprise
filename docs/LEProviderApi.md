@@ -4,12 +4,12 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEProvider**](LEProviderApi.md#New-LEProvider) | **POST** /v7-preview/providers | Create provider
-[**Invoke-LEDeleteProvider**](LEProviderApi.md#Invoke-LEDeleteProvider) | **DELETE** /v7-preview/providers/{providerId} | Delete provider
-[**Get-LEProviderById**](LEProviderApi.md#Get-LEProviderById) | **GET** /v7-preview/providers/{providerId} | Get provider by id
-[**Get-LEProviders**](LEProviderApi.md#Get-LEProviders) | **GET** /v7-preview/providers | Get a list of providers
-[**Test-LEProviderConnection**](LEProviderApi.md#Test-LEProviderConnection) | **POST** /v7-preview/providers/test-connection | Test provider connection
-[**Update-LEProvider**](LEProviderApi.md#Update-LEProvider) | **PUT** /v7-preview/providers/{providerId} | Update provider
+[**New-LEProvider**](LEProviderApi.md#New-LEProvider) | **POST** /v7/providers | Create provider
+[**Invoke-LEDeleteProvider**](LEProviderApi.md#Invoke-LEDeleteProvider) | **DELETE** /v7/providers/{providerId} | Delete provider
+[**Get-LEProviderById**](LEProviderApi.md#Get-LEProviderById) | **GET** /v7/providers/{providerId} | Get provider by id
+[**Get-LEProviders**](LEProviderApi.md#Get-LEProviders) | **GET** /v7/providers | Get a list of providers
+[**Test-LEProviderConnection**](LEProviderApi.md#Test-LEProviderConnection) | **POST** /v7/providers/test-connection | Test provider connection
+[**Update-LEProvider**](LEProviderApi.md#Update-LEProvider) | **PUT** /v7/providers/{providerId} | Update provider
 
 
 <a id="New-LEProvider"></a>
@@ -27,10 +27,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $DataCreateProviderRequest = Initialize-LEDataCreateProviderRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" # DataCreateProviderRequest | Provider data
 
@@ -79,10 +79,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ProviderId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Provider id
 
@@ -131,10 +131,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ProviderId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Provider id
 
@@ -188,10 +188,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # ProviderSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -250,10 +250,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $DataTestProviderConnectionRequest = Initialize-LEDataTestProviderConnectionRequest -Type "MyType" -ProviderId "MyProviderId" -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" # DataTestProviderConnectionRequest | Test Provider Connection
 
@@ -303,10 +303,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ProviderId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Provider id
 $DataCreateProviderRequest = Initialize-LEDataCreateProviderRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -TenantId "MyTenantId" -ApplicationId "MyApplicationId" -Secret "MySecret" # DataCreateProviderRequest | Provider data

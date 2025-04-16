@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEContinuousTestNotification**](LENotificationApi.md#New-LEContinuousTestNotification) | **POST** /v7-preview/tests/{testId}/notifications | Create test-notification
-[**Invoke-LEDeleteContinuousTestNotification**](LENotificationApi.md#Invoke-LEDeleteContinuousTestNotification) | **DELETE** /v7-preview/tests/{testId}/notifications/{notificationId} | Delete test-notification
-[**Get-LEContinuousTestNotifications**](LENotificationApi.md#Get-LEContinuousTestNotifications) | **GET** /v7-preview/tests/{testId}/notifications | Get list of test-notification
-[**Update-LEContinuousTestNotification**](LENotificationApi.md#Update-LEContinuousTestNotification) | **PUT** /v7-preview/tests/{testId}/notifications/{notificationId} | Update test-notification
+[**New-LEContinuousTestNotification**](LENotificationApi.md#New-LEContinuousTestNotification) | **POST** /v7/tests/{testId}/notifications | Create test-notification
+[**Invoke-LEDeleteContinuousTestNotification**](LENotificationApi.md#Invoke-LEDeleteContinuousTestNotification) | **DELETE** /v7/tests/{testId}/notifications/{notificationId} | Delete test-notification
+[**Get-LEContinuousTestNotifications**](LENotificationApi.md#Get-LEContinuousTestNotifications) | **GET** /v7/tests/{testId}/notifications | Get list of test-notification
+[**Update-LEContinuousTestNotification**](LENotificationApi.md#Update-LEContinuousTestNotification) | **PUT** /v7/tests/{testId}/notifications/{notificationId} | Update test-notification
 
 
 <a id="New-LEContinuousTestNotification"></a>
@@ -26,10 +26,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $AppThresholdCreate = Initialize-LEAppThresholdCreate -ApplicationId "MyApplicationId" -Timer "MyTimer" -IsEnabled $false -Value 0
@@ -82,10 +82,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $NotificationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-notification id
@@ -136,10 +136,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -190,10 +190,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $NotificationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-notification id

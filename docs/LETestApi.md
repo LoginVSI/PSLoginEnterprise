@@ -4,23 +4,23 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Invoke-LEBulkDisableUpdate**](LETestApi.md#Invoke-LEBulkDisableUpdate) | **PATCH** /v7-preview/tests/disable | Bulk disable tests
-[**Invoke-LEBulkEnableUpdate**](LETestApi.md#Invoke-LEBulkEnableUpdate) | **PATCH** /v7-preview/tests/enable | Bulk enable tests
-[**Copy-LETest**](LETestApi.md#Copy-LETest) | **POST** /v7-preview/tests/{testId}/copy | Copy test
-[**New-LETest**](LETestApi.md#New-LETest) | **POST** /v7-preview/tests | Create test
-[**Invoke-LEDeleteTest**](LETestApi.md#Invoke-LEDeleteTest) | **DELETE** /v7-preview/tests/{testId} | Delete test
-[**Invoke-LEDeleteTests**](LETestApi.md#Invoke-LEDeleteTests) | **DELETE** /v7-preview/tests | Delete multiple tests
-[**Get-LEActiveTimeSlots**](LETestApi.md#Get-LEActiveTimeSlots) | **GET** /v7-preview/tests/{testId}/active-time-slots | Get active time slots
-[**Get-LETest**](LETestApi.md#Get-LETest) | **GET** /v7-preview/tests/{testId} | Get test by id
-[**Get-LETests**](LETestApi.md#Get-LETests) | **GET** /v7-preview/tests | Get paginated list of tests
-[**Get-LETestsByAccountGroup**](LETestApi.md#Get-LETestsByAccountGroup) | **GET** /v7-preview/tests/account-groups/{groupId} | Get list of tests by account group
-[**Get-LETestsByApplicationGroup**](LETestApi.md#Get-LETestsByApplicationGroup) | **GET** /v7-preview/tests/application-groups/{groupId} | Get list of tests by application group
-[**Get-LETestsByApplicationId**](LETestApi.md#Get-LETestsByApplicationId) | **GET** /v7-preview/tests/applications/{applicationId} | Get all tests by application id
-[**Get-LETestsByLauncherGroup**](LETestApi.md#Get-LETestsByLauncherGroup) | **GET** /v7-preview/tests/launcher-groups/{groupId} | Get list of tests by launcher group
-[**Start-LETest**](LETestApi.md#Start-LETest) | **PUT** /v7-preview/tests/{testId}/start | Start test
-[**Stop-LETest**](LETestApi.md#Stop-LETest) | **PUT** /v7-preview/tests/{testId}/stop | Stop test
-[**Update-LEActiveTimeSlots**](LETestApi.md#Update-LEActiveTimeSlots) | **PUT** /v7-preview/tests/{testId}/active-time-slots | Update active time slots
-[**Update-LETest**](LETestApi.md#Update-LETest) | **PUT** /v7-preview/tests/{testId} | Update test
+[**Invoke-LEBulkDisableUpdate**](LETestApi.md#Invoke-LEBulkDisableUpdate) | **PATCH** /v7/tests/disable | Bulk disable tests
+[**Invoke-LEBulkEnableUpdate**](LETestApi.md#Invoke-LEBulkEnableUpdate) | **PATCH** /v7/tests/enable | Bulk enable tests
+[**Copy-LETest**](LETestApi.md#Copy-LETest) | **POST** /v7/tests/{testId}/copy | Copy test
+[**New-LETest**](LETestApi.md#New-LETest) | **POST** /v7/tests | Create test
+[**Invoke-LEDeleteTest**](LETestApi.md#Invoke-LEDeleteTest) | **DELETE** /v7/tests/{testId} | Delete test
+[**Invoke-LEDeleteTests**](LETestApi.md#Invoke-LEDeleteTests) | **DELETE** /v7/tests | Delete multiple tests
+[**Get-LEActiveTimeSlots**](LETestApi.md#Get-LEActiveTimeSlots) | **GET** /v7/tests/{testId}/active-time-slots | Get active time slots
+[**Get-LETest**](LETestApi.md#Get-LETest) | **GET** /v7/tests/{testId} | Get test by id
+[**Get-LETests**](LETestApi.md#Get-LETests) | **GET** /v7/tests | Get paginated list of tests
+[**Get-LETestsByAccountGroup**](LETestApi.md#Get-LETestsByAccountGroup) | **GET** /v7/tests/account-groups/{groupId} | Get list of tests by account group
+[**Get-LETestsByApplicationGroup**](LETestApi.md#Get-LETestsByApplicationGroup) | **GET** /v7/tests/application-groups/{groupId} | Get list of tests by application group
+[**Get-LETestsByApplicationId**](LETestApi.md#Get-LETestsByApplicationId) | **GET** /v7/tests/applications/{applicationId} | Get all tests by application id
+[**Get-LETestsByLauncherGroup**](LETestApi.md#Get-LETestsByLauncherGroup) | **GET** /v7/tests/launcher-groups/{groupId} | Get list of tests by launcher group
+[**Start-LETest**](LETestApi.md#Start-LETest) | **PUT** /v7/tests/{testId}/start | Start test
+[**Stop-LETest**](LETestApi.md#Stop-LETest) | **PUT** /v7/tests/{testId}/stop | Stop test
+[**Update-LEActiveTimeSlots**](LETestApi.md#Update-LEActiveTimeSlots) | **PUT** /v7/tests/{testId}/active-time-slots | Update active time slots
+[**Update-LETest**](LETestApi.md#Update-LETest) | **PUT** /v7/tests/{testId} | Update test
 
 
 <a id="Invoke-LEBulkDisableUpdate"></a>
@@ -38,10 +38,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | 
 
@@ -90,10 +90,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | 
 
@@ -143,10 +143,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $TestCopy = Initialize-LETestCopy -Name "MyName" # TestCopy | Object containing the Name of the new Test
@@ -197,16 +197,16 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $Resolution = Initialize-LEResolution -Width 0 -Height 0
 $TargetHost = Initialize-LETargetHost -Enabled $false -Endpoint "MyEndpoint"
 $TestCreateConnector = Initialize-LETestCreateConnector -Type "MyType" -VarHost "MyVarHost" -CommandLine "MyCommandLine" -Resource "MyResource" -ServerUrl "MyServerUrl" -DisplayResolution $Resolution -HostList $TargetHost -Gateway "MyGateway" -SuppressCertWarn $false
 
-$ConfigurationCreateTestRequest = Initialize-LEConfigurationCreateTestRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -Connector $TestCreateConnector -AccountGroups "MyAccountGroups" -LauncherGroups "MyLauncherGroups" -EnvironmentKey "MyEnvironmentKey" -ApplicationDebugModeEnabled $false -SessionMetricsEnabled $false -SessionMetricScheduleRate 0 -SessionMetricGroupKey "MySessionMetricGroupKey" # ConfigurationCreateTestRequest | Test data
+$ConfigurationCreateTestRequest = Initialize-LEConfigurationCreateTestRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -Connector $TestCreateConnector -AccountGroups "MyAccountGroups" -LauncherGroups "MyLauncherGroups" -EnvironmentKey "MyEnvironmentKey" -ApplicationDebugModeEnabled $false -Roles "MyRoles" -SessionMetricsEnabled $false -SessionMetricScheduleRate 0 -SessionMetricGroupKey "MySessionMetricGroupKey" # ConfigurationCreateTestRequest | Test data
 
 # Create test
 try {
@@ -253,10 +253,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -305,10 +305,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Test ids
 
@@ -357,10 +357,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -410,10 +410,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Include = "none" # TestInclude[] | Include options (optional)
@@ -471,10 +471,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # TestSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -539,10 +539,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account group id
 $TestType = "applicationTest" # String | Test type (if null gets all) (optional)
@@ -597,10 +597,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application group id
 $TestType = "applicationTest" # String | Test type (if null gets all) (optional)
@@ -654,10 +654,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | ApplicationId id
 $Include = "none" # TestInclude[] | Include options for test (optional)
@@ -710,10 +710,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher group id
 $TestType = "applicationTest" # String | Test type (if null gets all) (optional)
@@ -767,10 +767,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $StartRequest = Initialize-LEStartRequest -Comment "MyComment" # StartRequest | Start-request data
@@ -821,10 +821,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -874,10 +874,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ActiveTimeSlotsUpdate = Initialize-LEActiveTimeSlotsUpdate -Mode "alwaysOn" -TimeSlots $false # ActiveTimeSlotsUpdate | active time slots update
@@ -929,10 +929,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Resolution = Initialize-LEResolution -Width 0 -Height 0

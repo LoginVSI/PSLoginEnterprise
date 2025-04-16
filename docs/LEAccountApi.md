@@ -4,15 +4,15 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEAccount**](LEAccountApi.md#New-LEAccount) | **POST** /v7-preview/accounts | Create account
-[**New-LEAccounts**](LEAccountApi.md#New-LEAccounts) | **POST** /v7-preview/accounts/bulk | Create account in bulk
-[**Invoke-LEDeleteAccount**](LEAccountApi.md#Invoke-LEDeleteAccount) | **DELETE** /v7-preview/accounts/{accountId} | Delete account
-[**Invoke-LEDeleteAccounts**](LEAccountApi.md#Invoke-LEDeleteAccounts) | **DELETE** /v7-preview/accounts | Delete multiple accounts
-[**Get-LEAccount**](LEAccountApi.md#Get-LEAccount) | **GET** /v7-preview/accounts/{accountId} | Get account by id
-[**Get-LEAccounts**](LEAccountApi.md#Get-LEAccounts) | **GET** /v7-preview/accounts | Get paginated list of accounts
-[**Update-LEAccount**](LEAccountApi.md#Update-LEAccount) | **PUT** /v7-preview/accounts/{accountId} | Update account
-[**Update-LEAccountEnabled**](LEAccountApi.md#Update-LEAccountEnabled) | **PUT** /v7-preview/accounts/{accountId}/enabled | Enable or disable account
-[**Update-LEAccountsEnabled**](LEAccountApi.md#Update-LEAccountsEnabled) | **PUT** /v7-preview/accounts/enabled | Enable or disable accounts
+[**New-LEAccount**](LEAccountApi.md#New-LEAccount) | **POST** /v7/accounts | Create account
+[**New-LEAccounts**](LEAccountApi.md#New-LEAccounts) | **POST** /v7/accounts/bulk | Create account in bulk
+[**Invoke-LEDeleteAccount**](LEAccountApi.md#Invoke-LEDeleteAccount) | **DELETE** /v7/accounts/{accountId} | Delete account
+[**Invoke-LEDeleteAccounts**](LEAccountApi.md#Invoke-LEDeleteAccounts) | **DELETE** /v7/accounts | Delete multiple accounts
+[**Get-LEAccount**](LEAccountApi.md#Get-LEAccount) | **GET** /v7/accounts/{accountId} | Get account by id
+[**Get-LEAccounts**](LEAccountApi.md#Get-LEAccounts) | **GET** /v7/accounts | Get paginated list of accounts
+[**Update-LEAccount**](LEAccountApi.md#Update-LEAccount) | **PUT** /v7/accounts/{accountId} | Update account
+[**Update-LEAccountEnabled**](LEAccountApi.md#Update-LEAccountEnabled) | **PUT** /v7/accounts/{accountId}/enabled | Enable or disable account
+[**Update-LEAccountsEnabled**](LEAccountApi.md#Update-LEAccountsEnabled) | **PUT** /v7/accounts/enabled | Enable or disable accounts
 
 
 <a id="New-LEAccount"></a>
@@ -30,10 +30,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
 $AccountCreate = Initialize-LEAccountCreate -Username "MyUsername" -Domain "MyDomain" -Email "MyEmail" -Password "MyPassword" -Fields $AccountField # AccountCreate | Account data
@@ -83,10 +83,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
 $AccountBulkCreate = Initialize-LEAccountBulkCreate -NumberOfDigits 0 -NumberOfAccounts 0 -Username "MyUsername" -Domain "MyDomain" -Email "MyEmail" -Password "MyPassword" -Fields $AccountField # AccountBulkCreate | Account data
@@ -136,10 +136,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 
@@ -190,10 +190,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Account ids
 
@@ -242,10 +242,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 
@@ -299,10 +299,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "username" # AccountSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -362,10 +362,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 $AccountField = Initialize-LEAccountField -Name "MyName" -Value "MyValue"
@@ -418,10 +418,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account id
 $Body = $true # Boolean | Enabled state of account
@@ -472,10 +472,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountEnabledUpdate = Initialize-LEAccountEnabledUpdate -AccountIds "MyAccountIds" -Enabled $false # AccountEnabledUpdate | Accounts data
 

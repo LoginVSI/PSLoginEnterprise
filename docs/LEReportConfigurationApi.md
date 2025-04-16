@@ -4,7 +4,7 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEAllReportConfigurations**](LEReportConfigurationApi.md#Get-LEAllReportConfigurations) | **GET** /v7-preview/report-configurations | Get paginated list of all report-configurations
+[**Get-LEAllReportConfigurations**](LEReportConfigurationApi.md#Get-LEAllReportConfigurations) | **GET** /v7/report-configurations | Get paginated list of all report-configurations
 
 
 <a id="Get-LEAllReportConfigurations"></a>
@@ -27,10 +27,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # ReportConfigurationSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction

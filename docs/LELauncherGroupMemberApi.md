@@ -4,9 +4,9 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LELauncherGroupMembers**](LELauncherGroupMemberApi.md#Add-LELauncherGroupMembers) | **POST** /v7-preview/launcher-groups/{groupId}/members | Add members to launcher-group
-[**Get-LELauncherGroupMembers**](LELauncherGroupMemberApi.md#Get-LELauncherGroupMembers) | **GET** /v7-preview/launcher-groups/{groupId}/members | Get paginated list of launcher-group members
-[**Remove-LELauncherGroupMembers**](LELauncherGroupMemberApi.md#Remove-LELauncherGroupMembers) | **DELETE** /v7-preview/launcher-groups/{groupId}/members | Remove members from launcher-group
+[**Add-LELauncherGroupMembers**](LELauncherGroupMemberApi.md#Add-LELauncherGroupMembers) | **POST** /v7/launcher-groups/{groupId}/members | Add members to launcher-group
+[**Get-LELauncherGroupMembers**](LELauncherGroupMemberApi.md#Get-LELauncherGroupMembers) | **GET** /v7/launcher-groups/{groupId}/members | Get paginated list of launcher-group members
+[**Remove-LELauncherGroupMembers**](LELauncherGroupMemberApi.md#Remove-LELauncherGroupMembers) | **DELETE** /v7/launcher-groups/{groupId}/members | Remove members from launcher-group
 
 
 <a id="Add-LELauncherGroupMembers"></a>
@@ -25,10 +25,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 $RequestBody = "MyRequestBody" # String[] | Launcher names
@@ -84,10 +84,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 $OrderBy = "name" # LauncherSortKey | Sort Key
@@ -147,10 +147,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 $RequestBody = "MyRequestBody" # String[] | Launcher names

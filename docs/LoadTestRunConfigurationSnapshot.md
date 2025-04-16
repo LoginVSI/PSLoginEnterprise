@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **SessionMetricScheduleRate** | **Int32** | Session Metric Schedule Rate | [optional] 
 **TestId** | **String** | Test configuration Id | [optional] 
 **Name** | **String** | Test name | [optional] 
-**Workload** | [**Workload**](Workload.md) |  | [optional] 
+**Workload** | [**WorkloadSnapshot**](WorkloadSnapshot.md) |  | [optional] 
 **Connector** | [**AppTestRunConfigurationSnapshotConnector**](AppTestRunConfigurationSnapshotConnector.md) |  | [optional] 
 **LauncherGroups** | [**GroupConfigurationSnapshot[]**](GroupConfigurationSnapshot.md) | Launcher groups | [optional] 
 **AccountGroups** | [**GroupConfigurationSnapshot[]**](GroupConfigurationSnapshot.md) | Account groups | [optional] 

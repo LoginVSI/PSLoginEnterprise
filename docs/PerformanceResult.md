@@ -5,6 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Duration** | **Double** | Duration | [optional] 
 **Threshold** | **Double** | Threshold | [optional] 
+**DurationDifference** | **Int32** | Duration difference | [optional] 
+**ThresholdDifference** | **Int32** | Threshold difference | [optional] 
 **IsSuccessful** | **Boolean** | Is successful | [optional] 
 
 ## Examples
@@ -13,6 +15,8 @@ Name | Type | Description | Notes
 ```powershell
 $PerformanceResult = Initialize-LEPSLoginEnterprisePerformanceResult  -Duration null `
  -Threshold null `
+ -DurationDifference null `
+ -ThresholdDifference null `
  -IsSuccessful null
 ```
 

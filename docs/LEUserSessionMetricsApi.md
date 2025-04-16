@@ -4,7 +4,7 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEUserSessionMetrics**](LEUserSessionMetricsApi.md#Get-LEUserSessionMetrics) | **GET** /v7-preview/user-session-metrics/{testRunId} | Get list of user session metrics
+[**Get-LEUserSessionMetrics**](LEUserSessionMetricsApi.md#Get-LEUserSessionMetrics) | **GET** /v7/user-session-metrics/{testRunId} | Get list of user session metrics
 
 
 <a id="Get-LEUserSessionMetrics"></a>
@@ -29,10 +29,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $OrderBy = "timestamp" # UserSessionMetricSortKey | Sort Key

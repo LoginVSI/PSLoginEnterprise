@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$EnvironmentUpdate = Initialize-LELEPSLoginEnterpriseEnvironmentUpdate  -Connector null `
+$EnvironmentUpdate = Initialize-LELELEPSLoginEnterpriseEnvironmentUpdate  -Connector null `
  -LauncherGroups null `
  -AccountGroups null
 ```

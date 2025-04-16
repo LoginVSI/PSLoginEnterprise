@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$EnvironmentIncludeOptions = Initialize-LEPSLoginEnterpriseEnvironmentIncludeOptions 
+$EnvironmentIncludeOptions = Initialize-LELEPSLoginEnterpriseEnvironmentIncludeOptions 
 ```
 
 - Convert the resource to JSON

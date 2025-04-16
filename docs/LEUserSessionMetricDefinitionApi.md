@@ -4,11 +4,11 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEUserSessionMetricDefinition**](LEUserSessionMetricDefinitionApi.md#New-LEUserSessionMetricDefinition) | **POST** /v7-preview/user-session-metric-definitions | Create user session metric definition
-[**Invoke-LEDeleteUserSessionMetricDefinition**](LEUserSessionMetricDefinitionApi.md#Invoke-LEDeleteUserSessionMetricDefinition) | **DELETE** /v7-preview/user-session-metric-definitions/{definitionId} | Delete user session metric definition
-[**Get-LEUserSessionMetricDefinitionByKey**](LEUserSessionMetricDefinitionApi.md#Get-LEUserSessionMetricDefinitionByKey) | **GET** /v7-preview/user-session-metric-definitions/{definitionId} | Get a user session metric definition by Id
-[**Get-LEUserSessionMetricDefinitions**](LEUserSessionMetricDefinitionApi.md#Get-LEUserSessionMetricDefinitions) | **GET** /v7-preview/user-session-metric-definitions | Get paginated user session metric definitions
-[**Update-LEUserSessionMetricDefinition**](LEUserSessionMetricDefinitionApi.md#Update-LEUserSessionMetricDefinition) | **PUT** /v7-preview/user-session-metric-definitions/{definitionId} | Update user session metric definition
+[**New-LEUserSessionMetricDefinition**](LEUserSessionMetricDefinitionApi.md#New-LEUserSessionMetricDefinition) | **POST** /v7/user-session-metric-definitions | Create user session metric definition
+[**Invoke-LEDeleteUserSessionMetricDefinition**](LEUserSessionMetricDefinitionApi.md#Invoke-LEDeleteUserSessionMetricDefinition) | **DELETE** /v7/user-session-metric-definitions/{definitionId} | Delete user session metric definition
+[**Get-LEUserSessionMetricDefinitionByKey**](LEUserSessionMetricDefinitionApi.md#Get-LEUserSessionMetricDefinitionByKey) | **GET** /v7/user-session-metric-definitions/{definitionId} | Get a user session metric definition by Id
+[**Get-LEUserSessionMetricDefinitions**](LEUserSessionMetricDefinitionApi.md#Get-LEUserSessionMetricDefinitions) | **GET** /v7/user-session-metric-definitions | Get paginated user session metric definitions
+[**Update-LEUserSessionMetricDefinition**](LEUserSessionMetricDefinitionApi.md#Update-LEUserSessionMetricDefinition) | **PUT** /v7/user-session-metric-definitions/{definitionId} | Update user session metric definition
 
 
 <a id="New-LEUserSessionMetricDefinition"></a>
@@ -26,10 +26,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $PerformanceCounterMeasurementDefinitionCreate = Initialize-LEPerformanceCounterMeasurementDefinitionCreate -CounterCategory "MyCounterCategory" -CounterName "MyCounterName" -CounterInstance "MyCounterInstance" -DisplayName "MyDisplayName" -Unit "MyUnit"
 $WmiQueryMeasurementDefinitionCreate = Initialize-LEWmiQueryMeasurementDefinitionCreate -PropertyName "MyPropertyName" -SummarizeOperation "none" -DisplayName "MyDisplayName" -Unit "MyUnit"
@@ -80,10 +80,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $DefinitionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric definition Id
 
@@ -132,10 +132,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $DefinitionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric definition Id
 
@@ -188,10 +188,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "definitionType" # SessionMetricDefinitionSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -249,10 +249,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $DefinitionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric definition id
 $UserSessionMetricDefinitionUpdate = Initialize-LEUserSessionMetricDefinitionUpdate -Name "MyName" -Description "MyDescription" # UserSessionMetricDefinitionUpdate | User session metric definition data

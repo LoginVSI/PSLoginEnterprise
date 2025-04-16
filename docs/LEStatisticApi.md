@@ -4,9 +4,9 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEApplicationDiagnostics**](LEStatisticApi.md#Get-LEApplicationDiagnostics) | **GET** /v7-preview/tests/{testId}/application-diagnostics | Get application diagnostics by test id
-[**Get-LEContinuousTestDiagnostic**](LEStatisticApi.md#Get-LEContinuousTestDiagnostic) | **GET** /v7-preview/tests/{testId}/test-diagnostics | Get continuous test diagnostic by test id
-[**Get-LEContinuousTestDiagnostics**](LEStatisticApi.md#Get-LEContinuousTestDiagnostics) | **GET** /v7-preview/test-diagnostics | Get continuous test diagnostics
+[**Get-LEApplicationDiagnostics**](LEStatisticApi.md#Get-LEApplicationDiagnostics) | **GET** /v7/tests/{testId}/application-diagnostics | Get application diagnostics by test id
+[**Get-LEContinuousTestDiagnostic**](LEStatisticApi.md#Get-LEContinuousTestDiagnostic) | **GET** /v7/tests/{testId}/test-diagnostics | Get continuous test diagnostic by test id
+[**Get-LEContinuousTestDiagnostics**](LEStatisticApi.md#Get-LEContinuousTestDiagnostics) | **GET** /v7/test-diagnostics | Get continuous test diagnostics
 
 
 <a id="Get-LEApplicationDiagnostics"></a>
@@ -26,10 +26,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $TimeRange = "last15Minutes" # TimeRange | Time range (optional)
@@ -84,10 +84,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $TimeRange = "last15Minutes" # TimeRange | Time range (optional)
@@ -140,10 +140,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TimeRange = "last15Minutes" # TimeRange | Time range (optional)
 

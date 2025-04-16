@@ -10,6 +10,13 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**NumberOfEvents** | **Int32** | Number of events | [optional] 
+**TestName** | **String** | Test name | [optional] 
+**SessionMetricGroupKey** | **String** | Session metric group key | [optional] 
+**EnvironmentKey** | **String** | Environment key | [optional] 
+**ScheduleType** | [**ContinuousScheduleType**](ContinuousScheduleType.md) |  | [optional] 
+**Description** | **String** | Description | [optional] 
+**ConnectorId** | **String** | Connector id | [optional] 
 
 ## Examples
 
@@ -21,7 +28,14 @@ $ContinuousTestRun = Initialize-LEPSLoginEnterpriseContinuousTestRun  -Type null
  -Created null `
  -Started null `
  -Finished null `
- -Counter null
+ -Counter null `
+ -NumberOfEvents null `
+ -TestName null `
+ -SessionMetricGroupKey null `
+ -EnvironmentKey null `
+ -ScheduleType null `
+ -Description null `
+ -ConnectorId null
 ```
 
 - Convert the resource to JSON

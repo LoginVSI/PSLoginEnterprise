@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEScript**](LEScriptApi.md#New-LEScript) | **POST** /v7-preview/applications/{applicationId}/script | Create script via a text or file payload
-[**Get-LEScript**](LEScriptApi.md#Get-LEScript) | **GET** /v7-preview/applications/{applicationId}/script | Get script content by application id
+[**New-LEScript**](LEScriptApi.md#New-LEScript) | **POST** /v7/applications/{applicationId}/script | Create script via a text or file payload
+[**Get-LEScript**](LEScriptApi.md#Get-LEScript) | **GET** /v7/applications/{applicationId}/script | Get script content by application id
 
 
 <a id="New-LEScript"></a>
@@ -25,10 +25,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 
@@ -77,10 +77,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 

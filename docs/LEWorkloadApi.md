@@ -4,12 +4,12 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LETestWorkloadSteps**](LEWorkloadApi.md#New-LETestWorkloadSteps) | **POST** /v7-preview/tests/{testId}/workload | Add test-workload steps
-[**Invoke-LEDeleteTestWorkloadStep**](LEWorkloadApi.md#Invoke-LEDeleteTestWorkloadStep) | **DELETE** /v7-preview/tests/{testId}/workload/{stepId} | Remove test-workload step
-[**Invoke-LEDeleteTestWorkloadSteps**](LEWorkloadApi.md#Invoke-LEDeleteTestWorkloadSteps) | **DELETE** /v7-preview/tests/{testId}/workload | Remove test-workload steps
-[**Get-LETestWorkload**](LEWorkloadApi.md#Get-LETestWorkload) | **GET** /v7-preview/tests/{testId}/workload | Get test-workload by test id
-[**Invoke-LEReplaceTestWorkloadSteps**](LEWorkloadApi.md#Invoke-LEReplaceTestWorkloadSteps) | **PUT** /v7-preview/tests/{testId}/workload | Replace test-workload steps
-[**Update-LETestWorkloadStep**](LEWorkloadApi.md#Update-LETestWorkloadStep) | **PUT** /v7-preview/tests/{testId}/workload/{stepId} | Update test-workload step
+[**New-LETestWorkloadSteps**](LEWorkloadApi.md#New-LETestWorkloadSteps) | **POST** /v7/tests/{testId}/workload | Add test-workload steps
+[**Invoke-LEDeleteTestWorkloadStep**](LEWorkloadApi.md#Invoke-LEDeleteTestWorkloadStep) | **DELETE** /v7/tests/{testId}/workload/{stepId} | Remove test-workload step
+[**Invoke-LEDeleteTestWorkloadSteps**](LEWorkloadApi.md#Invoke-LEDeleteTestWorkloadSteps) | **DELETE** /v7/tests/{testId}/workload | Remove test-workload steps
+[**Get-LETestWorkload**](LEWorkloadApi.md#Get-LETestWorkload) | **GET** /v7/tests/{testId}/workload | Get test-workload by test id
+[**Invoke-LEReplaceTestWorkloadSteps**](LEWorkloadApi.md#Invoke-LEReplaceTestWorkloadSteps) | **PUT** /v7/tests/{testId}/workload | Replace test-workload steps
+[**Update-LETestWorkloadStep**](LEWorkloadApi.md#Update-LETestWorkloadStep) | **PUT** /v7/tests/{testId}/workload/{stepId} | Update test-workload step
 
 
 <a id="New-LETestWorkloadSteps"></a>
@@ -28,10 +28,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -IsEnabled $false -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data
@@ -83,10 +83,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $StepId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Step id
@@ -138,10 +138,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $RequestBody = "MyRequestBody" # String[] | Step ids
@@ -192,10 +192,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -245,10 +245,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -IsEnabled $false -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data (optional)
@@ -301,10 +301,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $StepId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Step id

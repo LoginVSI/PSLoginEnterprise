@@ -4,13 +4,13 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEApplication**](LEApplicationApi.md#New-LEApplication) | **POST** /v7-preview/applications | Create application.
-[**Invoke-LEDeleteApplication**](LEApplicationApi.md#Invoke-LEDeleteApplication) | **DELETE** /v7-preview/applications/{applicationId} | Delete application
-[**Invoke-LEDeleteApplications**](LEApplicationApi.md#Invoke-LEDeleteApplications) | **DELETE** /v7-preview/applications | Delete multiple applications
-[**Get-LEApplication**](LEApplicationApi.md#Get-LEApplication) | **GET** /v7-preview/applications/{applicationId} | Get application by id
-[**Get-LEApplications**](LEApplicationApi.md#Get-LEApplications) | **GET** /v7-preview/applications | Gets a paginated list of applications
-[**Invoke-LEParseApplicationDetails**](LEApplicationApi.md#Invoke-LEParseApplicationDetails) | **POST** /v7-preview/applications/parse | Parse application details from script content
-[**Update-LEApplication**](LEApplicationApi.md#Update-LEApplication) | **PUT** /v7-preview/applications/{applicationId} | Update application
+[**New-LEApplication**](LEApplicationApi.md#New-LEApplication) | **POST** /v7/applications | Create application.
+[**Invoke-LEDeleteApplication**](LEApplicationApi.md#Invoke-LEDeleteApplication) | **DELETE** /v7/applications/{applicationId} | Delete application
+[**Invoke-LEDeleteApplications**](LEApplicationApi.md#Invoke-LEDeleteApplications) | **DELETE** /v7/applications | Delete multiple applications
+[**Get-LEApplication**](LEApplicationApi.md#Get-LEApplication) | **GET** /v7/applications/{applicationId} | Get application by id
+[**Get-LEApplications**](LEApplicationApi.md#Get-LEApplications) | **GET** /v7/applications | Gets a paginated list of applications
+[**Invoke-LEParseApplicationDetails**](LEApplicationApi.md#Invoke-LEParseApplicationDetails) | **POST** /v7/applications/parse | Parse application details from script content
+[**Update-LEApplication**](LEApplicationApi.md#Update-LEApplication) | **PUT** /v7/applications/{applicationId} | Update application
 
 
 <a id="New-LEApplication"></a>
@@ -28,10 +28,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ConfigurationCreateApplicationRequest = Initialize-LEConfigurationCreateApplicationRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -TakeScreenshots $false -ScriptContent "MyScriptContent" -BrowserName "chrome" -Url "MyUrl" -ProfileLocation "MyProfileLocation" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationCreateApplicationRequest | Application data
 
@@ -80,10 +80,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 
@@ -132,10 +132,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Application ids (optional)
 
@@ -185,10 +185,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 $Include = "none" # ApplicationInclude[] | Include options (optional)
@@ -245,10 +245,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # ApplicationSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -310,10 +310,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Parse application details from script content
@@ -359,10 +359,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
 $ConfigurationUpdateApplicationRequest = Initialize-LEConfigurationUpdateApplicationRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -MustUpdatePassword $false -TakeScreenshots $false -ScriptContent "MyScriptContent" -BrowserName "chrome" -Url "MyUrl" -ProfileLocation "MyProfileLocation" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationUpdateApplicationRequest | Application data

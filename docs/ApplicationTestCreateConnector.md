@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ApplicationTestCreateConnector = Initialize-LELEPSLoginEnterpriseApplicationTestCreateConnector  -Type null `
+$ApplicationTestCreateConnector = Initialize-LELELEPSLoginEnterpriseApplicationTestCreateConnector  -Type null `
  -VarHost null `
  -CommandLine null `
  -Resource null `

@@ -4,12 +4,12 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LELauncherGroup**](LELauncherGroupApi.md#New-LELauncherGroup) | **POST** /v7-preview/launcher-groups | Create launcher-group
-[**Invoke-LEDeleteLauncherGroup**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroup) | **DELETE** /v7-preview/launcher-groups/{groupId} | Delete launcher-group
-[**Invoke-LEDeleteLauncherGroups**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroups) | **DELETE** /v7-preview/launcher-groups | delete multiple launcher-groups
-[**Get-LELauncherGroup**](LELauncherGroupApi.md#Get-LELauncherGroup) | **GET** /v7-preview/launcher-groups/{groupId} | Get launcher-group by id
-[**Get-LELauncherGroups**](LELauncherGroupApi.md#Get-LELauncherGroups) | **GET** /v7-preview/launcher-groups | Get paginated list of launcher-groups
-[**Update-LELauncherGroup**](LELauncherGroupApi.md#Update-LELauncherGroup) | **PUT** /v7-preview/launcher-groups/{groupId} | Update launcher-group
+[**New-LELauncherGroup**](LELauncherGroupApi.md#New-LELauncherGroup) | **POST** /v7/launcher-groups | Create launcher-group
+[**Invoke-LEDeleteLauncherGroup**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroup) | **DELETE** /v7/launcher-groups/{groupId} | Delete launcher-group
+[**Invoke-LEDeleteLauncherGroups**](LELauncherGroupApi.md#Invoke-LEDeleteLauncherGroups) | **DELETE** /v7/launcher-groups | delete multiple launcher-groups
+[**Get-LELauncherGroup**](LELauncherGroupApi.md#Get-LELauncherGroup) | **GET** /v7/launcher-groups/{groupId} | Get launcher-group by id
+[**Get-LELauncherGroups**](LELauncherGroupApi.md#Get-LELauncherGroups) | **GET** /v7/launcher-groups | Get paginated list of launcher-groups
+[**Update-LELauncherGroup**](LELauncherGroupApi.md#Update-LELauncherGroup) | **PUT** /v7/launcher-groups/{groupId} | Update launcher-group
 
 
 <a id="New-LELauncherGroup"></a>
@@ -27,10 +27,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -VarFilter "MyVarFilter" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data
 
@@ -79,10 +79,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 
@@ -131,10 +131,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Launcher-group ids (optional)
 
@@ -184,10 +184,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 $Include = "none" # LauncherGroupInclude[] | Include options (optional)
@@ -244,10 +244,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # LauncherGroupSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -309,10 +309,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Launcher-group id
 $ConfigurationCreateLauncherGroupRequest = Initialize-LEConfigurationCreateLauncherGroupRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -VarFilter "MyVarFilter" -LauncherNames "MyLauncherNames" # ConfigurationCreateLauncherGroupRequest | Launcher-group data

@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEEuxSettings**](LEEuxSettingsApi.md#Get-LEEuxSettings) | **GET** /v7-preview/euxsettings | Get Eux settings
-[**Update-LEEuxSettings**](LEEuxSettingsApi.md#Update-LEEuxSettings) | **PUT** /v7-preview/euxsettings | Update Eux settings
+[**Get-LEEuxSettings**](LEEuxSettingsApi.md#Get-LEEuxSettings) | **GET** /v7/euxsettings | Get Eux settings
+[**Update-LEEuxSettings**](LEEuxSettingsApi.md#Update-LEEuxSettings) | **PUT** /v7/euxsettings | Update Eux settings
 
 
 <a id="Get-LEEuxSettings"></a>
@@ -22,10 +22,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get Eux settings
@@ -70,10 +70,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $EuxSettings = Initialize-LEEuxSettings -EnableEuxRawDataSave $false # EuxSettings | Eux settings
 

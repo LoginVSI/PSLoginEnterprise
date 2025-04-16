@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LELdapConfig**](LELdapConfigurationApi.md#New-LELdapConfig) | **POST** /v7-preview/ldap-configuration/identity-server | Create LDAP configuration.
-[**Invoke-LEDeleteLdapConfig**](LELdapConfigurationApi.md#Invoke-LEDeleteLdapConfig) | **DELETE** /v7-preview/ldap-configuration/identity-server | Delete LDAP configuration.
-[**Get-LELdapConfig**](LELdapConfigurationApi.md#Get-LELdapConfig) | **GET** /v7-preview/ldap-configuration/identity-server | Get LDAP configuration.
-[**Update-LELdapConfig**](LELdapConfigurationApi.md#Update-LELdapConfig) | **PUT** /v7-preview/ldap-configuration/identity-server | Update LDAP configuration.
+[**New-LELdapConfig**](LELdapConfigurationApi.md#New-LELdapConfig) | **POST** /v7/ldap-configuration/identity-server | Create LDAP configuration.
+[**Invoke-LEDeleteLdapConfig**](LELdapConfigurationApi.md#Invoke-LEDeleteLdapConfig) | **DELETE** /v7/ldap-configuration/identity-server | Delete LDAP configuration.
+[**Get-LELdapConfig**](LELdapConfigurationApi.md#Get-LELdapConfig) | **GET** /v7/ldap-configuration/identity-server | Get LDAP configuration.
+[**Update-LELdapConfig**](LELdapConfigurationApi.md#Update-LELdapConfig) | **PUT** /v7/ldap-configuration/identity-server | Update LDAP configuration.
 
 
 <a id="New-LELdapConfig"></a>
@@ -25,12 +25,12 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
-$LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -AdminGroupName "MyAdminGroupName" -ReadOnlyGroupName "MyReadOnlyGroupName" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
+$LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
 
 # Create LDAP configuration.
 try {
@@ -76,10 +76,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Delete LDAP configuration.
@@ -123,10 +123,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get LDAP configuration.
@@ -171,12 +171,12 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
-$LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -AdminGroupName "MyAdminGroupName" -ReadOnlyGroupName "MyReadOnlyGroupName" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
+$LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
 
 # Update LDAP configuration.
 try {

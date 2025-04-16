@@ -4,18 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timer** | **String** | Timer | [optional] 
-**Duration** | **Double** | Duration | [optional] 
-**Threshold** | **Double** | Threshold | [optional] 
-**IsSuccessful** | **Boolean** | Is successful | [optional] 
+**PerformanceResult** | [**PerformanceResult**](PerformanceResult.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ApplicationTimerResult = Initialize-LEPSLoginEnterpriseApplicationTimerResult  -Timer null `
- -Duration null `
- -Threshold null `
- -IsSuccessful null
+ -PerformanceResult null
 ```
 
 - Convert the resource to JSON

@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**NumberOfEvents** | **Int32** | Number of events | [optional] 
 **TestRunConfigurationSnapshot** | [**AppTestRunConfigurationSnapshot**](AppTestRunConfigurationSnapshot.md) |  | [optional] 
 **State** | [**ApplicationTestState**](ApplicationTestState.md) |  | [optional] 
 **Result** | [**ApplicationTestResult**](ApplicationTestResult.md) |  | [optional] 
+**ProductVersion** | **String** | Product version | [optional] 
 **AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
@@ -29,9 +31,11 @@ $ApplicationTestRun = Initialize-LEPSLoginEnterpriseApplicationTestRun  -Type nu
  -Started null `
  -Finished null `
  -Counter null `
+ -NumberOfEvents null `
  -TestRunConfigurationSnapshot null `
  -State null `
  -Result null `
+ -ProductVersion null `
  -AppFailureResults null `
  -AppPerformanceResults null `
  -Properties null `

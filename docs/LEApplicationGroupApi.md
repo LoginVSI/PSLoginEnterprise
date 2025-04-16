@@ -4,16 +4,16 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LEStepsToApplicationGroup**](LEApplicationGroupApi.md#Add-LEStepsToApplicationGroup) | **POST** /v7-preview/application-groups/{groupId}/steps | Add steps to application-group
-[**New-LEApplicationGroup**](LEApplicationGroupApi.md#New-LEApplicationGroup) | **POST** /v7-preview/application-groups | Create application-group
-[**Invoke-LEDeleteApplicationGroup**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroup) | **DELETE** /v7-preview/application-groups/{groupId} | Delete application-group
-[**Invoke-LEDeleteApplicationGroupList**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroupList) | **DELETE** /v7-preview/application-groups | Delete multiple application-groups
-[**Get-LEApplicationGroup**](LEApplicationGroupApi.md#Get-LEApplicationGroup) | **GET** /v7-preview/application-groups/{groupId} | Get application-group by id
-[**Get-LEApplicationGroups**](LEApplicationGroupApi.md#Get-LEApplicationGroups) | **GET** /v7-preview/application-groups | Get paginated list of application-groups
-[**Remove-LEStepsFromApplicationGroup**](LEApplicationGroupApi.md#Remove-LEStepsFromApplicationGroup) | **DELETE** /v7-preview/application-groups/{groupId}/steps | Remove steps from application-group
-[**Invoke-LEReplaceApplicationGroupSteps**](LEApplicationGroupApi.md#Invoke-LEReplaceApplicationGroupSteps) | **PUT** /v7-preview/application-groups/{groupId}/steps | Replace application-group Steps
-[**Update-LEApplicationGroup**](LEApplicationGroupApi.md#Update-LEApplicationGroup) | **PUT** /v7-preview/application-groups/{groupId} | Update application-group
-[**Update-LEStepInApplicationGroup**](LEApplicationGroupApi.md#Update-LEStepInApplicationGroup) | **PUT** /v7-preview/application-groups/{groupId}/steps/{stepId} | Update single step in application-group
+[**Add-LEStepsToApplicationGroup**](LEApplicationGroupApi.md#Add-LEStepsToApplicationGroup) | **POST** /v7/application-groups/{groupId}/steps | Add steps to application-group
+[**New-LEApplicationGroup**](LEApplicationGroupApi.md#New-LEApplicationGroup) | **POST** /v7/application-groups | Create application-group
+[**Invoke-LEDeleteApplicationGroup**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroup) | **DELETE** /v7/application-groups/{groupId} | Delete application-group
+[**Invoke-LEDeleteApplicationGroupList**](LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroupList) | **DELETE** /v7/application-groups | Delete multiple application-groups
+[**Get-LEApplicationGroup**](LEApplicationGroupApi.md#Get-LEApplicationGroup) | **GET** /v7/application-groups/{groupId} | Get application-group by id
+[**Get-LEApplicationGroups**](LEApplicationGroupApi.md#Get-LEApplicationGroups) | **GET** /v7/application-groups | Get paginated list of application-groups
+[**Remove-LEStepsFromApplicationGroup**](LEApplicationGroupApi.md#Remove-LEStepsFromApplicationGroup) | **DELETE** /v7/application-groups/{groupId}/steps | Remove steps from application-group
+[**Invoke-LEReplaceApplicationGroupSteps**](LEApplicationGroupApi.md#Invoke-LEReplaceApplicationGroupSteps) | **PUT** /v7/application-groups/{groupId}/steps | Replace application-group Steps
+[**Update-LEApplicationGroup**](LEApplicationGroupApi.md#Update-LEApplicationGroup) | **PUT** /v7/application-groups/{groupId} | Update application-group
+[**Update-LEStepInApplicationGroup**](LEApplicationGroupApi.md#Update-LEStepInApplicationGroup) | **PUT** /v7/application-groups/{groupId}/steps/{stepId} | Update single step in application-group
 
 
 <a id="Add-LEStepsToApplicationGroup"></a>
@@ -32,10 +32,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -IsEnabled $false -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | List of step data
@@ -86,10 +86,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -IsEnabled $false -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId"
 $ApplicationGroupCreate = Initialize-LEApplicationGroupCreate -Name "MyName" -Description "MyDescription" -Steps $ConfigurationReplaceApplicationGroupStepsRequestInner # ApplicationGroupCreate | Application-group data
@@ -139,10 +139,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 
@@ -191,10 +191,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Application-group ids
 
@@ -244,10 +244,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $Include = "none" # ApplicationGroupInclude[] | Include options (optional)
@@ -304,10 +304,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # ApplicationGroupSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -369,10 +369,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $RequestBody = "MyRequestBody" # String[] | Step ids
@@ -424,10 +424,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -IsEnabled $false -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId" # ConfigurationReplaceApplicationGroupStepsRequestInner[] | Application-group data
@@ -479,10 +479,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $ConfigurationReplaceApplicationGroupStepsRequestInner = Initialize-LEConfigurationReplaceApplicationGroupStepsRequestInner -Type "MyType" -IsEnabled $false -ApplicationId "MyApplicationId" -RunOnce $false -LeaveRunning $false -DelayInSeconds 0 -ApplicationGroupId "MyApplicationGroupId"
@@ -536,10 +536,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application-group id
 $StepId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Step id

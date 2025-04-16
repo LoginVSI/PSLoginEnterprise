@@ -10,8 +10,6 @@ Name | Type | Description | Notes
 **Username** | **String** | Gets or sets the username for the LDAP server connection. | [optional] 
 **Password** | **String** | Gets or sets the password for the LDAP server connection. | [optional] 
 **Domain** | **String** | Gets or sets the domain for the LDAP server connection. | [optional] 
-**AdminGroupName** | **String** | Gets or sets the name of the admin group in the LDAP server. | [optional] 
-**ReadOnlyGroupName** | **String** | Gets or sets the name of the read-only group in the LDAP server. | [optional] 
 **ConnectionTimeout** | **Int32** | ConnectionTimeout value in milliseconds. | [optional] 
 
 ## Examples
@@ -25,8 +23,6 @@ $LdapConfigModel = Initialize-LEPSLoginEnterpriseLdapConfigModel  -VarHost null 
  -Username null `
  -Password null `
  -Domain null `
- -AdminGroupName null `
- -ReadOnlyGroupName null `
  -ConnectionTimeout null
 ```
 

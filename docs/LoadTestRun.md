@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**NumberOfEvents** | **Int32** | Number of events | [optional] 
 **TestRunConfigurationSnapshot** | [**LoadTestRunConfigurationSnapshot**](LoadTestRunConfigurationSnapshot.md) |  | [optional] 
 **State** | [**LoadTestState**](LoadTestState.md) |  | [optional] 
 **Result** | [**LoadTestResult**](LoadTestResult.md) |  | [optional] 
@@ -35,6 +36,7 @@ $LoadTestRun = Initialize-LEPSLoginEnterpriseLoadTestRun  -Type null `
  -Started null `
  -Finished null `
  -Counter null `
+ -NumberOfEvents null `
  -TestRunConfigurationSnapshot null `
  -State null `
  -Result null `

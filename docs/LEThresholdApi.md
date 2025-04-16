@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEApplicationTestThreshold**](LEThresholdApi.md#New-LEApplicationTestThreshold) | **POST** /v7-preview/tests/{testId}/thresholds | Create threshold
-[**Invoke-LEDeleteApplicationTestThreshold**](LEThresholdApi.md#Invoke-LEDeleteApplicationTestThreshold) | **DELETE** /v7-preview/tests/{testId}/thresholds/{thresholdId} | Delete threshold
-[**Get-LEApplicationTestThresholds**](LEThresholdApi.md#Get-LEApplicationTestThresholds) | **GET** /v7-preview/tests/{testId}/thresholds | Get list of thresholds by test id
-[**Update-LEApplicationTestThreshold**](LEThresholdApi.md#Update-LEApplicationTestThreshold) | **PUT** /v7-preview/tests/{testId}/thresholds/{thresholdId} | Update threshold
+[**New-LEApplicationTestThreshold**](LEThresholdApi.md#New-LEApplicationTestThreshold) | **POST** /v7/tests/{testId}/thresholds | Create threshold
+[**Invoke-LEDeleteApplicationTestThreshold**](LEThresholdApi.md#Invoke-LEDeleteApplicationTestThreshold) | **DELETE** /v7/tests/{testId}/thresholds/{thresholdId} | Delete threshold
+[**Get-LEApplicationTestThresholds**](LEThresholdApi.md#Get-LEApplicationTestThresholds) | **GET** /v7/tests/{testId}/thresholds | Get list of thresholds by test id
+[**Update-LEApplicationTestThreshold**](LEThresholdApi.md#Update-LEApplicationTestThreshold) | **PUT** /v7/tests/{testId}/thresholds/{thresholdId} | Update threshold
 
 
 <a id="New-LEApplicationTestThreshold"></a>
@@ -26,10 +26,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $AppThresholdCreate = Initialize-LEAppThresholdCreate -ApplicationId "MyApplicationId" -Timer "MyTimer" -IsEnabled $false -Value 0 # AppThresholdCreate | Threshold data
@@ -81,10 +81,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ThresholdId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Threshold id
@@ -135,10 +135,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -189,10 +189,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $ThresholdId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Threshold id

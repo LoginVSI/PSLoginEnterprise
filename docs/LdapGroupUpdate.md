@@ -1,0 +1,25 @@
+# LdapGroupUpdate
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**DisplayName** | **String** | Display name | [optional] 
+**GroupIdentity** | **String** | LdapGroup name or the distinguished name (DN) | [optional] 
+**RoleIds** | **String[]** | Role id list | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$LdapGroupUpdate = Initialize-LEPSLoginEnterpriseLdapGroupUpdate  -DisplayName null `
+ -GroupIdentity null `
+ -RoleIds null
+```
+
+- Convert the resource to JSON
+```powershell
+$LdapGroupUpdate | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Add-LEAccountGroupMembers) | **POST** /v7-preview/account-groups/{groupId}/members | Add members to account-group
-[**Get-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Get-LEAccountGroupMembers) | **GET** /v7-preview/account-groups/{groupId}/members | Get paginated list of account-group members
-[**Remove-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Remove-LEAccountGroupMembers) | **DELETE** /v7-preview/account-groups/{groupId}/members | Remove members from account-group
-[**Set-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Set-LEAccountGroupMembers) | **PUT** /v7-preview/account-groups/{groupId}/members | Replace members in account-group
+[**Add-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Add-LEAccountGroupMembers) | **POST** /v7/account-groups/{groupId}/members | Add members to account-group
+[**Get-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Get-LEAccountGroupMembers) | **GET** /v7/account-groups/{groupId}/members | Get paginated list of account-group members
+[**Remove-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Remove-LEAccountGroupMembers) | **DELETE** /v7/account-groups/{groupId}/members | Remove members from account-group
+[**Set-LEAccountGroupMembers**](LEAccountGroupMembersApi.md#Set-LEAccountGroupMembers) | **PUT** /v7/account-groups/{groupId}/members | Replace members in account-group
 
 
 <a id="Add-LEAccountGroupMembers"></a>
@@ -26,10 +26,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $RequestBody = "MyRequestBody" # String[] | Account ids
@@ -85,10 +85,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $OrderBy = "username" # AccountSortKey | Sort Key
@@ -148,10 +148,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $RequestBody = "MyRequestBody" # String[] | Account ids
@@ -203,10 +203,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $RequestBody = "MyRequestBody" # String[] | Account ids

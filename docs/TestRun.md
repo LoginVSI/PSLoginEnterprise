@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**NumberOfEvents** | **Int32** | Number of events | [optional] 
 
 ## Examples
 
@@ -21,7 +22,8 @@ $TestRun = Initialize-LEPSLoginEnterpriseTestRun  -Type null `
  -Created null `
  -Started null `
  -Finished null `
- -Counter null
+ -Counter null `
+ -NumberOfEvents null
 ```
 
 - Convert the resource to JSON

@@ -4,26 +4,133 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Invoke-LEDeleteTestRuns**](LETestRunApi.md#Invoke-LEDeleteTestRuns) | **DELETE** /v7-preview/tests/test-runs | Delete test runs
-[**Get-LEAllTestRuns**](LETestRunApi.md#Get-LEAllTestRuns) | **GET** /v7-preview/tests/test-runs | Get paginated list of all test-runs
-[**Get-LEApplicationChart**](LETestRunApi.md#Get-LEApplicationChart) | **GET** /v7-preview/chart/application | Get the application chart for the load test runs with metric definitions and test run results
-[**Get-LEApplicationTestResultOverview**](LETestRunApi.md#Get-LEApplicationTestResultOverview) | **GET** /v7-preview/application-test-run-overview/{testRunId} | Get the application test run overview
-[**Get-LEContinuesTestUserSessionMetricsAggregated**](LETestRunApi.md#Get-LEContinuesTestUserSessionMetricsAggregated) | **GET** /v7-preview/test-runs/{testRunId}/aggregated-continuous-test-user-session-metrics | Get the user session metrics result for a continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per minute and per hour.
-[**Get-LEEuxAggregatedPerHourResults**](LETestRunApi.md#Get-LEEuxAggregatedPerHourResults) | **GET** /v7-preview/test-runs/{testRunId}/aggregated-eux-results | Get the eux results for a load test-run or continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per hour.
-[**Get-LEEuxChartData**](LETestRunApi.md#Get-LEEuxChartData) | **GET** /v7-preview/chart/eux | Get the eux chart for the load test runs with metric definitions and test run results
-[**Get-LEEuxResults**](LETestRunApi.md#Get-LEEuxResults) | **GET** /v7-preview/test-runs/{testRunId}/eux-results | Get eux-results for a given Load test-run and Continuous test-run
-[**Get-LEEuxScriptExecutions**](LETestRunApi.md#Get-LEEuxScriptExecutions) | **GET** /v7-preview/test-runs/{testRunId}/eux-script-executions | Get eux-script-executions (raw-data) for a given Load test-run and Continuous test-run
-[**Get-LEEuxTimerAggregatedPerHourResults**](LETestRunApi.md#Get-LEEuxTimerAggregatedPerHourResults) | **GET** /v7-preview/test-runs/{testRunId}/aggregated-eux-timer-results | Get the eux timer results for a load test-run or continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per hour.
-[**Get-LEEuxTimerResults**](LETestRunApi.md#Get-LEEuxTimerResults) | **GET** /v7-preview/test-runs/{testRunId}/eux-timer-results | Get eux-timer-results for a given Load test-run and Continuous test-run
-[**Get-LELoadTestResultOverview**](LETestRunApi.md#Get-LELoadTestResultOverview) | **GET** /v7-preview/load-test-run-overview/{baseTestRunId} | Get the load test run overview with metric definitions and test run results
-[**Get-LELoadTestRunStatistics**](LETestRunApi.md#Get-LELoadTestRunStatistics) | **GET** /v7-preview/test-runs/{testRunId}/statistics | Get Statistics results for a given Load test-run
-[**Get-LELoadTestUserSessionMetricsAggregated**](LETestRunApi.md#Get-LELoadTestUserSessionMetricsAggregated) | **GET** /v7-preview/test-runs/{testRunId}/aggregated-load-test-user-session-metrics | Get the user session metrics result for a load test-run or continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per minute.
-[**Get-LELoginTimeChart**](LETestRunApi.md#Get-LELoginTimeChart) | **GET** /v7-preview/chart/login-time | Get the login time chart for the load test runs with metric definitions and test run results
-[**Get-LESessionMetricChart**](LETestRunApi.md#Get-LESessionMetricChart) | **GET** /v7-preview/chart/session-metric | Get the session metric chart for the load test runs with metric definitions and test run results
-[**Get-LETestRun**](LETestRunApi.md#Get-LETestRun) | **GET** /v7-preview/test-runs/{testRunId} | Get test-run by id
-[**Get-LETestRuns**](LETestRunApi.md#Get-LETestRuns) | **GET** /v7-preview/tests/{testId}/test-runs | Get paginated list of test-runs
-[**Update-LEComment**](LETestRunApi.md#Update-LEComment) | **PUT** /v7-preview/test-runs/{testRunId}/comment | Update comment
+[**Invoke-LEBulkAddTestRunAccess**](LETestRunApi.md#Invoke-LEBulkAddTestRunAccess) | **POST** /v7/test-runs/access | This endpoint allows you to add roles to the access control list of a collection of test-runs.
+[**Invoke-LEBulkReplaceTestRunAccess**](LETestRunApi.md#Invoke-LEBulkReplaceTestRunAccess) | **PUT** /v7/test-runs/access | This endpoint allows you to replace the access control list of a collection of test-runs.
+[**Invoke-LEDeleteTestRuns**](LETestRunApi.md#Invoke-LEDeleteTestRuns) | **DELETE** /v7/tests/test-runs | Delete test runs
+[**Get-LEAllTestRuns**](LETestRunApi.md#Get-LEAllTestRuns) | **GET** /v7/tests/test-runs | Get paginated list of all test-runs
+[**Get-LEApplicationChart**](LETestRunApi.md#Get-LEApplicationChart) | **GET** /v7/chart/application | Get the application chart for the load test runs with metric definitions and test run results
+[**Get-LEApplicationTestResultOverview**](LETestRunApi.md#Get-LEApplicationTestResultOverview) | **GET** /v7/application-test-run-overview/{testRunId} | Get the application test run overview
+[**Get-LEContinuesTestUserSessionMetricsAggregated**](LETestRunApi.md#Get-LEContinuesTestUserSessionMetricsAggregated) | **GET** /v7/test-runs/{testRunId}/aggregated-continuous-test-user-session-metrics | Get the user session metrics result for a continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per minute and per hour.
+[**Get-LEEuxAggregatedPerHourResults**](LETestRunApi.md#Get-LEEuxAggregatedPerHourResults) | **GET** /v7/test-runs/{testRunId}/aggregated-eux-results | Get the eux results for a load test-run or continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per hour.
+[**Get-LEEuxChartData**](LETestRunApi.md#Get-LEEuxChartData) | **GET** /v7/chart/eux | Get the eux chart for the load test runs with metric definitions and test run results
+[**Get-LEEuxResults**](LETestRunApi.md#Get-LEEuxResults) | **GET** /v7/test-runs/{testRunId}/eux-results | Get eux-results for a given Load test-run and Continuous test-run
+[**Get-LEEuxScriptExecutions**](LETestRunApi.md#Get-LEEuxScriptExecutions) | **GET** /v7/test-runs/{testRunId}/eux-script-executions | Get eux-script-executions (raw-data) for a given Load test-run and Continuous test-run
+[**Get-LEEuxTimerAggregatedPerHourResults**](LETestRunApi.md#Get-LEEuxTimerAggregatedPerHourResults) | **GET** /v7/test-runs/{testRunId}/aggregated-eux-timer-results | Get the eux timer results for a load test-run or continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per hour.
+[**Get-LEEuxTimerResults**](LETestRunApi.md#Get-LEEuxTimerResults) | **GET** /v7/test-runs/{testRunId}/eux-timer-results | Get eux-timer-results for a given Load test-run and Continuous test-run
+[**Get-LELoadTestResultOverview**](LETestRunApi.md#Get-LELoadTestResultOverview) | **GET** /v7/load-test-run-overview/{baseTestRunId} | Get the load test run overview with metric definitions and test run results
+[**Get-LELoadTestRunStatistics**](LETestRunApi.md#Get-LELoadTestRunStatistics) | **GET** /v7/test-runs/{testRunId}/statistics | Get Statistics results for a given Load test-run
+[**Get-LELoadTestUserSessionMetricsAggregated**](LETestRunApi.md#Get-LELoadTestUserSessionMetricsAggregated) | **GET** /v7/test-runs/{testRunId}/aggregated-load-test-user-session-metrics | Get the user session metrics result for a load test-run or continuous test collected within the &quot;&quot;from&quot;&quot; and &quot;&quot;to&quot;&quot; parameters,  and aggregate them per minute.
+[**Get-LELoginTimeChart**](LETestRunApi.md#Get-LELoginTimeChart) | **GET** /v7/chart/login-time | Get the login time chart for the load test runs with metric definitions and test run results
+[**Get-LESessionMetricChart**](LETestRunApi.md#Get-LESessionMetricChart) | **GET** /v7/chart/session-metric | Get the session metric chart for the load test runs with metric definitions and test run results
+[**Get-LETestRun**](LETestRunApi.md#Get-LETestRun) | **GET** /v7/test-runs/{testRunId} | Get test-run by id
+[**Get-LETestRuns**](LETestRunApi.md#Get-LETestRuns) | **GET** /v7/tests/{testId}/test-runs | Get paginated list of test-runs
+[**Get-LETestRunsByRole**](LETestRunApi.md#Get-LETestRunsByRole) | **GET** /v7/test-runs/role | This endpoint allows you to retrieve the IDs of test-runs assigned to a role.
+[**Update-LEComment**](LETestRunApi.md#Update-LEComment) | **PUT** /v7/test-runs/{testRunId}/comment | Update comment
 
+
+<a id="Invoke-LEBulkAddTestRunAccess"></a>
+# **Invoke-LEBulkAddTestRunAccess**
+> void Invoke-LEBulkAddTestRunAccess<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunAccessBulkUpdate] <PSCustomObject><br>
+
+This endpoint allows you to add roles to the access control list of a collection of test-runs.
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$TestRunAccessBulkUpdate = Initialize-LETestRunAccessBulkUpdate -TestRunIds "MyTestRunIds" -RoleIds "MyRoleIds" # TestRunAccessBulkUpdate | The Update request (optional)
+
+# This endpoint allows you to add roles to the access control list of a collection of test-runs.
+try {
+    $Result = Invoke-LEBulkAddTestRunAccess -TestRunAccessBulkUpdate $TestRunAccessBulkUpdate
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-LEBulkAddTestRunAccess: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **TestRunAccessBulkUpdate** | [**TestRunAccessBulkUpdate**](TestRunAccessBulkUpdate.md)| The Update request | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Invoke-LEBulkReplaceTestRunAccess"></a>
+# **Invoke-LEBulkReplaceTestRunAccess**
+> void Invoke-LEBulkReplaceTestRunAccess<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunAccessBulkUpdate] <PSCustomObject><br>
+
+This endpoint allows you to replace the access control list of a collection of test-runs.
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$TestRunAccessBulkUpdate = Initialize-LETestRunAccessBulkUpdate -TestRunIds "MyTestRunIds" -RoleIds "MyRoleIds" # TestRunAccessBulkUpdate | The Update request (optional)
+
+# This endpoint allows you to replace the access control list of a collection of test-runs.
+try {
+    $Result = Invoke-LEBulkReplaceTestRunAccess -TestRunAccessBulkUpdate $TestRunAccessBulkUpdate
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-LEBulkReplaceTestRunAccess: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **TestRunAccessBulkUpdate** | [**TestRunAccessBulkUpdate**](TestRunAccessBulkUpdate.md)| The Update request | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="Invoke-LEDeleteTestRuns"></a>
 # **Invoke-LEDeleteTestRuns**
@@ -40,10 +147,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunIds = "MyTestRunIds" # String[] | Test run id (optional)
 
@@ -99,10 +206,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestType = "applicationTest" # TestType | 
 $OrderBy = "testName" # TestRunSortKey | Sort Key
@@ -168,10 +275,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunIds = "MyTestRunIds" # String[] | test-run ids
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
@@ -215,6 +322,7 @@ Name | Type | Description  | Notes
 # **Get-LEApplicationTestResultOverview**
 > ApplicationTestResultOverview Get-LEApplicationTestResultOverview<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunIds] <String[]><br>
 
 Get the application test run overview
 
@@ -226,16 +334,17 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
-$TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
+$TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Base test-run id (all test runs will be compared to it)
+$TestRunIds = "MyTestRunIds" # String[] | Comparable test run ids (optional)
 
 # Get the application test run overview
 try {
-    $Result = Get-LEApplicationTestResultOverview -TestRunId $TestRunId
+    $Result = Get-LEApplicationTestResultOverview -TestRunId $TestRunId -TestRunIds $TestRunIds
 } catch {
     Write-Host ("Exception occurred when calling Get-LEApplicationTestResultOverview: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -246,7 +355,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **TestRunId** | **String**| Test-run id | 
+ **TestRunId** | **String**| Base test-run id (all test runs will be compared to it) | 
+ **TestRunIds** | [**String[]**](String.md)| Comparable test run ids | [optional] 
 
 ### Return type
 
@@ -272,7 +382,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
 
-Get the user session metrics result for a continuous test collected within the  from  and  to  parameters,  and aggregate them per minute and per hour.
+Get the user session metrics result for a continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per minute and per hour.
 
 ### Example
 ```powershell
@@ -282,10 +392,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AggregationMode = "avgMinute" # SessionMetricsAggregationMode | Aggregation mode (optional)
@@ -293,7 +403,7 @@ $MetricId = 0 # Int32[] | Metric id (optional)
 $From = (Get-Date) # System.DateTime | Include aggregated user session metrics result where Timestamp is greater than the specified date-time (optional) (optional)
 $To = (Get-Date) # System.DateTime | Include aggregated user session metrics result where Timestamp is less than the specified date-time (optional) (optional)
 
-# Get the user session metrics result for a continuous test collected within the  from  and  to  parameters,  and aggregate them per minute and per hour.
+# Get the user session metrics result for a continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per minute and per hour.
 try {
     $Result = Get-LEContinuesTestUserSessionMetricsAggregated -TestRunId $TestRunId -AggregationMode $AggregationMode -MetricId $MetricId -From $From -To $To
 } catch {
@@ -334,7 +444,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
 
-Get the eux results for a load test-run or continuous test collected within the  from  and  to  parameters,  and aggregate them per hour.
+Get the eux results for a load test-run or continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per hour.
 
 ### Example
 ```powershell
@@ -344,16 +454,16 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $From = (Get-Date) # System.DateTime | Include aggregated EuxResults where Timestamp is greater than the specified date-time (optional) (optional)
 $To = (Get-Date) # System.DateTime | Include aggregated EuxResults where Timestamp is less than the specified date-time (optional) (optional)
 
-# Get the eux results for a load test-run or continuous test collected within the  from  and  to  parameters,  and aggregate them per hour.
+# Get the eux results for a load test-run or continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per hour.
 try {
     $Result = Get-LEEuxAggregatedPerHourResults -TestRunId $TestRunId -From $From -To $To
 } catch {
@@ -403,10 +513,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunIds = "MyTestRunIds" # String[] | test-run ids
 $IncludeEuxScore = $true # Boolean | Include eux score (optional)
@@ -463,10 +573,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $From = (Get-Date) # System.DateTime | Include EuxResults where Timestamp is greater than the specified date-time (optional) (optional)
@@ -521,10 +631,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Count = 56 # Int32 | Number of records to return (optional) (default to 1000)
@@ -570,7 +680,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
 
-Get the eux timer results for a load test-run or continuous test collected within the  from  and  to  parameters,  and aggregate them per hour.
+Get the eux timer results for a load test-run or continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per hour.
 
 ### Example
 ```powershell
@@ -580,17 +690,17 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $EuxTimer = "paintStart" # EuxTimer[] |  (optional)
 $From = (Get-Date) # System.DateTime | Include aggregated EuxTimerResults where Timestamp is greater than the specified date-time (optional) (optional)
 $To = (Get-Date) # System.DateTime | Include aggregated EuxTimerResults where Timestamp is less than the specified date-time (optional) (optional)
 
-# Get the eux timer results for a load test-run or continuous test collected within the  from  and  to  parameters,  and aggregate them per hour.
+# Get the eux timer results for a load test-run or continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per hour.
 try {
     $Result = Get-LEEuxTimerAggregatedPerHourResults -TestRunId $TestRunId -EuxTimer $EuxTimer -From $From -To $To
 } catch {
@@ -641,10 +751,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $EuxTimer = "paintStart" # EuxTimer[] |  (optional)
@@ -700,10 +810,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $BaseTestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Base test-run id (all test runs will be compared to it)
 $TestRunIds = "MyTestRunIds" # String[] | Comparable test run ids (optional)
@@ -754,10 +864,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 
@@ -799,7 +909,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
 
-Get the user session metrics result for a load test-run or continuous test collected within the  from  and  to  parameters,  and aggregate them per minute.
+Get the user session metrics result for a load test-run or continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per minute.
 
 ### Example
 ```powershell
@@ -809,17 +919,17 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $MetricId = 0 # Int32[] | Metric id (optional)
 $From = (Get-Date) # System.DateTime | Include aggregated user session metrics result where Timestamp is greater than the specified date-time (optional) (optional)
 $To = (Get-Date) # System.DateTime | Include aggregated user session metrics result where Timestamp is less than the specified date-time (optional) (optional)
 
-# Get the user session metrics result for a load test-run or continuous test collected within the  from  and  to  parameters,  and aggregate them per minute.
+# Get the user session metrics result for a load test-run or continuous test collected within the ""from"" and ""to"" parameters,  and aggregate them per minute.
 try {
     $Result = Get-LELoadTestUserSessionMetricsAggregated -TestRunId $TestRunId -MetricId $MetricId -From $From -To $To
 } catch {
@@ -869,10 +979,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunIds = "MyTestRunIds" # String[] | test-run ids
 $IncludeSessionCount = $true # Boolean | Include session count (optional)
@@ -927,10 +1037,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunIds = "MyTestRunIds" # String[] | test-run ids
 $IncludeSessionCount = $true # Boolean | Include session count (optional)
@@ -984,10 +1094,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Include = "none" # TestRunInclude[] | Include options (optional)
@@ -1045,10 +1155,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $OrderBy = "testName" # TestRunSortKey | Sort Key
@@ -1096,6 +1206,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="Get-LETestRunsByRole"></a>
+# **Get-LETestRunsByRole**
+> void Get-LETestRunsByRole<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-RoleId] <String><br>
+
+This endpoint allows you to retrieve the IDs of test-runs assigned to a role.
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_URL"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$RoleId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | The ID of the role used to filter test-runs. Empty when fetching test-runs without assigned roles (optional)
+
+# This endpoint allows you to retrieve the IDs of test-runs assigned to a role.
+try {
+    $Result = Get-LETestRunsByRole -RoleId $RoleId
+} catch {
+    Write-Host ("Exception occurred when calling Get-LETestRunsByRole: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **RoleId** | **String**| The ID of the role used to filter test-runs. Empty when fetching test-runs without assigned roles | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="Update-LEComment"></a>
 # **Update-LEComment**
 > void Update-LEComment<br>
@@ -1112,10 +1274,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $Comment = "MyComment" # String | Comment (optional)

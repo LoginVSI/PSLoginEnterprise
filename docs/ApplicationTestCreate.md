@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **LauncherGroups** | **String[]** | Launcher group ids | [optional] 
 **EnvironmentKey** | **String** | Environment key | [optional] 
 **ApplicationDebugModeEnabled** | **Boolean** | Run application scripts in debug mode to capture the error line for scripts failures | [optional] 
+**Roles** | **String[]** | The IDs of the roles to which this test should be available. (User must be part of all the submitted roles) | [optional] 
 
 ## Examples
 
@@ -23,7 +24,8 @@ $ApplicationTestCreate = Initialize-LEPSLoginEnterpriseApplicationTestCreate  -T
  -AccountGroups null `
  -LauncherGroups null `
  -EnvironmentKey null `
- -ApplicationDebugModeEnabled null
+ -ApplicationDebugModeEnabled null `
+ -Roles null
 ```
 
 - Convert the resource to JSON

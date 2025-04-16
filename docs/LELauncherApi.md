@@ -4,9 +4,9 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LELauncher**](LELauncherApi.md#Get-LELauncher) | **GET** /v7-preview/launchers/{launcherName} | Get launcher by name.
-[**Get-LELaunchers**](LELauncherApi.md#Get-LELaunchers) | **GET** /v7-preview/launchers | Get paginated list of launchers
-[**Update-LELauncherLocation**](LELauncherApi.md#Update-LELauncherLocation) | **PUT** /v7-preview/launchers/{launcherName}/location | Change launcher&#39;s location
+[**Get-LELauncher**](LELauncherApi.md#Get-LELauncher) | **GET** /v7/launchers/{launcherName} | Get launcher by name.
+[**Get-LELaunchers**](LELauncherApi.md#Get-LELaunchers) | **GET** /v7/launchers | Get paginated list of launchers
+[**Update-LELauncherLocation**](LELauncherApi.md#Update-LELauncherLocation) | **PUT** /v7/launchers/{launcherName}/location | Change launcher&#39;s location
 
 
 <a id="Get-LELauncher"></a>
@@ -24,10 +24,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LauncherName = "MyLauncherName" # String | Launcher name
 
@@ -83,10 +83,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # LauncherSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -150,10 +150,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LauncherName = "MyLauncherName" # String | Launcher name
 $LauncherLocationUpdate = Initialize-LELauncherLocationUpdate -LocationId 0 # LauncherLocationUpdate | Launcher location data

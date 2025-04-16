@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEConnectionResources**](LEConnectionResourcesApi.md#Get-LEConnectionResources) | **GET** /v7-preview/tests/{testId}/connection-resources | Get connection resources by test-id
-[**Update-LEConnectionResources**](LEConnectionResourcesApi.md#Update-LEConnectionResources) | **PUT** /v7-preview/tests/{testId}/connection-resources | Update connection resources for a given test
+[**Get-LEConnectionResources**](LEConnectionResourcesApi.md#Get-LEConnectionResources) | **GET** /v7/tests/{testId}/connection-resources | Get connection resources by test-id
+[**Update-LEConnectionResources**](LEConnectionResourcesApi.md#Update-LEConnectionResources) | **PUT** /v7/tests/{testId}/connection-resources | Update connection resources for a given test
 
 
 <a id="Get-LEConnectionResources"></a>
@@ -23,10 +23,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 
@@ -76,10 +76,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Resolution = Initialize-LEResolution -Width 0 -Height 0

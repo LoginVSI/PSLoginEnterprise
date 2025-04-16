@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **String** | User session id | [optional] 
-**TestRunId** | **String** | Test run id | [optional] 
 **TestId** | **String** | Test id | [optional] 
+**TestRunId** | **String** | Test run id | [optional] 
 **Created** | **System.DateTime** | Created date-time | [optional] 
 **LoginState** | [**LoginState**](LoginState.md) |  | [optional] 
 **SessionState** | [**SessionState**](SessionState.md) |  | [optional] 
@@ -24,8 +24,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $UserSession = Initialize-LEPSLoginEnterpriseUserSession  -Id null `
- -TestRunId null `
  -TestId null `
+ -TestRunId null `
  -Created null `
  -LoginState null `
  -SessionState null `

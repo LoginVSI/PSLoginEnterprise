@@ -4,7 +4,7 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LEAppExecutions**](LEAppExecutionApi.md#Get-LEAppExecutions) | **GET** /v7-preview/test-runs/{testRunId}/user-sessions/{userSessionId}/app-executions | Get paginated list of app-executions
+[**Get-LEAppExecutions**](LEAppExecutionApi.md#Get-LEAppExecutions) | **GET** /v7/test-runs/{testRunId}/user-sessions/{userSessionId}/app-executions | Get paginated list of app-executions
 
 
 <a id="Get-LEAppExecutions"></a>
@@ -29,10 +29,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $UserSessionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session id

@@ -4,14 +4,14 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LESessionMetricGroupDefinitionToTests**](LESessionMetricDefinitionGroupsApi.md#Add-LESessionMetricGroupDefinitionToTests) | **PUT** /v7-preview/session-metric-definition-groups/{groupId}/tests | Add tests to a session metric definition group
-[**New-LEUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#New-LEUserSessionMetricGroup) | **POST** /v7-preview/session-metric-definition-groups | Create user session metric group
-[**Invoke-LEDeleteUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#Invoke-LEDeleteUserSessionMetricGroup) | **DELETE** /v7-preview/session-metric-definition-groups/{groupId} | Delete user session metric group
-[**Get-LETestsBySessionMetricDefinitionGroup**](LESessionMetricDefinitionGroupsApi.md#Get-LETestsBySessionMetricDefinitionGroup) | **GET** /v7-preview/session-metric-definition-groups/tests | Get tests by session-metric-group key
-[**Get-LEUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#Get-LEUserSessionMetricGroup) | **GET** /v7-preview/session-metric-definition-groups/{groupId} | Get user session metric group by id
-[**Get-LEUserSessionMetricGroups**](LESessionMetricDefinitionGroupsApi.md#Get-LEUserSessionMetricGroups) | **GET** /v7-preview/session-metric-definition-groups | Get paginated list of user session metric group
-[**Remove-LESessionMetricDefinitionGroupFromTests**](LESessionMetricDefinitionGroupsApi.md#Remove-LESessionMetricDefinitionGroupFromTests) | **DELETE** /v7-preview/session-metric-definition-groups/{groupId}/tests | Delete tests from environment
-[**Update-LEUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#Update-LEUserSessionMetricGroup) | **PUT** /v7-preview/session-metric-definition-groups/{groupId} | Update user session metric group
+[**Add-LESessionMetricGroupDefinitionToTests**](LESessionMetricDefinitionGroupsApi.md#Add-LESessionMetricGroupDefinitionToTests) | **PUT** /v7/session-metric-definition-groups/{groupId}/tests | Add tests to a session metric definition group
+[**New-LEUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#New-LEUserSessionMetricGroup) | **POST** /v7/session-metric-definition-groups | Create user session metric group
+[**Invoke-LEDeleteUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#Invoke-LEDeleteUserSessionMetricGroup) | **DELETE** /v7/session-metric-definition-groups/{groupId} | Delete user session metric group
+[**Get-LETestsBySessionMetricDefinitionGroup**](LESessionMetricDefinitionGroupsApi.md#Get-LETestsBySessionMetricDefinitionGroup) | **GET** /v7/session-metric-definition-groups/tests | Get tests by session-metric-group key
+[**Get-LEUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#Get-LEUserSessionMetricGroup) | **GET** /v7/session-metric-definition-groups/{groupId} | Get user session metric group by id
+[**Get-LEUserSessionMetricGroups**](LESessionMetricDefinitionGroupsApi.md#Get-LEUserSessionMetricGroups) | **GET** /v7/session-metric-definition-groups | Get paginated list of user session metric group
+[**Remove-LESessionMetricDefinitionGroupFromTests**](LESessionMetricDefinitionGroupsApi.md#Remove-LESessionMetricDefinitionGroupFromTests) | **DELETE** /v7/session-metric-definition-groups/{groupId}/tests | Delete tests from environment
+[**Update-LEUserSessionMetricGroup**](LESessionMetricDefinitionGroupsApi.md#Update-LEUserSessionMetricGroup) | **PUT** /v7/session-metric-definition-groups/{groupId} | Update user session metric group
 
 
 <a id="Add-LESessionMetricGroupDefinitionToTests"></a>
@@ -30,10 +30,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Session metric definition group id
 $RequestBody = "MyRequestBody" # String[] | Test Key list
@@ -84,10 +84,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $SessionMetricDefinitionGroupCreate = Initialize-LESessionMetricDefinitionGroupCreate -Name "MyName" -Description "MyDescription" -DefinitionKeys "MyDefinitionKeys" # SessionMetricDefinitionGroupCreate | Request, which contains name of group and identifiers of members
 
@@ -136,10 +136,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric group id
 
@@ -175,7 +175,7 @@ void (empty response body)
 
 <a id="Get-LETestsBySessionMetricDefinitionGroup"></a>
 # **Get-LETestsBySessionMetricDefinitionGroup**
-> SessionMetricDefinitionGroupResultSet Get-LETestsBySessionMetricDefinitionGroup<br>
+> TestResultSet Get-LETestsBySessionMetricDefinitionGroup<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Type] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
@@ -196,10 +196,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $Type = "applicationTest" # TestType | Test type (Only continuous and load test types are supported)
 $OrderBy = "name" # TestSortKey | Sort Key
@@ -209,7 +209,7 @@ $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | A session metric de
 $Filter = "MyFilter" # String | Filter the tests (optional)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
-$Include = "none" # EnvironmentIncludeOptions[] | Include options (optional)
+$Include = "none" # TestInclude[] | Include options (optional)
 
 # Get tests by session-metric-group key
 try {
@@ -232,11 +232,11 @@ Name | Type | Description  | Notes
  **Filter** | **String**| Filter the tests | [optional] 
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
- **Include** | [**EnvironmentIncludeOptions[]**](EnvironmentIncludeOptions.md)| Include options | [optional] 
+ **Include** | [**TestInclude[]**](TestInclude.md)| Include options | [optional] 
 
 ### Return type
 
-[**SessionMetricDefinitionGroupResultSet**](SessionMetricDefinitionGroupResultSet.md) (PSCustomObject)
+[**TestResultSet**](TestResultSet.md) (PSCustomObject)
 
 ### Authorization
 
@@ -264,10 +264,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Session metric group id
 
@@ -321,10 +321,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # SessionMetricDefinitionGroupSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -384,10 +384,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Session metric definition group id
 $RequestBody = "MyRequestBody" # String[] | Test key list
@@ -439,10 +439,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric group id
 $SessionMetricDefinitionGroupUpdate = Initialize-LESessionMetricDefinitionGroupUpdate -Name "MyName" -Description "MyDescription" # SessionMetricDefinitionGroupUpdate | User session metric group data

@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **Started** | **System.DateTime** | Started date-time | [optional] 
 **Finished** | **System.DateTime** | Finished date-time | [optional] 
 **Counter** | **Int32** | Test run counter | [optional] 
+**NumberOfEvents** | **Int32** | Number of events | [optional] 
 **TestRunConfigurationSnapshot** | [**LoadTestRunConfigurationSnapshot**](LoadTestRunConfigurationSnapshot.md) |  | [optional] 
 **State** | [**LoadTestState**](LoadTestState.md) |  | [optional] 
 **Result** | [**LoadTestResult**](LoadTestResult.md) |  | [optional] 
+**ProductVersion** | **String** | Product version | [optional] 
 **AppFailureResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **AppPerformanceResults** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **Properties** | [**Property[]**](Property.md) | Application test run properties | [optional] 
@@ -20,12 +22,17 @@ Name | Type | Description | Notes
 **RampUpCompleted** | **System.DateTime** | Ramp-up completed date-time | [optional] 
 **ActiveSessionCount** | **Int32** | Active session count | [optional] 
 **StatisticsReady** | **Boolean** | Statistics are ready | [optional] 
-**ProductVersion** | **String** | Product version | [optional] 
 **LoginCounts** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **EngineCounts** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **AppExecutionCounts** | [**SuccessCounts**](SuccessCounts.md) |  | [optional] 
 **EuxScore** | [**EuxScore**](EuxScore.md) |  | [optional] 
 **VsiMax** | [**VsiMax**](VsiMax.md) |  | [optional] 
+**TestName** | **String** | Test name | [optional] 
+**SessionMetricGroupKey** | **String** | Session metric group key | [optional] 
+**EnvironmentKey** | **String** | Environment key | [optional] 
+**ScheduleType** | [**ContinuousScheduleType**](ContinuousScheduleType.md) |  | [optional] 
+**Description** | **String** | Description | [optional] 
+**ConnectorId** | **String** | Connector id | [optional] 
 
 ## Examples
 
@@ -38,9 +45,11 @@ $DataGetTestRun200Response = Initialize-LEPSLoginEnterpriseDataGetTestRun200Resp
  -Started null `
  -Finished null `
  -Counter null `
+ -NumberOfEvents null `
  -TestRunConfigurationSnapshot null `
  -State null `
  -Result null `
+ -ProductVersion null `
  -AppFailureResults null `
  -AppPerformanceResults null `
  -Properties null `
@@ -48,12 +57,17 @@ $DataGetTestRun200Response = Initialize-LEPSLoginEnterpriseDataGetTestRun200Resp
  -RampUpCompleted null `
  -ActiveSessionCount null `
  -StatisticsReady null `
- -ProductVersion null `
  -LoginCounts null `
  -EngineCounts null `
  -AppExecutionCounts null `
  -EuxScore null `
- -VsiMax null
+ -VsiMax null `
+ -TestName null `
+ -SessionMetricGroupKey null `
+ -EnvironmentKey null `
+ -ScheduleType null `
+ -Description null `
+ -ConnectorId null
 ```
 
 - Convert the resource to JSON

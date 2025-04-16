@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PlatformSummary** | [**PlatformSummary**](PlatformSummary.md) |  | [optional] 
-**ApplicationSummaries** | [**ApplicationSummary[]**](ApplicationSummary.md) | Application summaries | [optional] 
+**ApplicationTestResult** | [**ApplicationTestData[]**](ApplicationTestData.md) | Application test result | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ApplicationTestResultOverview = Initialize-LEPSLoginEnterpriseApplicationTestResultOverview  -PlatformSummary null `
- -ApplicationSummaries null
+$ApplicationTestResultOverview = Initialize-LEPSLoginEnterpriseApplicationTestResultOverview  -ApplicationTestResult null
 ```
 
 - Convert the resource to JSON

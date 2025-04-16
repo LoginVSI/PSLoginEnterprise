@@ -4,10 +4,10 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LESessionMetricGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Add-LESessionMetricGroupMembers) | **POST** /v7-preview/session-metric-definition-groups/{groupId}/members | Add members to session metric group
-[**Get-LEMetricGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Get-LEMetricGroupMembers) | **GET** /v7-preview/session-metric-definition-groups/{groupId}/members | Get paginated list of user session metric group members
-[**Remove-LESessionMetricGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Remove-LESessionMetricGroupMembers) | **DELETE** /v7-preview/session-metric-definition-groups/{groupId}/members | Remove members from user session metric group
-[**Set-LESessionMetricDefinitionGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Set-LESessionMetricDefinitionGroupMembers) | **PUT** /v7-preview/session-metric-definition-groups/{groupId}/members | Replace members in session metric group
+[**Add-LESessionMetricGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Add-LESessionMetricGroupMembers) | **POST** /v7/session-metric-definition-groups/{groupId}/members | Add members to session metric group
+[**Get-LEMetricGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Get-LEMetricGroupMembers) | **GET** /v7/session-metric-definition-groups/{groupId}/members | Get paginated list of user session metric group members
+[**Remove-LESessionMetricGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Remove-LESessionMetricGroupMembers) | **DELETE** /v7/session-metric-definition-groups/{groupId}/members | Remove members from user session metric group
+[**Set-LESessionMetricDefinitionGroupMembers**](LESessionMetricDefinitionGroupMembersApi.md#Set-LESessionMetricDefinitionGroupMembers) | **PUT** /v7/session-metric-definition-groups/{groupId}/members | Replace members in session metric group
 
 
 <a id="Add-LESessionMetricGroupMembers"></a>
@@ -26,10 +26,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Session metric group id
 $RequestBody = "MyRequestBody" # String[] | User session metric definition ids
@@ -85,10 +85,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric group id
 $OrderBy = "definitionType" # SessionMetricDefinitionSortKey | Sort Key
@@ -148,10 +148,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User session metric group id
 $RequestBody = "MyRequestBody" # String[] | User session metric definition ids
@@ -203,10 +203,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Session metric group id
 $RequestBody = "MyRequestBody" # String[] | User session metric definition ids

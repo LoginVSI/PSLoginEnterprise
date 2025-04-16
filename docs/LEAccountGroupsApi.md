@@ -4,14 +4,14 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LEAccountGroup**](LEAccountGroupsApi.md#New-LEAccountGroup) | **POST** /v7-preview/account-groups | Create account-group
-[**Invoke-LEDeleteAccountGroup**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroup) | **DELETE** /v7-preview/account-groups/{groupId} | Delete account-group
-[**Invoke-LEDeleteAccountGroups**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroups) | **DELETE** /v7-preview/account-groups | Delete multiple account-groups
-[**Get-LEAccountGroup**](LEAccountGroupsApi.md#Get-LEAccountGroup) | **GET** /v7-preview/account-groups/{groupId} | Get account-group by id
-[**Get-LEAccountGroupCandidates**](LEAccountGroupsApi.md#Get-LEAccountGroupCandidates) | **GET** /v7-preview/account-groups/candidates | Get account-group candidates
-[**Get-LEAccountGroups**](LEAccountGroupsApi.md#Get-LEAccountGroups) | **GET** /v7-preview/account-groups | Get paginated list of account-groups
-[**Update-LEAccountGroup**](LEAccountGroupsApi.md#Update-LEAccountGroup) | **PUT** /v7-preview/account-groups/{groupId} | Update account-group
-[**Update-LEAccountsEnabled**](LEAccountGroupsApi.md#Update-LEAccountsEnabled) | **PUT** /v7-preview/account-groups/enabled | Enable or disable accounts in groups
+[**New-LEAccountGroup**](LEAccountGroupsApi.md#New-LEAccountGroup) | **POST** /v7/account-groups | Create account-group
+[**Invoke-LEDeleteAccountGroup**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroup) | **DELETE** /v7/account-groups/{groupId} | Delete account-group
+[**Invoke-LEDeleteAccountGroups**](LEAccountGroupsApi.md#Invoke-LEDeleteAccountGroups) | **DELETE** /v7/account-groups | Delete multiple account-groups
+[**Get-LEAccountGroup**](LEAccountGroupsApi.md#Get-LEAccountGroup) | **GET** /v7/account-groups/{groupId} | Get account-group by id
+[**Get-LEAccountGroupCandidates**](LEAccountGroupsApi.md#Get-LEAccountGroupCandidates) | **GET** /v7/account-groups/candidates | Get account-group candidates
+[**Get-LEAccountGroups**](LEAccountGroupsApi.md#Get-LEAccountGroups) | **GET** /v7/account-groups | Get paginated list of account-groups
+[**Update-LEAccountGroup**](LEAccountGroupsApi.md#Update-LEAccountGroup) | **PUT** /v7/account-groups/{groupId} | Update account-group
+[**Update-LEAccountsEnabled0**](LEAccountGroupsApi.md#Update-LEAccountsEnabled0) | **PUT** /v7/account-groups/enabled | Enable or disable accounts in groups
 
 
 <a id="New-LEAccountGroup"></a>
@@ -29,10 +29,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $ConfigurationCreateAccountGroupRequest = Initialize-LEConfigurationCreateAccountGroupRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -VarFilter "MyVarFilter" -MemberIds "MyMemberIds" # ConfigurationCreateAccountGroupRequest | Account-group data
 
@@ -81,10 +81,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 
@@ -133,10 +133,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = "MyRequestBody" # String[] | Account-group ids
 
@@ -186,10 +186,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $Include = "none" # AccountGroupInclude[] | Include options (optional)
@@ -248,10 +248,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "username" # AccountSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -323,10 +323,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # AccountGroupSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -390,10 +390,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $GroupId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Account-group id
 $ConfigurationUpdateAccountGroupRequest = Initialize-LEConfigurationUpdateAccountGroupRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -VarFilter "MyVarFilter" -MemberIds "MyMemberIds" # ConfigurationUpdateAccountGroupRequest | Account-group data
@@ -429,9 +429,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="Update-LEAccountsEnabled"></a>
-# **Update-LEAccountsEnabled**
-> void Update-LEAccountsEnabled<br>
+<a id="Update-LEAccountsEnabled0"></a>
+# **Update-LEAccountsEnabled0**
+> void Update-LEAccountsEnabled0<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AccountGroupMemberEnabledUpdate] <PSCustomObject><br>
 
 Enable or disable accounts in groups
@@ -444,18 +444,18 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $AccountGroupMemberEnabledUpdate = Initialize-LEAccountGroupMemberEnabledUpdate -GroupIds "MyGroupIds" -Enabled $false # AccountGroupMemberEnabledUpdate | Groups data
 
 # Enable or disable accounts in groups
 try {
-    $Result = Update-LEAccountsEnabled -AccountGroupMemberEnabledUpdate $AccountGroupMemberEnabledUpdate
+    $Result = Update-LEAccountsEnabled0 -AccountGroupMemberEnabledUpdate $AccountGroupMemberEnabledUpdate
 } catch {
-    Write-Host ("Exception occurred when calling Update-LEAccountsEnabled: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Update-LEAccountsEnabled0: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

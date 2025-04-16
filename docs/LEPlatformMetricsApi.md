@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Add-LEPlatformMetrics**](LEPlatformMetricsApi.md#Add-LEPlatformMetrics) | **POST** /v7-preview/platform-metrics | Adds a collection of platform metrics for a specified environment.
-[**Get-LEPlatformMetrics**](LEPlatformMetricsApi.md#Get-LEPlatformMetrics) | **GET** /v7-preview/platform-metrics | Retrieves a collection of platform metrics based on the specified filters.
+[**Add-LEPlatformMetrics**](LEPlatformMetricsApi.md#Add-LEPlatformMetrics) | **POST** /v7/platform-metrics | Adds a collection of platform metrics for a specified environment.
+[**Get-LEPlatformMetrics**](LEPlatformMetricsApi.md#Get-LEPlatformMetrics) | **GET** /v7/platform-metrics | Retrieves a collection of platform metrics based on the specified filters.
 
 
 <a id="Add-LEPlatformMetrics"></a>
@@ -23,10 +23,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $PlatformMetric = Initialize-LEPlatformMetric -MetricId "MyMetricId" -EnvironmentKey "MyEnvironmentKey" -Timestamp (Get-Date) -DisplayName "MyDisplayName" -Unit "MyUnit" -Instance "MyInstance" -Value 0 -Group "MyGroup" -ComponentType "MyComponentType" -CustomTags @{ key_example = "MyInner" } # PlatformMetric[] | An array of PlatformMetric objects containing the metrics to be added.
 
@@ -85,10 +85,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $From = (Get-Date) # System.DateTime | The start date and time for the metrics to be retrieved. (Defaults to 24 hours before the current time if null) (optional)
 $To = (Get-Date) # System.DateTime | The end date and time for the metrics to be retrieved. (Defaults to 24 hours after the 'from' date if null) (optional)
@@ -97,10 +97,10 @@ $MetricIds = "MyMetricIds" # String[] | An array of metric identifiers to filter
 $MetricGroups = "MyMetricGroups" # String[] | An array of strings representing the groups or categories of metrics to filter the results. (optional)
 $Instances = "MyInstances" # String[] | An array of strings representing the specific instances or sources associated with the metrics to filter the results. (optional)
 $ComponentTypes = "MyComponentTypes" # String[] | An array of strings representing the type of the components associated with the metrics to filter the results. (optional)
-$AggregationWindowEvery = "MyAggregationWindowEvery" # String | The time interval at which the metrics should be aggregated (e.g.,  10m ,  1h ,  30m ). (optional)
-$AggregationWindowFn = "MyAggregationWindowFn" # String | The aggregation function to be applied to the metrics within each aggregation window (e.g.,  mean ,  median ,  min). (optional)
+$AggregationWindowEvery = "MyAggregationWindowEvery" # String | The time interval at which the metrics should be aggregated (e.g., ""10m"", ""1h"", ""30m""). (optional)
+$AggregationWindowFn = "MyAggregationWindowFn" # String | The aggregation function to be applied to the metrics within each aggregation window (e.g., ""mean"", ""median"", ""min). (optional)
 $GroupColumns = "MyGroupColumns" # String[] | A list of columns used for grouping the metrics. This parameter allows customization of how metrics are grouped in the results.  When specified, the grouping will always include '_measurement' (representing the metric ID) and 'environment_key'.  Available options for grouping include:  - '_measurement': The metric ID. (always included)  - 'environment_key': The key identifying the environment. (always included)  - 'instance': The specific instance or source associated with the metrics.  - 'group': The group or category of the metrics.  - 'component_type': The type of the components associated with the metrics.  - '{user_defined_custom_tag}': Any user-defined custom tags. (optional)
-$CustomTagsFilters = "MyCustomTagsFilters" # String[] | Filters for custom tags. The expected format can be one of the following:  -  tagKey=tagValue1;tagValue2;tagValue3 : Selects metrics where 'tagKey' is equal to 'tagValue1', 'tagValue2' OR 'tagValue3'.  -  tagKey=* : Selects metrics where 'tagKey' is present in the collection of custom tags. (optional)
+$CustomTagsFilters = "MyCustomTagsFilters" # String[] | Filters for custom tags. The expected format can be one of the following:  - ""tagKey=tagValue1;tagValue2;tagValue3"": Selects metrics where 'tagKey' is equal to 'tagValue1', 'tagValue2' OR 'tagValue3'.  - ""tagKey=*"": Selects metrics where 'tagKey' is present in the collection of custom tags. (optional)
 
 # Retrieves a collection of platform metrics based on the specified filters.
 try {

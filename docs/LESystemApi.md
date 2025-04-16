@@ -4,8 +4,8 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-LESystemEuxVersion**](LESystemApi.md#Get-LESystemEuxVersion) | **GET** /v7-preview/system/eux-version | Get eux version of system
-[**Get-LESystemVersions**](LESystemApi.md#Get-LESystemVersions) | **GET** /v7-preview/system/version | Get current and latest versions of system
+[**Get-LESystemEuxVersion**](LESystemApi.md#Get-LESystemEuxVersion) | **GET** /v7/system/eux-version | Get eux version of system
+[**Get-LESystemVersions**](LESystemApi.md#Get-LESystemVersions) | **GET** /v7/system/version | Get current and latest versions of system
 
 
 <a id="Get-LESystemEuxVersion"></a>
@@ -22,10 +22,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get eux version of system
@@ -69,10 +69,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 
 # Get current and latest versions of system

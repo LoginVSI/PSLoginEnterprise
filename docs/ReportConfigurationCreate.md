@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Frequency** | [**Frequency**](Frequency.md) |  | 
-**LatencyThreshold** | [**ThresholdUpdate**](ThresholdUpdate.md) |  | 
-**LoginTimeThreshold** | [**ThresholdUpdate**](ThresholdUpdate.md) |  | 
+**LatencyThreshold** | [**ThresholdUpdate**](ThresholdUpdate.md) |  | [optional] 
+**LoginTimeThreshold** | [**ThresholdUpdate**](ThresholdUpdate.md) |  | [optional] 
 **TimeZoneOffset** | **String** | Time zone offset | [optional] 
 **Name** | **String** | Report configuration name | 
 **Description** | **String** | Report configuration description | [optional] 

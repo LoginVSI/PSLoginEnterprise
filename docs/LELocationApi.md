@@ -4,12 +4,12 @@ All URIs are relative to */publicApi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-LELocation**](LELocationApi.md#New-LELocation) | **POST** /v7-preview/locations | Create location
-[**Invoke-LEDeleteLocation**](LELocationApi.md#Invoke-LEDeleteLocation) | **DELETE** /v7-preview/locations/{locationId} | Delete location
-[**Invoke-LEDeleteLocations**](LELocationApi.md#Invoke-LEDeleteLocations) | **DELETE** /v7-preview/locations | Delete multiple locations
-[**Get-LELocation**](LELocationApi.md#Get-LELocation) | **GET** /v7-preview/locations/{locationId} | Get location by id
-[**Get-LELocations**](LELocationApi.md#Get-LELocations) | **GET** /v7-preview/locations | Get paginated list of locations
-[**Update-LELocation**](LELocationApi.md#Update-LELocation) | **PUT** /v7-preview/locations/{locationId} | Update location
+[**New-LELocation**](LELocationApi.md#New-LELocation) | **POST** /v7/locations | Create location
+[**Invoke-LEDeleteLocation**](LELocationApi.md#Invoke-LEDeleteLocation) | **DELETE** /v7/locations/{locationId} | Delete location
+[**Invoke-LEDeleteLocations**](LELocationApi.md#Invoke-LEDeleteLocations) | **DELETE** /v7/locations | Delete multiple locations
+[**Get-LELocation**](LELocationApi.md#Get-LELocation) | **GET** /v7/locations/{locationId} | Get location by id
+[**Get-LELocations**](LELocationApi.md#Get-LELocations) | **GET** /v7/locations | Get paginated list of locations
+[**Update-LELocation**](LELocationApi.md#Update-LELocation) | **PUT** /v7/locations/{locationId} | Update location
 
 
 <a id="New-LELocation"></a>
@@ -27,10 +27,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationCreate = Initialize-LELocationCreate -Name "MyName" -Latitude 0 -Longitude 0 -Description "MyDescription" # LocationCreate | Location data
 
@@ -79,10 +79,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationId = 56 # Int32 | Location id
 
@@ -131,10 +131,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $RequestBody = 0 # Int32[] | Location ids (optional)
 
@@ -184,10 +184,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationId = 56 # Int32 | Location id
 $Include = "none" # LocationInclude[] | Include options (optional)
@@ -244,10 +244,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $OrderBy = "name" # LocationSortKey | Sort Key
 $Direction = "asc" # SortOrder | Sort direction
@@ -309,10 +309,10 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
- 
+# $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
- 
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
 
 $LocationId = 56 # Int32 | Location id
 $LocationUpdate = Initialize-LELocationUpdate -Name "MyName" -Latitude 0 -Longitude 0 -Description "MyDescription" # LocationUpdate | Location data

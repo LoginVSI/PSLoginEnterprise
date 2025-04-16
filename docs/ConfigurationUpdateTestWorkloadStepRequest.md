@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ConfigurationUpdateTestWorkloadStepRequest = Initialize-LELEPSLoginEnterpriseConfigurationUpdateTestWorkloadStepRequest  -Type null `
+$ConfigurationUpdateTestWorkloadStepRequest = Initialize-LELELEPSLoginEnterpriseConfigurationUpdateTestWorkloadStepRequest  -Type null `
  -RunOnce null `
  -LeaveRunning null `
  -IsEnabled null `

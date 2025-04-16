@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Value** | **Double** | Threshold value | [optional] 
 **LastModified** | **System.DateTime** | Last modified date-time | [optional] 
 **ApplicationId** | **String** | Application id | [optional] 
+**ApplicationName** | **String** | Application name | [optional] 
 **Timer** | **String** | Application timer | [optional] 
 **Target** | [**SessionThresholdType**](SessionThresholdType.md) |  | [optional] 
 
@@ -22,6 +23,7 @@ $ConfigurationGetApplicationTestThresholds200ResponseInner = Initialize-LEPSLogi
  -Value null `
  -LastModified null `
  -ApplicationId null `
+ -ApplicationName null `
  -Timer null `
  -Target null
 ```

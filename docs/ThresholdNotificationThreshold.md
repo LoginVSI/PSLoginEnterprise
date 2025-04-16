@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ThresholdNotificationThreshold = Initialize-LELEPSLoginEnterpriseThresholdNotificationThreshold  -Type null `
+$ThresholdNotificationThreshold = Initialize-LELELEPSLoginEnterpriseThresholdNotificationThreshold  -Type null `
  -ApplicationId null `
  -Timer null `
  -Id null `
