@@ -5,8 +5,8 @@
 The Login Enterprise Public API provides documentation and Swagger per version within the product. For additional information please refer to the [documentation](https://support.loginvsi.com/hc/en-us/articles/360009534760) on our website.
 
 - API version: 7.0
-- SDK version: 1.0.7
-- Generator version: 7.9.0
+- SDK version: 1.0.9
+- Generator version: 7.17.0
 - Build package: org.openapitools.codegen.languages.PowerShellClientCodegen
 
 <a id="frameworks-supported"></a>
@@ -20,7 +20,7 @@ The Login Enterprise Public API provides documentation and Swagger per version w
 
 To install from PowerShell Gallery (https://www.powershellgallery.com/packages/PSLoginEnterprise)
 ```powershell
-Install-Module -Name PSLoginEnterprise -RequiredVersion 1.0.7
+Install-Module -Name PSLoginEnterprise -RequiredVersion 1.0.9
 Import-Module -Name PSLoginEnterprise -Verbose
 ```
 <span style="color: red;">
@@ -44,7 +44,7 @@ To avoid function name collision, one can use `-Prefix`, e.g. `Import-Module -Na
 
 To uninstall the module, simply run:
 ```powershell
-Remove-Module -FullyQualifiedName @{ModuleName = "PSLoginEnterprise"; ModuleVersion = "1.0.7"}
+Remove-Module -FullyQualifiedName @{ModuleName = "PSLoginEnterprise"; ModuleVersion = "1.0.9"}
 ```
 
 For troubleshooting, please run `$DebugPreference = 'Continue'` to turn on debugging and disable it with `$DebugPreference = 'SilentlyContinue'` when done with the troubleshooting.
@@ -145,7 +145,7 @@ Class | Method | HTTP request | Description
 *LEAccountGroupsApi* | [**Get-LEAccountGroupCandidates**](docs/LEAccountGroupsApi.md#Get-LEAccountGroupCandidates) | **GET** /v7/account-groups/candidates | Get account-group candidates
 *LEAccountGroupsApi* | [**Get-LEAccountGroups**](docs/LEAccountGroupsApi.md#Get-LEAccountGroups) | **GET** /v7/account-groups | Get paginated list of account-groups
 *LEAccountGroupsApi* | [**Update-LEAccountGroup**](docs/LEAccountGroupsApi.md#Update-LEAccountGroup) | **PUT** /v7/account-groups/{groupId} | Update account-group
-*LEAccountGroupsApi* | [**Update-LEAccountsEnabled0**](docs/LEAccountGroupsApi.md#Update-LEAccountsEnabled0) | **PUT** /v7/account-groups/enabled | Enable or disable accounts in groups
+*LEAccountGroupsApi* | [**Update-LEAccountsEnabled**](docs/LEAccountGroupsApi.md#Update-LEAccountsEnabled) | **PUT** /v7/account-groups/enabled | Enable or disable accounts in groups
 *LEAppExecutionApi* | [**Get-LEAppExecutions**](docs/LEAppExecutionApi.md#Get-LEAppExecutions) | **GET** /v7/test-runs/{testRunId}/user-sessions/{userSessionId}/app-executions | Get paginated list of app-executions
 *LEApplianceHealthApi* | [**Get-LEApplianceHealthAlertSettingsAsync**](docs/LEApplianceHealthApi.md#Get-LEApplianceHealthAlertSettingsAsync) | **GET** /v7/appliance-health/settings | Retrieves the current appliance health alert settings.
 *LEApplianceHealthApi* | [**Get-LEApplianceHealthMetricsAsync**](docs/LEApplianceHealthApi.md#Get-LEApplianceHealthMetricsAsync) | **GET** /v7/appliance-health | Retrieves a collection of appliance health metrics based on the specified filters.
@@ -157,6 +157,12 @@ Class | Method | HTTP request | Description
 *LEApplicationApi* | [**Get-LEApplications**](docs/LEApplicationApi.md#Get-LEApplications) | **GET** /v7/applications | Gets a paginated list of applications
 *LEApplicationApi* | [**Invoke-LEParseApplicationDetails**](docs/LEApplicationApi.md#Invoke-LEParseApplicationDetails) | **POST** /v7/applications/parse | Parse application details from script content
 *LEApplicationApi* | [**Update-LEApplication**](docs/LEApplicationApi.md#Update-LEApplication) | **PUT** /v7/applications/{applicationId} | Update application
+*LEApplicationAccessApi* | [**Invoke-LEBulkAddApplicationAccess**](docs/LEApplicationAccessApi.md#Invoke-LEBulkAddApplicationAccess) | **POST** /v7/applications/access | Bulk add application access
+*LEApplicationAccessApi* | [**Invoke-LEBulkRemoveApplicationAccess**](docs/LEApplicationAccessApi.md#Invoke-LEBulkRemoveApplicationAccess) | **DELETE** /v7/applications/access | Bulk remove application access
+*LEApplicationAccessApi* | [**Invoke-LEBulkReplaceApplicationAccess**](docs/LEApplicationAccessApi.md#Invoke-LEBulkReplaceApplicationAccess) | **PUT** /v7/applications/access | Bulk replace application access
+*LEApplicationAccessApi* | [**Get-LEApplicationAccess**](docs/LEApplicationAccessApi.md#Get-LEApplicationAccess) | **GET** /v7/applications/{applicationId}/access | Get application access
+*LEApplicationAccessApi* | [**Get-LEApplicationsByRole**](docs/LEApplicationAccessApi.md#Get-LEApplicationsByRole) | **GET** /v7/applications/role | Get applications by role ID
+*LEApplicationAccessApi* | [**Update-LEApplicationAccess**](docs/LEApplicationAccessApi.md#Update-LEApplicationAccess) | **PUT** /v7/applications/{applicationId}/access | Update application access
 *LEApplicationGroupApi* | [**Add-LEStepsToApplicationGroup**](docs/LEApplicationGroupApi.md#Add-LEStepsToApplicationGroup) | **POST** /v7/application-groups/{groupId}/steps | Add steps to application-group
 *LEApplicationGroupApi* | [**New-LEApplicationGroup**](docs/LEApplicationGroupApi.md#New-LEApplicationGroup) | **POST** /v7/application-groups | Create application-group
 *LEApplicationGroupApi* | [**Invoke-LEDeleteApplicationGroup**](docs/LEApplicationGroupApi.md#Invoke-LEDeleteApplicationGroup) | **DELETE** /v7/application-groups/{groupId} | Delete application-group
@@ -167,6 +173,12 @@ Class | Method | HTTP request | Description
 *LEApplicationGroupApi* | [**Invoke-LEReplaceApplicationGroupSteps**](docs/LEApplicationGroupApi.md#Invoke-LEReplaceApplicationGroupSteps) | **PUT** /v7/application-groups/{groupId}/steps | Replace application-group Steps
 *LEApplicationGroupApi* | [**Update-LEApplicationGroup**](docs/LEApplicationGroupApi.md#Update-LEApplicationGroup) | **PUT** /v7/application-groups/{groupId} | Update application-group
 *LEApplicationGroupApi* | [**Update-LEStepInApplicationGroup**](docs/LEApplicationGroupApi.md#Update-LEStepInApplicationGroup) | **PUT** /v7/application-groups/{groupId}/steps/{stepId} | Update single step in application-group
+*LEApplicationGroupAccessApi* | [**Invoke-LEBulkAddApplicationGroupAccess**](docs/LEApplicationGroupAccessApi.md#Invoke-LEBulkAddApplicationGroupAccess) | **POST** /v7/application-groups/access | Bulk add application group access
+*LEApplicationGroupAccessApi* | [**Invoke-LEBulkRemoveApplicationGroupAccess**](docs/LEApplicationGroupAccessApi.md#Invoke-LEBulkRemoveApplicationGroupAccess) | **DELETE** /v7/application-groups/access | Bulk remove application group access
+*LEApplicationGroupAccessApi* | [**Invoke-LEBulkReplaceApplicationGroupAccess**](docs/LEApplicationGroupAccessApi.md#Invoke-LEBulkReplaceApplicationGroupAccess) | **PUT** /v7/application-groups/access | Bulk replace application group access
+*LEApplicationGroupAccessApi* | [**Get-LEApplicationGroupAccess**](docs/LEApplicationGroupAccessApi.md#Get-LEApplicationGroupAccess) | **GET** /v7/application-groups/{applicationGroupId}/access | Get application group access
+*LEApplicationGroupAccessApi* | [**Get-LEApplicationGroupsByRole**](docs/LEApplicationGroupAccessApi.md#Get-LEApplicationGroupsByRole) | **GET** /v7/application-groups/role | Get application groups by role ID
+*LEApplicationGroupAccessApi* | [**Update-LEApplicationGroupAccess**](docs/LEApplicationGroupAccessApi.md#Update-LEApplicationGroupAccess) | **PUT** /v7/application-groups/{applicationGroupId}/access | Update application group access
 *LEConnectionResourcesApi* | [**Get-LEConnectionResources**](docs/LEConnectionResourcesApi.md#Get-LEConnectionResources) | **GET** /v7/tests/{testId}/connection-resources | Get connection resources by test-id
 *LEConnectionResourcesApi* | [**Update-LEConnectionResources**](docs/LEConnectionResourcesApi.md#Update-LEConnectionResources) | **PUT** /v7/tests/{testId}/connection-resources | Update connection resources for a given test
 *LEEnvironmentApi* | [**Add-LEEnvironmentToTests**](docs/LEEnvironmentApi.md#Add-LEEnvironmentToTests) | **PUT** /v7/environments/{environmentId}/tests | Add tests to an environment
@@ -301,8 +313,6 @@ Class | Method | HTTP request | Description
 *LETestAccessApi* | [**Get-LETestAccess**](docs/LETestAccessApi.md#Get-LETestAccess) | **GET** /v7/tests/{testId}/access | This endpoint allows you to retrieve the access control list of a single test.
 *LETestAccessApi* | [**Get-LETestsByRole**](docs/LETestAccessApi.md#Get-LETestsByRole) | **GET** /v7/tests/role | This endpoint allows you to retrieve the IDs of test assigned to a role.
 *LETestAccessApi* | [**Update-LETestAccess**](docs/LETestAccessApi.md#Update-LETestAccess) | **PUT** /v7/tests/{testId}/access | This endpoint allows you to update the access control list of a single test.
-*LETestRunApi* | [**Invoke-LEBulkAddTestRunAccess**](docs/LETestRunApi.md#Invoke-LEBulkAddTestRunAccess) | **POST** /v7/test-runs/access | This endpoint allows you to add roles to the access control list of a collection of test-runs.
-*LETestRunApi* | [**Invoke-LEBulkReplaceTestRunAccess**](docs/LETestRunApi.md#Invoke-LEBulkReplaceTestRunAccess) | **PUT** /v7/test-runs/access | This endpoint allows you to replace the access control list of a collection of test-runs.
 *LETestRunApi* | [**Invoke-LEDeleteTestRuns**](docs/LETestRunApi.md#Invoke-LEDeleteTestRuns) | **DELETE** /v7/tests/test-runs | Delete test runs
 *LETestRunApi* | [**Get-LEAllTestRuns**](docs/LETestRunApi.md#Get-LEAllTestRuns) | **GET** /v7/tests/test-runs | Get paginated list of all test-runs
 *LETestRunApi* | [**Get-LEApplicationChart**](docs/LETestRunApi.md#Get-LEApplicationChart) | **GET** /v7/chart/application | Get the application chart for the load test runs with metric definitions and test run results
@@ -321,7 +331,6 @@ Class | Method | HTTP request | Description
 *LETestRunApi* | [**Get-LESessionMetricChart**](docs/LETestRunApi.md#Get-LESessionMetricChart) | **GET** /v7/chart/session-metric | Get the session metric chart for the load test runs with metric definitions and test run results
 *LETestRunApi* | [**Get-LETestRun**](docs/LETestRunApi.md#Get-LETestRun) | **GET** /v7/test-runs/{testRunId} | Get test-run by id
 *LETestRunApi* | [**Get-LETestRuns**](docs/LETestRunApi.md#Get-LETestRuns) | **GET** /v7/tests/{testId}/test-runs | Get paginated list of test-runs
-*LETestRunApi* | [**Get-LETestRunsByRole**](docs/LETestRunApi.md#Get-LETestRunsByRole) | **GET** /v7/test-runs/role | This endpoint allows you to retrieve the IDs of test-runs assigned to a role.
 *LETestRunApi* | [**Update-LEComment**](docs/LETestRunApi.md#Update-LEComment) | **PUT** /v7/test-runs/{testRunId}/comment | Update comment
 *LEThresholdApi* | [**New-LEApplicationTestThreshold**](docs/LEThresholdApi.md#New-LEApplicationTestThreshold) | **POST** /v7/tests/{testId}/thresholds | Create threshold
 *LEThresholdApi* | [**Invoke-LEDeleteApplicationTestThreshold**](docs/LEThresholdApi.md#Invoke-LEDeleteApplicationTestThreshold) | **DELETE** /v7/tests/{testId}/thresholds/{thresholdId} | Delete threshold
@@ -404,11 +413,13 @@ Class | Method | HTTP request | Description
  - [PSLoginEnterprise\Model.ApplianceHealthAlertSettings](docs/ApplianceHealthAlertSettings.md)
  - [PSLoginEnterprise\Model.ApplianceHealthMetricSeries](docs/ApplianceHealthMetricSeries.md)
  - [PSLoginEnterprise\Model.Application](docs/Application.md)
+ - [PSLoginEnterprise\Model.ApplicationAccessBulkUpdate](docs/ApplicationAccessBulkUpdate.md)
  - [PSLoginEnterprise\Model.ApplicationChartResult](docs/ApplicationChartResult.md)
  - [PSLoginEnterprise\Model.ApplicationCreate](docs/ApplicationCreate.md)
  - [PSLoginEnterprise\Model.ApplicationDetails](docs/ApplicationDetails.md)
  - [PSLoginEnterprise\Model.ApplicationDiagnostic](docs/ApplicationDiagnostic.md)
  - [PSLoginEnterprise\Model.ApplicationGroup](docs/ApplicationGroup.md)
+ - [PSLoginEnterprise\Model.ApplicationGroupAccessBulkUpdate](docs/ApplicationGroupAccessBulkUpdate.md)
  - [PSLoginEnterprise\Model.ApplicationGroupCreate](docs/ApplicationGroupCreate.md)
  - [PSLoginEnterprise\Model.ApplicationGroupInclude](docs/ApplicationGroupInclude.md)
  - [PSLoginEnterprise\Model.ApplicationGroupResultSet](docs/ApplicationGroupResultSet.md)
@@ -472,13 +483,10 @@ Class | Method | HTTP request | Description
  - [PSLoginEnterprise\Model.Created](docs/Created.md)
  - [PSLoginEnterprise\Model.CurrencyType](docs/CurrencyType.md)
  - [PSLoginEnterprise\Model.CustomConnector](docs/CustomConnector.md)
- - [PSLoginEnterprise\Model.DataCreateProviderRequest](docs/DataCreateProviderRequest.md)
  - [PSLoginEnterprise\Model.DataCreateUserSessionMetricDefinitionRequest](docs/DataCreateUserSessionMetricDefinitionRequest.md)
  - [PSLoginEnterprise\Model.DataGetApplicationTestReport200Response](docs/DataGetApplicationTestReport200Response.md)
- - [PSLoginEnterprise\Model.DataGetProviderById200Response](docs/DataGetProviderById200Response.md)
  - [PSLoginEnterprise\Model.DataGetTestRun200Response](docs/DataGetTestRun200Response.md)
  - [PSLoginEnterprise\Model.DataGetUserSessionMetricDefinitionByKey200Response](docs/DataGetUserSessionMetricDefinitionByKey200Response.md)
- - [PSLoginEnterprise\Model.DataTestProviderConnectionRequest](docs/DataTestProviderConnectionRequest.md)
  - [PSLoginEnterprise\Model.Delay](docs/Delay.md)
  - [PSLoginEnterprise\Model.DelayCreate](docs/DelayCreate.md)
  - [PSLoginEnterprise\Model.DelaySnapshot](docs/DelaySnapshot.md)
@@ -490,7 +498,6 @@ Class | Method | HTTP request | Description
  - [PSLoginEnterprise\Model.EnvironmentCostSnapshot](docs/EnvironmentCostSnapshot.md)
  - [PSLoginEnterprise\Model.EnvironmentData](docs/EnvironmentData.md)
  - [PSLoginEnterprise\Model.EnvironmentInclude](docs/EnvironmentInclude.md)
- - [PSLoginEnterprise\Model.EnvironmentProvider](docs/EnvironmentProvider.md)
  - [PSLoginEnterprise\Model.EnvironmentResultSet](docs/EnvironmentResultSet.md)
  - [PSLoginEnterprise\Model.EnvironmentSortKey](docs/EnvironmentSortKey.md)
  - [PSLoginEnterprise\Model.EuxMeasurement](docs/EuxMeasurement.md)
@@ -578,6 +585,7 @@ Class | Method | HTTP request | Description
  - [PSLoginEnterprise\Model.ProviderAzureData](docs/ProviderAzureData.md)
  - [PSLoginEnterprise\Model.ProviderData](docs/ProviderData.md)
  - [PSLoginEnterprise\Model.ProviderResultSet](docs/ProviderResultSet.md)
+ - [PSLoginEnterprise\Model.ProviderResultSetItemsInner](docs/ProviderResultSetItemsInner.md)
  - [PSLoginEnterprise\Model.ProviderSortKey](docs/ProviderSortKey.md)
  - [PSLoginEnterprise\Model.RdpConnector](docs/RdpConnector.md)
  - [PSLoginEnterprise\Model.Report](docs/Report.md)
@@ -641,7 +649,6 @@ Class | Method | HTTP request | Description
  - [PSLoginEnterprise\Model.TestReference](docs/TestReference.md)
  - [PSLoginEnterprise\Model.TestResultSet](docs/TestResultSet.md)
  - [PSLoginEnterprise\Model.TestRun](docs/TestRun.md)
- - [PSLoginEnterprise\Model.TestRunAccessBulkUpdate](docs/TestRunAccessBulkUpdate.md)
  - [PSLoginEnterprise\Model.TestRunInclude](docs/TestRunInclude.md)
  - [PSLoginEnterprise\Model.TestRunInfo](docs/TestRunInfo.md)
  - [PSLoginEnterprise\Model.TestRunResult](docs/TestRunResult.md)
@@ -704,6 +711,4 @@ Class | Method | HTTP request | Description
  - [PSLoginEnterprise\Model.WmiQueryMeasurementDefinitionCreate](docs/WmiQueryMeasurementDefinitionCreate.md)
  - [PSLoginEnterprise\Model.Workload](docs/Workload.md)
  - [PSLoginEnterprise\Model.WorkloadSnapshot](docs/WorkloadSnapshot.md)
-
-
 
