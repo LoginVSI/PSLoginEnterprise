@@ -23,7 +23,7 @@ The numeric value of the data point.
 TimeSeriesPoint<PSCustomObject>
 #>
 
-function Initialize-TimeSeriesPoint {
+function Initialize-LETimeSeriesPoint {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-TimeSeriesPoint {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TimeSeriesPoint' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETimeSeriesPoint' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 TimeSeriesPoint<PSCustomObject>
 #>
-function ConvertFrom-JsonToTimeSeriesPoint {
+function ConvertFrom-LEJsonToTimeSeriesPoint {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TimeSeriesPoint' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETimeSeriesPoint' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TimeSeriesPoint
+        # check if Json contains properties not defined in LETimeSeriesPoint
         $AllProperties = ("timestamp", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

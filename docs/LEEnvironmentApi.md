@@ -31,7 +31,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -85,7 +85,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -139,7 +139,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -192,7 +192,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -248,7 +248,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -292,10 +292,10 @@ Name | Type | Description  | Notes
 <a id="Get-LEEnvironments"></a>
 # **Get-LEEnvironments**
 > EnvironmentResultSet Get-LEEnvironments<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
@@ -310,22 +310,22 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$OrderBy = "name" # EnvironmentSortKey | Sort Key
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
 $Filter = "MyFilter" # String | Filter the query by a subtext or keyword in the environment's name or description (optional)
+$OrderBy = "name" # EnvironmentSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $Include = "none" # EnvironmentInclude[] | Include options (optional)
 
 # Get a list of environments
 try {
-    $Result = Get-LEEnvironments -OrderBy $OrderBy -Direction $Direction -Count $Count -Filter $Filter -Offset $Offset -IncludeTotalCount $IncludeTotalCount -Include $Include
+    $Result = Get-LEEnvironments -Filter $Filter -OrderBy $OrderBy -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -Include $Include
 } catch {
     Write-Host ("Exception occurred when calling Get-LEEnvironments: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -336,10 +336,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **OrderBy** | [**EnvironmentSortKey**](EnvironmentSortKey.md)| Sort Key | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
  **Filter** | **String**| Filter the query by a subtext or keyword in the environment&#39;s name or description | [optional] 
+ **OrderBy** | [**EnvironmentSortKey**](EnvironmentSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **Include** | [**EnvironmentInclude[]**](EnvironmentInclude.md)| Include options | [optional] 
@@ -363,11 +363,11 @@ Name | Type | Description  | Notes
 # **Get-LETestsByEnvironmentKey**
 > TestResultSet Get-LETestsByEnvironmentKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Type] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-EnvironmentId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
@@ -382,24 +382,24 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $Type = "applicationTest" # TestType | Test type (Only continuous and load test types are supported)
-$OrderBy = "name" # TestSortKey | Sort Key
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
 $EnvironmentId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | A test's environment id. Empty when fetching tests without an assigned environment (optional)
 $Filter = "MyFilter" # String | Filter the tests (optional)
+$OrderBy = "name" # TestSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $Include = "none" # TestInclude[] | Include options (optional)
 
 # Get tests by environment id
 try {
-    $Result = Get-LETestsByEnvironmentKey -Type $Type -OrderBy $OrderBy -Direction $Direction -Count $Count -EnvironmentId $EnvironmentId -Filter $Filter -Offset $Offset -IncludeTotalCount $IncludeTotalCount -Include $Include
+    $Result = Get-LETestsByEnvironmentKey -Type $Type -EnvironmentId $EnvironmentId -Filter $Filter -OrderBy $OrderBy -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -Include $Include
 } catch {
     Write-Host ("Exception occurred when calling Get-LETestsByEnvironmentKey: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -411,11 +411,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **Type** | [**TestType**](TestType.md)| Test type (Only continuous and load test types are supported) | 
- **OrderBy** | [**TestSortKey**](TestSortKey.md)| Sort Key | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
  **EnvironmentId** | **String**| A test&#39;s environment id. Empty when fetching tests without an assigned environment | [optional] 
  **Filter** | **String**| Filter the tests | [optional] 
+ **OrderBy** | [**TestSortKey**](TestSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **Include** | [**TestInclude[]**](TestInclude.md)| Include options | [optional] 
@@ -451,7 +451,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -506,7 +506,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""

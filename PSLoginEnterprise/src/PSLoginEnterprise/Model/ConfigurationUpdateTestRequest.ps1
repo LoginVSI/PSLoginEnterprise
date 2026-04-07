@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationUpdateTestRequest<PSCustomObject>
 #>
-function ConvertFrom-JsonToConfigurationUpdateTestRequest {
+function ConvertFrom-LEJsonToConfigurationUpdateTestRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToConfigurationUpdateTestRequest {
 
         # try to match ApplicationTestUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToApplicationTestUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToApplicationTestUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToConfigurationUpdateTestRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTestUpdate' defined in oneOf (ConfigurationUpdateTestRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTestUpdate' defined in oneOf (LEConfigurationUpdateTestRequest). Proceeding to the next one if any."
         }
 
         # try to match ContinuousTestUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToContinuousTestUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToContinuousTestUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-JsonToConfigurationUpdateTestRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ContinuousTestUpdate' defined in oneOf (ConfigurationUpdateTestRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ContinuousTestUpdate' defined in oneOf (LEConfigurationUpdateTestRequest). Proceeding to the next one if any."
         }
 
         # try to match LoadTestUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToLoadTestUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToLoadTestUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-JsonToConfigurationUpdateTestRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'LoadTestUpdate' defined in oneOf (ConfigurationUpdateTestRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'LoadTestUpdate' defined in oneOf (LEConfigurationUpdateTestRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

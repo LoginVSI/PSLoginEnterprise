@@ -31,7 +31,7 @@ Do not close the application
 AppInvocationSnapshot<PSCustomObject>
 #>
 
-function Initialize-AppInvocationSnapshot {
+function Initialize-LEAppInvocationSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-AppInvocationSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppInvocationSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppInvocationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -94,19 +94,19 @@ Json object
 
 AppInvocationSnapshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppInvocationSnapshot {
+function ConvertFrom-LEJsonToAppInvocationSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppInvocationSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppInvocationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppInvocationSnapshot
+        # check if Json contains properties not defined in LEAppInvocationSnapshot
         $AllProperties = ("type", "appId", "applicationName", "timers", "runOnce", "leaveRunning")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

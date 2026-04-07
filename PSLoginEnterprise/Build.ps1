@@ -45,32 +45,23 @@ function Get-FunctionsToExport {
 }
 
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-$ManifestPath = "$ScriptDir\src\PSLoginEnterprise\PSLoginEnterprise.psd1"
 $FunctionPath = 'Api', 'Model', 'Client' | Where-Object {
     Join-Path "$ScriptDir\src\PSLoginEnterprise\" $_ | Test-Path
 } | ForEach-Object { Join-Path "$ScriptDir\src\PSLoginEnterprise\" $_ }
 
-$ModuleVersion = '1.0.0'
-if (Test-Path -LiteralPath $ManifestPath) {
-    $ExistingManifest = Import-PowerShellDataFile -LiteralPath $ManifestPath
-    if ($ExistingManifest.ModuleVersion) {
-        $ModuleVersion = [string]$ExistingManifest.ModuleVersion
-    }
-}
-
 $Manifest = @{
-    Path = $ManifestPath
+    Path = "$ScriptDir\src\PSLoginEnterprise\PSLoginEnterprise.psd1"
 
     Author = 'OpenAPI Generator Team'
     CompanyName = 'openapitools.org'
     Description = 'PSLoginEnterprise - the PowerShell module for Login Enterprise'
 
-    ModuleVersion = $ModuleVersion
+    ModuleVersion = '1.0.10'
 
     RootModule = 'PSLoginEnterprise.psm1'
-    Guid = '{E86652E0-20D0-41DD-84FE-31D37F097896}' # Has to be static, otherwise each new build will be considered different module
+    Guid = '{58DDFE1C-2FE6-4CA4-89CD-937FFF97F0C1}' # Has to be static, otherwise each new build will be considered different module
 
-    PowerShellVersion = '6.2'
+    PowerShellVersion = '5.1'
 
     FunctionsToExport = $FunctionPath | Get-ChildItem -Filter *.ps1 | Get-FunctionsToExport
 

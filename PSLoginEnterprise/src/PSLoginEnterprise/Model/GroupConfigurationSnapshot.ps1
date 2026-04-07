@@ -23,7 +23,7 @@ Group name
 GroupConfigurationSnapshot<PSCustomObject>
 #>
 
-function Initialize-GroupConfigurationSnapshot {
+function Initialize-LEGroupConfigurationSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-GroupConfigurationSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => GroupConfigurationSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEGroupConfigurationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 GroupConfigurationSnapshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToGroupConfigurationSnapshot {
+function ConvertFrom-LEJsonToGroupConfigurationSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => GroupConfigurationSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEGroupConfigurationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in GroupConfigurationSnapshot
+        # check if Json contains properties not defined in LEGroupConfigurationSnapshot
         $AllProperties = ("groupId", "name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

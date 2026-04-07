@@ -35,7 +35,7 @@ No description available.
 LdapConfigModel<PSCustomObject>
 #>
 
-function Initialize-LdapConfigModel {
+function Initialize-LELdapConfigModel {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-LdapConfigModel {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LdapConfigModel' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELdapConfigModel' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -102,19 +102,19 @@ Json object
 
 LdapConfigModel<PSCustomObject>
 #>
-function ConvertFrom-JsonToLdapConfigModel {
+function ConvertFrom-LEJsonToLdapConfigModel {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LdapConfigModel' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELdapConfigModel' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LdapConfigModel
+        # check if Json contains properties not defined in LELdapConfigModel
         $AllProperties = ("host", "port", "secured", "ignoreSslErrors", "username", "password", "searchBase", "connectionTimeout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -29,7 +29,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -81,7 +81,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -133,7 +133,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -186,7 +186,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 > AccountResultSet Get-LEAccountGroupCandidates<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
@@ -248,14 +248,14 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$OrderBy = "username" # AccountSortKey | Sort Key
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
+$OrderBy = "username" # AccountSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $Filter = "MyFilter" # String | Filter on username or domain (optional)
@@ -276,9 +276,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **OrderBy** | [**AccountSortKey**](AccountSortKey.md)| Sort Key | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
+ **OrderBy** | [**AccountSortKey**](AccountSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **Filter** | **String**| Filter on username or domain | [optional] 
@@ -304,10 +304,10 @@ Name | Type | Description  | Notes
 <a id="Get-LEAccountGroups"></a>
 # **Get-LEAccountGroups**
 > AccountGroupResultSet Get-LEAccountGroups<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AccountGroupTypeFilter] <String><br>
@@ -323,15 +323,15 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$OrderBy = "name" # AccountGroupSortKey | Sort Key
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
 $Filter = "MyFilter" # String | Filter on group name or group description (optional)
+$OrderBy = "name" # AccountGroupSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $AccountGroupTypeFilter = "selection" # String | Filter on account-group type (ignore when 'null') (optional)
@@ -339,7 +339,7 @@ $Include = "none" # AccountGroupInclude[] | Include options (optional)
 
 # Get paginated list of account-groups
 try {
-    $Result = Get-LEAccountGroups -OrderBy $OrderBy -Direction $Direction -Count $Count -Filter $Filter -Offset $Offset -IncludeTotalCount $IncludeTotalCount -AccountGroupTypeFilter $AccountGroupTypeFilter -Include $Include
+    $Result = Get-LEAccountGroups -Filter $Filter -OrderBy $OrderBy -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -AccountGroupTypeFilter $AccountGroupTypeFilter -Include $Include
 } catch {
     Write-Host ("Exception occurred when calling Get-LEAccountGroups: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -350,10 +350,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **OrderBy** | [**AccountGroupSortKey**](AccountGroupSortKey.md)| Sort Key | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
  **Filter** | **String**| Filter on group name or group description | [optional] 
+ **OrderBy** | [**AccountGroupSortKey**](AccountGroupSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **AccountGroupTypeFilter** | **String**| Filter on account-group type (ignore when &#39;null&#39;) | [optional] 
@@ -390,7 +390,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -444,7 +444,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""

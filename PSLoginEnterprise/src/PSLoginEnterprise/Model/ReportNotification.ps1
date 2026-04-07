@@ -27,7 +27,7 @@ Last modified date-time
 ReportNotification<PSCustomObject>
 #>
 
-function Initialize-ReportNotification {
+function Initialize-LEReportNotification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-ReportNotification {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ReportNotification' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEReportNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 ReportNotification<PSCustomObject>
 #>
-function ConvertFrom-JsonToReportNotification {
+function ConvertFrom-LEJsonToReportNotification {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ReportNotification' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEReportNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ReportNotification
+        # check if Json contains properties not defined in LEReportNotification
         $AllProperties = ("isEnabled", "recipient", "created", "lastModified")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

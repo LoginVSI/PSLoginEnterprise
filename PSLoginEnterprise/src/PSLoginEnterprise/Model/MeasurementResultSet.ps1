@@ -25,7 +25,7 @@ Offset requested
 MeasurementResultSet<PSCustomObject>
 #>
 
-function Initialize-MeasurementResultSet {
+function Initialize-LEMeasurementResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-MeasurementResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => MeasurementResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEMeasurementResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 MeasurementResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToMeasurementResultSet {
+function ConvertFrom-LEJsonToMeasurementResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => MeasurementResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEMeasurementResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in MeasurementResultSet
+        # check if Json contains properties not defined in LEMeasurementResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

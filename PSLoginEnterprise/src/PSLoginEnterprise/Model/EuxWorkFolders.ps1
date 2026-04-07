@@ -25,7 +25,7 @@ My documents folder path
 EuxWorkFolders<PSCustomObject>
 #>
 
-function Initialize-EuxWorkFolders {
+function Initialize-LEEuxWorkFolders {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-EuxWorkFolders {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EuxWorkFolders' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEuxWorkFolders' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 EuxWorkFolders<PSCustomObject>
 #>
-function ConvertFrom-JsonToEuxWorkFolders {
+function ConvertFrom-LEJsonToEuxWorkFolders {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxWorkFolders' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxWorkFolders' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EuxWorkFolders
+        # check if Json contains properties not defined in LEEuxWorkFolders
         $AllProperties = ("euxFolderPath", "appDataFolderPath", "myDocumentsFolderPath")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

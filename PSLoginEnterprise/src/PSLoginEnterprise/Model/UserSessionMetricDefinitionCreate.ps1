@@ -27,7 +27,7 @@ Tag
 UserSessionMetricDefinitionCreate<PSCustomObject>
 #>
 
-function Initialize-UserSessionMetricDefinitionCreate {
+function Initialize-LEUserSessionMetricDefinitionCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-UserSessionMetricDefinitionCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => UserSessionMetricDefinitionCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUserSessionMetricDefinitionCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -82,19 +82,19 @@ Json object
 
 UserSessionMetricDefinitionCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToUserSessionMetricDefinitionCreate {
+function ConvertFrom-LEJsonToUserSessionMetricDefinitionCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => UserSessionMetricDefinitionCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUserSessionMetricDefinitionCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UserSessionMetricDefinitionCreate
+        # check if Json contains properties not defined in LEUserSessionMetricDefinitionCreate
         $AllProperties = ("type", "name", "description", "tag")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

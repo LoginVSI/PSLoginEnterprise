@@ -23,7 +23,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -76,7 +76,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -84,7 +84,7 @@ Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerT
 $TestId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test id
 $Resolution = Initialize-LEResolution -Width 0 -Height 0
 $TargetHost = Initialize-LETargetHost -Enabled $false -Endpoint "MyEndpoint"
-$AppTestRunConfigurationSnapshotConnector = Initialize-LEAppTestRunConfigurationSnapshotConnector -Type "MyType" -VarHost "MyVarHost" -CommandLine "MyCommandLine" -Resource "MyResource" -ServerUrl "MyServerUrl" -DisplayResolution $Resolution -SeamlessMode $false -HostList $TargetHost -Gateway "MyGateway" -SuppressCertWarn $false
+$AppTestRunConfigurationSnapshotConnector = Initialize-LEAppTestRunConfigurationSnapshotConnector -Type "MyType" -VarHost "MyVarHost" -CommandLine "MyCommandLine" -Resource "MyResource" -ServerUrl "MyServerUrl" -DisplayResolution $Resolution -SeamlessMode $false -HostList $TargetHost -Gateway "MyGateway" -SuppressCertWarn $false -CloudPcTitleField "MyCloudPcTitleField" -TotpSecretSecureField "MyTotpSecretSecureField" -TimeoutSeconds 0 -TotpTimeStep 0 -TotpDigits 0 -TotpAlgorithm "MyTotpAlgorithm"
 
 $ConnectionResourcesUpdate = Initialize-LEConnectionResourcesUpdate -Connector $AppTestRunConfigurationSnapshotConnector -LauncherGroups "MyLauncherGroups" -AccountGroups "MyAccountGroups" # ConnectionResourcesUpdate | Connection resources data
 

@@ -43,7 +43,7 @@ Session metric group key
 ContinuousTestCreate<PSCustomObject>
 #>
 
-function Initialize-ContinuousTestCreate {
+function Initialize-LEContinuousTestCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -85,7 +85,7 @@ function Initialize-ContinuousTestCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ContinuousTestCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEContinuousTestCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -142,19 +142,19 @@ Json object
 
 ContinuousTestCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToContinuousTestCreate {
+function ConvertFrom-LEJsonToContinuousTestCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ContinuousTestCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEContinuousTestCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ContinuousTestCreate
+        # check if Json contains properties not defined in LEContinuousTestCreate
         $AllProperties = ("type", "name", "description", "connector", "accountGroups", "launcherGroups", "environmentKey", "applicationDebugModeEnabled", "roles", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

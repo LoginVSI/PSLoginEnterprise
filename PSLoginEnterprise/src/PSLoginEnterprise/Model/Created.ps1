@@ -21,7 +21,7 @@ Id of the newly created object
 Created<PSCustomObject>
 #>
 
-function Initialize-Created {
+function Initialize-LECreated {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-Created {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Created' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LECreated' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 Created<PSCustomObject>
 #>
-function ConvertFrom-JsonToCreated {
+function ConvertFrom-LEJsonToCreated {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Created' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LECreated' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Created
+        # check if Json contains properties not defined in LECreated
         $AllProperties = ("id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

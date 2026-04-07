@@ -23,7 +23,7 @@ Host Pool
 EnvironmentAttributes<PSCustomObject>
 #>
 
-function Initialize-EnvironmentAttributes {
+function Initialize-LEEnvironmentAttributes {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-EnvironmentAttributes {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EnvironmentAttributes' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEnvironmentAttributes' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 EnvironmentAttributes<PSCustomObject>
 #>
-function ConvertFrom-JsonToEnvironmentAttributes {
+function ConvertFrom-LEJsonToEnvironmentAttributes {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EnvironmentAttributes' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEnvironmentAttributes' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EnvironmentAttributes
+        # check if Json contains properties not defined in LEEnvironmentAttributes
         $AllProperties = ("resourceGroup", "hostPool")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

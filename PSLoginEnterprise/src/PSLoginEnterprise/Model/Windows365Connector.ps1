@@ -33,7 +33,7 @@ TOTP hash algorithm (SHA1, SHA256, or SHA512).
 Windows365Connector<PSCustomObject>
 #>
 
-function Initialize-Windows365Connector {
+function Initialize-LEWindows365Connector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-Windows365Connector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Windows365Connector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEWindows365Connector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -136,19 +136,19 @@ Json object
 
 Windows365Connector<PSCustomObject>
 #>
-function ConvertFrom-JsonToWindows365Connector {
+function ConvertFrom-LEJsonToWindows365Connector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Windows365Connector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWindows365Connector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Windows365Connector
+        # check if Json contains properties not defined in LEWindows365Connector
         $AllProperties = ("type", "cloudPcTitleField", "totpSecretSecureField", "timeoutSeconds", "totpTimeStep", "totpDigits", "totpAlgorithm")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

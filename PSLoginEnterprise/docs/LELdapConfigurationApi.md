@@ -13,7 +13,7 @@ Method | HTTP request | Description
 <a id="New-LELdapConfig"></a>
 # **New-LELdapConfig**
 > LdapConfigModel New-LELdapConfig<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LdapConfigModel] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LdapConfigModelUpdate] <PSCustomObject><br>
 
 Create LDAP configuration.
 
@@ -25,16 +25,16 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
+$LdapConfigModelUpdate = Initialize-LELdapConfigModelUpdate -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -ConnectionTimeout 0 -StoreCredentials $false # LdapConfigModelUpdate |  (optional)
 
 # Create LDAP configuration.
 try {
-    $Result = New-LELdapConfig -LdapConfigModel $LdapConfigModel
+    $Result = New-LELdapConfig -LdapConfigModelUpdate $LdapConfigModelUpdate
 } catch {
     Write-Host ("Exception occurred when calling New-LELdapConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -45,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **LdapConfigModel** | [**LdapConfigModel**](LdapConfigModel.md)|  | [optional] 
+ **LdapConfigModelUpdate** | [**LdapConfigModelUpdate**](LdapConfigModelUpdate.md)|  | [optional] 
 
 ### Return type
 
@@ -76,7 +76,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -123,7 +123,7 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
@@ -159,7 +159,7 @@ This endpoint does not need any parameter.
 <a id="Update-LELdapConfig"></a>
 # **Update-LELdapConfig**
 > void Update-LELdapConfig<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LdapConfigModel] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LdapConfigModelUpdate] <PSCustomObject><br>
 
 Update LDAP configuration.
 
@@ -171,16 +171,16 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
 Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$LdapConfigModel = Initialize-LELdapConfigModel -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -ConnectionTimeout 0 # LdapConfigModel |  (optional)
+$LdapConfigModelUpdate = Initialize-LELdapConfigModelUpdate -VarHost "MyVarHost" -Port 0 -Secured $false -IgnoreSslErrors $false -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -ConnectionTimeout 0 -StoreCredentials $false # LdapConfigModelUpdate |  (optional)
 
 # Update LDAP configuration.
 try {
-    $Result = Update-LELdapConfig -LdapConfigModel $LdapConfigModel
+    $Result = Update-LELdapConfig -LdapConfigModelUpdate $LdapConfigModelUpdate
 } catch {
     Write-Host ("Exception occurred when calling Update-LELdapConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -191,7 +191,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **LdapConfigModel** | [**LdapConfigModel**](LdapConfigModel.md)|  | [optional] 
+ **LdapConfigModelUpdate** | [**LdapConfigModelUpdate**](LdapConfigModelUpdate.md)|  | [optional] 
 
 ### Return type
 

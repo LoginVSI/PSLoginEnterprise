@@ -33,7 +33,7 @@ No description available.
 TestRunResults<PSCustomObject>
 #>
 
-function Initialize-TestRunResults {
+function Initialize-LETestRunResults {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -62,7 +62,7 @@ function Initialize-TestRunResults {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TestRunResults' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETestRunResults' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -98,19 +98,19 @@ Json object
 
 TestRunResults<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestRunResults {
+function ConvertFrom-LEJsonToTestRunResults {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestRunResults' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestRunResults' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TestRunResults
+        # check if Json contains properties not defined in LETestRunResults
         $AllProperties = ("testRunId", "testName", "counter", "isBase", "state", "testResult", "results")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

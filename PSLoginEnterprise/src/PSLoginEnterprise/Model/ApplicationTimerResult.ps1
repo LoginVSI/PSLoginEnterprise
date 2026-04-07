@@ -23,7 +23,7 @@ No description available.
 ApplicationTimerResult<PSCustomObject>
 #>
 
-function Initialize-ApplicationTimerResult {
+function Initialize-LEApplicationTimerResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-ApplicationTimerResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTimerResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTimerResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 ApplicationTimerResult<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationTimerResult {
+function ConvertFrom-LEJsonToApplicationTimerResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTimerResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTimerResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationTimerResult
+        # check if Json contains properties not defined in LEApplicationTimerResult
         $AllProperties = ("timer", "performanceResult")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

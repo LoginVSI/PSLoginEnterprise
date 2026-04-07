@@ -22,7 +22,7 @@ JSON object
 
 AppTestRunConfigurationSnapshotThresholdsInner<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppTestRunConfigurationSnapshotThresholdsInner {
+function ConvertFrom-LEJsonToAppTestRunConfigurationSnapshotThresholdsInner {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToAppTestRunConfigurationSnapshotThresholdsInner {
 
         # try to match ApplicationTestAppThresholdSnapshot defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToApplicationTestAppThresholdSnapshot $Json
+            $matchInstance = ConvertFrom-LEJsonToApplicationTestAppThresholdSnapshot $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToAppTestRunConfigurationSnapshotThresholdsInner {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTestAppThresholdSnapshot' defined in oneOf (AppTestRunConfigurationSnapshotThresholdsInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTestAppThresholdSnapshot' defined in oneOf (LEAppTestRunConfigurationSnapshotThresholdsInner). Proceeding to the next one if any."
         }
 
         # try to match ApplicationTestSessionThresholdSnapshot defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToApplicationTestSessionThresholdSnapshot $Json
+            $matchInstance = ConvertFrom-LEJsonToApplicationTestSessionThresholdSnapshot $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-JsonToAppTestRunConfigurationSnapshotThresholdsInner {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTestSessionThresholdSnapshot' defined in oneOf (AppTestRunConfigurationSnapshotThresholdsInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTestSessionThresholdSnapshot' defined in oneOf (LEAppTestRunConfigurationSnapshotThresholdsInner). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

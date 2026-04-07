@@ -25,7 +25,7 @@ Application id
 AppGroupReferenceCreate<PSCustomObject>
 #>
 
-function Initialize-AppGroupReferenceCreate {
+function Initialize-LEAppGroupReferenceCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-AppGroupReferenceCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppGroupReferenceCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppGroupReferenceCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -84,19 +84,19 @@ Json object
 
 AppGroupReferenceCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppGroupReferenceCreate {
+function ConvertFrom-LEJsonToAppGroupReferenceCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppGroupReferenceCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppGroupReferenceCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppGroupReferenceCreate
+        # check if Json contains properties not defined in LEAppGroupReferenceCreate
         $AllProperties = ("type", "isEnabled", "applicationGroupId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

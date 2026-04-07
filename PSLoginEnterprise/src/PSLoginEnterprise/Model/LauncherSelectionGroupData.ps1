@@ -27,7 +27,7 @@ Launcher names
 LauncherSelectionGroupData<PSCustomObject>
 #>
 
-function Initialize-LauncherSelectionGroupData {
+function Initialize-LELauncherSelectionGroupData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LauncherSelectionGroupData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LauncherSelectionGroupData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELauncherSelectionGroupData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -90,19 +90,19 @@ Json object
 
 LauncherSelectionGroupData<PSCustomObject>
 #>
-function ConvertFrom-JsonToLauncherSelectionGroupData {
+function ConvertFrom-LEJsonToLauncherSelectionGroupData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LauncherSelectionGroupData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELauncherSelectionGroupData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LauncherSelectionGroupData
+        # check if Json contains properties not defined in LELauncherSelectionGroupData
         $AllProperties = ("type", "name", "description", "launcherNames")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

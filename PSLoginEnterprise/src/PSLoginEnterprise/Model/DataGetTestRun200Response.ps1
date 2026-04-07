@@ -22,7 +22,7 @@ JSON object
 
 DataGetTestRun200Response<PSCustomObject>
 #>
-function ConvertFrom-JsonToDataGetTestRun200Response {
+function ConvertFrom-LEJsonToDataGetTestRun200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToDataGetTestRun200Response {
 
         # try to match ApplicationTestRun defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToApplicationTestRun $Json
+            $matchInstance = ConvertFrom-LEJsonToApplicationTestRun $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToDataGetTestRun200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTestRun' defined in oneOf (DataGetTestRun200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTestRun' defined in oneOf (LEDataGetTestRun200Response). Proceeding to the next one if any."
         }
 
         # try to match ContinuousTestRun defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToContinuousTestRun $Json
+            $matchInstance = ConvertFrom-LEJsonToContinuousTestRun $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-JsonToDataGetTestRun200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ContinuousTestRun' defined in oneOf (DataGetTestRun200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ContinuousTestRun' defined in oneOf (LEDataGetTestRun200Response). Proceeding to the next one if any."
         }
 
         # try to match LoadTestRun defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToLoadTestRun $Json
+            $matchInstance = ConvertFrom-LEJsonToLoadTestRun $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-JsonToDataGetTestRun200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'LoadTestRun' defined in oneOf (DataGetTestRun200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'LoadTestRun' defined in oneOf (LEDataGetTestRun200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

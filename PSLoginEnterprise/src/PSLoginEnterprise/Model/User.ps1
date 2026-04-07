@@ -33,7 +33,7 @@ Role list
 User<PSCustomObject>
 #>
 
-function Initialize-User {
+function Initialize-LEUser {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -61,7 +61,7 @@ function Initialize-User {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => User' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUser' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -97,19 +97,19 @@ Json object
 
 User<PSCustomObject>
 #>
-function ConvertFrom-JsonToUser {
+function ConvertFrom-LEJsonToUser {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => User' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUser' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in User
+        # check if Json contains properties not defined in LEUser
         $AllProperties = ("id", "userName", "lastLoginTime", "userType", "createdTime", "lastModifiedTime", "roles")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

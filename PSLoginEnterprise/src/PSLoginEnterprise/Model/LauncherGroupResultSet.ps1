@@ -25,7 +25,7 @@ Offset requested
 LauncherGroupResultSet<PSCustomObject>
 #>
 
-function Initialize-LauncherGroupResultSet {
+function Initialize-LELauncherGroupResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LauncherGroupResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LauncherGroupResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELauncherGroupResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 LauncherGroupResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToLauncherGroupResultSet {
+function ConvertFrom-LEJsonToLauncherGroupResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LauncherGroupResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELauncherGroupResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LauncherGroupResultSet
+        # check if Json contains properties not defined in LELauncherGroupResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

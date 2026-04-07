@@ -21,7 +21,7 @@ The comment of the Test run
 UpdateTestRunCommentRequest<PSCustomObject>
 #>
 
-function Initialize-UpdateTestRunCommentRequest {
+function Initialize-LEUpdateTestRunCommentRequest {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-UpdateTestRunCommentRequest {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => UpdateTestRunCommentRequest' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUpdateTestRunCommentRequest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 UpdateTestRunCommentRequest<PSCustomObject>
 #>
-function ConvertFrom-JsonToUpdateTestRunCommentRequest {
+function ConvertFrom-LEJsonToUpdateTestRunCommentRequest {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => UpdateTestRunCommentRequest' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUpdateTestRunCommentRequest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UpdateTestRunCommentRequest
+        # check if Json contains properties not defined in LEUpdateTestRunCommentRequest
         $AllProperties = ("comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

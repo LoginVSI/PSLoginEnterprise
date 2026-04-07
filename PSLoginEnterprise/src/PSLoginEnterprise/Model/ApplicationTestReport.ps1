@@ -39,7 +39,7 @@ Test run id
 ApplicationTestReport<PSCustomObject>
 #>
 
-function Initialize-ApplicationTestReport {
+function Initialize-LEApplicationTestReport {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -77,7 +77,7 @@ function Initialize-ApplicationTestReport {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTestReport' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestReport' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -120,19 +120,19 @@ Json object
 
 ApplicationTestReport<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationTestReport {
+function ConvertFrom-LEJsonToApplicationTestReport {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTestReport' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTestReport' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationTestReport
+        # check if Json contains properties not defined in LEApplicationTestReport
         $AllProperties = ("type", "id", "testId", "outputContentUri", "state", "trigger", "created", "reportPeriodStart", "reportPeriodEnd", "testRunId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

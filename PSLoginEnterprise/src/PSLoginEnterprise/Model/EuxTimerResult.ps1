@@ -25,7 +25,7 @@ No description available.
 EuxTimerResult<PSCustomObject>
 #>
 
-function Initialize-EuxTimerResult {
+function Initialize-LEEuxTimerResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -41,7 +41,7 @@ function Initialize-EuxTimerResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EuxTimerResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEuxTimerResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -73,19 +73,19 @@ Json object
 
 EuxTimerResult<PSCustomObject>
 #>
-function ConvertFrom-JsonToEuxTimerResult {
+function ConvertFrom-LEJsonToEuxTimerResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxTimerResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxTimerResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EuxTimerResult
+        # check if Json contains properties not defined in LEEuxTimerResult
         $AllProperties = ("timestamp", "score", "euxTimer")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

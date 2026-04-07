@@ -39,7 +39,7 @@ Location id
 Launcher<PSCustomObject>
 #>
 
-function Initialize-Launcher {
+function Initialize-LELauncher {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -75,7 +75,7 @@ function Initialize-Launcher {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Launcher' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELauncher' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -114,19 +114,19 @@ Json object
 
 Launcher<PSCustomObject>
 #>
-function ConvertFrom-JsonToLauncher {
+function ConvertFrom-LEJsonToLauncher {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Launcher' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELauncher' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Launcher
+        # check if Json contains properties not defined in LELauncher
         $AllProperties = ("machineName", "supportedVersion", "sessions", "currentVersion", "online", "firstSeen", "lastStateChange", "properties", "groups", "locationId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

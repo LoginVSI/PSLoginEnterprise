@@ -29,7 +29,7 @@ No description available.
 ProblemDetails<PSCustomObject>
 #>
 
-function Initialize-ProblemDetails {
+function Initialize-LEProblemDetails {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-ProblemDetails {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ProblemDetails' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEProblemDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,25 +84,25 @@ Json object
 
 ProblemDetails<PSCustomObject>
 #>
-function ConvertFrom-JsonToProblemDetails {
+function ConvertFrom-LEJsonToProblemDetails {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ProblemDetails' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProblemDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
-        $ProblemDetailsAdditionalProperties = @{}
+        $LEProblemDetailsAdditionalProperties = @{}
 
-        # check if Json contains properties not defined in ProblemDetails
+        # check if Json contains properties not defined in LEProblemDetails
         $AllProperties = ("type", "title", "status", "detail", "instance")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             # store undefined properties in additionalProperties
             if (!($AllProperties.Contains($name))) {
-                $ProblemDetailsAdditionalProperties[$name] = $JsonParameters.PSobject.Properties[$name].value
+                $LEProblemDetailsAdditionalProperties[$name] = $JsonParameters.PSobject.Properties[$name].value
             }
         }
 
@@ -142,7 +142,7 @@ function ConvertFrom-JsonToProblemDetails {
             "status" = ${Status}
             "detail" = ${Detail}
             "instance" = ${Instance}
-            "AdditionalProperties" = $ProblemDetailsAdditionalProperties
+            "AdditionalProperties" = $LEProblemDetailsAdditionalProperties
         }
 
         return $PSO

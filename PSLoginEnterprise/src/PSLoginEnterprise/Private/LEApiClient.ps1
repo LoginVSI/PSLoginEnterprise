@@ -40,7 +40,7 @@ function Invoke-LEApiClient {
     'Calling method: Invoke-LEApiClient' | Write-Debug
     $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-    $accessToken = "YOUR_ACCESS_TOKEN"
+    $Configuration = Get-LEConfiguration
     $RequestUri = $Configuration["BaseUrl"] + $Uri
     $DefaultHeaders = $Configuration["DefaultHeaders"]
     # should make sure that SkipCertificateCheck is not set for PowerShell 5
@@ -149,6 +149,7 @@ function Invoke-LEApiClient {
         $Params.Body = $RequestBody
         $Params.UseBasicParsing = $true
         $Response = Invoke-WebRequest @Params
+
         if ([string]::IsNullOrEmpty($Response.Content)) {
             return "OK"
         }

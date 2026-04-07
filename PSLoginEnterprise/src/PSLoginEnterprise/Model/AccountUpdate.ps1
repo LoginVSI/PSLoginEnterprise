@@ -29,7 +29,7 @@ Account Custom Fields
 AccountUpdate<PSCustomObject>
 #>
 
-function Initialize-AccountUpdate {
+function Initialize-LEAccountUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-AccountUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AccountUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAccountUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if (!$Password -and $Password.length -gt 128) {
@@ -88,19 +88,19 @@ Json object
 
 AccountUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccountUpdate {
+function ConvertFrom-LEJsonToAccountUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AccountUpdate
+        # check if Json contains properties not defined in LEAccountUpdate
         $AllProperties = ("password", "username", "domain", "email", "fields")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

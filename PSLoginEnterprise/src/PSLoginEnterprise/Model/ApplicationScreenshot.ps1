@@ -27,7 +27,7 @@ Description
 ApplicationScreenshot<PSCustomObject>
 #>
 
-function Initialize-ApplicationScreenshot {
+function Initialize-LEApplicationScreenshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -46,7 +46,7 @@ function Initialize-ApplicationScreenshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationScreenshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationScreenshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -79,19 +79,19 @@ Json object
 
 ApplicationScreenshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationScreenshot {
+function ConvertFrom-LEJsonToApplicationScreenshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationScreenshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationScreenshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationScreenshot
+        # check if Json contains properties not defined in LEApplicationScreenshot
         $AllProperties = ("title", "uri", "type", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

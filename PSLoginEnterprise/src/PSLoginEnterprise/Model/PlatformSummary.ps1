@@ -25,7 +25,7 @@ No description available.
 PlatformSummary<PSCustomObject>
 #>
 
-function Initialize-PlatformSummary {
+function Initialize-LEPlatformSummary {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-PlatformSummary {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => PlatformSummary' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEPlatformSummary' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 PlatformSummary<PSCustomObject>
 #>
-function ConvertFrom-JsonToPlatformSummary {
+function ConvertFrom-LEJsonToPlatformSummary {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => PlatformSummary' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEPlatformSummary' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PlatformSummary
+        # check if Json contains properties not defined in LEPlatformSummary
         $AllProperties = ("loginSuccessful", "loginPerformance", "latencyPerformance")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

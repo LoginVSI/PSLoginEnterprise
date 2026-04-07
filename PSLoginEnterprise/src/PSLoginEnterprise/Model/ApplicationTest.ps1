@@ -53,7 +53,7 @@ Application test thresholds
 ApplicationTest<PSCustomObject>
 #>
 
-function Initialize-ApplicationTest {
+function Initialize-LEApplicationTest {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -111,7 +111,7 @@ function Initialize-ApplicationTest {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTest' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -161,19 +161,19 @@ Json object
 
 ApplicationTest<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationTest {
+function ConvertFrom-LEJsonToApplicationTest {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTest' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationTest
+        # check if Json contains properties not defined in LEApplicationTest
         $AllProperties = ("type", "id", "environmentKey", "name", "description", "created", "connectionResources", "workload", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "isEmailEnabled", "emailRecipient", "includeSuccessfulApplications", "restartOnComplete", "state", "thresholds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

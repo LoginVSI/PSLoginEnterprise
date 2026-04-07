@@ -21,7 +21,7 @@ Test run results
 TestRunResultOverview<PSCustomObject>
 #>
 
-function Initialize-TestRunResultOverview {
+function Initialize-LETestRunResultOverview {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-TestRunResultOverview {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TestRunResultOverview' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETestRunResultOverview' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 TestRunResultOverview<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestRunResultOverview {
+function ConvertFrom-LEJsonToTestRunResultOverview {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestRunResultOverview' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestRunResultOverview' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TestRunResultOverview
+        # check if Json contains properties not defined in LETestRunResultOverview
         $AllProperties = ("results")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

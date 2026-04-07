@@ -35,7 +35,7 @@ Application summaries
 ApplicationTestData<PSCustomObject>
 #>
 
-function Initialize-ApplicationTestData {
+function Initialize-LEApplicationTestData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -67,7 +67,7 @@ function Initialize-ApplicationTestData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTestData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -104,19 +104,19 @@ Json object
 
 ApplicationTestData<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationTestData {
+function ConvertFrom-LEJsonToApplicationTestData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTestData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTestData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationTestData
+        # check if Json contains properties not defined in LEApplicationTestData
         $AllProperties = ("testRunId", "testName", "isBase", "counter", "state", "testResult", "platformSummary", "applicationSummaries")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

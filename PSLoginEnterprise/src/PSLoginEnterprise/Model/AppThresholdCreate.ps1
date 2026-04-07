@@ -27,7 +27,7 @@ Threshold value
 AppThresholdCreate<PSCustomObject>
 #>
 
-function Initialize-AppThresholdCreate {
+function Initialize-LEAppThresholdCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-AppThresholdCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppThresholdCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppThresholdCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $ApplicationId) {
@@ -98,19 +98,19 @@ Json object
 
 AppThresholdCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppThresholdCreate {
+function ConvertFrom-LEJsonToAppThresholdCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppThresholdCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppThresholdCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppThresholdCreate
+        # check if Json contains properties not defined in LEAppThresholdCreate
         $AllProperties = ("applicationId", "timer", "isEnabled", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

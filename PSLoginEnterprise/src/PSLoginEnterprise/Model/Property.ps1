@@ -23,7 +23,7 @@ Property value
 Property<PSCustomObject>
 #>
 
-function Initialize-Property {
+function Initialize-LEProperty {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-Property {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Property' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEProperty' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 Property<PSCustomObject>
 #>
-function ConvertFrom-JsonToProperty {
+function ConvertFrom-LEJsonToProperty {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Property' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProperty' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Property
+        # check if Json contains properties not defined in LEProperty
         $AllProperties = ("propertyId", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

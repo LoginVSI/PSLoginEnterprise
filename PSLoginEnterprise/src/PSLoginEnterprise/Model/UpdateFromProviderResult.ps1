@@ -23,7 +23,7 @@ Warning message - null when operation was successful
 UpdateFromProviderResult<PSCustomObject>
 #>
 
-function Initialize-UpdateFromProviderResult {
+function Initialize-LEUpdateFromProviderResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-UpdateFromProviderResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => UpdateFromProviderResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUpdateFromProviderResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 UpdateFromProviderResult<PSCustomObject>
 #>
-function ConvertFrom-JsonToUpdateFromProviderResult {
+function ConvertFrom-LEJsonToUpdateFromProviderResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => UpdateFromProviderResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUpdateFromProviderResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UpdateFromProviderResult
+        # check if Json contains properties not defined in LEUpdateFromProviderResult
         $AllProperties = ("successful", "warningMessage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

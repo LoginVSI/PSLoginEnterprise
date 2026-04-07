@@ -25,7 +25,7 @@ Offset requested
 ApplicationResultSet<PSCustomObject>
 #>
 
-function Initialize-ApplicationResultSet {
+function Initialize-LEApplicationResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-ApplicationResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 ApplicationResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationResultSet {
+function ConvertFrom-LEJsonToApplicationResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationResultSet
+        # check if Json contains properties not defined in LEApplicationResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

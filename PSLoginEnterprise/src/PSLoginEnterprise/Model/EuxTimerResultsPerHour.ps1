@@ -27,7 +27,7 @@ No description available.
 EuxTimerResultsPerHour<PSCustomObject>
 #>
 
-function Initialize-EuxTimerResultsPerHour {
+function Initialize-LEEuxTimerResultsPerHour {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -46,7 +46,7 @@ function Initialize-EuxTimerResultsPerHour {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EuxTimerResultsPerHour' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEuxTimerResultsPerHour' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -79,19 +79,19 @@ Json object
 
 EuxTimerResultsPerHour<PSCustomObject>
 #>
-function ConvertFrom-JsonToEuxTimerResultsPerHour {
+function ConvertFrom-LEJsonToEuxTimerResultsPerHour {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxTimerResultsPerHour' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxTimerResultsPerHour' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EuxTimerResultsPerHour
+        # check if Json contains properties not defined in LEEuxTimerResultsPerHour
         $AllProperties = ("timestamp", "score", "count", "euxTimer")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

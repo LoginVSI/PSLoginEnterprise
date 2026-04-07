@@ -25,7 +25,7 @@ Role id list
 LdapGroupCreate<PSCustomObject>
 #>
 
-function Initialize-LdapGroupCreate {
+function Initialize-LELdapGroupCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LdapGroupCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LdapGroupCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELdapGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 LdapGroupCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToLdapGroupCreate {
+function ConvertFrom-LEJsonToLdapGroupCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LdapGroupCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELdapGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LdapGroupCreate
+        # check if Json contains properties not defined in LELdapGroupCreate
         $AllProperties = ("displayName", "groupIdentity", "roleIds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

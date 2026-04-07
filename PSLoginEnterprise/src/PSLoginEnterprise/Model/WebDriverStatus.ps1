@@ -29,7 +29,7 @@ Success flag to determine whether fetching update information for a web driver w
 WebDriverStatus<PSCustomObject>
 #>
 
-function Initialize-WebDriverStatus {
+function Initialize-LEWebDriverStatus {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -51,7 +51,7 @@ function Initialize-WebDriverStatus {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => WebDriverStatus' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEWebDriverStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -85,19 +85,19 @@ Json object
 
 WebDriverStatus<PSCustomObject>
 #>
-function ConvertFrom-JsonToWebDriverStatus {
+function ConvertFrom-LEJsonToWebDriverStatus {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => WebDriverStatus' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWebDriverStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in WebDriverStatus
+        # check if Json contains properties not defined in LEWebDriverStatus
         $AllProperties = ("browser", "current", "availableForDownload", "error", "isSuccessful")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

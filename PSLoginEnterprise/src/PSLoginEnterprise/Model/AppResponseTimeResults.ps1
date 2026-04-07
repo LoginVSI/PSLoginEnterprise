@@ -25,7 +25,7 @@ Results
 AppResponseTimeResults<PSCustomObject>
 #>
 
-function Initialize-AppResponseTimeResults {
+function Initialize-LEAppResponseTimeResults {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-AppResponseTimeResults {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppResponseTimeResults' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppResponseTimeResults' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 AppResponseTimeResults<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppResponseTimeResults {
+function ConvertFrom-LEJsonToAppResponseTimeResults {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppResponseTimeResults' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppResponseTimeResults' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppResponseTimeResults
+        # check if Json contains properties not defined in LEAppResponseTimeResults
         $AllProperties = ("appId", "appName", "results")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

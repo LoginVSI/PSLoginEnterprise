@@ -27,7 +27,7 @@ Description
 LocationUpdate<PSCustomObject>
 #>
 
-function Initialize-LocationUpdate {
+function Initialize-LELocationUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LocationUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LocationUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELocationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if (!$Name -and $Name.length -gt 100) {
@@ -106,19 +106,19 @@ Json object
 
 LocationUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToLocationUpdate {
+function ConvertFrom-LEJsonToLocationUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LocationUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELocationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LocationUpdate
+        # check if Json contains properties not defined in LELocationUpdate
         $AllProperties = ("name", "latitude", "longitude", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

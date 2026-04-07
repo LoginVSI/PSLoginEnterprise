@@ -33,7 +33,7 @@ Account Custom Fields
 AccountBulkCreate<PSCustomObject>
 #>
 
-function Initialize-AccountBulkCreate {
+function Initialize-LEAccountBulkCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-AccountBulkCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AccountBulkCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAccountBulkCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -96,19 +96,19 @@ Json object
 
 AccountBulkCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccountBulkCreate {
+function ConvertFrom-LEJsonToAccountBulkCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountBulkCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountBulkCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AccountBulkCreate
+        # check if Json contains properties not defined in LEAccountBulkCreate
         $AllProperties = ("numberOfDigits", "numberOfAccounts", "username", "domain", "email", "password", "fields")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

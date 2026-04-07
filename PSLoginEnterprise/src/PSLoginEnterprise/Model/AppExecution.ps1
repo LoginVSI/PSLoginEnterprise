@@ -33,7 +33,7 @@ Last modified date-time
 AppExecution<PSCustomObject>
 #>
 
-function Initialize-AppExecution {
+function Initialize-LEAppExecution {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -61,7 +61,7 @@ function Initialize-AppExecution {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppExecution' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppExecution' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -97,19 +97,19 @@ Json object
 
 AppExecution<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppExecution {
+function ConvertFrom-LEJsonToAppExecution {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppExecution' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppExecution' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppExecution
+        # check if Json contains properties not defined in LEAppExecution
         $AllProperties = ("testRunId", "id", "userSessionId", "applicationId", "state", "created", "lastModified")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

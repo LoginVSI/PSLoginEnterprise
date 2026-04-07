@@ -23,7 +23,7 @@ Delay in seconds
 DelaySnapshot<PSCustomObject>
 #>
 
-function Initialize-DelaySnapshot {
+function Initialize-LEDelaySnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-DelaySnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => DelaySnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEDelaySnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -70,19 +70,19 @@ Json object
 
 DelaySnapshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToDelaySnapshot {
+function ConvertFrom-LEJsonToDelaySnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => DelaySnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEDelaySnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in DelaySnapshot
+        # check if Json contains properties not defined in LEDelaySnapshot
         $AllProperties = ("type", "delayInSeconds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

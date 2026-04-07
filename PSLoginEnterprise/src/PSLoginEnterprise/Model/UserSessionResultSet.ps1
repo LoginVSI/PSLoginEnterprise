@@ -25,7 +25,7 @@ Offset requested
 UserSessionResultSet<PSCustomObject>
 #>
 
-function Initialize-UserSessionResultSet {
+function Initialize-LEUserSessionResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-UserSessionResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => UserSessionResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUserSessionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 UserSessionResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToUserSessionResultSet {
+function ConvertFrom-LEJsonToUserSessionResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => UserSessionResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUserSessionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UserSessionResultSet
+        # check if Json contains properties not defined in LEUserSessionResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

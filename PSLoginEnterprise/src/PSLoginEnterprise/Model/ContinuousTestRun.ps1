@@ -47,7 +47,7 @@ Connector id
 ContinuousTestRun<PSCustomObject>
 #>
 
-function Initialize-ContinuousTestRun {
+function Initialize-LEContinuousTestRun {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -96,7 +96,7 @@ function Initialize-ContinuousTestRun {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ContinuousTestRun' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEContinuousTestRun' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -143,19 +143,19 @@ Json object
 
 ContinuousTestRun<PSCustomObject>
 #>
-function ConvertFrom-JsonToContinuousTestRun {
+function ConvertFrom-LEJsonToContinuousTestRun {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ContinuousTestRun' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEContinuousTestRun' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ContinuousTestRun
+        # check if Json contains properties not defined in LEContinuousTestRun
         $AllProperties = ("type", "id", "testId", "created", "started", "finished", "counter", "numberOfEvents", "testName", "sessionMetricGroupKey", "environmentKey", "scheduleType", "description", "connectorId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

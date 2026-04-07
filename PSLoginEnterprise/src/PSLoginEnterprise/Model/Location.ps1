@@ -31,7 +31,7 @@ No description available.
 Location<PSCustomObject>
 #>
 
-function Initialize-Location {
+function Initialize-LELocation {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-Location {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Location' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELocation' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 Location<PSCustomObject>
 #>
-function ConvertFrom-JsonToLocation {
+function ConvertFrom-LEJsonToLocation {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Location' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELocation' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Location
+        # check if Json contains properties not defined in LELocation
         $AllProperties = ("id", "name", "latitude", "longitude", "description", "launcherNames")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

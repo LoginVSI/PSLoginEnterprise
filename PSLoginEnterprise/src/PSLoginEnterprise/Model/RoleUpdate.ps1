@@ -27,7 +27,7 @@ Permissions to assign to the role
 RoleUpdate<PSCustomObject>
 #>
 
-function Initialize-RoleUpdate {
+function Initialize-LERoleUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-RoleUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => RoleUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LERoleUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 RoleUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToRoleUpdate {
+function ConvertFrom-LEJsonToRoleUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => RoleUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LERoleUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in RoleUpdate
+        # check if Json contains properties not defined in LERoleUpdate
         $AllProperties = ("name", "userIds", "ldapGroupIds", "permissions")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

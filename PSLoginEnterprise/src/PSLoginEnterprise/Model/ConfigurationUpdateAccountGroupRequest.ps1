@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationUpdateAccountGroupRequest<PSCustomObject>
 #>
-function ConvertFrom-JsonToConfigurationUpdateAccountGroupRequest {
+function ConvertFrom-LEJsonToConfigurationUpdateAccountGroupRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToConfigurationUpdateAccountGroupRequest {
 
         # try to match AccountFilterGroupUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToAccountFilterGroupUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToAccountFilterGroupUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToConfigurationUpdateAccountGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AccountFilterGroupUpdate' defined in oneOf (ConfigurationUpdateAccountGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AccountFilterGroupUpdate' defined in oneOf (LEConfigurationUpdateAccountGroupRequest). Proceeding to the next one if any."
         }
 
         # try to match AccountSelectionGroupUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToAccountSelectionGroupUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToAccountSelectionGroupUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-JsonToConfigurationUpdateAccountGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AccountSelectionGroupUpdate' defined in oneOf (ConfigurationUpdateAccountGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AccountSelectionGroupUpdate' defined in oneOf (LEConfigurationUpdateAccountGroupRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

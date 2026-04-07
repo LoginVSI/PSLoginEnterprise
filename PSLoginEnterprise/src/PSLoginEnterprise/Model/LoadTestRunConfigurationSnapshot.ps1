@@ -53,7 +53,7 @@ Session metric definition
 LoadTestRunConfigurationSnapshot<PSCustomObject>
 #>
 
-function Initialize-LoadTestRunConfigurationSnapshot {
+function Initialize-LELoadTestRunConfigurationSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -110,7 +110,7 @@ function Initialize-LoadTestRunConfigurationSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LoadTestRunConfigurationSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELoadTestRunConfigurationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -156,19 +156,19 @@ Json object
 
 LoadTestRunConfigurationSnapshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToLoadTestRunConfigurationSnapshot {
+function ConvertFrom-LEJsonToLoadTestRunConfigurationSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LoadTestRunConfigurationSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELoadTestRunConfigurationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LoadTestRunConfigurationSnapshot
+        # check if Json contains properties not defined in LELoadTestRunConfigurationSnapshot
         $AllProperties = ("environmentKey", "environmentName", "numberOfSessions", "rampUpDurationInMinutes", "rampDownDurationInMinutes", "testDurationInMinutes", "euxEnabled", "applicationDebugModeEnabled", "sessionMetricsEnabled", "sessionMetricScheduleRate", "testId", "name", "workload", "connector", "launcherGroups", "accountGroups", "sessionMetricDefinition")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

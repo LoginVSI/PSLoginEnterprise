@@ -21,7 +21,7 @@ Workload step snapshot
 WorkloadSnapshot<PSCustomObject>
 #>
 
-function Initialize-WorkloadSnapshot {
+function Initialize-LEWorkloadSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-WorkloadSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => WorkloadSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEWorkloadSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 WorkloadSnapshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToWorkloadSnapshot {
+function ConvertFrom-LEJsonToWorkloadSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => WorkloadSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWorkloadSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in WorkloadSnapshot
+        # check if Json contains properties not defined in LEWorkloadSnapshot
         $AllProperties = ("steps")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

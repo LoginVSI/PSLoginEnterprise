@@ -31,7 +31,7 @@ No description available.
 BuiltInMetricDefinition<PSCustomObject>
 #>
 
-function Initialize-BuiltInMetricDefinition {
+function Initialize-LEBuiltInMetricDefinition {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-BuiltInMetricDefinition {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => BuiltInMetricDefinition' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEBuiltInMetricDefinition' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -94,19 +94,19 @@ Json object
 
 BuiltInMetricDefinition<PSCustomObject>
 #>
-function ConvertFrom-JsonToBuiltInMetricDefinition {
+function ConvertFrom-LEJsonToBuiltInMetricDefinition {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => BuiltInMetricDefinition' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEBuiltInMetricDefinition' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in BuiltInMetricDefinition
+        # check if Json contains properties not defined in LEBuiltInMetricDefinition
         $AllProperties = ("type", "key", "name", "description", "tag", "measurement")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

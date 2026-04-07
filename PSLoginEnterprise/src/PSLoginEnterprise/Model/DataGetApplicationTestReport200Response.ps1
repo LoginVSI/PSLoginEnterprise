@@ -22,7 +22,7 @@ JSON object
 
 DataGetApplicationTestReport200Response<PSCustomObject>
 #>
-function ConvertFrom-JsonToDataGetApplicationTestReport200Response {
+function ConvertFrom-LEJsonToDataGetApplicationTestReport200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToDataGetApplicationTestReport200Response {
 
         # try to match ApplicationTestReport defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToApplicationTestReport $Json
+            $matchInstance = ConvertFrom-LEJsonToApplicationTestReport $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToDataGetApplicationTestReport200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTestReport' defined in oneOf (DataGetApplicationTestReport200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTestReport' defined in oneOf (LEDataGetApplicationTestReport200Response). Proceeding to the next one if any."
         }
 
         # try to match ContinuousTestReport defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToContinuousTestReport $Json
+            $matchInstance = ConvertFrom-LEJsonToContinuousTestReport $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-JsonToDataGetApplicationTestReport200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ContinuousTestReport' defined in oneOf (DataGetApplicationTestReport200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ContinuousTestReport' defined in oneOf (LEDataGetApplicationTestReport200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

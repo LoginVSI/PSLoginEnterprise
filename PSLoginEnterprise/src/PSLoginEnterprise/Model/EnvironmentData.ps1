@@ -33,7 +33,7 @@ Provider Id
 EnvironmentData<PSCustomObject>
 #>
 
-function Initialize-EnvironmentData {
+function Initialize-LEEnvironmentData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-EnvironmentData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EnvironmentData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEnvironmentData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -96,19 +96,19 @@ Json object
 
 EnvironmentData<PSCustomObject>
 #>
-function ConvertFrom-JsonToEnvironmentData {
+function ConvertFrom-LEJsonToEnvironmentData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EnvironmentData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEnvironmentData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EnvironmentData
+        # check if Json contains properties not defined in LEEnvironmentData
         $AllProperties = ("name", "description", "enableEnvironmentDataCollection", "enableCostCalculation", "environmentCost", "environmentAttributes", "providerId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

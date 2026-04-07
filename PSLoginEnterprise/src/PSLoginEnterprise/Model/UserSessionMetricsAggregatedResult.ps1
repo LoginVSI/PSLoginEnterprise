@@ -31,7 +31,7 @@ Unit
 UserSessionMetricsAggregatedResult<PSCustomObject>
 #>
 
-function Initialize-UserSessionMetricsAggregatedResult {
+function Initialize-LEUserSessionMetricsAggregatedResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-UserSessionMetricsAggregatedResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => UserSessionMetricsAggregatedResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUserSessionMetricsAggregatedResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 UserSessionMetricsAggregatedResult<PSCustomObject>
 #>
-function ConvertFrom-JsonToUserSessionMetricsAggregatedResult {
+function ConvertFrom-LEJsonToUserSessionMetricsAggregatedResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => UserSessionMetricsAggregatedResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUserSessionMetricsAggregatedResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UserSessionMetricsAggregatedResult
+        # check if Json contains properties not defined in LEUserSessionMetricsAggregatedResult
         $AllProperties = ("timestamp", "metricId", "measurement", "count", "displayName", "unit")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

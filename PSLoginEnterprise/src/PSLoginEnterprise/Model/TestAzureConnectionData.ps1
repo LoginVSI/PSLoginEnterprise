@@ -29,7 +29,7 @@ Client Secret
 TestAzureConnectionData<PSCustomObject>
 #>
 
-function Initialize-TestAzureConnectionData {
+function Initialize-LETestAzureConnectionData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-TestAzureConnectionData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TestAzureConnectionData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETestAzureConnectionData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -88,19 +88,19 @@ Json object
 
 TestAzureConnectionData<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestAzureConnectionData {
+function ConvertFrom-LEJsonToTestAzureConnectionData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestAzureConnectionData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestAzureConnectionData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TestAzureConnectionData
+        # check if Json contains properties not defined in LETestAzureConnectionData
         $AllProperties = ("type", "providerId", "tenantId", "applicationId", "secret")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -31,7 +31,7 @@ No description available.
 RdpConnector<PSCustomObject>
 #>
 
-function Initialize-RdpConnector {
+function Initialize-LERdpConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-RdpConnector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => RdpConnector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LERdpConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -102,19 +102,19 @@ Json object
 
 RdpConnector<PSCustomObject>
 #>
-function ConvertFrom-JsonToRdpConnector {
+function ConvertFrom-LEJsonToRdpConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => RdpConnector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LERdpConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in RdpConnector
+        # check if Json contains properties not defined in LERdpConnector
         $AllProperties = ("type", "hostList", "resource", "gateway", "suppressCertWarn", "displayResolution")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

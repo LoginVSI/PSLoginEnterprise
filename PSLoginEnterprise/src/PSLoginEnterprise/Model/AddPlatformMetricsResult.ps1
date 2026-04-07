@@ -25,7 +25,7 @@ A list of errors that occurred during the add operation, grouped by metric
 AddPlatformMetricsResult<PSCustomObject>
 #>
 
-function Initialize-AddPlatformMetricsResult {
+function Initialize-LEAddPlatformMetricsResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -41,7 +41,7 @@ function Initialize-AddPlatformMetricsResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AddPlatformMetricsResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAddPlatformMetricsResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -73,19 +73,19 @@ Json object
 
 AddPlatformMetricsResult<PSCustomObject>
 #>
-function ConvertFrom-JsonToAddPlatformMetricsResult {
+function ConvertFrom-LEJsonToAddPlatformMetricsResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AddPlatformMetricsResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAddPlatformMetricsResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AddPlatformMetricsResult
+        # check if Json contains properties not defined in LEAddPlatformMetricsResult
         $AllProperties = ("status", "successfullyAddedCount", "errors")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

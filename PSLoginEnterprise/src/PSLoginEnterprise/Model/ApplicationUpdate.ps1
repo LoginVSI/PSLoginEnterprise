@@ -35,7 +35,7 @@ Script content
 ApplicationUpdate<PSCustomObject>
 #>
 
-function Initialize-ApplicationUpdate {
+function Initialize-LEApplicationUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-ApplicationUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -130,19 +130,19 @@ Json object
 
 ApplicationUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationUpdate {
+function ConvertFrom-LEJsonToApplicationUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationUpdate
+        # check if Json contains properties not defined in LEApplicationUpdate
         $AllProperties = ("type", "name", "description", "username", "password", "mustUpdatePassword", "takeScreenshots", "scriptContent")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

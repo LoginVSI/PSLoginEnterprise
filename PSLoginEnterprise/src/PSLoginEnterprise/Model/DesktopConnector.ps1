@@ -21,7 +21,7 @@ No description available.
 DesktopConnector<PSCustomObject>
 #>
 
-function Initialize-DesktopConnector {
+function Initialize-LEDesktopConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-DesktopConnector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => DesktopConnector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEDesktopConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -64,19 +64,19 @@ Json object
 
 DesktopConnector<PSCustomObject>
 #>
-function ConvertFrom-JsonToDesktopConnector {
+function ConvertFrom-LEJsonToDesktopConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => DesktopConnector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEDesktopConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in DesktopConnector
+        # check if Json contains properties not defined in LEDesktopConnector
         $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
