@@ -53,7 +53,23 @@ jobs:
       - name: Regenerate module from OpenAPI
         if: steps.inputs.outputs.skip != 'true'
         shell: pwsh
-        run: ./scripts/invoke-openapi-regeneration.ps1
+        run: |
+          ./scripts/invoke-openapi-regeneration.ps1
+
+          $generatedPaths = @(
+            "PSLoginEnterprise/src/PSLoginEnterprise"
+          )
+
+          $generatedChanges = git status --porcelain -- $generatedPaths
+
+          if (-not [string]::IsNullOrWhiteSpace(($generatedChanges -join "`n"))) {
+            Write-Host "Generated module changed. Bumping packageVersion once and regenerating."
+            ./scripts/bump-package-version.ps1 -ConfigPath "openapi/psopenapi.yaml"
+            ./scripts/invoke-openapi-regeneration.ps1
+          }
+          else {
+            Write-Host "No generated module changes detected. Skipping packageVersion bump."
+          }
 
       - name: Build and test module
         if: steps.inputs.outputs.skip != 'true'

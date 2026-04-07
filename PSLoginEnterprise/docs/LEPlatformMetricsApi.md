@@ -25,7 +25,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $PlatformMetric = Initialize-LEPlatformMetric -MetricId "MyMetricId" -EnvironmentKey "MyEnvironmentKey" -Timestamp (Get-Date) -DisplayName "MyDisplayName" -Unit "MyUnit" -Instance "MyInstance" -Value 0 -Group "MyGroup" -ComponentType "MyComponentType" -CustomTags @{ key_example = "MyInner" } # PlatformMetric[] | An array of PlatformMetric objects containing the metrics to be added.
@@ -87,7 +87,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_URL"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $From = (Get-Date) # System.DateTime | The start date and time for the metrics to be retrieved. (Defaults to 24 hours before the current time if null) (optional)
