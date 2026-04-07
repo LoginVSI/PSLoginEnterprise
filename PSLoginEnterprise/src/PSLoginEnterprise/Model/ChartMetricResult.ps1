@@ -23,7 +23,7 @@ Value
 ChartMetricResult<PSCustomObject>
 #>
 
-function Initialize-LELEChartMetricResult {
+function Initialize-ChartMetricResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELEChartMetricResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEChartMetricResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ChartMetricResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 ChartMetricResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToChartMetricResult {
+function ConvertFrom-JsonToChartMetricResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEChartMetricResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ChartMetricResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEChartMetricResult
+        # check if Json contains properties not defined in ChartMetricResult
         $AllProperties = ("metricId", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

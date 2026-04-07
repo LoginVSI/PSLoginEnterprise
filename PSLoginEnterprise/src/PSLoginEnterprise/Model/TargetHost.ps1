@@ -23,7 +23,7 @@ RDS Broker / RDP Host
 TargetHost<PSCustomObject>
 #>
 
-function Initialize-LELETargetHost {
+function Initialize-TargetHost {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELETargetHost {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETargetHost' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => TargetHost' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Endpoint) {
@@ -74,19 +74,19 @@ Json object
 
 TargetHost<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTargetHost {
+function ConvertFrom-JsonToTargetHost {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETargetHost' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => TargetHost' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETargetHost
+        # check if Json contains properties not defined in TargetHost
         $AllProperties = ("enabled", "endpoint")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

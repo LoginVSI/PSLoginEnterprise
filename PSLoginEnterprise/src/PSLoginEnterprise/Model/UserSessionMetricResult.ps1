@@ -37,7 +37,7 @@ Selected field name from query
 UserSessionMetricResult<PSCustomObject>
 #>
 
-function Initialize-LELEUserSessionMetricResult {
+function Initialize-UserSessionMetricResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-LELEUserSessionMetricResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEUserSessionMetricResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => UserSessionMetricResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 UserSessionMetricResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToUserSessionMetricResult {
+function ConvertFrom-JsonToUserSessionMetricResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUserSessionMetricResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => UserSessionMetricResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEUserSessionMetricResult
+        # check if Json contains properties not defined in UserSessionMetricResult
         $AllProperties = ("timestamp", "testRunId", "userSessionKey", "measurement", "displayName", "unit", "instance", "tag", "fieldName")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

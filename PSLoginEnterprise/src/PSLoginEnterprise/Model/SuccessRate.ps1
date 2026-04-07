@@ -25,7 +25,7 @@ Failed results percentage
 SuccessRate<PSCustomObject>
 #>
 
-function Initialize-LELESuccessRate {
+function Initialize-SuccessRate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELESuccessRate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LESuccessRate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => SuccessRate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 SuccessRate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToSuccessRate {
+function ConvertFrom-JsonToSuccessRate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LESuccessRate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => SuccessRate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LESuccessRate
+        # check if Json contains properties not defined in SuccessRate
         $AllProperties = ("failed", "total", "percentage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

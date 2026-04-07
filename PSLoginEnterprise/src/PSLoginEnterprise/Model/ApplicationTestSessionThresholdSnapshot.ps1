@@ -29,7 +29,7 @@ No description available.
 ApplicationTestSessionThresholdSnapshot<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationTestSessionThresholdSnapshot {
+function Initialize-ApplicationTestSessionThresholdSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -51,7 +51,7 @@ function Initialize-LELEApplicationTestSessionThresholdSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestSessionThresholdSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTestSessionThresholdSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -89,19 +89,19 @@ Json object
 
 ApplicationTestSessionThresholdSnapshot<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationTestSessionThresholdSnapshot {
+function ConvertFrom-JsonToApplicationTestSessionThresholdSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTestSessionThresholdSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTestSessionThresholdSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationTestSessionThresholdSnapshot
+        # check if Json contains properties not defined in ApplicationTestSessionThresholdSnapshot
         $AllProperties = ("type", "isEnabled", "value", "lastModified", "target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -29,7 +29,7 @@ Environments associated to this provider
 Provider<PSCustomObject>
 #>
 
-function Initialize-LELEProvider {
+function Initialize-Provider {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-LELEProvider {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEProvider' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => Provider' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -88,19 +88,19 @@ Json object
 
 Provider<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToProvider {
+function ConvertFrom-JsonToProvider {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProvider' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => Provider' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEProvider
+        # check if Json contains properties not defined in Provider
         $AllProperties = ("type", "id", "name", "description", "environments")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

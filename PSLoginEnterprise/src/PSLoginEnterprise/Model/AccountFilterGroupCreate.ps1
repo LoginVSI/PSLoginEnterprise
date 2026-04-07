@@ -27,7 +27,7 @@ Filter condition (Wildcards available: ""?"" and ""*"")
 AccountFilterGroupCreate<PSCustomObject>
 #>
 
-function Initialize-LELEAccountFilterGroupCreate {
+function Initialize-AccountFilterGroupCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELEAccountFilterGroupCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAccountFilterGroupCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AccountFilterGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -82,19 +82,19 @@ Json object
 
 AccountFilterGroupCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAccountFilterGroupCreate {
+function ConvertFrom-JsonToAccountFilterGroupCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountFilterGroupCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountFilterGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAccountFilterGroupCreate
+        # check if Json contains properties not defined in AccountFilterGroupCreate
         $AllProperties = ("type", "name", "description", "filter")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

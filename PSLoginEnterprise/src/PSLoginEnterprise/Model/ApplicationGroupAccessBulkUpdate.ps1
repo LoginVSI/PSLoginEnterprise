@@ -23,7 +23,7 @@ The IDs of the roles to which this application group should be available.
 ApplicationGroupAccessBulkUpdate<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationGroupAccessBulkUpdate {
+function Initialize-ApplicationGroupAccessBulkUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELEApplicationGroupAccessBulkUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationGroupAccessBulkUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationGroupAccessBulkUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 ApplicationGroupAccessBulkUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationGroupAccessBulkUpdate {
+function ConvertFrom-JsonToApplicationGroupAccessBulkUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationGroupAccessBulkUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationGroupAccessBulkUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationGroupAccessBulkUpdate
+        # check if Json contains properties not defined in ApplicationGroupAccessBulkUpdate
         $AllProperties = ("applicationGroupIds", "roleIds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

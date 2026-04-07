@@ -45,7 +45,7 @@ Enable restarting on completion
 ApplicationTestUpdate<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationTestUpdate {
+function Initialize-ApplicationTestUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -90,7 +90,7 @@ function Initialize-LELEApplicationTestUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -156,19 +156,19 @@ Json object
 
 ApplicationTestUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationTestUpdate {
+function ConvertFrom-JsonToApplicationTestUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTestUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationTestUpdate
+        # check if Json contains properties not defined in ApplicationTestUpdate
         $AllProperties = ("type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "isEmailEnabled", "emailRecipient", "includeSuccessfulApplications", "restartOnComplete")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

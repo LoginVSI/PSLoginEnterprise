@@ -21,7 +21,7 @@ No description available.
 StepSnapshot<PSCustomObject>
 #>
 
-function Initialize-LELEStepSnapshot {
+function Initialize-StepSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELEStepSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEStepSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => StepSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -64,19 +64,19 @@ Json object
 
 StepSnapshot<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToStepSnapshot {
+function ConvertFrom-JsonToStepSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEStepSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => StepSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEStepSnapshot
+        # check if Json contains properties not defined in StepSnapshot
         $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

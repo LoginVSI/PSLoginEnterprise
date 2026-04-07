@@ -25,7 +25,7 @@ Offset requested
 EnvironmentResultSet<PSCustomObject>
 #>
 
-function Initialize-LELEEnvironmentResultSet {
+function Initialize-EnvironmentResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEEnvironmentResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEnvironmentResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EnvironmentResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 EnvironmentResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEnvironmentResultSet {
+function ConvertFrom-JsonToEnvironmentResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEnvironmentResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EnvironmentResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEnvironmentResultSet
+        # check if Json contains properties not defined in EnvironmentResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

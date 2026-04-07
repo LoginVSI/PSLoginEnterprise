@@ -21,7 +21,7 @@ Comment
 StartRequest<PSCustomObject>
 #>
 
-function Initialize-LELEStartRequest {
+function Initialize-StartRequest {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELEStartRequest {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEStartRequest' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => StartRequest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 StartRequest<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToStartRequest {
+function ConvertFrom-JsonToStartRequest {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEStartRequest' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => StartRequest' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEStartRequest
+        # check if Json contains properties not defined in StartRequest
         $AllProperties = ("comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

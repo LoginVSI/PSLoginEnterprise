@@ -31,7 +31,7 @@ Use custom mail recipient
 EventNotificationUpdate<PSCustomObject>
 #>
 
-function Initialize-LELEEventNotificationUpdate {
+function Initialize-EventNotificationUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LELEEventNotificationUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEventNotificationUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EventNotificationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -106,19 +106,19 @@ Json object
 
 EventNotificationUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEventNotificationUpdate {
+function ConvertFrom-JsonToEventNotificationUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEventNotificationUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EventNotificationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEventNotificationUpdate
+        # check if Json contains properties not defined in EventNotificationUpdate
         $AllProperties = ("type", "timesExceeded", "periodDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

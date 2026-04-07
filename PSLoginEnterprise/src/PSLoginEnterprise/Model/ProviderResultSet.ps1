@@ -25,7 +25,7 @@ Offset requested
 ProviderResultSet<PSCustomObject>
 #>
 
-function Initialize-LELEProviderResultSet {
+function Initialize-ProviderResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEProviderResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEProviderResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ProviderResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 ProviderResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToProviderResultSet {
+function ConvertFrom-JsonToProviderResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProviderResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ProviderResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEProviderResultSet
+        # check if Json contains properties not defined in ProviderResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

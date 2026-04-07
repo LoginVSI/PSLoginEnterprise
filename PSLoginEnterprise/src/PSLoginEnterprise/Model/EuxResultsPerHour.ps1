@@ -25,7 +25,7 @@ Count
 EuxResultsPerHour<PSCustomObject>
 #>
 
-function Initialize-LELEEuxResultsPerHour {
+function Initialize-EuxResultsPerHour {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEEuxResultsPerHour {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEuxResultsPerHour' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EuxResultsPerHour' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 EuxResultsPerHour<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEuxResultsPerHour {
+function ConvertFrom-JsonToEuxResultsPerHour {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxResultsPerHour' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxResultsPerHour' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEuxResultsPerHour
+        # check if Json contains properties not defined in EuxResultsPerHour
         $AllProperties = ("timestamp", "score", "count")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

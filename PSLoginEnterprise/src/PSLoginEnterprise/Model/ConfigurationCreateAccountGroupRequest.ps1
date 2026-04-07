@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationCreateAccountGroupRequest<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationCreateAccountGroupRequest {
+function ConvertFrom-JsonToConfigurationCreateAccountGroupRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationCreateAccountGroupRequest {
 
         # try to match AccountFilterGroupCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAccountFilterGroupCreate $Json
+            $matchInstance = ConvertFrom-JsonToAccountFilterGroupCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationCreateAccountGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AccountFilterGroupCreate' defined in oneOf (LEConfigurationCreateAccountGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AccountFilterGroupCreate' defined in oneOf (ConfigurationCreateAccountGroupRequest). Proceeding to the next one if any."
         }
 
         # try to match AccountSelectionGroupCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAccountSelectionGroupCreate $Json
+            $matchInstance = ConvertFrom-JsonToAccountSelectionGroupCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToConfigurationCreateAccountGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AccountSelectionGroupCreate' defined in oneOf (LEConfigurationCreateAccountGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AccountSelectionGroupCreate' defined in oneOf (ConfigurationCreateAccountGroupRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

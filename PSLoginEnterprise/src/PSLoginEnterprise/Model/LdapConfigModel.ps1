@@ -12,30 +12,30 @@ No summary available.
 
 .DESCRIPTION
 
-Represents the configuration parameters for connecting to an LDAP server.
+No description available.
 
 .PARAMETER VarHost
-Gets or sets the LDAP server host.
+No description available.
 .PARAMETER Port
-Gets or sets the LDAP server port.
+No description available.
 .PARAMETER Secured
-Gets or sets a value indicating whether the LDAP server connection is secured (SSL/TLS).
+No description available.
 .PARAMETER IgnoreSslErrors
-Gets or sets a value indicating whether SSL/TLS errors should be ignored when connecting to the LDAP server.
+No description available.
 .PARAMETER Username
-Gets or sets the username for the LDAP server connection.
+No description available.
 .PARAMETER Password
-Gets or sets the password for the LDAP server connection.
-.PARAMETER Domain
-Gets or sets the domain for the LDAP server connection.
+No description available.
+.PARAMETER SearchBase
+No description available.
 .PARAMETER ConnectionTimeout
-ConnectionTimeout value in milliseconds.
+No description available.
 .OUTPUTS
 
 LdapConfigModel<PSCustomObject>
 #>
 
-function Initialize-LELELdapConfigModel {
+function Initialize-LdapConfigModel {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -58,14 +58,14 @@ function Initialize-LELELdapConfigModel {
         ${Password},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Domain},
+        ${SearchBase},
         [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${ConnectionTimeout}
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELdapConfigModel' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LdapConfigModel' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -76,7 +76,7 @@ function Initialize-LELELdapConfigModel {
             "ignoreSslErrors" = ${IgnoreSslErrors}
             "username" = ${Username}
             "password" = ${Password}
-            "domain" = ${Domain}
+            "searchBase" = ${SearchBase}
             "connectionTimeout" = ${ConnectionTimeout}
         }
 
@@ -102,20 +102,20 @@ Json object
 
 LdapConfigModel<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLdapConfigModel {
+function ConvertFrom-JsonToLdapConfigModel {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELdapConfigModel' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LdapConfigModel' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELdapConfigModel
-        $AllProperties = ("host", "port", "secured", "ignoreSslErrors", "username", "password", "domain", "connectionTimeout")
+        # check if Json contains properties not defined in LdapConfigModel
+        $AllProperties = ("host", "port", "secured", "ignoreSslErrors", "username", "password", "searchBase", "connectionTimeout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -158,10 +158,10 @@ function ConvertFrom-LEJsonToLdapConfigModel {
             $Password = $JsonParameters.PSobject.Properties["password"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "domain"))) { #optional property not found
-            $Domain = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "searchBase"))) { #optional property not found
+            $SearchBase = $null
         } else {
-            $Domain = $JsonParameters.PSobject.Properties["domain"].value
+            $SearchBase = $JsonParameters.PSobject.Properties["searchBase"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "connectionTimeout"))) { #optional property not found
@@ -177,7 +177,7 @@ function ConvertFrom-LEJsonToLdapConfigModel {
             "ignoreSslErrors" = ${IgnoreSslErrors}
             "username" = ${Username}
             "password" = ${Password}
-            "domain" = ${Domain}
+            "searchBase" = ${SearchBase}
             "connectionTimeout" = ${ConnectionTimeout}
         }
 

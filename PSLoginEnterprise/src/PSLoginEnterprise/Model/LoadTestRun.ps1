@@ -61,7 +61,7 @@ Comment
 LoadTestRun<PSCustomObject>
 #>
 
-function Initialize-LELELoadTestRun {
+function Initialize-LoadTestRun {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -132,7 +132,7 @@ function Initialize-LELELoadTestRun {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELoadTestRun' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LoadTestRun' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -186,19 +186,19 @@ Json object
 
 LoadTestRun<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLoadTestRun {
+function ConvertFrom-JsonToLoadTestRun {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELoadTestRun' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LoadTestRun' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELoadTestRun
+        # check if Json contains properties not defined in LoadTestRun
         $AllProperties = ("type", "id", "testId", "created", "started", "finished", "counter", "numberOfEvents", "testRunConfigurationSnapshot", "state", "result", "rampUpCompleted", "activeSessionCount", "statisticsReady", "productVersion", "loginCounts", "engineCounts", "appExecutionCounts", "euxScore", "vsiMax", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

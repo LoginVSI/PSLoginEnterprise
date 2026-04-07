@@ -44,7 +44,7 @@ function Get-FunctionsToExport {
     }
 }
 
-$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Definition
+$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $FunctionPath = 'Api', 'Model', 'Client' | Where-Object {
     Join-Path "$ScriptDir\src\PSLoginEnterprise\" $_ | Test-Path
 } | ForEach-Object { Join-Path "$ScriptDir\src\PSLoginEnterprise\" $_ }
@@ -59,9 +59,9 @@ $Manifest = @{
     ModuleVersion = '1.0.9'
 
     RootModule = 'PSLoginEnterprise.psm1'
-    Guid = 'e4848b95-3695-4d55-92b9-744a153d2bc7' # Has to be static, otherwise each new build will be considered different module
+    Guid = '{E86652E0-20D0-41DD-84FE-31D37F097896}' # Has to be static, otherwise each new build will be considered different module
 
-    PowerShellVersion = '5.1'
+    PowerShellVersion = '6.2'
 
     FunctionsToExport = $FunctionPath | Get-ChildItem -Filter *.ps1 | Get-FunctionsToExport
 

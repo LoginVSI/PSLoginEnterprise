@@ -23,7 +23,7 @@ No description available.
 TestProviderConnectionResult<PSCustomObject>
 #>
 
-function Initialize-LELETestProviderConnectionResult {
+function Initialize-TestProviderConnectionResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELETestProviderConnectionResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETestProviderConnectionResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => TestProviderConnectionResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 TestProviderConnectionResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTestProviderConnectionResult {
+function ConvertFrom-JsonToTestProviderConnectionResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestProviderConnectionResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestProviderConnectionResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETestProviderConnectionResult
+        # check if Json contains properties not defined in TestProviderConnectionResult
         $AllProperties = ("success", "statusMessage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -23,7 +23,7 @@ No description available.
 AppPerformanceResult<PSCustomObject>
 #>
 
-function Initialize-LELEAppPerformanceResult {
+function Initialize-AppPerformanceResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELEAppPerformanceResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAppPerformanceResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AppPerformanceResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 AppPerformanceResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppPerformanceResult {
+function ConvertFrom-JsonToAppPerformanceResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppPerformanceResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppPerformanceResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAppPerformanceResult
+        # check if Json contains properties not defined in AppPerformanceResult
         $AllProperties = ("appResponseTime", "totalAppPerformance")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

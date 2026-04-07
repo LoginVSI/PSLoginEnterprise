@@ -22,7 +22,7 @@ JSON object
 
 ProviderResultSetItemsInner<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToProviderResultSetItemsInner {
+function ConvertFrom-JsonToProviderResultSetItemsInner {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToProviderResultSetItemsInner {
 
         # try to match ProviderAzure defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToProviderAzure $Json
+            $matchInstance = ConvertFrom-JsonToProviderAzure $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,7 +47,7 @@ function ConvertFrom-LEJsonToProviderResultSetItemsInner {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ProviderAzure' defined in oneOf (LEProviderResultSetItemsInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ProviderAzure' defined in oneOf (ProviderResultSetItemsInner). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

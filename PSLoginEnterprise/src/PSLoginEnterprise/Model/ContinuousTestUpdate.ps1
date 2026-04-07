@@ -63,7 +63,7 @@ Session metric group key
 ContinuousTestUpdate<PSCustomObject>
 #>
 
-function Initialize-LELEContinuousTestUpdate {
+function Initialize-ContinuousTestUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -136,7 +136,7 @@ function Initialize-LELEContinuousTestUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEContinuousTestUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ContinuousTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -239,19 +239,19 @@ Json object
 
 ContinuousTestUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToContinuousTestUpdate {
+function ConvertFrom-JsonToContinuousTestUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEContinuousTestUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ContinuousTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEContinuousTestUpdate
+        # check if Json contains properties not defined in ContinuousTestUpdate
         $AllProperties = ("type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "scheduleType", "intervalInMinutes", "numberOfSessions", "enableCustomScreenshots", "repeatCount", "isRepeatEnabled", "isEnabled", "restartOnComplete", "euxEnabled", "euxWorkFolders", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

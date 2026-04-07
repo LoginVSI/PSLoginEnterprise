@@ -21,7 +21,7 @@ Id of the newly created object
 ObjectIdList<PSCustomObject>
 #>
 
-function Initialize-LELEObjectIdList {
+function Initialize-ObjectIdList {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELEObjectIdList {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEObjectIdList' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ObjectIdList' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 ObjectIdList<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToObjectIdList {
+function ConvertFrom-JsonToObjectIdList {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEObjectIdList' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ObjectIdList' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEObjectIdList
+        # check if Json contains properties not defined in ObjectIdList
         $AllProperties = ("idList")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

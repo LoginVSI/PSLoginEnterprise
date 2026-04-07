@@ -23,7 +23,7 @@ No description available.
 TestReference<PSCustomObject>
 #>
 
-function Initialize-LELETestReference {
+function Initialize-TestReference {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -36,7 +36,7 @@ function Initialize-LELETestReference {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETestReference' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => TestReference' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -67,19 +67,19 @@ Json object
 
 TestReference<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTestReference {
+function ConvertFrom-JsonToTestReference {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestReference' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestReference' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETestReference
+        # check if Json contains properties not defined in TestReference
         $AllProperties = ("testId", "testType")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

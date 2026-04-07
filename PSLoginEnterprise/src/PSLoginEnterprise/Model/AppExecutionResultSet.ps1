@@ -25,7 +25,7 @@ Offset requested
 AppExecutionResultSet<PSCustomObject>
 #>
 
-function Initialize-LELEAppExecutionResultSet {
+function Initialize-AppExecutionResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEAppExecutionResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAppExecutionResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AppExecutionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 AppExecutionResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppExecutionResultSet {
+function ConvertFrom-JsonToAppExecutionResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppExecutionResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppExecutionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAppExecutionResultSet
+        # check if Json contains properties not defined in AppExecutionResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

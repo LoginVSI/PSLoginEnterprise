@@ -23,7 +23,7 @@ Eux score
 EuxResult<PSCustomObject>
 #>
 
-function Initialize-LELEEuxResult {
+function Initialize-EuxResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELEEuxResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEuxResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EuxResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 EuxResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEuxResult {
+function ConvertFrom-JsonToEuxResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEuxResult
+        # check if Json contains properties not defined in EuxResult
         $AllProperties = ("timestamp", "score")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

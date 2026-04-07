@@ -25,7 +25,7 @@ Account group description
 AccountGroupUpdate<PSCustomObject>
 #>
 
-function Initialize-LELEAccountGroupUpdate {
+function Initialize-AccountGroupUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEAccountGroupUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAccountGroupUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AccountGroupUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -76,19 +76,19 @@ Json object
 
 AccountGroupUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAccountGroupUpdate {
+function ConvertFrom-JsonToAccountGroupUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountGroupUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountGroupUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAccountGroupUpdate
+        # check if Json contains properties not defined in AccountGroupUpdate
         $AllProperties = ("type", "name", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

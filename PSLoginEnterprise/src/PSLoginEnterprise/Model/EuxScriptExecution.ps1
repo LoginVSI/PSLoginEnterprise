@@ -31,7 +31,7 @@ Eux script execution properties
 EuxScriptExecution<PSCustomObject>
 #>
 
-function Initialize-LELEEuxScriptExecution {
+function Initialize-EuxScriptExecution {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LELEEuxScriptExecution {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEuxScriptExecution' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EuxScriptExecution' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 EuxScriptExecution<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEuxScriptExecution {
+function ConvertFrom-JsonToEuxScriptExecution {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxScriptExecution' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxScriptExecution' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEuxScriptExecution
+        # check if Json contains properties not defined in EuxScriptExecution
         $AllProperties = ("userSessionId", "startTime", "endTime", "successful", "euxMeasurements", "properties")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

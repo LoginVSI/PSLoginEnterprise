@@ -27,7 +27,7 @@ Last modified date-time
 ApplicationTestThresholdSnapshot<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationTestThresholdSnapshot {
+function Initialize-ApplicationTestThresholdSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELEApplicationTestThresholdSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestThresholdSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTestThresholdSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -82,19 +82,19 @@ Json object
 
 ApplicationTestThresholdSnapshot<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationTestThresholdSnapshot {
+function ConvertFrom-JsonToApplicationTestThresholdSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTestThresholdSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTestThresholdSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationTestThresholdSnapshot
+        # check if Json contains properties not defined in ApplicationTestThresholdSnapshot
         $AllProperties = ("type", "isEnabled", "value", "lastModified")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

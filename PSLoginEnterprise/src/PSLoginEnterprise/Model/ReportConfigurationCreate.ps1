@@ -35,7 +35,7 @@ No description available.
 ReportConfigurationCreate<PSCustomObject>
 #>
 
-function Initialize-LELEReportConfigurationCreate {
+function Initialize-ReportConfigurationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -66,7 +66,7 @@ function Initialize-LELEReportConfigurationCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEReportConfigurationCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ReportConfigurationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Frequency) {
@@ -123,19 +123,19 @@ Json object
 
 ReportConfigurationCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToReportConfigurationCreate {
+function ConvertFrom-JsonToReportConfigurationCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEReportConfigurationCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ReportConfigurationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEReportConfigurationCreate
+        # check if Json contains properties not defined in ReportConfigurationCreate
         $AllProperties = ("frequency", "latencyThreshold", "loginTimeThreshold", "timeZoneOffset", "name", "description", "isEnabled", "notification")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

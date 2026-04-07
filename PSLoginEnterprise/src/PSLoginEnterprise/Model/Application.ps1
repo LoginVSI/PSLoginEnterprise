@@ -41,7 +41,7 @@ Has password
 Application<PSCustomObject>
 #>
 
-function Initialize-LELEApplication {
+function Initialize-Application {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -80,7 +80,7 @@ function Initialize-LELEApplication {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplication' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => Application' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -124,19 +124,19 @@ Json object
 
 Application<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplication {
+function ConvertFrom-JsonToApplication {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplication' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => Application' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplication
+        # check if Json contains properties not defined in Application
         $AllProperties = ("type", "id", "name", "description", "username", "created", "lastModified", "script", "timers", "takeScreenshots", "hasPassword")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

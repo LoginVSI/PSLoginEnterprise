@@ -1,0 +1,109 @@
+# PSLoginEnterprise.PSLoginEnterprise\Api.EuxSettingsApi
+
+All URIs are relative to */publicApi*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Invoke-ConfigurationGetEuxSettings**](EuxSettingsApi.md#Invoke-ConfigurationGetEuxSettings) | **GET** /v7/euxsettings | Get Eux settings
+[**Invoke-ConfigurationUpdateEuxSettings**](EuxSettingsApi.md#Invoke-ConfigurationUpdateEuxSettings) | **PUT** /v7/euxsettings | Update Eux settings
+
+
+<a id="Invoke-ConfigurationGetEuxSettings"></a>
+# **Invoke-ConfigurationGetEuxSettings**
+> EuxSettings Invoke-ConfigurationGetEuxSettings<br>
+
+Get Eux settings
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+
+# Get Eux settings
+try {
+    $Result = Invoke-ConfigurationGetEuxSettings
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-ConfigurationGetEuxSettings: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**EuxSettings**](EuxSettings.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Invoke-ConfigurationUpdateEuxSettings"></a>
+# **Invoke-ConfigurationUpdateEuxSettings**
+> void Invoke-ConfigurationUpdateEuxSettings<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-EuxSettings] <PSCustomObject><br>
+
+Update Eux settings
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$EuxSettings = Initialize-LEEuxSettings -EnableEuxRawDataSave $false # EuxSettings | Eux settings
+
+# Update Eux settings
+try {
+    $Result = Invoke-ConfigurationUpdateEuxSettings -EuxSettings $EuxSettings
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-ConfigurationUpdateEuxSettings: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **EuxSettings** | [**EuxSettings**](EuxSettings.md)| Eux settings | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

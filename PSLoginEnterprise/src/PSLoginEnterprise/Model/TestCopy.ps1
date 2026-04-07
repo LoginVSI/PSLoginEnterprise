@@ -21,7 +21,7 @@ Test Name
 TestCopy<PSCustomObject>
 #>
 
-function Initialize-LELETestCopy {
+function Initialize-TestCopy {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELETestCopy {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETestCopy' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => TestCopy' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 TestCopy<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTestCopy {
+function ConvertFrom-JsonToTestCopy {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestCopy' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestCopy' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETestCopy
+        # check if Json contains properties not defined in TestCopy
         $AllProperties = ("name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

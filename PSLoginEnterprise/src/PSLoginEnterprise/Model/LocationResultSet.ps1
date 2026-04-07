@@ -25,7 +25,7 @@ Offset requested
 LocationResultSet<PSCustomObject>
 #>
 
-function Initialize-LELELocationResultSet {
+function Initialize-LocationResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELELocationResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELocationResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LocationResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 LocationResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLocationResultSet {
+function ConvertFrom-JsonToLocationResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELocationResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LocationResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELocationResultSet
+        # check if Json contains properties not defined in LocationResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -25,7 +25,7 @@ Provider Description
 ProviderData<PSCustomObject>
 #>
 
-function Initialize-LELEProviderData {
+function Initialize-ProviderData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEProviderData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEProviderData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ProviderData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -76,19 +76,19 @@ Json object
 
 ProviderData<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToProviderData {
+function ConvertFrom-JsonToProviderData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProviderData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ProviderData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEProviderData
+        # check if Json contains properties not defined in ProviderData
         $AllProperties = ("type", "name", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

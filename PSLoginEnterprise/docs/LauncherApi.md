@@ -1,0 +1,191 @@
+# PSLoginEnterprise.PSLoginEnterprise\Api.LauncherApi
+
+All URIs are relative to */publicApi*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Invoke-ConfigurationGetLauncher**](LauncherApi.md#Invoke-ConfigurationGetLauncher) | **GET** /v7/launchers/{launcherName} | Get launcher by name.
+[**Invoke-ConfigurationGetLaunchers**](LauncherApi.md#Invoke-ConfigurationGetLaunchers) | **GET** /v7/launchers | Get paginated list of launchers
+[**Invoke-ConfigurationUpdateLauncherLocation**](LauncherApi.md#Invoke-ConfigurationUpdateLauncherLocation) | **PUT** /v7/launchers/{launcherName}/location | Change launcher&#39;s location
+
+
+<a id="Invoke-ConfigurationGetLauncher"></a>
+# **Invoke-ConfigurationGetLauncher**
+> Launcher Invoke-ConfigurationGetLauncher<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LauncherName] <String><br>
+
+Get launcher by name.
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$LauncherName = "MyLauncherName" # String | Launcher name
+
+# Get launcher by name.
+try {
+    $Result = Invoke-ConfigurationGetLauncher -LauncherName $LauncherName
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-ConfigurationGetLauncher: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **LauncherName** | **String**| Launcher name | 
+
+### Return type
+
+[**Launcher**](Launcher.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Invoke-ConfigurationGetLaunchers"></a>
+# **Invoke-ConfigurationGetLaunchers**
+> LauncherResultSet Invoke-ConfigurationGetLaunchers<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LocationIds] <System.Nullable[Int32][]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Online] <System.Nullable[Boolean]><br>
+
+Get paginated list of launchers
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$Filter = "MyFilter" # String | filter the launcher key in the list (optional)
+$OrderBy = "name" # LauncherSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
+$Offset = 56 # Int32 | Start offset (optional) (default to 0)
+$IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
+$LocationIds = 0 # Int32[] | Location ids (optional)
+$Online = $true # Boolean | Launcher state (default true) (optional) (default to $true)
+
+# Get paginated list of launchers
+try {
+    $Result = Invoke-ConfigurationGetLaunchers -Filter $Filter -OrderBy $OrderBy -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount -LocationIds $LocationIds -Online $Online
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-ConfigurationGetLaunchers: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Filter** | **String**| filter the launcher key in the list | [optional] 
+ **OrderBy** | [**LauncherSortKey**](LauncherSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
+ **Offset** | **Int32**| Start offset | [optional] [default to 0]
+ **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
+ **LocationIds** | [**Int32[]**](Int32.md)| Location ids | [optional] 
+ **Online** | **Boolean**| Launcher state (default true) | [optional] [default to $true]
+
+### Return type
+
+[**LauncherResultSet**](LauncherResultSet.md) (PSCustomObject)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="Invoke-ConfigurationUpdateLauncherLocation"></a>
+# **Invoke-ConfigurationUpdateLauncherLocation**
+> void Invoke-ConfigurationUpdateLauncherLocation<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LauncherName] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-LauncherLocationUpdate] <PSCustomObject><br>
+
+Change launcher's location
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$accessToken = "YOUR_ACCESS_TOKEN"
+
+# Configure your appliance name
+$applianceName = "YOUR_APPLIANCE_HOSTNAME"
+
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
+$bearerToken = @{"Authorization"="Bearer $accessToken"}
+# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+""
+
+$LauncherName = "MyLauncherName" # String | Launcher name
+$LauncherLocationUpdate = Initialize-LELauncherLocationUpdate -LocationId 0 # LauncherLocationUpdate | Launcher location data
+
+# Change launcher's location
+try {
+    $Result = Invoke-ConfigurationUpdateLauncherLocation -LauncherName $LauncherName -LauncherLocationUpdate $LauncherLocationUpdate
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-ConfigurationUpdateLauncherLocation: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **LauncherName** | **String**| Launcher name | 
+ **LauncherLocationUpdate** | [**LauncherLocationUpdate**](LauncherLocationUpdate.md)| Launcher location data | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OpenIdConnect](../README.md#OpenIdConnect), [oauth2](../README.md#oauth2), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

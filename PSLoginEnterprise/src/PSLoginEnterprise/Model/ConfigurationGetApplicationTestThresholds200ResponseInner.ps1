@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationGetApplicationTestThresholds200ResponseInner<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationGetApplicationTestThresholds200ResponseInner {
+function ConvertFrom-JsonToConfigurationGetApplicationTestThresholds200ResponseInner {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationGetApplicationTestThresholds200Respons
 
         # try to match AppThreshold defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppThreshold $Json
+            $matchInstance = ConvertFrom-JsonToAppThreshold $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationGetApplicationTestThresholds200Respons
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppThreshold' defined in oneOf (LEConfigurationGetApplicationTestThresholds200ResponseInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppThreshold' defined in oneOf (ConfigurationGetApplicationTestThresholds200ResponseInner). Proceeding to the next one if any."
         }
 
         # try to match SessionThreshold defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToSessionThreshold $Json
+            $matchInstance = ConvertFrom-JsonToSessionThreshold $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToConfigurationGetApplicationTestThresholds200Respons
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'SessionThreshold' defined in oneOf (LEConfigurationGetApplicationTestThresholds200ResponseInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'SessionThreshold' defined in oneOf (ConfigurationGetApplicationTestThresholds200ResponseInner). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

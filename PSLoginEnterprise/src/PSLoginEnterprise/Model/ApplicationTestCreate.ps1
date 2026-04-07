@@ -37,7 +37,7 @@ The IDs of the roles to which this test should be available. (User must be part 
 ApplicationTestCreate<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationTestCreate {
+function Initialize-ApplicationTestCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-LELEApplicationTestCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationTestCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationTestCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -124,19 +124,19 @@ Json object
 
 ApplicationTestCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationTestCreate {
+function ConvertFrom-JsonToApplicationTestCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationTestCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationTestCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationTestCreate
+        # check if Json contains properties not defined in ApplicationTestCreate
         $AllProperties = ("type", "name", "description", "connector", "accountGroups", "launcherGroups", "environmentKey", "applicationDebugModeEnabled", "roles")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

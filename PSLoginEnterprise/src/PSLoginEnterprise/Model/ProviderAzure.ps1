@@ -33,7 +33,7 @@ Application Id
 ProviderAzure<PSCustomObject>
 #>
 
-function Initialize-LELEProviderAzure {
+function Initialize-ProviderAzure {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-LELEProviderAzure {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEProviderAzure' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ProviderAzure' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -100,19 +100,19 @@ Json object
 
 ProviderAzure<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToProviderAzure {
+function ConvertFrom-JsonToProviderAzure {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProviderAzure' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ProviderAzure' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEProviderAzure
+        # check if Json contains properties not defined in ProviderAzure
         $AllProperties = ("type", "id", "name", "description", "environments", "tenantId", "applicationId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

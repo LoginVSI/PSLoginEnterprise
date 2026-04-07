@@ -49,7 +49,7 @@ Session properties
 UserSession<PSCustomObject>
 #>
 
-function Initialize-LELEUserSession {
+function Initialize-UserSession {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -103,7 +103,7 @@ function Initialize-LELEUserSession {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEUserSession' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => UserSession' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -147,19 +147,19 @@ Json object
 
 UserSession<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToUserSession {
+function ConvertFrom-JsonToUserSession {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUserSession' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => UserSession' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEUserSession
+        # check if Json contains properties not defined in UserSession
         $AllProperties = ("id", "testId", "testRunId", "created", "loginState", "sessionState", "stateLastModified", "testType", "accountId", "launcherName", "loginStartTime", "loginEndTime", "sessionEndTime", "sessionMetricEnabled", "properties")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

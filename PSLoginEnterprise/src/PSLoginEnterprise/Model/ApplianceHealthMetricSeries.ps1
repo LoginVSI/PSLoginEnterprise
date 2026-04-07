@@ -27,7 +27,7 @@ Time series data points
 ApplianceHealthMetricSeries<PSCustomObject>
 #>
 
-function Initialize-LELEApplianceHealthMetricSeries {
+function Initialize-ApplianceHealthMetricSeries {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELEApplianceHealthMetricSeries {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplianceHealthMetricSeries' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplianceHealthMetricSeries' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 ApplianceHealthMetricSeries<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplianceHealthMetricSeries {
+function ConvertFrom-JsonToApplianceHealthMetricSeries {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplianceHealthMetricSeries' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplianceHealthMetricSeries' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplianceHealthMetricSeries
+        # check if Json contains properties not defined in ApplianceHealthMetricSeries
         $AllProperties = ("metricId", "displayName", "unit", "dataPoints")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

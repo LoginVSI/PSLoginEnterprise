@@ -25,7 +25,7 @@ Unit
 SessionMetricDefinitionSnapshot<PSCustomObject>
 #>
 
-function Initialize-LELESessionMetricDefinitionSnapshot {
+function Initialize-SessionMetricDefinitionSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELESessionMetricDefinitionSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LESessionMetricDefinitionSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => SessionMetricDefinitionSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 SessionMetricDefinitionSnapshot<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToSessionMetricDefinitionSnapshot {
+function ConvertFrom-JsonToSessionMetricDefinitionSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LESessionMetricDefinitionSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => SessionMetricDefinitionSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LESessionMetricDefinitionSnapshot
+        # check if Json contains properties not defined in SessionMetricDefinitionSnapshot
         $AllProperties = ("metricId", "displayName", "unit")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

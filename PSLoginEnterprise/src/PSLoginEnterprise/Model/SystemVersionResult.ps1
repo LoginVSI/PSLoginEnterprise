@@ -23,7 +23,7 @@ Latest Version
 SystemVersionResult<PSCustomObject>
 #>
 
-function Initialize-LELESystemVersionResult {
+function Initialize-SystemVersionResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELESystemVersionResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LESystemVersionResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => SystemVersionResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 SystemVersionResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToSystemVersionResult {
+function ConvertFrom-JsonToSystemVersionResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LESystemVersionResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => SystemVersionResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LESystemVersionResult
+        # check if Json contains properties not defined in SystemVersionResult
         $AllProperties = ("currentVersion", "latestVersion")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

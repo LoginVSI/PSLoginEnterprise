@@ -41,7 +41,7 @@ Run application scripts in debug mode to capture the error line for scripts fail
 Test<PSCustomObject>
 #>
 
-function Initialize-LELETest {
+function Initialize-Test {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -80,7 +80,7 @@ function Initialize-LELETest {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETest' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => Test' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -124,19 +124,19 @@ Json object
 
 Test<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTest {
+function ConvertFrom-JsonToTest {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETest' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => Test' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETest
+        # check if Json contains properties not defined in Test
         $AllProperties = ("type", "id", "environmentKey", "name", "description", "created", "connectionResources", "workload", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

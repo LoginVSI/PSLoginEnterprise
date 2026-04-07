@@ -25,7 +25,7 @@ No description available.
 WebDriverUpdateInfo<PSCustomObject>
 #>
 
-function Initialize-LELEWebDriverUpdateInfo {
+function Initialize-WebDriverUpdateInfo {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -41,7 +41,7 @@ function Initialize-LELEWebDriverUpdateInfo {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEWebDriverUpdateInfo' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => WebDriverUpdateInfo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -73,19 +73,19 @@ Json object
 
 WebDriverUpdateInfo<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToWebDriverUpdateInfo {
+function ConvertFrom-JsonToWebDriverUpdateInfo {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWebDriverUpdateInfo' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => WebDriverUpdateInfo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEWebDriverUpdateInfo
+        # check if Json contains properties not defined in WebDriverUpdateInfo
         $AllProperties = ("autoUpdateEnabled", "lastUpdateTime", "updateState")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

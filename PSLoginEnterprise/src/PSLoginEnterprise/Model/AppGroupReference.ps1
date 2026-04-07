@@ -27,7 +27,7 @@ No description available.
 AppGroupReference<PSCustomObject>
 #>
 
-function Initialize-LELEAppGroupReference {
+function Initialize-AppGroupReference {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELEAppGroupReference {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAppGroupReference' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AppGroupReference' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -82,19 +82,19 @@ Json object
 
 AppGroupReference<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppGroupReference {
+function ConvertFrom-JsonToAppGroupReference {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppGroupReference' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppGroupReference' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAppGroupReference
+        # check if Json contains properties not defined in AppGroupReference
         $AllProperties = ("type", "id", "isEnabled", "applicationGroup")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

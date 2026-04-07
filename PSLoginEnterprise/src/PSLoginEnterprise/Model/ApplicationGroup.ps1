@@ -29,7 +29,7 @@ Application group steps
 ApplicationGroup<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationGroup {
+function Initialize-ApplicationGroup {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-LELEApplicationGroup {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationGroup' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationGroup' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,19 +84,19 @@ Json object
 
 ApplicationGroup<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationGroup {
+function ConvertFrom-JsonToApplicationGroup {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationGroup' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationGroup' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationGroup
+        # check if Json contains properties not defined in ApplicationGroup
         $AllProperties = ("id", "name", "description", "memberCount", "steps")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

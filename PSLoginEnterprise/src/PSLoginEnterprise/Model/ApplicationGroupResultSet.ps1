@@ -25,7 +25,7 @@ Offset requested
 ApplicationGroupResultSet<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationGroupResultSet {
+function Initialize-ApplicationGroupResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEApplicationGroupResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationGroupResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationGroupResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 ApplicationGroupResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationGroupResultSet {
+function ConvertFrom-JsonToApplicationGroupResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationGroupResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationGroupResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationGroupResultSet
+        # check if Json contains properties not defined in ApplicationGroupResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
