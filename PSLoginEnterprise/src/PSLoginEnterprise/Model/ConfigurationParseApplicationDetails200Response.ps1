@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationParseApplicationDetails200Response<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationParseApplicationDetails200Response {
+function ConvertFrom-JsonToConfigurationParseApplicationDetails200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationParseApplicationDetails200Response {
 
         # try to match ApplicationDetails defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToApplicationDetails $Json
+            $matchInstance = ConvertFrom-JsonToApplicationDetails $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationParseApplicationDetails200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationDetails' defined in oneOf (LEConfigurationParseApplicationDetails200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationDetails' defined in oneOf (ConfigurationParseApplicationDetails200Response). Proceeding to the next one if any."
         }
 
         # try to match WebApplicationDetails defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWebApplicationDetails $Json
+            $matchInstance = ConvertFrom-JsonToWebApplicationDetails $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToConfigurationParseApplicationDetails200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WebApplicationDetails' defined in oneOf (LEConfigurationParseApplicationDetails200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WebApplicationDetails' defined in oneOf (ConfigurationParseApplicationDetails200Response). Proceeding to the next one if any."
         }
 
         # try to match WindowsApplicationDetails defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWindowsApplicationDetails $Json
+            $matchInstance = ConvertFrom-JsonToWindowsApplicationDetails $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToConfigurationParseApplicationDetails200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WindowsApplicationDetails' defined in oneOf (LEConfigurationParseApplicationDetails200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WindowsApplicationDetails' defined in oneOf (ConfigurationParseApplicationDetails200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

@@ -22,7 +22,7 @@ JSON object
 
 ApplicationTestAllOfThresholds<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationTestAllOfThresholds {
+function ConvertFrom-JsonToApplicationTestAllOfThresholds {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToApplicationTestAllOfThresholds {
 
         # try to match AppThreshold defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppThreshold $Json
+            $matchInstance = ConvertFrom-JsonToAppThreshold $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToApplicationTestAllOfThresholds {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppThreshold' defined in oneOf (LEApplicationTestAllOfThresholds). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppThreshold' defined in oneOf (ApplicationTestAllOfThresholds). Proceeding to the next one if any."
         }
 
         # try to match SessionThreshold defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToSessionThreshold $Json
+            $matchInstance = ConvertFrom-JsonToSessionThreshold $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToApplicationTestAllOfThresholds {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'SessionThreshold' defined in oneOf (LEApplicationTestAllOfThresholds). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'SessionThreshold' defined in oneOf (ApplicationTestAllOfThresholds). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

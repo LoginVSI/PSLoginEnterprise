@@ -25,7 +25,7 @@ VSImax reached offset
 LoadTestRunStatistics<PSCustomObject>
 #>
 
-function Initialize-LELELoadTestRunStatistics {
+function Initialize-LoadTestRunStatistics {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELELoadTestRunStatistics {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELoadTestRunStatistics' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LoadTestRunStatistics' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 LoadTestRunStatistics<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLoadTestRunStatistics {
+function ConvertFrom-JsonToLoadTestRunStatistics {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELoadTestRunStatistics' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LoadTestRunStatistics' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELoadTestRunStatistics
+        # check if Json contains properties not defined in LoadTestRunStatistics
         $AllProperties = ("euxScores", "baseTimestamp", "vsiMaxOffset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

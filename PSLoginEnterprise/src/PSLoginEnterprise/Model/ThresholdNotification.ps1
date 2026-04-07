@@ -37,7 +37,7 @@ No description available.
 ThresholdNotification<PSCustomObject>
 #>
 
-function Initialize-LELEThresholdNotification {
+function Initialize-ThresholdNotification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-LELEThresholdNotification {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEThresholdNotification' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ThresholdNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -112,19 +112,19 @@ Json object
 
 ThresholdNotification<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToThresholdNotification {
+function ConvertFrom-JsonToThresholdNotification {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEThresholdNotification' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ThresholdNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEThresholdNotification
+        # check if Json contains properties not defined in ThresholdNotification
         $AllProperties = ("type", "id", "timesExceeded", "periodDuration", "cooldownDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient", "threshold")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

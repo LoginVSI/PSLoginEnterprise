@@ -1,0 +1,83 @@
+name: Dev regenerate module
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "openapi/**"
+      - "scripts/**"
+      - ".github/workflows/dev-regenerate-module.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dev-regenerate-module
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Verify OpenAPI inputs
+        id: inputs
+        shell: pwsh
+        run: |
+          if (-not (Test-Path -LiteralPath "openapi/openapi.json")) {
+            Write-Host "openapi/openapi.json not found. Skipping."
+            "skip=true" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+          if (-not (Test-Path -LiteralPath "openapi/psopenapi.yaml")) {
+            Write-Host "openapi/psopenapi.yaml not found. Skipping."
+            "skip=true" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+          "skip=false" >> $env:GITHUB_OUTPUT
+
+      - name: Regenerate module from OpenAPI
+        if: steps.inputs.outputs.skip != 'true'
+        shell: pwsh
+        run: ./scripts/invoke-openapi-regeneration.ps1
+
+      - name: Build and test module
+        if: steps.inputs.outputs.skip != 'true'
+        shell: pwsh
+        working-directory: ./PSLoginEnterprise
+        run: |
+          Install-Module Pester -Force -Scope CurrentUser
+          ./Build.ps1
+          Import-Module -Name "./src/PSLoginEnterprise"
+          $result = Invoke-Pester -PassThru
+          if ($result.FailedCount -gt 0) {
+            throw "$($result.FailedCount) Pester tests failed."
+          }
+
+      - name: Commit generated updates to dev
+        if: steps.inputs.outputs.skip != 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: regenerate PowerShell module from OpenAPI [skip ci]"
+          git push

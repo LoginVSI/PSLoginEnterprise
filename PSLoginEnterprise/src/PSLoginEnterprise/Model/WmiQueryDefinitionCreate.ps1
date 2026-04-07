@@ -35,7 +35,7 @@ Measurements
 WmiQueryDefinitionCreate<PSCustomObject>
 #>
 
-function Initialize-LELEWmiQueryDefinitionCreate {
+function Initialize-WmiQueryDefinitionCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-LELEWmiQueryDefinitionCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEWmiQueryDefinitionCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => WmiQueryDefinitionCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -106,19 +106,19 @@ Json object
 
 WmiQueryDefinitionCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToWmiQueryDefinitionCreate {
+function ConvertFrom-JsonToWmiQueryDefinitionCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWmiQueryDefinitionCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => WmiQueryDefinitionCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEWmiQueryDefinitionCreate
+        # check if Json contains properties not defined in WmiQueryDefinitionCreate
         $AllProperties = ("type", "name", "description", "tag", "wmiQuery", "namespace", "instanceField", "measurements")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

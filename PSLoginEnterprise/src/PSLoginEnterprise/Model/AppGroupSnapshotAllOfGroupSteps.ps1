@@ -22,7 +22,7 @@ JSON object
 
 AppGroupSnapshotAllOfGroupSteps<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppGroupSnapshotAllOfGroupSteps {
+function ConvertFrom-JsonToAppGroupSnapshotAllOfGroupSteps {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToAppGroupSnapshotAllOfGroupSteps {
 
         # try to match AppGroupSnapshot defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppGroupSnapshot $Json
+            $matchInstance = ConvertFrom-JsonToAppGroupSnapshot $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToAppGroupSnapshotAllOfGroupSteps {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppGroupSnapshot' defined in oneOf (LEAppGroupSnapshotAllOfGroupSteps). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppGroupSnapshot' defined in oneOf (AppGroupSnapshotAllOfGroupSteps). Proceeding to the next one if any."
         }
 
         # try to match AppInvocationSnapshot defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppInvocationSnapshot $Json
+            $matchInstance = ConvertFrom-JsonToAppInvocationSnapshot $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToAppGroupSnapshotAllOfGroupSteps {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppInvocationSnapshot' defined in oneOf (LEAppGroupSnapshotAllOfGroupSteps). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppInvocationSnapshot' defined in oneOf (AppGroupSnapshotAllOfGroupSteps). Proceeding to the next one if any."
         }
 
         # try to match DelaySnapshot defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToDelaySnapshot $Json
+            $matchInstance = ConvertFrom-JsonToDelaySnapshot $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToAppGroupSnapshotAllOfGroupSteps {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'DelaySnapshot' defined in oneOf (LEAppGroupSnapshotAllOfGroupSteps). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'DelaySnapshot' defined in oneOf (AppGroupSnapshotAllOfGroupSteps). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

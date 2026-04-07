@@ -53,7 +53,7 @@ Session metric group key
 LoadTestUpdate<PSCustomObject>
 #>
 
-function Initialize-LELELoadTestUpdate {
+function Initialize-LoadTestUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -110,7 +110,7 @@ function Initialize-LELELoadTestUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELoadTestUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LoadTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -188,19 +188,19 @@ Json object
 
 LoadTestUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLoadTestUpdate {
+function ConvertFrom-JsonToLoadTestUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELoadTestUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LoadTestUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELoadTestUpdate
+        # check if Json contains properties not defined in LoadTestUpdate
         $AllProperties = ("type", "name", "description", "connectionResourcesUpdate", "environmentKey", "steps", "logonTimeTrackingProcess", "engineStartTimeout", "applicationDebugModeEnabled", "numberOfSessions", "rampUpDurationInMinutes", "testDurationInMinutes", "euxEnabled", "euxWorkFolders", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

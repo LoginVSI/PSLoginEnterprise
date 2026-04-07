@@ -31,7 +31,7 @@ No description available.
 SessionThreshold<PSCustomObject>
 #>
 
-function Initialize-LELESessionThreshold {
+function Initialize-SessionThreshold {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -56,7 +56,7 @@ function Initialize-LELESessionThreshold {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LESessionThreshold' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => SessionThreshold' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -95,19 +95,19 @@ Json object
 
 SessionThreshold<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToSessionThreshold {
+function ConvertFrom-JsonToSessionThreshold {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LESessionThreshold' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => SessionThreshold' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LESessionThreshold
+        # check if Json contains properties not defined in SessionThreshold
         $AllProperties = ("type", "id", "isEnabled", "value", "lastModified", "target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

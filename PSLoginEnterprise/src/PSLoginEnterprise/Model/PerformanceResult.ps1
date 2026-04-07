@@ -29,7 +29,7 @@ Is successful
 PerformanceResult<PSCustomObject>
 #>
 
-function Initialize-LELEPerformanceResult {
+function Initialize-PerformanceResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-LELEPerformanceResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEPerformanceResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => PerformanceResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,19 +84,19 @@ Json object
 
 PerformanceResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToPerformanceResult {
+function ConvertFrom-JsonToPerformanceResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEPerformanceResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => PerformanceResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEPerformanceResult
+        # check if Json contains properties not defined in PerformanceResult
         $AllProperties = ("duration", "threshold", "durationDifference", "thresholdDifference", "isSuccessful")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

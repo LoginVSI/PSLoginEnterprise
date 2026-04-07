@@ -21,7 +21,7 @@ No description available.
 LauncherLocationUpdate<PSCustomObject>
 #>
 
-function Initialize-LELELauncherLocationUpdate {
+function Initialize-LauncherLocationUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELELauncherLocationUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELauncherLocationUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LauncherLocationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 LauncherLocationUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLauncherLocationUpdate {
+function ConvertFrom-JsonToLauncherLocationUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELauncherLocationUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LauncherLocationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELauncherLocationUpdate
+        # check if Json contains properties not defined in LauncherLocationUpdate
         $AllProperties = ("locationId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

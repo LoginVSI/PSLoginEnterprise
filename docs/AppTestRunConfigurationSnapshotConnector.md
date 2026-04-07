@@ -13,6 +13,12 @@ Name | Type | Description | Notes
 **HostList** | [**TargetHost[]**](TargetHost.md) | Host list | 
 **Gateway** | **String** | RDS Gateway | [optional] 
 **SuppressCertWarn** | **Boolean** | Suppress Certificate Warning | 
+**CloudPcTitleField** | **String** | Name of the custom field containing the Cloud PC title. | 
+**TotpSecretSecureField** | **String** | Name of the secure field containing the TOTP secret. | 
+**TimeoutSeconds** | **Int32** | Script execution timeout in seconds. | 
+**TotpTimeStep** | **Int32** | TOTP time step in seconds (typically 30). | 
+**TotpDigits** | **Int32** | Number of digits in TOTP code (typically 6). | 
+**TotpAlgorithm** | **String** | TOTP hash algorithm (SHA1, SHA256, or SHA512). | 
 
 ## Examples
 
@@ -27,7 +33,13 @@ $AppTestRunConfigurationSnapshotConnector = Initialize-LEPSLoginEnterpriseAppTes
  -SeamlessMode null `
  -HostList null `
  -Gateway null `
- -SuppressCertWarn null
+ -SuppressCertWarn null `
+ -CloudPcTitleField null `
+ -TotpSecretSecureField null `
+ -TimeoutSeconds null `
+ -TotpTimeStep null `
+ -TotpDigits null `
+ -TotpAlgorithm null
 ```
 
 - Convert the resource to JSON

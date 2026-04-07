@@ -37,7 +37,7 @@ Tests associated to this environment
 Environment<PSCustomObject>
 #>
 
-function Initialize-LELEEnvironment {
+function Initialize-Environment {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-LELEEnvironment {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEnvironment' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => Environment' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 Environment<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEnvironment {
+function ConvertFrom-JsonToEnvironment {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEnvironment' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => Environment' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEnvironment
+        # check if Json contains properties not defined in Environment
         $AllProperties = ("id", "name", "description", "enableEnvironmentDataCollection", "enableCostCalculation", "environmentCost", "environmentAttributes", "provider", "tests")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

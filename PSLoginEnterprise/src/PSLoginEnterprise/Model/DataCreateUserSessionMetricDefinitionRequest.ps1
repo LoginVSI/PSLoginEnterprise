@@ -22,7 +22,7 @@ JSON object
 
 DataCreateUserSessionMetricDefinitionRequest<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToDataCreateUserSessionMetricDefinitionRequest {
+function ConvertFrom-JsonToDataCreateUserSessionMetricDefinitionRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToDataCreateUserSessionMetricDefinitionRequest {
 
         # try to match PerformanceCounterDefinitionCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToPerformanceCounterDefinitionCreate $Json
+            $matchInstance = ConvertFrom-JsonToPerformanceCounterDefinitionCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToDataCreateUserSessionMetricDefinitionRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'PerformanceCounterDefinitionCreate' defined in oneOf (LEDataCreateUserSessionMetricDefinitionRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'PerformanceCounterDefinitionCreate' defined in oneOf (DataCreateUserSessionMetricDefinitionRequest). Proceeding to the next one if any."
         }
 
         # try to match WmiQueryDefinitionCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWmiQueryDefinitionCreate $Json
+            $matchInstance = ConvertFrom-JsonToWmiQueryDefinitionCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToDataCreateUserSessionMetricDefinitionRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WmiQueryDefinitionCreate' defined in oneOf (LEDataCreateUserSessionMetricDefinitionRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WmiQueryDefinitionCreate' defined in oneOf (DataCreateUserSessionMetricDefinitionRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

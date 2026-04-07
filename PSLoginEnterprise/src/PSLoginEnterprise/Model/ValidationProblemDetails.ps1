@@ -31,7 +31,7 @@ No description available.
 ValidationProblemDetails<PSCustomObject>
 #>
 
-function Initialize-LELEValidationProblemDetails {
+function Initialize-ValidationProblemDetails {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LELEValidationProblemDetails {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEValidationProblemDetails' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ValidationProblemDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,25 +90,25 @@ Json object
 
 ValidationProblemDetails<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToValidationProblemDetails {
+function ConvertFrom-JsonToValidationProblemDetails {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEValidationProblemDetails' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ValidationProblemDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
-        $LEValidationProblemDetailsAdditionalProperties = @{}
+        $ValidationProblemDetailsAdditionalProperties = @{}
 
-        # check if Json contains properties not defined in LEValidationProblemDetails
+        # check if Json contains properties not defined in ValidationProblemDetails
         $AllProperties = ("errors", "type", "title", "status", "detail", "instance")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             # store undefined properties in additionalProperties
             if (!($AllProperties.Contains($name))) {
-                $LEValidationProblemDetailsAdditionalProperties[$name] = $JsonParameters.PSobject.Properties[$name].value
+                $ValidationProblemDetailsAdditionalProperties[$name] = $JsonParameters.PSobject.Properties[$name].value
             }
         }
 
@@ -155,7 +155,7 @@ function ConvertFrom-LEJsonToValidationProblemDetails {
             "status" = ${Status}
             "detail" = ${Detail}
             "instance" = ${Instance}
-            "AdditionalProperties" = $LEValidationProblemDetailsAdditionalProperties
+            "AdditionalProperties" = $ValidationProblemDetailsAdditionalProperties
         }
 
         return $PSO

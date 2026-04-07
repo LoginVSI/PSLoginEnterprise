@@ -23,7 +23,7 @@ Height
 Resolution<PSCustomObject>
 #>
 
-function Initialize-LELEResolution {
+function Initialize-Resolution {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELEResolution {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEResolution' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => Resolution' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 Resolution<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToResolution {
+function ConvertFrom-JsonToResolution {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEResolution' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => Resolution' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEResolution
+        # check if Json contains properties not defined in Resolution
         $AllProperties = ("width", "height")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

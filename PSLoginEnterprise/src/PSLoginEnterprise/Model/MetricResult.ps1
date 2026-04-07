@@ -25,7 +25,7 @@ Difference from base
 MetricResult<PSCustomObject>
 #>
 
-function Initialize-LELEMetricResult {
+function Initialize-MetricResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEMetricResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEMetricResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => MetricResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 MetricResult<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToMetricResult {
+function ConvertFrom-JsonToMetricResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEMetricResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => MetricResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEMetricResult
+        # check if Json contains properties not defined in MetricResult
         $AllProperties = ("resultId", "value", "differenceFromBase")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

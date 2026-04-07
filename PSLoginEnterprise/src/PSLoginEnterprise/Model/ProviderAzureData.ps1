@@ -31,7 +31,7 @@ Secret Code
 ProviderAzureData<PSCustomObject>
 #>
 
-function Initialize-LELEProviderAzureData {
+function Initialize-ProviderAzureData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LELEProviderAzureData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEProviderAzureData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ProviderAzureData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -94,19 +94,19 @@ Json object
 
 ProviderAzureData<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToProviderAzureData {
+function ConvertFrom-JsonToProviderAzureData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEProviderAzureData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ProviderAzureData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEProviderAzureData
+        # check if Json contains properties not defined in ProviderAzureData
         $AllProperties = ("type", "name", "description", "tenantId", "applicationId", "secret")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

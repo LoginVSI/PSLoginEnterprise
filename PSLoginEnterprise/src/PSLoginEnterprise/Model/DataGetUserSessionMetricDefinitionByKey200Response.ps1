@@ -22,7 +22,7 @@ JSON object
 
 DataGetUserSessionMetricDefinitionByKey200Response<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToDataGetUserSessionMetricDefinitionByKey200Response {
+function ConvertFrom-JsonToDataGetUserSessionMetricDefinitionByKey200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToDataGetUserSessionMetricDefinitionByKey200Response 
 
         # try to match BuiltInMetricDefinition defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToBuiltInMetricDefinition $Json
+            $matchInstance = ConvertFrom-JsonToBuiltInMetricDefinition $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToDataGetUserSessionMetricDefinitionByKey200Response 
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'BuiltInMetricDefinition' defined in oneOf (LEDataGetUserSessionMetricDefinitionByKey200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'BuiltInMetricDefinition' defined in oneOf (DataGetUserSessionMetricDefinitionByKey200Response). Proceeding to the next one if any."
         }
 
         # try to match PerformanceCounterDefinition defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToPerformanceCounterDefinition $Json
+            $matchInstance = ConvertFrom-JsonToPerformanceCounterDefinition $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToDataGetUserSessionMetricDefinitionByKey200Response 
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'PerformanceCounterDefinition' defined in oneOf (LEDataGetUserSessionMetricDefinitionByKey200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'PerformanceCounterDefinition' defined in oneOf (DataGetUserSessionMetricDefinitionByKey200Response). Proceeding to the next one if any."
         }
 
         # try to match WmiQueryDefinition defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWmiQueryDefinition $Json
+            $matchInstance = ConvertFrom-JsonToWmiQueryDefinition $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToDataGetUserSessionMetricDefinitionByKey200Response 
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WmiQueryDefinition' defined in oneOf (LEDataGetUserSessionMetricDefinitionByKey200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WmiQueryDefinition' defined in oneOf (DataGetUserSessionMetricDefinitionByKey200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

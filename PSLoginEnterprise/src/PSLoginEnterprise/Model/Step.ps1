@@ -25,7 +25,7 @@ Enable step
 Step<PSCustomObject>
 #>
 
-function Initialize-LELEStep {
+function Initialize-Step {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEStep {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEStep' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => Step' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -76,19 +76,19 @@ Json object
 
 Step<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToStep {
+function ConvertFrom-JsonToStep {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEStep' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => Step' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEStep
+        # check if Json contains properties not defined in Step
         $AllProperties = ("type", "id", "isEnabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

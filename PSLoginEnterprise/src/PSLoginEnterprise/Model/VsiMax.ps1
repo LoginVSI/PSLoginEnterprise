@@ -27,7 +27,7 @@ VSImax reached date-time
 VsiMax<PSCustomObject>
 #>
 
-function Initialize-LELEVsiMax {
+function Initialize-VsiMax {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -46,7 +46,7 @@ function Initialize-LELEVsiMax {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEVsiMax' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => VsiMax' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -79,19 +79,19 @@ Json object
 
 VsiMax<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToVsiMax {
+function ConvertFrom-JsonToVsiMax {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEVsiMax' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => VsiMax' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEVsiMax
+        # check if Json contains properties not defined in VsiMax
         $AllProperties = ("maxSessions", "version", "state", "timestamp")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

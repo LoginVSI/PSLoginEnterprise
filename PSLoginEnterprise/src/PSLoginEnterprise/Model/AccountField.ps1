@@ -23,7 +23,7 @@ Custom field value
 AccountField<PSCustomObject>
 #>
 
-function Initialize-LELEAccountField {
+function Initialize-AccountField {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-LELEAccountField {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAccountField' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AccountField' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 AccountField<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAccountField {
+function ConvertFrom-JsonToAccountField {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountField' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountField' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAccountField
+        # check if Json contains properties not defined in AccountField
         $AllProperties = ("name", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

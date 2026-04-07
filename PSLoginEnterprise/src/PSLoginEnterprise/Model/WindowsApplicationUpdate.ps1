@@ -39,7 +39,7 @@ Working directory
 WindowsApplicationUpdate<PSCustomObject>
 #>
 
-function Initialize-LELEWindowsApplicationUpdate {
+function Initialize-WindowsApplicationUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -75,7 +75,7 @@ function Initialize-LELEWindowsApplicationUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEWindowsApplicationUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => WindowsApplicationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -158,19 +158,19 @@ Json object
 
 WindowsApplicationUpdate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToWindowsApplicationUpdate {
+function ConvertFrom-JsonToWindowsApplicationUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWindowsApplicationUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => WindowsApplicationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEWindowsApplicationUpdate
+        # check if Json contains properties not defined in WindowsApplicationUpdate
         $AllProperties = ("type", "name", "description", "username", "password", "mustUpdatePassword", "takeScreenshots", "scriptContent", "commandLine", "workingDirectory")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

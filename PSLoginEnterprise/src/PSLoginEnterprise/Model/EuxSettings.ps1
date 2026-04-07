@@ -21,7 +21,7 @@ Enable EUX raw data save
 EuxSettings<PSCustomObject>
 #>
 
-function Initialize-LELEEuxSettings {
+function Initialize-EuxSettings {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELEEuxSettings {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEuxSettings' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EuxSettings' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 EuxSettings<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEuxSettings {
+function ConvertFrom-JsonToEuxSettings {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxSettings' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxSettings' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEuxSettings
+        # check if Json contains properties not defined in EuxSettings
         $AllProperties = ("enableEuxRawDataSave")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

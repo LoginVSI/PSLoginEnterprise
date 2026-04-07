@@ -149,6 +149,9 @@ function Invoke-LEApiClient {
         $Params.Body = $RequestBody
         $Params.UseBasicParsing = $true
         $Response = Invoke-WebRequest @Params
+        if ([string]::IsNullOrEmpty($Response.Content)) {
+            return "OK"
+        }
 
         return @{
             Response = DeserializeResponse -Response $Response.Content -ReturnType $ReturnType -ContentTypes $Response.Headers["Content-Type"]

@@ -25,7 +25,7 @@ Group step
 AppGroupSnapshot<PSCustomObject>
 #>
 
-function Initialize-LELEAppGroupSnapshot {
+function Initialize-AppGroupSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEAppGroupSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAppGroupSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AppGroupSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -76,19 +76,19 @@ Json object
 
 AppGroupSnapshot<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppGroupSnapshot {
+function ConvertFrom-JsonToAppGroupSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppGroupSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppGroupSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAppGroupSnapshot
+        # check if Json contains properties not defined in AppGroupSnapshot
         $AllProperties = ("type", "name", "groupSteps")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -27,7 +27,7 @@ Filter condition (Wildcards available: ""?"" and ""*"")
 LauncherFilterGroupData<PSCustomObject>
 #>
 
-function Initialize-LELELauncherFilterGroupData {
+function Initialize-LauncherFilterGroupData {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELELauncherFilterGroupData {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELauncherFilterGroupData' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LauncherFilterGroupData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -98,19 +98,19 @@ Json object
 
 LauncherFilterGroupData<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLauncherFilterGroupData {
+function ConvertFrom-JsonToLauncherFilterGroupData {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELauncherFilterGroupData' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LauncherFilterGroupData' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELauncherFilterGroupData
+        # check if Json contains properties not defined in LauncherFilterGroupData
         $AllProperties = ("type", "name", "description", "filter")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

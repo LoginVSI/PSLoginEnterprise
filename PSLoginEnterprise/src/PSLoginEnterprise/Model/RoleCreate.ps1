@@ -27,7 +27,7 @@ Permissions to assign to the role
 RoleCreate<PSCustomObject>
 #>
 
-function Initialize-LELERoleCreate {
+function Initialize-RoleCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELERoleCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LERoleCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => RoleCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 RoleCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToRoleCreate {
+function ConvertFrom-JsonToRoleCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LERoleCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => RoleCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LERoleCreate
+        # check if Json contains properties not defined in RoleCreate
         $AllProperties = ("name", "userIds", "ldapGroupIds", "permissions")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

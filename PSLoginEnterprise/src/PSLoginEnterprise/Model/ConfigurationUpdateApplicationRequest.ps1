@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationUpdateApplicationRequest<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationUpdateApplicationRequest {
+function ConvertFrom-JsonToConfigurationUpdateApplicationRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationUpdateApplicationRequest {
 
         # try to match WebApplicationUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWebApplicationUpdate $Json
+            $matchInstance = ConvertFrom-JsonToWebApplicationUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationUpdateApplicationRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WebApplicationUpdate' defined in oneOf (LEConfigurationUpdateApplicationRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WebApplicationUpdate' defined in oneOf (ConfigurationUpdateApplicationRequest). Proceeding to the next one if any."
         }
 
         # try to match WindowsApplicationUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWindowsApplicationUpdate $Json
+            $matchInstance = ConvertFrom-JsonToWindowsApplicationUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToConfigurationUpdateApplicationRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WindowsApplicationUpdate' defined in oneOf (LEConfigurationUpdateApplicationRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WindowsApplicationUpdate' defined in oneOf (ConfigurationUpdateApplicationRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationCreateTestRequest<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationCreateTestRequest {
+function ConvertFrom-JsonToConfigurationCreateTestRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationCreateTestRequest {
 
         # try to match ApplicationTestCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToApplicationTestCreate $Json
+            $matchInstance = ConvertFrom-JsonToApplicationTestCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationCreateTestRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTestCreate' defined in oneOf (LEConfigurationCreateTestRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTestCreate' defined in oneOf (ConfigurationCreateTestRequest). Proceeding to the next one if any."
         }
 
         # try to match ContinuousTestCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToContinuousTestCreate $Json
+            $matchInstance = ConvertFrom-JsonToContinuousTestCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToConfigurationCreateTestRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ContinuousTestCreate' defined in oneOf (LEConfigurationCreateTestRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ContinuousTestCreate' defined in oneOf (ConfigurationCreateTestRequest). Proceeding to the next one if any."
         }
 
         # try to match LoadTestCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToLoadTestCreate $Json
+            $matchInstance = ConvertFrom-JsonToLoadTestCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToConfigurationCreateTestRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'LoadTestCreate' defined in oneOf (LEConfigurationCreateTestRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'LoadTestCreate' defined in oneOf (ConfigurationCreateTestRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

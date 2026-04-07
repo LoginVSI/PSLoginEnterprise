@@ -25,7 +25,7 @@ Working directory
 WindowsApplicationDetails<PSCustomObject>
 #>
 
-function Initialize-LELEWindowsApplicationDetails {
+function Initialize-WindowsApplicationDetails {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEWindowsApplicationDetails {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEWindowsApplicationDetails' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => WindowsApplicationDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -76,19 +76,19 @@ Json object
 
 WindowsApplicationDetails<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToWindowsApplicationDetails {
+function ConvertFrom-JsonToWindowsApplicationDetails {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWindowsApplicationDetails' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => WindowsApplicationDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEWindowsApplicationDetails
+        # check if Json contains properties not defined in WindowsApplicationDetails
         $AllProperties = ("type", "commandLine", "workingDirectory")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

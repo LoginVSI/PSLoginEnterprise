@@ -25,7 +25,7 @@ Gets or sets the cooldown period in hours between email notifications.  This det
 ApplianceHealthAlertSettings<PSCustomObject>
 #>
 
-function Initialize-LELEApplianceHealthAlertSettings {
+function Initialize-ApplianceHealthAlertSettings {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELEApplianceHealthAlertSettings {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplianceHealthAlertSettings' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplianceHealthAlertSettings' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 ApplianceHealthAlertSettings<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplianceHealthAlertSettings {
+function ConvertFrom-JsonToApplianceHealthAlertSettings {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplianceHealthAlertSettings' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplianceHealthAlertSettings' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplianceHealthAlertSettings
+        # check if Json contains properties not defined in ApplianceHealthAlertSettings
         $AllProperties = ("emailNotificationEnabled", "emailRecipients", "emailCooldownHours")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -22,7 +22,7 @@ JSON object
 
 AppInvocationAllOfApplication<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppInvocationAllOfApplication {
+function ConvertFrom-JsonToAppInvocationAllOfApplication {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -45,7 +45,7 @@ function ConvertFrom-LEJsonToAppInvocationAllOfApplication {
 
         # try to match WebApplication defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWebApplication $Json
+            $matchInstance = ConvertFrom-JsonToWebApplication $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -56,12 +56,12 @@ function ConvertFrom-LEJsonToAppInvocationAllOfApplication {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WebApplication' defined in oneOf (LEAppInvocationAllOfApplication). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WebApplication' defined in oneOf (AppInvocationAllOfApplication). Proceeding to the next one if any."
         }
 
         # try to match WindowsApplication defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToWindowsApplication $Json
+            $matchInstance = ConvertFrom-JsonToWindowsApplication $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -72,7 +72,7 @@ function ConvertFrom-LEJsonToAppInvocationAllOfApplication {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WindowsApplication' defined in oneOf (LEAppInvocationAllOfApplication). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WindowsApplication' defined in oneOf (AppInvocationAllOfApplication). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

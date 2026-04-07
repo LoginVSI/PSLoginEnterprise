@@ -29,7 +29,7 @@ Enable or disable Seamless mode for published applications
 NetscalerConnector<PSCustomObject>
 #>
 
-function Initialize-LELENetscalerConnector {
+function Initialize-NetscalerConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-LELENetscalerConnector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LENetscalerConnector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => NetscalerConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -104,19 +104,19 @@ Json object
 
 NetscalerConnector<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToNetscalerConnector {
+function ConvertFrom-JsonToNetscalerConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LENetscalerConnector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => NetscalerConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LENetscalerConnector
+        # check if Json contains properties not defined in NetscalerConnector
         $AllProperties = ("type", "serverUrl", "resource", "displayResolution", "seamlessMode")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

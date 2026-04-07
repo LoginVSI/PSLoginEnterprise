@@ -25,7 +25,7 @@ Offset requested
 TestRunResultSet<PSCustomObject>
 #>
 
-function Initialize-LELETestRunResultSet {
+function Initialize-TestRunResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELETestRunResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETestRunResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => TestRunResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 TestRunResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTestRunResultSet {
+function ConvertFrom-JsonToTestRunResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestRunResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestRunResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETestRunResultSet
+        # check if Json contains properties not defined in TestRunResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

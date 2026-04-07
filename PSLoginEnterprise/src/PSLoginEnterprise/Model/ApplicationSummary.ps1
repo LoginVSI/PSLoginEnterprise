@@ -33,7 +33,7 @@ Screenshots
 ApplicationSummary<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationSummary {
+function Initialize-ApplicationSummary {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -61,7 +61,7 @@ function Initialize-LELEApplicationSummary {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationSummary' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationSummary' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -97,19 +97,19 @@ Json object
 
 ApplicationSummary<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationSummary {
+function ConvertFrom-JsonToApplicationSummary {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationSummary' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationSummary' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationSummary
+        # check if Json contains properties not defined in ApplicationSummary
         $AllProperties = ("applicationId", "applicationName", "resultStatus", "appExecutionSuccessful", "performanceSuccessful", "timerResults", "screenshots")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

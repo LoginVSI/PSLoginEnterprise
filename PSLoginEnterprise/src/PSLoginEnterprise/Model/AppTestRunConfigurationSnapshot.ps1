@@ -43,7 +43,7 @@ Session metric definition
 AppTestRunConfigurationSnapshot<PSCustomObject>
 #>
 
-function Initialize-LELEAppTestRunConfigurationSnapshot {
+function Initialize-AppTestRunConfigurationSnapshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -85,7 +85,7 @@ function Initialize-LELEAppTestRunConfigurationSnapshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEAppTestRunConfigurationSnapshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => AppTestRunConfigurationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -126,19 +126,19 @@ Json object
 
 AppTestRunConfigurationSnapshot<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToAppTestRunConfigurationSnapshot {
+function ConvertFrom-JsonToAppTestRunConfigurationSnapshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppTestRunConfigurationSnapshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppTestRunConfigurationSnapshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEAppTestRunConfigurationSnapshot
+        # check if Json contains properties not defined in AppTestRunConfigurationSnapshot
         $AllProperties = ("restartOnComplete", "includeSuccessfulApplications", "isEmailEnabled", "emailRecipient", "thresholds", "testId", "name", "workload", "connector", "launcherGroups", "accountGroups", "sessionMetricDefinition")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

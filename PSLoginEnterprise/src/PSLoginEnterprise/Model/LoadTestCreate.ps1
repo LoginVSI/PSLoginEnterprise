@@ -43,7 +43,7 @@ Session metric group key
 LoadTestCreate<PSCustomObject>
 #>
 
-function Initialize-LELELoadTestCreate {
+function Initialize-LoadTestCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -85,7 +85,7 @@ function Initialize-LELELoadTestCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELoadTestCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LoadTestCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -142,19 +142,19 @@ Json object
 
 LoadTestCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLoadTestCreate {
+function ConvertFrom-JsonToLoadTestCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELoadTestCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LoadTestCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELoadTestCreate
+        # check if Json contains properties not defined in LoadTestCreate
         $AllProperties = ("type", "name", "description", "connector", "accountGroups", "launcherGroups", "environmentKey", "applicationDebugModeEnabled", "roles", "sessionMetricsEnabled", "sessionMetricScheduleRate", "sessionMetricGroupKey")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

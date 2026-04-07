@@ -39,7 +39,7 @@ Last modified date-time
 EventNotification<PSCustomObject>
 #>
 
-function Initialize-LELEEventNotification {
+function Initialize-EventNotification {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -76,7 +76,7 @@ function Initialize-LELEEventNotification {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEEventNotification' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => EventNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -119,19 +119,19 @@ Json object
 
 EventNotification<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToEventNotification {
+function ConvertFrom-JsonToEventNotification {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEventNotification' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => EventNotification' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEEventNotification
+        # check if Json contains properties not defined in EventNotification
         $AllProperties = ("type", "id", "timesExceeded", "periodDuration", "cooldownDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient", "event", "lastModified")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

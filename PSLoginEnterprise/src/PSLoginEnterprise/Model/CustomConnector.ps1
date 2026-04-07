@@ -27,7 +27,7 @@ Resource
 CustomConnector<PSCustomObject>
 #>
 
-function Initialize-LELECustomConnector {
+function Initialize-CustomConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-LELECustomConnector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LECustomConnector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => CustomConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -98,19 +98,19 @@ Json object
 
 CustomConnector<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToCustomConnector {
+function ConvertFrom-JsonToCustomConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LECustomConnector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => CustomConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LECustomConnector
+        # check if Json contains properties not defined in CustomConnector
         $AllProperties = ("type", "host", "commandLine", "resource")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

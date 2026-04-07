@@ -22,7 +22,7 @@ JSON object
 
 TestCreateConnector<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTestCreateConnector {
+function ConvertFrom-JsonToTestCreateConnector {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToTestCreateConnector {
 
         # try to match CustomConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToCustomConnector $Json
+            $matchInstance = ConvertFrom-JsonToCustomConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'CustomConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'CustomConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match DesktopConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToDesktopConnector $Json
+            $matchInstance = ConvertFrom-JsonToDesktopConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'DesktopConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'DesktopConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match HorizonConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToHorizonConnector $Json
+            $matchInstance = ConvertFrom-JsonToHorizonConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,12 +79,12 @@ function ConvertFrom-LEJsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'HorizonConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'HorizonConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match NetscalerConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToNetscalerConnector $Json
+            $matchInstance = ConvertFrom-JsonToNetscalerConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -95,12 +95,12 @@ function ConvertFrom-LEJsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'NetscalerConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'NetscalerConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match RdpConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToRdpConnector $Json
+            $matchInstance = ConvertFrom-JsonToRdpConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -111,12 +111,12 @@ function ConvertFrom-LEJsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'RdpConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'RdpConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match StorefrontConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToStorefrontConnector $Json
+            $matchInstance = ConvertFrom-JsonToStorefrontConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -127,19 +127,35 @@ function ConvertFrom-LEJsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'StorefrontConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'StorefrontConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+        }
+
+        # try to match Windows365Connector defined in the oneOf schemas
+        try {
+            $matchInstance = ConvertFrom-JsonToWindows365Connector $Json
+
+            foreach($property in $matchInstance.PsObject.Properties) {
+                if ($null -ne $property.Value) {
+                    $matchType = "Windows365Connector"
+                    $match++
+                    break
+                }
+            }
+        } catch {
+            # fail to match the schema defined in oneOf, proceed to the next one
+            Write-Debug "Failed to match 'Windows365Connector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {
-            throw "Error! The JSON payload matches more than one type defined in oneOf schemas ([CustomConnector, DesktopConnector, HorizonConnector, NetscalerConnector, RdpConnector, StorefrontConnector]). JSON Payload: $($Json)"
+            throw "Error! The JSON payload matches more than one type defined in oneOf schemas ([CustomConnector, DesktopConnector, HorizonConnector, NetscalerConnector, RdpConnector, StorefrontConnector, Windows365Connector]). JSON Payload: $($Json)"
         } elseif ($match -eq 1) {
             return [PSCustomObject]@{
                 "ActualType" = ${matchType}
                 "ActualInstance" = ${matchInstance}
-                "OneOfSchemas" = @("CustomConnector", "DesktopConnector", "HorizonConnector", "NetscalerConnector", "RdpConnector", "StorefrontConnector")
+                "OneOfSchemas" = @("CustomConnector", "DesktopConnector", "HorizonConnector", "NetscalerConnector", "RdpConnector", "StorefrontConnector", "Windows365Connector")
             }
         } else {
-            throw "Error! The JSON payload doesn't matches any type defined in oneOf schemas ([CustomConnector, DesktopConnector, HorizonConnector, NetscalerConnector, RdpConnector, StorefrontConnector]). JSON Payload: $($Json)"
+            throw "Error! The JSON payload doesn't matches any type defined in oneOf schemas ([CustomConnector, DesktopConnector, HorizonConnector, NetscalerConnector, RdpConnector, StorefrontConnector, Windows365Connector]). JSON Payload: $($Json)"
         }
     }
 }

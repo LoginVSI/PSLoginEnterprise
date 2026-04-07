@@ -41,7 +41,7 @@ Profile location
 WebApplicationCreate<PSCustomObject>
 #>
 
-function Initialize-LELEWebApplicationCreate {
+function Initialize-WebApplicationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -81,7 +81,7 @@ function Initialize-LELEWebApplicationCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEWebApplicationCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => WebApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -157,19 +157,19 @@ Json object
 
 WebApplicationCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToWebApplicationCreate {
+function ConvertFrom-JsonToWebApplicationCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWebApplicationCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => WebApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEWebApplicationCreate
+        # check if Json contains properties not defined in WebApplicationCreate
         $AllProperties = ("type", "name", "description", "username", "password", "takeScreenshots", "scriptContent", "roles", "browserName", "url", "profileLocation")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

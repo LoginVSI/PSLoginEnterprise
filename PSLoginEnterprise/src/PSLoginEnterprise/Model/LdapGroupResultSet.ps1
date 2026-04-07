@@ -25,7 +25,7 @@ Offset requested
 LdapGroupResultSet<PSCustomObject>
 #>
 
-function Initialize-LELELdapGroupResultSet {
+function Initialize-LdapGroupResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-LELELdapGroupResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LELdapGroupResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LdapGroupResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 LdapGroupResultSet<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToLdapGroupResultSet {
+function ConvertFrom-JsonToLdapGroupResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELdapGroupResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LdapGroupResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LELdapGroupResultSet
+        # check if Json contains properties not defined in LdapGroupResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

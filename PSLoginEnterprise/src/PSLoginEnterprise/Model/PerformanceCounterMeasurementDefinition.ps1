@@ -33,7 +33,7 @@ Unit
 PerformanceCounterMeasurementDefinition<PSCustomObject>
 #>
 
-function Initialize-LELEPerformanceCounterMeasurementDefinition {
+function Initialize-PerformanceCounterMeasurementDefinition {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -60,7 +60,7 @@ function Initialize-LELEPerformanceCounterMeasurementDefinition {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEPerformanceCounterMeasurementDefinition' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => PerformanceCounterMeasurementDefinition' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -96,19 +96,19 @@ Json object
 
 PerformanceCounterMeasurementDefinition<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToPerformanceCounterMeasurementDefinition {
+function ConvertFrom-JsonToPerformanceCounterMeasurementDefinition {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEPerformanceCounterMeasurementDefinition' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => PerformanceCounterMeasurementDefinition' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEPerformanceCounterMeasurementDefinition
+        # check if Json contains properties not defined in PerformanceCounterMeasurementDefinition
         $AllProperties = ("counterCategory", "counterName", "counterInstance", "metricId", "key", "displayName", "unit")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

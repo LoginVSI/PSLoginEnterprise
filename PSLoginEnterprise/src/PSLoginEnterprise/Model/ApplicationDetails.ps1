@@ -21,7 +21,7 @@ No description available.
 ApplicationDetails<PSCustomObject>
 #>
 
-function Initialize-LELEApplicationDetails {
+function Initialize-ApplicationDetails {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-LELEApplicationDetails {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationDetails' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ApplicationDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -64,19 +64,19 @@ Json object
 
 ApplicationDetails<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToApplicationDetails {
+function ConvertFrom-JsonToApplicationDetails {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationDetails' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEApplicationDetails
+        # check if Json contains properties not defined in ApplicationDetails
         $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

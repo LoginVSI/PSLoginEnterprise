@@ -31,7 +31,7 @@ No description available.
 NotFoundProblemDetails<PSCustomObject>
 #>
 
-function Initialize-LELENotFoundProblemDetails {
+function Initialize-NotFoundProblemDetails {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-LELENotFoundProblemDetails {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LENotFoundProblemDetails' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => NotFoundProblemDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,25 +90,25 @@ Json object
 
 NotFoundProblemDetails<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToNotFoundProblemDetails {
+function ConvertFrom-JsonToNotFoundProblemDetails {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LENotFoundProblemDetails' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => NotFoundProblemDetails' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
-        $LENotFoundProblemDetailsAdditionalProperties = @{}
+        $NotFoundProblemDetailsAdditionalProperties = @{}
 
-        # check if Json contains properties not defined in LENotFoundProblemDetails
+        # check if Json contains properties not defined in NotFoundProblemDetails
         $AllProperties = ("not-found", "type", "title", "status", "detail", "instance")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             # store undefined properties in additionalProperties
             if (!($AllProperties.Contains($name))) {
-                $LENotFoundProblemDetailsAdditionalProperties[$name] = $JsonParameters.PSobject.Properties[$name].value
+                $NotFoundProblemDetailsAdditionalProperties[$name] = $JsonParameters.PSobject.Properties[$name].value
             }
         }
 
@@ -155,7 +155,7 @@ function ConvertFrom-LEJsonToNotFoundProblemDetails {
             "status" = ${Status}
             "detail" = ${Detail}
             "instance" = ${Instance}
-            "AdditionalProperties" = $LENotFoundProblemDetailsAdditionalProperties
+            "AdditionalProperties" = $NotFoundProblemDetailsAdditionalProperties
         }
 
         return $PSO

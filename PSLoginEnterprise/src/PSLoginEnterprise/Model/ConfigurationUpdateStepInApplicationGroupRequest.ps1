@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationUpdateStepInApplicationGroupRequest<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationUpdateStepInApplicationGroupRequest {
+function ConvertFrom-JsonToConfigurationUpdateStepInApplicationGroupRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationUpdateStepInApplicationGroupRequest {
 
         # try to match AppGroupReferenceUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppGroupReferenceUpdate $Json
+            $matchInstance = ConvertFrom-JsonToAppGroupReferenceUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationUpdateStepInApplicationGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppGroupReferenceUpdate' defined in oneOf (LEConfigurationUpdateStepInApplicationGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppGroupReferenceUpdate' defined in oneOf (ConfigurationUpdateStepInApplicationGroupRequest). Proceeding to the next one if any."
         }
 
         # try to match AppInvocationUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppInvocationUpdate $Json
+            $matchInstance = ConvertFrom-JsonToAppInvocationUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToConfigurationUpdateStepInApplicationGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppInvocationUpdate' defined in oneOf (LEConfigurationUpdateStepInApplicationGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppInvocationUpdate' defined in oneOf (ConfigurationUpdateStepInApplicationGroupRequest). Proceeding to the next one if any."
         }
 
         # try to match DelayUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToDelayUpdate $Json
+            $matchInstance = ConvertFrom-JsonToDelayUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToConfigurationUpdateStepInApplicationGroupRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'DelayUpdate' defined in oneOf (LEConfigurationUpdateStepInApplicationGroupRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'DelayUpdate' defined in oneOf (ConfigurationUpdateStepInApplicationGroupRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

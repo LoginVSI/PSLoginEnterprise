@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationReplaceApplicationGroupStepsRequestInner<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationReplaceApplicationGroupStepsRequestInner {
+function ConvertFrom-JsonToConfigurationReplaceApplicationGroupStepsRequestInner {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationReplaceApplicationGroupStepsRequestInn
 
         # try to match AppGroupReferenceCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppGroupReferenceCreate $Json
+            $matchInstance = ConvertFrom-JsonToAppGroupReferenceCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationReplaceApplicationGroupStepsRequestInn
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppGroupReferenceCreate' defined in oneOf (LEConfigurationReplaceApplicationGroupStepsRequestInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppGroupReferenceCreate' defined in oneOf (ConfigurationReplaceApplicationGroupStepsRequestInner). Proceeding to the next one if any."
         }
 
         # try to match AppInvocationCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAppInvocationCreate $Json
+            $matchInstance = ConvertFrom-JsonToAppInvocationCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToConfigurationReplaceApplicationGroupStepsRequestInn
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppInvocationCreate' defined in oneOf (LEConfigurationReplaceApplicationGroupStepsRequestInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppInvocationCreate' defined in oneOf (ConfigurationReplaceApplicationGroupStepsRequestInner). Proceeding to the next one if any."
         }
 
         # try to match DelayCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToDelayCreate $Json
+            $matchInstance = ConvertFrom-JsonToDelayCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToConfigurationReplaceApplicationGroupStepsRequestInn
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'DelayCreate' defined in oneOf (LEConfigurationReplaceApplicationGroupStepsRequestInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'DelayCreate' defined in oneOf (ConfigurationReplaceApplicationGroupStepsRequestInner). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

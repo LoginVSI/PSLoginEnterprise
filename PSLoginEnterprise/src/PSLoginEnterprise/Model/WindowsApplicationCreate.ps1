@@ -39,7 +39,7 @@ Working directory
 WindowsApplicationCreate<PSCustomObject>
 #>
 
-function Initialize-LELEWindowsApplicationCreate {
+function Initialize-WindowsApplicationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -75,7 +75,7 @@ function Initialize-LELEWindowsApplicationCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEWindowsApplicationCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => WindowsApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -158,19 +158,19 @@ Json object
 
 WindowsApplicationCreate<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToWindowsApplicationCreate {
+function ConvertFrom-JsonToWindowsApplicationCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWindowsApplicationCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => WindowsApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEWindowsApplicationCreate
+        # check if Json contains properties not defined in WindowsApplicationCreate
         $AllProperties = ("type", "name", "description", "username", "password", "takeScreenshots", "scriptContent", "roles", "commandLine", "workingDirectory")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

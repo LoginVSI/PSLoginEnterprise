@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationGetAccountGroup200Response<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationGetAccountGroup200Response {
+function ConvertFrom-JsonToConfigurationGetAccountGroup200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationGetAccountGroup200Response {
 
         # try to match AccountFilterGroup defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAccountFilterGroup $Json
+            $matchInstance = ConvertFrom-JsonToAccountFilterGroup $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationGetAccountGroup200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AccountFilterGroup' defined in oneOf (LEConfigurationGetAccountGroup200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AccountFilterGroup' defined in oneOf (ConfigurationGetAccountGroup200Response). Proceeding to the next one if any."
         }
 
         # try to match AccountSelectionGroup defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToAccountSelectionGroup $Json
+            $matchInstance = ConvertFrom-JsonToAccountSelectionGroup $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToConfigurationGetAccountGroup200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AccountSelectionGroup' defined in oneOf (LEConfigurationGetAccountGroup200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AccountSelectionGroup' defined in oneOf (ConfigurationGetAccountGroup200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

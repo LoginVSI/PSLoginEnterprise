@@ -37,7 +37,7 @@ Event properties
 ModelEvent<PSCustomObject>
 #>
 
-function Initialize-LELEModelEvent {
+function Initialize-ModelEvent {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -71,7 +71,7 @@ function Initialize-LELEModelEvent {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LEModelEvent' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => ModelEvent' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -109,19 +109,19 @@ Json object
 
 ModelEvent<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToModelEvent {
+function ConvertFrom-JsonToModelEvent {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEModelEvent' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => ModelEvent' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LEModelEvent
+        # check if Json contains properties not defined in ModelEvent
         $AllProperties = ("id", "eventType", "timestamp", "title", "testId", "testRunId", "userSessionId", "applicationId", "properties")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

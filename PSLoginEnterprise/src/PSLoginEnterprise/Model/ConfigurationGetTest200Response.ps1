@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationGetTest200Response<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToConfigurationGetTest200Response {
+function ConvertFrom-JsonToConfigurationGetTest200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToConfigurationGetTest200Response {
 
         # try to match ApplicationTest defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToApplicationTest $Json
+            $matchInstance = ConvertFrom-JsonToApplicationTest $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToConfigurationGetTest200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ApplicationTest' defined in oneOf (LEConfigurationGetTest200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ApplicationTest' defined in oneOf (ConfigurationGetTest200Response). Proceeding to the next one if any."
         }
 
         # try to match ContinuousTest defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToContinuousTest $Json
+            $matchInstance = ConvertFrom-JsonToContinuousTest $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-LEJsonToConfigurationGetTest200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ContinuousTest' defined in oneOf (LEConfigurationGetTest200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ContinuousTest' defined in oneOf (ConfigurationGetTest200Response). Proceeding to the next one if any."
         }
 
         # try to match LoadTest defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToLoadTest $Json
+            $matchInstance = ConvertFrom-JsonToLoadTest $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-LEJsonToConfigurationGetTest200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'LoadTest' defined in oneOf (LEConfigurationGetTest200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'LoadTest' defined in oneOf (ConfigurationGetTest200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

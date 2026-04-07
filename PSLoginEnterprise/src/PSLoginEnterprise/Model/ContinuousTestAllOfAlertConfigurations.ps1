@@ -22,7 +22,7 @@ JSON object
 
 ContinuousTestAllOfAlertConfigurations<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToContinuousTestAllOfAlertConfigurations {
+function ConvertFrom-JsonToContinuousTestAllOfAlertConfigurations {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-LEJsonToContinuousTestAllOfAlertConfigurations {
 
         # try to match EventNotification defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToEventNotification $Json
+            $matchInstance = ConvertFrom-JsonToEventNotification $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-LEJsonToContinuousTestAllOfAlertConfigurations {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'EventNotification' defined in oneOf (LEContinuousTestAllOfAlertConfigurations). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'EventNotification' defined in oneOf (ContinuousTestAllOfAlertConfigurations). Proceeding to the next one if any."
         }
 
         # try to match ThresholdNotification defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-LEJsonToThresholdNotification $Json
+            $matchInstance = ConvertFrom-JsonToThresholdNotification $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-LEJsonToContinuousTestAllOfAlertConfigurations {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ThresholdNotification' defined in oneOf (LEContinuousTestAllOfAlertConfigurations). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ThresholdNotification' defined in oneOf (ContinuousTestAllOfAlertConfigurations). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

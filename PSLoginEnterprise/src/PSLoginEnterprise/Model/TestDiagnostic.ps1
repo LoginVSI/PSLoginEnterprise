@@ -39,7 +39,7 @@ No description available.
 TestDiagnostic<PSCustomObject>
 #>
 
-function Initialize-LELETestDiagnostic {
+function Initialize-TestDiagnostic {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -75,7 +75,7 @@ function Initialize-LELETestDiagnostic {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LETestDiagnostic' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => TestDiagnostic' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -114,19 +114,19 @@ Json object
 
 TestDiagnostic<PSCustomObject>
 #>
-function ConvertFrom-LEJsonToTestDiagnostic {
+function ConvertFrom-JsonToTestDiagnostic {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestDiagnostic' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestDiagnostic' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LETestDiagnostic
+        # check if Json contains properties not defined in TestDiagnostic
         $AllProperties = ("testId", "testName", "activeSessionCount", "activeAccountCount", "activeLauncherCount", "loginFailures", "appFailures", "appPerformance", "latency", "loginPerformance")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
