@@ -13,6 +13,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: main
 
     steps:
       - name: Ensure workflow runs from main branch
