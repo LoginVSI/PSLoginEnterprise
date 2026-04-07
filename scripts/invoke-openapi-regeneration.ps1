@@ -6,7 +6,10 @@ param(
     [string]$ConfigPath = "openapi/psopenapi.yaml",
 
     [Parameter(Mandatory = $false)]
-    [string]$ModulePath = "PSLoginEnterprise"
+    [string]$ModulePath = "PSLoginEnterprise",
+
+    [Parameter(Mandatory = $false)]
+    [bool]$SkipValidateSpec = $true
 )
 
 Set-StrictMode -Version Latest
@@ -44,11 +47,19 @@ Write-Host "Downloading openapi-generator-cli $latestVersion..."
 Invoke-WebRequest -Uri $jarUrl -OutFile $jarPath
 
 Write-Host "Generating PowerShell module to '$ModulePath'..."
-& java -jar $jarPath generate `
-    -i $SpecPath `
-    -g powershell `
-    -o $ModulePath `
-    -c $ConfigPath
+$generatorArgs = @(
+    "generate",
+    "-i", $SpecPath,
+    "-g", "powershell",
+    "-o", $ModulePath,
+    "-c", $ConfigPath
+)
+
+if ($SkipValidateSpec) {
+    $generatorArgs += "--skip-validate-spec"
+}
+
+& java -jar $jarPath @generatorArgs
 
 if ($LASTEXITCODE -ne 0) {
     throw "OpenAPI generation failed with exit code $LASTEXITCODE."

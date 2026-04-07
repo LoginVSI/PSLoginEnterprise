@@ -54,6 +54,6 @@ jobs:
 - This PR is created by the manual release workflow.
 
 ## After merge
-- Run the `Main regenerate and publish` workflow from `main`.
+- Run the `Main publish module` workflow from `main`.
 EOF
 )"
