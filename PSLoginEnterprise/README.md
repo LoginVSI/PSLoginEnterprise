@@ -8,10 +8,7 @@ v6.0 [API Console (Swagger)](/publicApi/swagger/index.html?urls.primaryName=Logi
 
 
 
-<br><b>API v8 (preview) – Introduced in Login Enterprise v6.0 and subject to breaking changes.</b></br>
-<br><b>API v7 – is the recommended version to use. It is the actively developed version starting with Login Enterprise v6.0.</b></br>
-<br><b>API v6 – is currently supported, but unmaintained as of v6.0.</b></br>
-<br><b>API v5 and v4 - These versions are removed in v6.0.</b></br>
+<br><b>API v7 - Actively developed version starting with Login Enterprise v6.0.</b></br>
 
 
 The Login Enterprise Public API provides documentation and Swagger per version within the product. For additional information please refer to the [documentation](https://support.loginvsi.com/hc/en-us/articles/360009534760) on our website.
