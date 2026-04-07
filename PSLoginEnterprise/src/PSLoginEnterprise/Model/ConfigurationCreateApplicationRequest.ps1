@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationCreateApplicationRequest<PSCustomObject>
 #>
-function ConvertFrom-JsonToConfigurationCreateApplicationRequest {
+function ConvertFrom-LEJsonToConfigurationCreateApplicationRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToConfigurationCreateApplicationRequest {
 
         # try to match WebApplicationCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToWebApplicationCreate $Json
+            $matchInstance = ConvertFrom-LEJsonToWebApplicationCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToConfigurationCreateApplicationRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WebApplicationCreate' defined in oneOf (ConfigurationCreateApplicationRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WebApplicationCreate' defined in oneOf (LEConfigurationCreateApplicationRequest). Proceeding to the next one if any."
         }
 
         # try to match WindowsApplicationCreate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToWindowsApplicationCreate $Json
+            $matchInstance = ConvertFrom-LEJsonToWindowsApplicationCreate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-JsonToConfigurationCreateApplicationRequest {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'WindowsApplicationCreate' defined in oneOf (ConfigurationCreateApplicationRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'WindowsApplicationCreate' defined in oneOf (LEConfigurationCreateApplicationRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

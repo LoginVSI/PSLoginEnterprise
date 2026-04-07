@@ -21,7 +21,7 @@ Identifiers of tests, that failed to update
 ContinuousTestBulkUpdateResponse<PSCustomObject>
 #>
 
-function Initialize-ContinuousTestBulkUpdateResponse {
+function Initialize-LEContinuousTestBulkUpdateResponse {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-ContinuousTestBulkUpdateResponse {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ContinuousTestBulkUpdateResponse' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEContinuousTestBulkUpdateResponse' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 ContinuousTestBulkUpdateResponse<PSCustomObject>
 #>
-function ConvertFrom-JsonToContinuousTestBulkUpdateResponse {
+function ConvertFrom-LEJsonToContinuousTestBulkUpdateResponse {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ContinuousTestBulkUpdateResponse' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEContinuousTestBulkUpdateResponse' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ContinuousTestBulkUpdateResponse
+        # check if Json contains properties not defined in LEContinuousTestBulkUpdateResponse
         $AllProperties = ("failedIds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

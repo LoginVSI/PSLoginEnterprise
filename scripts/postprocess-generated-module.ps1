@@ -88,6 +88,7 @@ foreach ($filePath in $textFilePaths) {
     Replace-InFile -Path $filePath -Pattern "Configure API key authorization: Bearer" -Replacement '$applianceName = "YOUR_APPLIANCE_HOSTNAME"'
     Replace-InFile -Path $filePath -Pattern '$Configuration.ApiKey.Authorization = "YOUR_API_KEY"' -Replacement '$bearerToken = @{"Authorization"="Bearer $accessToken"}'
     Replace-InFile -Path $filePath -Pattern "Uncomment below to setup prefix (e.g. Bearer) for API key, if needed" -Replacement 'Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken'
+    Replace-InFile -Path $filePath -Pattern '# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken' -Replacement 'Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken'
     Replace-InFile -Path $filePath -Pattern '#$Configuration.ApiKeyPrefix.Authorization = "Bearer"' -Replacement '""'
     Replace-InFile -Path $filePath -Pattern "Configure OAuth2 access token for authorization: oauth2" -Replacement "Configure your appliance name"
     Replace-InFile -Path $filePath -Pattern '$Configuration.AccessToken = "YOUR_ACCESS_TOKEN"' -Replacement '$applianceName = "YOUR_APPLIANCE_HOSTNAME"'

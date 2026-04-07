@@ -42,7 +42,7 @@ function Get-LEApplianceHealthAlertSettingsAsync {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -147,7 +147,7 @@ function Get-LEApplianceHealthMetricsAsync {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -244,7 +244,7 @@ function Update-LEApplianceHealthAlertSettingsAsync {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

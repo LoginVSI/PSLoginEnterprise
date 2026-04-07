@@ -23,7 +23,7 @@ The IDs of the roles to which this test should be available.
 TestAccessBulkUpdate<PSCustomObject>
 #>
 
-function Initialize-TestAccessBulkUpdate {
+function Initialize-LETestAccessBulkUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-TestAccessBulkUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TestAccessBulkUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETestAccessBulkUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 TestAccessBulkUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestAccessBulkUpdate {
+function ConvertFrom-LEJsonToTestAccessBulkUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestAccessBulkUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestAccessBulkUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TestAccessBulkUpdate
+        # check if Json contains properties not defined in LETestAccessBulkUpdate
         $AllProperties = ("testIds", "roleIds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

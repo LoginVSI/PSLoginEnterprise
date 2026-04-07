@@ -23,9 +23,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 
@@ -75,9 +75,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $From = (Get-Date) # System.DateTime | The start date and time for the metrics to be retrieved. (Defaults to 24 hours before the current time if null) (optional)
@@ -135,9 +135,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $ApplianceHealthAlertSettings = Initialize-LEApplianceHealthAlertSettings -EmailNotificationEnabled $false -EmailRecipients "MyEmailRecipients" -EmailCooldownHours 0 # ApplianceHealthAlertSettings | The updated settings to apply. (optional)

@@ -21,7 +21,7 @@ Id of the newly created object
 ObjectId<PSCustomObject>
 #>
 
-function Initialize-ObjectId {
+function Initialize-LEObjectId {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-ObjectId {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ObjectId' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEObjectId' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 ObjectId<PSCustomObject>
 #>
-function ConvertFrom-JsonToObjectId {
+function ConvertFrom-LEJsonToObjectId {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ObjectId' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEObjectId' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ObjectId
+        # check if Json contains properties not defined in LEObjectId
         $AllProperties = ("id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

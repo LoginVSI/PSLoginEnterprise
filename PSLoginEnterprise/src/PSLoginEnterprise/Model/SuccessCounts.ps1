@@ -23,7 +23,7 @@ Total count
 SuccessCounts<PSCustomObject>
 #>
 
-function Initialize-SuccessCounts {
+function Initialize-LESuccessCounts {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-SuccessCounts {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => SuccessCounts' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LESuccessCounts' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 SuccessCounts<PSCustomObject>
 #>
-function ConvertFrom-JsonToSuccessCounts {
+function ConvertFrom-LEJsonToSuccessCounts {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => SuccessCounts' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LESuccessCounts' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SuccessCounts
+        # check if Json contains properties not defined in LESuccessCounts
         $AllProperties = ("successCount", "totalCount")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

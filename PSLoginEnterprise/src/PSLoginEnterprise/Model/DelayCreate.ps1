@@ -25,7 +25,7 @@ Delay in seconds
 DelayCreate<PSCustomObject>
 #>
 
-function Initialize-DelayCreate {
+function Initialize-LEDelayCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-DelayCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => DelayCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEDelayCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -84,19 +84,19 @@ Json object
 
 DelayCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToDelayCreate {
+function ConvertFrom-LEJsonToDelayCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => DelayCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEDelayCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in DelayCreate
+        # check if Json contains properties not defined in LEDelayCreate
         $AllProperties = ("type", "isEnabled", "delayInSeconds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

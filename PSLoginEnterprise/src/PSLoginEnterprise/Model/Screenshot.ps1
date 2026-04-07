@@ -23,7 +23,7 @@ Created date-time
 Screenshot<PSCustomObject>
 #>
 
-function Initialize-Screenshot {
+function Initialize-LEScreenshot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-Screenshot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Screenshot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEScreenshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 Screenshot<PSCustomObject>
 #>
-function ConvertFrom-JsonToScreenshot {
+function ConvertFrom-LEJsonToScreenshot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Screenshot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEScreenshot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Screenshot
+        # check if Json contains properties not defined in LEScreenshot
         $AllProperties = ("id", "created")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

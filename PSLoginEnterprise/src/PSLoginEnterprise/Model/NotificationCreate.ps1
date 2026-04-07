@@ -31,7 +31,7 @@ Use custom mail recipient
 NotificationCreate<PSCustomObject>
 #>
 
-function Initialize-NotificationCreate {
+function Initialize-LENotificationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-NotificationCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => NotificationCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LENotificationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -106,19 +106,19 @@ Json object
 
 NotificationCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToNotificationCreate {
+function ConvertFrom-LEJsonToNotificationCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => NotificationCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LENotificationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in NotificationCreate
+        # check if Json contains properties not defined in LENotificationCreate
         $AllProperties = ("type", "timesExceeded", "periodDuration", "isEnabled", "emailRecipients", "useCustomMailRecipient")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

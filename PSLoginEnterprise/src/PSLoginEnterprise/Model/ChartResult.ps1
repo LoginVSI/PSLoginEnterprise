@@ -23,7 +23,7 @@ Time slots
 ChartResult<PSCustomObject>
 #>
 
-function Initialize-ChartResult {
+function Initialize-LEChartResult {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-ChartResult {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ChartResult' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEChartResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 ChartResult<PSCustomObject>
 #>
-function ConvertFrom-JsonToChartResult {
+function ConvertFrom-LEJsonToChartResult {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ChartResult' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEChartResult' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ChartResult
+        # check if Json contains properties not defined in LEChartResult
         $AllProperties = ("testRunsInfo", "timeSlots")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

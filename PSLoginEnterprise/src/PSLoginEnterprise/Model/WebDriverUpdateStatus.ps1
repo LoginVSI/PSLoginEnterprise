@@ -23,7 +23,7 @@ Drivers Statuses
 WebDriverUpdateStatus<PSCustomObject>
 #>
 
-function Initialize-WebDriverUpdateStatus {
+function Initialize-LEWebDriverUpdateStatus {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-WebDriverUpdateStatus {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => WebDriverUpdateStatus' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEWebDriverUpdateStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 WebDriverUpdateStatus<PSCustomObject>
 #>
-function ConvertFrom-JsonToWebDriverUpdateStatus {
+function ConvertFrom-LEJsonToWebDriverUpdateStatus {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => WebDriverUpdateStatus' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWebDriverUpdateStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in WebDriverUpdateStatus
+        # check if Json contains properties not defined in LEWebDriverUpdateStatus
         $AllProperties = ("updatesAvailable", "drivers")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

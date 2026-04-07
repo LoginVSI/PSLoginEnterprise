@@ -23,7 +23,7 @@ New enabled/disabled status
 AccountGroupMemberEnabledUpdate<PSCustomObject>
 #>
 
-function Initialize-AccountGroupMemberEnabledUpdate {
+function Initialize-LEAccountGroupMemberEnabledUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-AccountGroupMemberEnabledUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AccountGroupMemberEnabledUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAccountGroupMemberEnabledUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 AccountGroupMemberEnabledUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccountGroupMemberEnabledUpdate {
+function ConvertFrom-LEJsonToAccountGroupMemberEnabledUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountGroupMemberEnabledUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountGroupMemberEnabledUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AccountGroupMemberEnabledUpdate
+        # check if Json contains properties not defined in LEAccountGroupMemberEnabledUpdate
         $AllProperties = ("groupIds", "enabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

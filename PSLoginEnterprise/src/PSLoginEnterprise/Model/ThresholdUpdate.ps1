@@ -23,7 +23,7 @@ Threshold value
 ThresholdUpdate<PSCustomObject>
 #>
 
-function Initialize-ThresholdUpdate {
+function Initialize-LEThresholdUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-ThresholdUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ThresholdUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEThresholdUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $IsEnabled) {
@@ -74,19 +74,19 @@ Json object
 
 ThresholdUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToThresholdUpdate {
+function ConvertFrom-LEJsonToThresholdUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ThresholdUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEThresholdUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ThresholdUpdate
+        # check if Json contains properties not defined in LEThresholdUpdate
         $AllProperties = ("isEnabled", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

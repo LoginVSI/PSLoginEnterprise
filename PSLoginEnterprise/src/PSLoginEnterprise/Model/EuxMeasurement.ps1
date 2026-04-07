@@ -25,7 +25,7 @@ Duration
 EuxMeasurement<PSCustomObject>
 #>
 
-function Initialize-EuxMeasurement {
+function Initialize-LEEuxMeasurement {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -41,7 +41,7 @@ function Initialize-EuxMeasurement {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EuxMeasurement' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEuxMeasurement' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -73,19 +73,19 @@ Json object
 
 EuxMeasurement<PSCustomObject>
 #>
-function ConvertFrom-JsonToEuxMeasurement {
+function ConvertFrom-LEJsonToEuxMeasurement {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxMeasurement' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxMeasurement' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EuxMeasurement
+        # check if Json contains properties not defined in LEEuxMeasurement
         $AllProperties = ("timestamp", "timer", "duration")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

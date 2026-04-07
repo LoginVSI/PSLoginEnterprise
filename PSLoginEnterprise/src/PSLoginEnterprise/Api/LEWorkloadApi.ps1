@@ -54,7 +54,7 @@ function New-LETestWorkloadSteps {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -154,7 +154,7 @@ function Invoke-LEDeleteTestWorkloadStep {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -249,7 +249,7 @@ function Invoke-LEDeleteTestWorkloadSteps {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -343,7 +343,7 @@ function Get-LETestWorkload {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -434,7 +434,7 @@ function Invoke-LEReplaceTestWorkloadSteps {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -536,7 +536,7 @@ function Update-LETestWorkloadStep {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

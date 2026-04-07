@@ -25,7 +25,7 @@ Account groups ids
 ConnectionResourcesUpdate<PSCustomObject>
 #>
 
-function Initialize-ConnectionResourcesUpdate {
+function Initialize-LEConnectionResourcesUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-ConnectionResourcesUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ConnectionResourcesUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEConnectionResourcesUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 ConnectionResourcesUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToConnectionResourcesUpdate {
+function ConvertFrom-LEJsonToConnectionResourcesUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ConnectionResourcesUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEConnectionResourcesUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ConnectionResourcesUpdate
+        # check if Json contains properties not defined in LEConnectionResourcesUpdate
         $AllProperties = ("connector", "launcherGroups", "accountGroups")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

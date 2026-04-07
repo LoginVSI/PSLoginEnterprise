@@ -21,7 +21,7 @@ Version
 SystemEuxVersion<PSCustomObject>
 #>
 
-function Initialize-SystemEuxVersion {
+function Initialize-LESystemEuxVersion {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-SystemEuxVersion {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => SystemEuxVersion' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LESystemEuxVersion' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 SystemEuxVersion<PSCustomObject>
 #>
-function ConvertFrom-JsonToSystemEuxVersion {
+function ConvertFrom-LEJsonToSystemEuxVersion {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => SystemEuxVersion' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LESystemEuxVersion' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in SystemEuxVersion
+        # check if Json contains properties not defined in LESystemEuxVersion
         $AllProperties = ("version")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

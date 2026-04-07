@@ -29,7 +29,7 @@ Enable or disable Seamless mode for published applications
 StorefrontConnector<PSCustomObject>
 #>
 
-function Initialize-StorefrontConnector {
+function Initialize-LEStorefrontConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-StorefrontConnector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => StorefrontConnector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEStorefrontConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -104,19 +104,19 @@ Json object
 
 StorefrontConnector<PSCustomObject>
 #>
-function ConvertFrom-JsonToStorefrontConnector {
+function ConvertFrom-LEJsonToStorefrontConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => StorefrontConnector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEStorefrontConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in StorefrontConnector
+        # check if Json contains properties not defined in LEStorefrontConnector
         $AllProperties = ("type", "serverUrl", "resource", "displayResolution", "seamlessMode")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

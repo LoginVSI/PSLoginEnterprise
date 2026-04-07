@@ -27,7 +27,7 @@ No description available.
 ReportConfigurationUpdate<PSCustomObject>
 #>
 
-function Initialize-ReportConfigurationUpdate {
+function Initialize-LEReportConfigurationUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-ReportConfigurationUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ReportConfigurationUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEReportConfigurationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Name) {
@@ -94,19 +94,19 @@ Json object
 
 ReportConfigurationUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToReportConfigurationUpdate {
+function ConvertFrom-LEJsonToReportConfigurationUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ReportConfigurationUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEReportConfigurationUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ReportConfigurationUpdate
+        # check if Json contains properties not defined in LEReportConfigurationUpdate
         $AllProperties = ("name", "description", "isEnabled", "notification")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

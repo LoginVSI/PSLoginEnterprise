@@ -42,7 +42,7 @@ function Get-LESystemEuxVersion {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -117,7 +117,7 @@ function Get-LESystemVersions {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

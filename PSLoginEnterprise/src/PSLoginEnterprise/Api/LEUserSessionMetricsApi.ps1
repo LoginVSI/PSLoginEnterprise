@@ -17,6 +17,12 @@ No description available.
 .PARAMETER TestRunId
 Test-run id
 
+.PARAMETER From
+From date-time
+
+.PARAMETER To
+To date-time
+
 .PARAMETER OrderBy
 Sort Key
 
@@ -25,12 +31,6 @@ Sort direction
 
 .PARAMETER Count
 Number of records to return
-
-.PARAMETER From
-From date-time
-
-.PARAMETER To
-To date-time
 
 .PARAMETER Offset
 Start offset
@@ -53,20 +53,20 @@ function Get-LEUserSessionMetrics {
         [String]
         ${TestRunId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[System.DateTime]]
         ${From},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[System.DateTime]]
         ${To},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${OrderBy},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Direction},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Count},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
         ${Offset},
@@ -90,7 +90,7 @@ function Get-LEUserSessionMetrics {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -104,20 +104,17 @@ function Get-LEUserSessionMetrics {
 
         $LocalVarQueryParameters['to'] = $To
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getUserSessionMetrics."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getUserSessionMetrics."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getUserSessionMetrics."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset

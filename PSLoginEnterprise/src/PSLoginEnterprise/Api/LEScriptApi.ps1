@@ -48,7 +48,7 @@ function New-LEScript {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -133,7 +133,7 @@ function Get-LEScript {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

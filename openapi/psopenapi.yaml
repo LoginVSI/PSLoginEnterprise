@@ -1,6 +1,11 @@
 packageName: PSLoginEnterprise
 moduleName: PSLoginEnterprise
-packageVersion: 1.0.9
+packageVersion: 1.0.10
 projectName: PSLoginEnterprise
 licenseName: MIT
 hideGenerationTimestamp: true
+apiNamePrefix: LE
+powershellVersion: "5.1"
+powershellGalleryUrl: https://www.powershellgallery.com/packages/PSLoginEnterprise
+removeOperationIdPrefix: true
+minimalUpdate: true

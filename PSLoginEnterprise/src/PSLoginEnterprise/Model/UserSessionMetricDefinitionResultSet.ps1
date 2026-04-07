@@ -25,7 +25,7 @@ Offset requested
 UserSessionMetricDefinitionResultSet<PSCustomObject>
 #>
 
-function Initialize-UserSessionMetricDefinitionResultSet {
+function Initialize-LEUserSessionMetricDefinitionResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-UserSessionMetricDefinitionResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => UserSessionMetricDefinitionResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEUserSessionMetricDefinitionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 UserSessionMetricDefinitionResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToUserSessionMetricDefinitionResultSet {
+function ConvertFrom-LEJsonToUserSessionMetricDefinitionResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => UserSessionMetricDefinitionResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEUserSessionMetricDefinitionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in UserSessionMetricDefinitionResultSet
+        # check if Json contains properties not defined in LEUserSessionMetricDefinitionResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

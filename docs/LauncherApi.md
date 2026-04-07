@@ -26,7 +26,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $LauncherName = "MyLauncherName" # String | Launcher name
@@ -85,7 +85,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $Filter = "MyFilter" # String | filter the launcher key in the list (optional)
@@ -152,7 +152,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $LauncherName = "MyLauncherName" # String | Launcher name

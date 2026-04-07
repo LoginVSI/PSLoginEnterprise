@@ -23,7 +23,7 @@ Test run results
 TimeSlot<PSCustomObject>
 #>
 
-function Initialize-TimeSlot {
+function Initialize-LETimeSlot {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-TimeSlot {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TimeSlot' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETimeSlot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 TimeSlot<PSCustomObject>
 #>
-function ConvertFrom-JsonToTimeSlot {
+function ConvertFrom-LEJsonToTimeSlot {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TimeSlot' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETimeSlot' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TimeSlot
+        # check if Json contains properties not defined in LETimeSlot
         $AllProperties = ("offsetInMinutes", "testRunResults")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

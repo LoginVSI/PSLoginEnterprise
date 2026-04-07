@@ -54,7 +54,7 @@ function Get-LEEvent {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -145,7 +145,7 @@ function Get-LEEvents {
         [PSCustomObject]
         ${Direction},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
+        [System.Nullable[Int32]]
         ${Count},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -179,21 +179,19 @@ function Get-LEEvents {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/v7/events'
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getEvents."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getEvents."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -294,7 +292,7 @@ function Get-LEEventsByAppExecution {
         [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
+        [System.Nullable[Int32]]
         ${Count},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -322,7 +320,7 @@ function Get-LEEventsByAppExecution {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -336,15 +334,13 @@ function Get-LEEventsByAppExecution {
         }
         $LocalVarUri = $LocalVarUri.replace('{appExecutionId}', [System.Web.HTTPUtility]::UrlEncode($AppExecutionId))
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getEventsByAppExecution."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getEventsByAppExecution."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -441,7 +437,7 @@ function Get-LEEventsByTestRun {
         [PSCustomObject]
         ${Direction},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
+        [System.Nullable[Int32]]
         ${Count},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -475,7 +471,7 @@ function Get-LEEventsByTestRun {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -485,15 +481,13 @@ function Get-LEEventsByTestRun {
         }
         $LocalVarUri = $LocalVarUri.replace('{testRunId}', [System.Web.HTTPUtility]::UrlEncode($TestRunId))
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getEventsByTestRun."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getEventsByTestRun."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -594,7 +588,7 @@ function Get-LEEventsByUserSession {
         [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
+        [System.Nullable[Int32]]
         ${Count},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -622,7 +616,7 @@ function Get-LEEventsByUserSession {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -636,15 +630,13 @@ function Get-LEEventsByUserSession {
         }
         $LocalVarUri = $LocalVarUri.replace('{userSessionId}', [System.Web.HTTPUtility]::UrlEncode($UserSessionId))
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getEventsByUserSession."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getEventsByUserSession."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset

@@ -11,11 +11,11 @@ Method | HTTP request | Description
 # **Get-LEUserSessionMetrics**
 > UserSessionMetricResultResultSet Get-LEUserSessionMetrics<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <System.Nullable[System.DateTime]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 
@@ -29,23 +29,23 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
-$OrderBy = "timestamp" # UserSessionMetricSortKey | Sort Key
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
 $From = (Get-Date) # System.DateTime | From date-time (optional)
 $To = (Get-Date) # System.DateTime | To date-time (optional)
+$OrderBy = "timestamp" # UserSessionMetricSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 
 # Get list of user session metrics
 try {
-    $Result = Get-LEUserSessionMetrics -TestRunId $TestRunId -OrderBy $OrderBy -Direction $Direction -Count $Count -From $From -To $To -Offset $Offset -IncludeTotalCount $IncludeTotalCount
+    $Result = Get-LEUserSessionMetrics -TestRunId $TestRunId -From $From -To $To -OrderBy $OrderBy -Direction $Direction -Count $Count -Offset $Offset -IncludeTotalCount $IncludeTotalCount
 } catch {
     Write-Host ("Exception occurred when calling Get-LEUserSessionMetrics: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -57,11 +57,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestRunId** | **String**| Test-run id | 
- **OrderBy** | [**UserSessionMetricSortKey**](UserSessionMetricSortKey.md)| Sort Key | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
  **From** | **System.DateTime**| From date-time | [optional] 
  **To** | **System.DateTime**| To date-time | [optional] 
+ **OrderBy** | [**UserSessionMetricSortKey**](UserSessionMetricSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
 

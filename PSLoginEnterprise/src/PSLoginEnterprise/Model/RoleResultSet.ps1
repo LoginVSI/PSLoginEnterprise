@@ -25,7 +25,7 @@ Offset requested
 RoleResultSet<PSCustomObject>
 #>
 
-function Initialize-RoleResultSet {
+function Initialize-LERoleResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-RoleResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => RoleResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LERoleResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 RoleResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToRoleResultSet {
+function ConvertFrom-LEJsonToRoleResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => RoleResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LERoleResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in RoleResultSet
+        # check if Json contains properties not defined in LERoleResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

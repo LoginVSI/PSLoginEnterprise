@@ -27,9 +27,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RoleCreate = Initialize-LERoleCreate -Name "MyName" -UserIds "MyUserIds" -LdapGroupIds "MyLdapGroupIds" -Permissions "MyPermissions" # RoleCreate | Role data (optional)
@@ -79,9 +79,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RoleId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Role id
@@ -137,9 +137,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $Filter = "MyFilter" # String | Filter on Name (optional)
@@ -202,9 +202,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RoleId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Role id
@@ -255,9 +255,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 
@@ -304,9 +304,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RoleId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Role id

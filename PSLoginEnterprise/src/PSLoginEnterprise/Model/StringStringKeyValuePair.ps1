@@ -23,7 +23,7 @@ No description available.
 StringStringKeyValuePair<PSCustomObject>
 #>
 
-function Initialize-StringStringKeyValuePair {
+function Initialize-LEStringStringKeyValuePair {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-StringStringKeyValuePair {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => StringStringKeyValuePair' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEStringStringKeyValuePair' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 StringStringKeyValuePair<PSCustomObject>
 #>
-function ConvertFrom-JsonToStringStringKeyValuePair {
+function ConvertFrom-LEJsonToStringStringKeyValuePair {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => StringStringKeyValuePair' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEStringStringKeyValuePair' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in StringStringKeyValuePair
+        # check if Json contains properties not defined in LEStringStringKeyValuePair
         $AllProperties = ("key", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

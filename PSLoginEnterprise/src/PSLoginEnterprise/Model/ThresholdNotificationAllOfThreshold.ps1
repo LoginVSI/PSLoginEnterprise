@@ -22,7 +22,7 @@ JSON object
 
 ThresholdNotificationAllOfThreshold<PSCustomObject>
 #>
-function ConvertFrom-JsonToThresholdNotificationAllOfThreshold {
+function ConvertFrom-LEJsonToThresholdNotificationAllOfThreshold {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -45,7 +45,7 @@ function ConvertFrom-JsonToThresholdNotificationAllOfThreshold {
 
         # try to match AppThreshold defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToAppThreshold $Json
+            $matchInstance = ConvertFrom-LEJsonToAppThreshold $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -56,12 +56,12 @@ function ConvertFrom-JsonToThresholdNotificationAllOfThreshold {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppThreshold' defined in oneOf (ThresholdNotificationAllOfThreshold). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppThreshold' defined in oneOf (LEThresholdNotificationAllOfThreshold). Proceeding to the next one if any."
         }
 
         # try to match SessionThreshold defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToSessionThreshold $Json
+            $matchInstance = ConvertFrom-LEJsonToSessionThreshold $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -72,7 +72,7 @@ function ConvertFrom-JsonToThresholdNotificationAllOfThreshold {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'SessionThreshold' defined in oneOf (ThresholdNotificationAllOfThreshold). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'SessionThreshold' defined in oneOf (LEThresholdNotificationAllOfThreshold). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

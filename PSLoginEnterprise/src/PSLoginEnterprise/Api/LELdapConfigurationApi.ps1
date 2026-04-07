@@ -14,7 +14,7 @@ Create LDAP configuration.
 
 No description available.
 
-.PARAMETER LdapConfigModel
+.PARAMETER LdapConfigModelUpdate
 
 
 .PARAMETER WithHttpInfo
@@ -30,7 +30,7 @@ function New-LELdapConfig {
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${LdapConfigModel},
+        ${LdapConfigModelUpdate},
         [Switch]
         $WithHttpInfo
     )
@@ -48,7 +48,7 @@ function New-LELdapConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -57,7 +57,7 @@ function New-LELdapConfig {
 
         $LocalVarUri = '/v7/ldap-configuration/identity-server'
 
-        $LocalVarBodyParameter = $LdapConfigModel | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $LdapConfigModelUpdate | ConvertTo-Json -Depth 100
 
 
 
@@ -128,7 +128,7 @@ function Invoke-LEDeleteLdapConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         $LocalVarUri = '/v7/ldap-configuration/identity-server'
 
 
@@ -200,7 +200,7 @@ function Get-LELdapConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -247,7 +247,7 @@ Update LDAP configuration.
 
 No description available.
 
-.PARAMETER LdapConfigModel
+.PARAMETER LdapConfigModelUpdate
 
 
 .PARAMETER WithHttpInfo
@@ -263,7 +263,7 @@ function Update-LELdapConfig {
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${LdapConfigModel},
+        ${LdapConfigModelUpdate},
         [Switch]
         $WithHttpInfo
     )
@@ -281,13 +281,13 @@ function Update-LELdapConfig {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Content-Type'
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/v7/ldap-configuration/identity-server'
 
-        $LocalVarBodyParameter = $LdapConfigModel | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $LdapConfigModelUpdate | ConvertTo-Json -Depth 100
 
 
 

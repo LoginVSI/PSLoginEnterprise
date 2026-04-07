@@ -29,7 +29,7 @@ Operational Expenditures
 EnvironmentCost<PSCustomObject>
 #>
 
-function Initialize-EnvironmentCost {
+function Initialize-LEEnvironmentCost {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -51,7 +51,7 @@ function Initialize-EnvironmentCost {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EnvironmentCost' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEnvironmentCost' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -85,19 +85,19 @@ Json object
 
 EnvironmentCost<PSCustomObject>
 #>
-function ConvertFrom-JsonToEnvironmentCost {
+function ConvertFrom-LEJsonToEnvironmentCost {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EnvironmentCost' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEnvironmentCost' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EnvironmentCost
+        # check if Json contains properties not defined in LEEnvironmentCost
         $AllProperties = ("currency", "expectedUserAmount", "actualUserAmount", "capitalExpenditures", "operationalExpenditures")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -29,7 +29,7 @@ Measurements above thresholds percentage
 ApplicationDiagnostic<PSCustomObject>
 #>
 
-function Initialize-ApplicationDiagnostic {
+function Initialize-LEApplicationDiagnostic {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-ApplicationDiagnostic {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationDiagnostic' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationDiagnostic' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -84,19 +84,19 @@ Json object
 
 ApplicationDiagnostic<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationDiagnostic {
+function ConvertFrom-LEJsonToApplicationDiagnostic {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationDiagnostic' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationDiagnostic' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationDiagnostic
+        # check if Json contains properties not defined in LEApplicationDiagnostic
         $AllProperties = ("applicationId", "applicationName", "aboveThreshold", "totalMeasurements", "percentage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

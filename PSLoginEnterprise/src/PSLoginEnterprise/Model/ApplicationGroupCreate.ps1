@@ -27,7 +27,7 @@ The IDs of the roles to which this application group should be available. (User 
 ApplicationGroupCreate<PSCustomObject>
 #>
 
-function Initialize-ApplicationGroupCreate {
+function Initialize-LEApplicationGroupCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-ApplicationGroupCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationGroupCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -78,19 +78,19 @@ Json object
 
 ApplicationGroupCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationGroupCreate {
+function ConvertFrom-LEJsonToApplicationGroupCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationGroupCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationGroupCreate
+        # check if Json contains properties not defined in LEApplicationGroupCreate
         $AllProperties = ("name", "description", "steps", "roles")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

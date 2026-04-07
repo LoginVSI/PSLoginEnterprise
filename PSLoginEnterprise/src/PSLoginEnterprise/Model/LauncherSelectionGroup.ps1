@@ -35,7 +35,7 @@ Last modified date-time
 LauncherSelectionGroup<PSCustomObject>
 #>
 
-function Initialize-LauncherSelectionGroup {
+function Initialize-LELauncherSelectionGroup {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-LauncherSelectionGroup {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => LauncherSelectionGroup' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LELauncherSelectionGroup' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -106,19 +106,19 @@ Json object
 
 LauncherSelectionGroup<PSCustomObject>
 #>
-function ConvertFrom-JsonToLauncherSelectionGroup {
+function ConvertFrom-LEJsonToLauncherSelectionGroup {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => LauncherSelectionGroup' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LELauncherSelectionGroup' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in LauncherSelectionGroup
+        # check if Json contains properties not defined in LELauncherSelectionGroup
         $AllProperties = ("type", "id", "name", "memberCount", "description", "members", "created", "lastModified")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

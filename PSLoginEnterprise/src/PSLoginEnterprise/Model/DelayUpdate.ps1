@@ -25,7 +25,7 @@ Delay in seconds
 DelayUpdate<PSCustomObject>
 #>
 
-function Initialize-DelayUpdate {
+function Initialize-LEDelayUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-DelayUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => DelayUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEDelayUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -84,19 +84,19 @@ Json object
 
 DelayUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToDelayUpdate {
+function ConvertFrom-LEJsonToDelayUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => DelayUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEDelayUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in DelayUpdate
+        # check if Json contains properties not defined in LEDelayUpdate
         $AllProperties = ("type", "isEnabled", "delayInSeconds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

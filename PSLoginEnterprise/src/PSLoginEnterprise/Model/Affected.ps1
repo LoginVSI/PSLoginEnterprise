@@ -21,7 +21,7 @@ Number of entities affected
 Affected<PSCustomObject>
 #>
 
-function Initialize-Affected {
+function Initialize-LEAffected {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-Affected {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Affected' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAffected' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 Affected<PSCustomObject>
 #>
-function ConvertFrom-JsonToAffected {
+function ConvertFrom-LEJsonToAffected {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Affected' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAffected' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Affected
+        # check if Json contains properties not defined in LEAffected
         $AllProperties = ("count")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

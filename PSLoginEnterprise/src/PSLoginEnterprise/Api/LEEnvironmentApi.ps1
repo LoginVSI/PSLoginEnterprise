@@ -54,7 +54,7 @@ function Add-LEEnvironmentToTests {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -148,7 +148,7 @@ function New-LEEnvironment {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -238,7 +238,7 @@ function Invoke-LEDeleteEnvironment {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -329,7 +329,7 @@ function Get-LEEnvironmentById {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -430,7 +430,7 @@ function Get-LEEnvironmentCostHistory {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -485,6 +485,9 @@ Get a list of environments
 
 No description available.
 
+.PARAMETER Filter
+Filter the query by a subtext or keyword in the environment's name or description
+
 .PARAMETER OrderBy
 Sort Key
 
@@ -493,9 +496,6 @@ Sort direction
 
 .PARAMETER Count
 Number of records to return
-
-.PARAMETER Filter
-Filter the query by a subtext or keyword in the environment's name or description
 
 .PARAMETER Offset
 Start offset
@@ -518,17 +518,17 @@ function Get-LEEnvironments {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Filter},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${OrderBy},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Direction},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Count},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
         ${Offset},
@@ -555,7 +555,7 @@ function Get-LEEnvironments {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -565,20 +565,17 @@ function Get-LEEnvironments {
             $LocalVarQueryParameters['filter'] = $Filter
         }
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getEnvironments."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getEnvironments."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getEnvironments."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -636,6 +633,12 @@ No description available.
 .PARAMETER Type
 Test type (Only continuous and load test types are supported)
 
+.PARAMETER EnvironmentId
+A test's environment id. Empty when fetching tests without an assigned environment
+
+.PARAMETER Filter
+Filter the tests
+
 .PARAMETER OrderBy
 Sort Key
 
@@ -644,12 +647,6 @@ Sort direction
 
 .PARAMETER Count
 Number of records to return
-
-.PARAMETER EnvironmentId
-A test's environment id. Empty when fetching tests without an assigned environment
-
-.PARAMETER Filter
-Filter the tests
 
 .PARAMETER Offset
 Start offset
@@ -675,20 +672,20 @@ function Get-LETestsByEnvironmentKey {
         [PSCustomObject]
         ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${EnvironmentId},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Filter},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${OrderBy},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Direction},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Count},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
         ${Offset},
@@ -715,7 +712,7 @@ function Get-LETestsByEnvironmentKey {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -732,20 +729,17 @@ function Get-LETestsByEnvironmentKey {
             $LocalVarQueryParameters['filter'] = $Filter
         }
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getTestsByEnvironmentKey."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getTestsByEnvironmentKey."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getTestsByEnvironmentKey."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -840,7 +834,7 @@ function Remove-LEEnvironmentFromTests {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -940,7 +934,7 @@ function Update-LEEnvironment {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

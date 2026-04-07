@@ -22,7 +22,7 @@ JSON object
 
 TestCreateConnector<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestCreateConnector {
+function ConvertFrom-LEJsonToTestCreateConnector {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToTestCreateConnector {
 
         # try to match CustomConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToCustomConnector $Json
+            $matchInstance = ConvertFrom-LEJsonToCustomConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'CustomConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'CustomConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match DesktopConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToDesktopConnector $Json
+            $matchInstance = ConvertFrom-LEJsonToDesktopConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'DesktopConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'DesktopConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match HorizonConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToHorizonConnector $Json
+            $matchInstance = ConvertFrom-LEJsonToHorizonConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,12 +79,12 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'HorizonConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'HorizonConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match NetscalerConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToNetscalerConnector $Json
+            $matchInstance = ConvertFrom-LEJsonToNetscalerConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -95,12 +95,12 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'NetscalerConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'NetscalerConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match RdpConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToRdpConnector $Json
+            $matchInstance = ConvertFrom-LEJsonToRdpConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -111,12 +111,12 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'RdpConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'RdpConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match StorefrontConnector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToStorefrontConnector $Json
+            $matchInstance = ConvertFrom-LEJsonToStorefrontConnector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -127,12 +127,12 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'StorefrontConnector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'StorefrontConnector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         # try to match Windows365Connector defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToWindows365Connector $Json
+            $matchInstance = ConvertFrom-LEJsonToWindows365Connector $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -143,7 +143,7 @@ function ConvertFrom-JsonToTestCreateConnector {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'Windows365Connector' defined in oneOf (TestCreateConnector). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'Windows365Connector' defined in oneOf (LETestCreateConnector). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

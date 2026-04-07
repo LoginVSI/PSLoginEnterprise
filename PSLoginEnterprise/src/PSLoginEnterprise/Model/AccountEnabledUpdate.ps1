@@ -23,7 +23,7 @@ New enabled/disabled status
 AccountEnabledUpdate<PSCustomObject>
 #>
 
-function Initialize-AccountEnabledUpdate {
+function Initialize-LEAccountEnabledUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-AccountEnabledUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AccountEnabledUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAccountEnabledUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -66,19 +66,19 @@ Json object
 
 AccountEnabledUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccountEnabledUpdate {
+function ConvertFrom-LEJsonToAccountEnabledUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountEnabledUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountEnabledUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AccountEnabledUpdate
+        # check if Json contains properties not defined in LEAccountEnabledUpdate
         $AllProperties = ("accountIds", "enabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

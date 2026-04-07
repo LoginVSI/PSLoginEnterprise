@@ -21,7 +21,7 @@ No description available.
 Connector<PSCustomObject>
 #>
 
-function Initialize-Connector {
+function Initialize-LEConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-Connector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Connector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -64,19 +64,19 @@ Json object
 
 Connector<PSCustomObject>
 #>
-function ConvertFrom-JsonToConnector {
+function ConvertFrom-LEJsonToConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Connector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Connector
+        # check if Json contains properties not defined in LEConnector
         $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

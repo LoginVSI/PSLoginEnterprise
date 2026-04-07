@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationGetLauncherGroup200Response<PSCustomObject>
 #>
-function ConvertFrom-JsonToConfigurationGetLauncherGroup200Response {
+function ConvertFrom-LEJsonToConfigurationGetLauncherGroup200Response {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToConfigurationGetLauncherGroup200Response {
 
         # try to match LauncherFilterGroup defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToLauncherFilterGroup $Json
+            $matchInstance = ConvertFrom-LEJsonToLauncherFilterGroup $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToConfigurationGetLauncherGroup200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'LauncherFilterGroup' defined in oneOf (ConfigurationGetLauncherGroup200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'LauncherFilterGroup' defined in oneOf (LEConfigurationGetLauncherGroup200Response). Proceeding to the next one if any."
         }
 
         # try to match LauncherSelectionGroup defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToLauncherSelectionGroup $Json
+            $matchInstance = ConvertFrom-LEJsonToLauncherSelectionGroup $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-JsonToConfigurationGetLauncherGroup200Response {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'LauncherSelectionGroup' defined in oneOf (ConfigurationGetLauncherGroup200Response). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'LauncherSelectionGroup' defined in oneOf (LEConfigurationGetLauncherGroup200Response). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

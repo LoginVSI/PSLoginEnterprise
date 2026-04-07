@@ -35,7 +35,7 @@ Number of events
 TestRun<PSCustomObject>
 #>
 
-function Initialize-TestRun {
+function Initialize-LETestRun {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-TestRun {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TestRun' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETestRun' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -106,19 +106,19 @@ Json object
 
 TestRun<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestRun {
+function ConvertFrom-LEJsonToTestRun {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestRun' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestRun' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TestRun
+        # check if Json contains properties not defined in LETestRun
         $AllProperties = ("type", "id", "testId", "created", "started", "finished", "counter", "numberOfEvents")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -48,7 +48,7 @@ function Invoke-LEDeleteTestRuns {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -102,6 +102,9 @@ No description available.
 .PARAMETER TestType
 
 
+.PARAMETER Filter
+Filter on Test Name or TestRun Comment (only available for test-runs of type LoadTest and ApplicationTest)
+
 .PARAMETER OrderBy
 Sort Key
 
@@ -110,9 +113,6 @@ Sort direction
 
 .PARAMETER Count
 Number of records to return
-
-.PARAMETER Filter
-Filter on Test Name or TestRun Comment (only available for test-runs of type LoadTest and ApplicationTest)
 
 .PARAMETER Offset
 Start offset
@@ -138,17 +138,17 @@ function Get-LEAllTestRuns {
         [PSCustomObject]
         ${TestType},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Filter},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${OrderBy},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Direction},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Count},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
         ${Offset},
@@ -175,7 +175,7 @@ function Get-LEAllTestRuns {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -190,20 +190,17 @@ function Get-LEAllTestRuns {
             $LocalVarQueryParameters['filter'] = $Filter
         }
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getAllTestRuns."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getAllTestRuns."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getAllTestRuns."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -310,7 +307,7 @@ function Get-LEApplicationChart {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -415,7 +412,7 @@ function Get-LEApplicationTestResultOverview {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -528,7 +525,7 @@ function Get-LEContinuesTestUserSessionMetricsAggregated {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -637,7 +634,7 @@ function Get-LEEuxAggregatedPerHourResults {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -744,7 +741,7 @@ function Get-LEEuxChartData {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -854,7 +851,7 @@ function Get-LEEuxResults {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -955,7 +952,7 @@ function Get-LEEuxScriptExecutions {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1066,7 +1063,7 @@ function Get-LEEuxTimerAggregatedPerHourResults {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1177,7 +1174,7 @@ function Get-LEEuxTimerResults {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1276,7 +1273,7 @@ function Get-LELoadTestResultOverview {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1365,7 +1362,7 @@ function Get-LELoadTestRunStatistics {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1468,7 +1465,7 @@ function Get-LELoadTestUserSessionMetricsAggregated {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1573,7 +1570,7 @@ function Get-LELoginTimeChart {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1679,7 +1676,7 @@ function Get-LESessionMetricChart {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1779,7 +1776,7 @@ function Get-LETestRun {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1840,6 +1837,9 @@ No description available.
 .PARAMETER TestId
 Test id
 
+.PARAMETER Filter
+Filter on Test Name or TestRun Comment (only available for test-runs of type LoadTest and ApplicationTest)
+
 .PARAMETER OrderBy
 Sort Key
 
@@ -1848,9 +1848,6 @@ Sort direction
 
 .PARAMETER Count
 Number of records to return
-
-.PARAMETER Filter
-Filter on Test Name or TestRun Comment (only available for test-runs of type LoadTest and ApplicationTest)
 
 .PARAMETER Offset
 Start offset
@@ -1876,17 +1873,17 @@ function Get-LETestRuns {
         [String]
         ${TestId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Filter},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${OrderBy},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Direction},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Count},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
         ${Offset},
@@ -1913,7 +1910,7 @@ function Get-LETestRuns {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -1927,20 +1924,17 @@ function Get-LETestRuns {
             $LocalVarQueryParameters['filter'] = $Filter
         }
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getTestRuns."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getTestRuns."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getTestRuns."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -1998,7 +1992,7 @@ No description available.
 .PARAMETER TestRunId
 Test-run id
 
-.PARAMETER Comment
+.PARAMETER UpdateTestRunCommentRequest
 Comment
 
 .PARAMETER WithHttpInfo
@@ -2016,8 +2010,8 @@ function Update-LEComment {
         [String]
         ${TestRunId},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Comment},
+        [PSCustomObject]
+        ${UpdateTestRunCommentRequest},
         [Switch]
         $WithHttpInfo
     )
@@ -2035,9 +2029,12 @@ function Update-LEComment {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/v7/test-runs/{testRunId}/comment'
         if (!$TestRunId) {
@@ -2045,9 +2042,7 @@ function Update-LEComment {
         }
         $LocalVarUri = $LocalVarUri.replace('{testRunId}', [System.Web.HTTPUtility]::UrlEncode($TestRunId))
 
-        if ($Comment) {
-            $LocalVarQueryParameters['comment'] = $Comment
-        }
+        $LocalVarBodyParameter = $UpdateTestRunCommentRequest | ConvertTo-Json -Depth 100
 
 
 

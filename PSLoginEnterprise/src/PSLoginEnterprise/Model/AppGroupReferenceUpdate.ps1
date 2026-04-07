@@ -23,7 +23,7 @@ Enable step
 AppGroupReferenceUpdate<PSCustomObject>
 #>
 
-function Initialize-AppGroupReferenceUpdate {
+function Initialize-LEAppGroupReferenceUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -35,7 +35,7 @@ function Initialize-AppGroupReferenceUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppGroupReferenceUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppGroupReferenceUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -74,19 +74,19 @@ Json object
 
 AppGroupReferenceUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppGroupReferenceUpdate {
+function ConvertFrom-LEJsonToAppGroupReferenceUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppGroupReferenceUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppGroupReferenceUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppGroupReferenceUpdate
+        # check if Json contains properties not defined in LEAppGroupReferenceUpdate
         $AllProperties = ("type", "isEnabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -27,7 +27,7 @@ Account group member ids
 AccountSelectionGroupCreate<PSCustomObject>
 #>
 
-function Initialize-AccountSelectionGroupCreate {
+function Initialize-LEAccountSelectionGroupCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-AccountSelectionGroupCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AccountSelectionGroupCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAccountSelectionGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -82,19 +82,19 @@ Json object
 
 AccountSelectionGroupCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccountSelectionGroupCreate {
+function ConvertFrom-LEJsonToAccountSelectionGroupCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AccountSelectionGroupCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccountSelectionGroupCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AccountSelectionGroupCreate
+        # check if Json contains properties not defined in LEAccountSelectionGroupCreate
         $AllProperties = ("type", "name", "description", "memberIds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

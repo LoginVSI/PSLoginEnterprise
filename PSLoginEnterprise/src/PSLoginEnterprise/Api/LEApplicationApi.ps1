@@ -48,7 +48,7 @@ function New-LEApplication {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -138,7 +138,7 @@ function Invoke-LEDeleteApplication {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -223,7 +223,7 @@ function Invoke-LEDeleteApplications {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -315,7 +315,7 @@ function Get-LEApplication {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -412,7 +412,7 @@ function Get-LEApplications {
         [PSCustomObject]
         ${Direction},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
+        [System.Nullable[Int32]]
         ${Count},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -443,26 +443,23 @@ function Get-LEApplications {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/v7/applications'
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getApplications."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getApplications."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getApplications."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -549,7 +546,7 @@ function Invoke-LEParseApplicationDetails {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -639,7 +636,7 @@ function Update-LEApplication {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

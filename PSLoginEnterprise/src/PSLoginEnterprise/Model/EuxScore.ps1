@@ -33,7 +33,7 @@ No description available.
 EuxScore<PSCustomObject>
 #>
 
-function Initialize-EuxScore {
+function Initialize-LEEuxScore {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -61,7 +61,7 @@ function Initialize-EuxScore {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EuxScore' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEuxScore' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -97,19 +97,19 @@ Json object
 
 EuxScore<PSCustomObject>
 #>
-function ConvertFrom-JsonToEuxScore {
+function ConvertFrom-LEJsonToEuxScore {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxScore' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxScore' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EuxScore
+        # check if Json contains properties not defined in LEEuxScore
         $AllProperties = ("score", "steadyStateScore", "baseline", "baselineStartMinute", "baselineWindowSize", "version", "state")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

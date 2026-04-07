@@ -28,9 +28,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $ConfigurationCreateApplicationRequest = Initialize-LEConfigurationCreateApplicationRequest -Type "MyType" -Name "MyName" -Description "MyDescription" -Username "MyUsername" -Password "MyPassword" -TakeScreenshots $false -ScriptContent "MyScriptContent" -Roles "MyRoles" -BrowserName "chrome" -Url "MyUrl" -ProfileLocation "MyProfileLocation" -CommandLine "MyCommandLine" -WorkingDirectory "MyWorkingDirectory" # ConfigurationCreateApplicationRequest | Application data
@@ -80,9 +80,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
@@ -132,9 +132,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $RequestBody = "MyRequestBody" # String[] | Application ids (optional)
@@ -185,9 +185,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 > ApplicationResultSet Get-LEApplications<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-OrderBy] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Filter] <String><br>
@@ -245,14 +245,14 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$OrderBy = "name" # ApplicationSortKey | Sort Key
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
+$OrderBy = "name" # ApplicationSortKey | Sort Key (optional)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $Filter = "MyFilter" # String | Filter on name or description (optional)
@@ -271,9 +271,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **OrderBy** | [**ApplicationSortKey**](ApplicationSortKey.md)| Sort Key | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
+ **OrderBy** | [**ApplicationSortKey**](ApplicationSortKey.md)| Sort Key | [optional] 
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **Filter** | **String**| Filter on name or description | [optional] 
@@ -310,9 +310,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 
@@ -359,9 +359,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $ApplicationId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Application id

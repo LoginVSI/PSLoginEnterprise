@@ -23,7 +23,7 @@ No description available.
 ActiveTimeSlotsUpdate<PSCustomObject>
 #>
 
-function Initialize-ActiveTimeSlotsUpdate {
+function Initialize-LEActiveTimeSlotsUpdate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -36,7 +36,7 @@ function Initialize-ActiveTimeSlotsUpdate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ActiveTimeSlotsUpdate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEActiveTimeSlotsUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -67,19 +67,19 @@ Json object
 
 ActiveTimeSlotsUpdate<PSCustomObject>
 #>
-function ConvertFrom-JsonToActiveTimeSlotsUpdate {
+function ConvertFrom-LEJsonToActiveTimeSlotsUpdate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ActiveTimeSlotsUpdate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEActiveTimeSlotsUpdate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ActiveTimeSlotsUpdate
+        # check if Json contains properties not defined in LEActiveTimeSlotsUpdate
         $AllProperties = ("mode", "timeSlots")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

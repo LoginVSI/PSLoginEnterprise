@@ -35,7 +35,7 @@ The IDs of the roles to which this application should be available. (User must b
 ApplicationCreate<PSCustomObject>
 #>
 
-function Initialize-ApplicationCreate {
+function Initialize-LEApplicationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -65,7 +65,7 @@ function Initialize-ApplicationCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ApplicationCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -130,19 +130,19 @@ Json object
 
 ApplicationCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationCreate {
+function ConvertFrom-LEJsonToApplicationCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ApplicationCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEApplicationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ApplicationCreate
+        # check if Json contains properties not defined in LEApplicationCreate
         $AllProperties = ("type", "name", "description", "username", "password", "takeScreenshots", "scriptContent", "roles")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

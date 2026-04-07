@@ -25,7 +25,7 @@ No description available.
 ResultsWrapper<PSCustomObject>
 #>
 
-function Initialize-ResultsWrapper {
+function Initialize-LEResultsWrapper {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-ResultsWrapper {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ResultsWrapper' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEResultsWrapper' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 ResultsWrapper<PSCustomObject>
 #>
-function ConvertFrom-JsonToResultsWrapper {
+function ConvertFrom-LEJsonToResultsWrapper {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ResultsWrapper' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEResultsWrapper' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ResultsWrapper
+        # check if Json contains properties not defined in LEResultsWrapper
         $AllProperties = ("loginTime", "performance", "appPerformanceResult")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

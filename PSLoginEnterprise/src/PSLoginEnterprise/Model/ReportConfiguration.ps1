@@ -45,7 +45,7 @@ Time zone offset
 ReportConfiguration<PSCustomObject>
 #>
 
-function Initialize-ReportConfiguration {
+function Initialize-LEReportConfiguration {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -91,7 +91,7 @@ function Initialize-ReportConfiguration {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ReportConfiguration' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEReportConfiguration' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -133,19 +133,19 @@ Json object
 
 ReportConfiguration<PSCustomObject>
 #>
-function ConvertFrom-JsonToReportConfiguration {
+function ConvertFrom-LEJsonToReportConfiguration {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ReportConfiguration' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEReportConfiguration' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ReportConfiguration
+        # check if Json contains properties not defined in LEReportConfiguration
         $AllProperties = ("id", "testId", "name", "testName", "description", "frequency", "isEnabled", "notification", "thresholds", "created", "lastModified", "lastReportPeriodStart", "timeZoneOffset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

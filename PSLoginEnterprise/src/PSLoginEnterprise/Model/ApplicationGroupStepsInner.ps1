@@ -22,7 +22,7 @@ JSON object
 
 ApplicationGroupStepsInner<PSCustomObject>
 #>
-function ConvertFrom-JsonToApplicationGroupStepsInner {
+function ConvertFrom-LEJsonToApplicationGroupStepsInner {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToApplicationGroupStepsInner {
 
         # try to match AppGroupReference defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToAppGroupReference $Json
+            $matchInstance = ConvertFrom-LEJsonToAppGroupReference $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToApplicationGroupStepsInner {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppGroupReference' defined in oneOf (ApplicationGroupStepsInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppGroupReference' defined in oneOf (LEApplicationGroupStepsInner). Proceeding to the next one if any."
         }
 
         # try to match AppInvocation defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToAppInvocation $Json
+            $matchInstance = ConvertFrom-LEJsonToAppInvocation $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,12 +63,12 @@ function ConvertFrom-JsonToApplicationGroupStepsInner {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'AppInvocation' defined in oneOf (ApplicationGroupStepsInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'AppInvocation' defined in oneOf (LEApplicationGroupStepsInner). Proceeding to the next one if any."
         }
 
         # try to match Delay defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToDelay $Json
+            $matchInstance = ConvertFrom-LEJsonToDelay $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -79,7 +79,7 @@ function ConvertFrom-JsonToApplicationGroupStepsInner {
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'Delay' defined in oneOf (ApplicationGroupStepsInner). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'Delay' defined in oneOf (LEApplicationGroupStepsInner). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

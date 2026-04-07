@@ -37,7 +37,7 @@ Account is enabled
 Account<PSCustomObject>
 #>
 
-function Initialize-Account {
+function Initialize-LEAccount {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-Account {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Account' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAccount' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 Account<PSCustomObject>
 #>
-function ConvertFrom-JsonToAccount {
+function ConvertFrom-LEJsonToAccount {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Account' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAccount' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Account
+        # check if Json contains properties not defined in LEAccount
         $AllProperties = ("id", "username", "domain", "email", "created", "groups", "fields", "inUse", "enabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -59,7 +59,7 @@ function Get-LEAppExecutions {
         [PSCustomObject]
         ${Direction},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
+        [System.Nullable[Int32]]
         ${Count},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
@@ -90,7 +90,7 @@ function Get-LEAppExecutions {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -104,15 +104,13 @@ function Get-LEAppExecutions {
         }
         $LocalVarUri = $LocalVarUri.replace('{userSessionId}', [System.Web.HTTPUtility]::UrlEncode($UserSessionId))
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getAppExecutions."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getAppExecutions."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset

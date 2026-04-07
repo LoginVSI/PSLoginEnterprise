@@ -48,7 +48,7 @@ function Invoke-LEBulkAddApplicationGroupAccess {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -134,7 +134,7 @@ function Invoke-LEBulkRemoveApplicationGroupAccess {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -220,7 +220,7 @@ function Invoke-LEBulkReplaceApplicationGroupAccess {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -306,7 +306,7 @@ function Get-LEApplicationGroupAccess {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -357,6 +357,9 @@ Get application groups by role ID
 
 No description available.
 
+.PARAMETER RoleId
+The ID of the role used to filter application groups. Empty when fetching application groups without assigned roles
+
 .PARAMETER OrderBy
 Sort Key
 
@@ -365,9 +368,6 @@ Sort direction
 
 .PARAMETER Count
 Number of records to return
-
-.PARAMETER RoleId
-The ID of the role used to filter application groups. Empty when fetching application groups without assigned roles
 
 .PARAMETER Offset
 Start offset
@@ -390,17 +390,17 @@ function Get-LEApplicationGroupsByRole {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${OrderBy},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${Direction},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int32]
-        ${Count},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${RoleId},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${OrderBy},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${Direction},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Count},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int32]]
         ${Offset},
@@ -427,7 +427,7 @@ function Get-LEApplicationGroupsByRole {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
@@ -435,20 +435,17 @@ function Get-LEApplicationGroupsByRole {
 
         $LocalVarQueryParameters['roleId'] = $RoleId
 
-        if (!$OrderBy) {
-            throw "Error! The required parameter `OrderBy` missing when calling getApplicationGroupsByRole."
+        if ($OrderBy) {
+            $LocalVarQueryParameters['orderBy'] = $OrderBy
         }
-        $LocalVarQueryParameters['orderBy'] = $OrderBy
 
-        if (!$Direction) {
-            throw "Error! The required parameter `Direction` missing when calling getApplicationGroupsByRole."
+        if ($Direction) {
+            $LocalVarQueryParameters['direction'] = $Direction
         }
-        $LocalVarQueryParameters['direction'] = $Direction
 
-        if (!$Count) {
-            throw "Error! The required parameter `Count` missing when calling getApplicationGroupsByRole."
+        if ($Count) {
+            $LocalVarQueryParameters['count'] = $Count
         }
-        $LocalVarQueryParameters['count'] = $Count
 
         if ($Offset) {
             $LocalVarQueryParameters['offset'] = $Offset
@@ -543,7 +540,7 @@ function Update-LEApplicationGroupAccess {
         $LocalVarCookieParameters = @{}
         $LocalVarBodyParameter = $null
 
-        $accessToken = "YOUR_ACCESS_TOKEN"
+        $Configuration = Get-LEConfiguration
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 

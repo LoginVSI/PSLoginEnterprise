@@ -22,7 +22,7 @@ JSON object
 
 ConfigurationUpdateContinuousTestNotificationRequest<PSCustomObject>
 #>
-function ConvertFrom-JsonToConfigurationUpdateContinuousTestNotificationRequest {
+function ConvertFrom-LEJsonToConfigurationUpdateContinuousTestNotificationRequest {
     [CmdletBinding()]
     Param (
         [AllowEmptyString()]
@@ -36,7 +36,7 @@ function ConvertFrom-JsonToConfigurationUpdateContinuousTestNotificationRequest 
 
         # try to match EventNotificationUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToEventNotificationUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToEventNotificationUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -47,12 +47,12 @@ function ConvertFrom-JsonToConfigurationUpdateContinuousTestNotificationRequest 
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'EventNotificationUpdate' defined in oneOf (ConfigurationUpdateContinuousTestNotificationRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'EventNotificationUpdate' defined in oneOf (LEConfigurationUpdateContinuousTestNotificationRequest). Proceeding to the next one if any."
         }
 
         # try to match ThresholdNotificationUpdate defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToThresholdNotificationUpdate $Json
+            $matchInstance = ConvertFrom-LEJsonToThresholdNotificationUpdate $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
@@ -63,7 +63,7 @@ function ConvertFrom-JsonToConfigurationUpdateContinuousTestNotificationRequest 
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'ThresholdNotificationUpdate' defined in oneOf (ConfigurationUpdateContinuousTestNotificationRequest). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'ThresholdNotificationUpdate' defined in oneOf (LEConfigurationUpdateContinuousTestNotificationRequest). Proceeding to the next one if any."
         }
 
         if ($match -gt 1) {

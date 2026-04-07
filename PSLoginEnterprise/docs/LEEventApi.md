@@ -27,9 +27,9 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $EventId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Event id
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 # **Get-LEEvents**
 > EventResultSet Get-LEEvents<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
@@ -87,13 +87,13 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $From = (Get-Date) # System.DateTime | From date-time (optional)
@@ -113,8 +113,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **From** | **System.DateTime**| From date-time | [optional] 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AppExecutionId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
@@ -157,15 +157,15 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $AppExecutionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | App-execution id
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $Include = "none" # EventInclude[] | Include options (optional)
@@ -185,8 +185,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestRunId** | **String**| Test-run id | 
  **AppExecutionId** | **String**| App-execution id | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 > EventResultSet Get-LEEventsByTestRun<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <System.Nullable[System.DateTime]><br>
@@ -228,14 +228,14 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $From = (Get-Date) # System.DateTime | From date-time (optional)
@@ -256,8 +256,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestRunId** | **String**| Test-run id | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **From** | **System.DateTime**| From date-time | [optional] 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-TestRunId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-UserSessionId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Direction] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Count] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Offset] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-IncludeTotalCount] <System.Nullable[Boolean]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <PSCustomObject[]><br>
@@ -300,15 +300,15 @@ $accessToken = "YOUR_ACCESS_TOKEN"
 # Configure your appliance name
 $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
-# $applianceName = "YOUR_APPLIANCE_URL"
+# $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $TestRunId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | Test-run id
 $UserSessionId = "38400000-8cf0-11bd-b23e-10b96e4ef00d" # String | User-session id
-$Direction = "asc" # SortOrder | Sort direction
-$Count = 56 # Int32 | Number of records to return (default to 100)
+$Direction = "asc" # SortOrder | Sort direction (optional)
+$Count = 56 # Int32 | Number of records to return (optional) (default to 100)
 $Offset = 56 # Int32 | Start offset (optional) (default to 0)
 $IncludeTotalCount = $true # Boolean | Include total number of records (optional) (default to $false)
 $Include = "none" # EventInclude[] | Include options (optional)
@@ -328,8 +328,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **TestRunId** | **String**| Test-run id | 
  **UserSessionId** | **String**| User-session id | 
- **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | 
- **Count** | **Int32**| Number of records to return | [default to 100]
+ **Direction** | [**SortOrder**](SortOrder.md)| Sort direction | [optional] 
+ **Count** | **Int32**| Number of records to return | [optional] [default to 100]
  **Offset** | **Int32**| Start offset | [optional] [default to 0]
  **IncludeTotalCount** | **Boolean**| Include total number of records | [optional] [default to $false]
  **Include** | [**EventInclude[]**](EventInclude.md)| Include options | [optional] 

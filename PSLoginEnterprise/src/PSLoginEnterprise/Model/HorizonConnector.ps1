@@ -27,7 +27,7 @@ Connection command line
 HorizonConnector<PSCustomObject>
 #>
 
-function Initialize-HorizonConnector {
+function Initialize-LEHorizonConnector {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -45,7 +45,7 @@ function Initialize-HorizonConnector {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => HorizonConnector' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEHorizonConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -106,19 +106,19 @@ Json object
 
 HorizonConnector<PSCustomObject>
 #>
-function ConvertFrom-JsonToHorizonConnector {
+function ConvertFrom-LEJsonToHorizonConnector {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => HorizonConnector' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEHorizonConnector' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in HorizonConnector
+        # check if Json contains properties not defined in LEHorizonConnector
         $AllProperties = ("type", "serverUrl", "resource", "commandLine")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

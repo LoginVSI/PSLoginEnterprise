@@ -29,7 +29,7 @@ $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 
 # $applianceName = "YOUR_APPLIANCE_HOSTNAME"
 $bearerToken = @{"Authorization"="Bearer $accessToken"}
-# Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
+Set-LEConfiguration -BaseUrl "https://$applianceName/publicApi" -ApiKey $bearerToken
 ""
 
 $OrderBy = "name" # ReportConfigurationSortKey | Sort Key (optional)

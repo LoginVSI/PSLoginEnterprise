@@ -39,7 +39,7 @@ Report configuration id
 ContinuousTestReport<PSCustomObject>
 #>
 
-function Initialize-ContinuousTestReport {
+function Initialize-LEContinuousTestReport {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -77,7 +77,7 @@ function Initialize-ContinuousTestReport {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => ContinuousTestReport' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEContinuousTestReport' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -120,19 +120,19 @@ Json object
 
 ContinuousTestReport<PSCustomObject>
 #>
-function ConvertFrom-JsonToContinuousTestReport {
+function ConvertFrom-LEJsonToContinuousTestReport {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => ContinuousTestReport' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEContinuousTestReport' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in ContinuousTestReport
+        # check if Json contains properties not defined in LEContinuousTestReport
         $AllProperties = ("type", "id", "testId", "outputContentUri", "state", "trigger", "created", "reportPeriodStart", "reportPeriodEnd", "configurationId")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

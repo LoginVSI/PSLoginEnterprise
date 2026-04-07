@@ -37,7 +37,7 @@ Report period end date-time
 Report<PSCustomObject>
 #>
 
-function Initialize-Report {
+function Initialize-LEReport {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -72,7 +72,7 @@ function Initialize-Report {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Report' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEReport' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -114,19 +114,19 @@ Json object
 
 Report<PSCustomObject>
 #>
-function ConvertFrom-JsonToReport {
+function ConvertFrom-LEJsonToReport {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Report' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEReport' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Report
+        # check if Json contains properties not defined in LEReport
         $AllProperties = ("type", "id", "testId", "outputContentUri", "state", "trigger", "created", "reportPeriodStart", "reportPeriodEnd")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

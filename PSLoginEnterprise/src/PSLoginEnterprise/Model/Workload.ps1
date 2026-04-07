@@ -21,7 +21,7 @@ Workload step
 Workload<PSCustomObject>
 #>
 
-function Initialize-Workload {
+function Initialize-LEWorkload {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -30,7 +30,7 @@ function Initialize-Workload {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => Workload' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEWorkload' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -60,19 +60,19 @@ Json object
 
 Workload<PSCustomObject>
 #>
-function ConvertFrom-JsonToWorkload {
+function ConvertFrom-LEJsonToWorkload {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => Workload' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEWorkload' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in Workload
+        # check if Json contains properties not defined in LEWorkload
         $AllProperties = ("steps")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

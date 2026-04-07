@@ -31,7 +31,7 @@ Actual vsi max
 TestRunInfo<PSCustomObject>
 #>
 
-function Initialize-TestRunInfo {
+function Initialize-LETestRunInfo {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -55,7 +55,7 @@ function Initialize-TestRunInfo {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => TestRunInfo' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LETestRunInfo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -90,19 +90,19 @@ Json object
 
 TestRunInfo<PSCustomObject>
 #>
-function ConvertFrom-JsonToTestRunInfo {
+function ConvertFrom-LEJsonToTestRunInfo {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => TestRunInfo' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LETestRunInfo' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in TestRunInfo
+        # check if Json contains properties not defined in LETestRunInfo
         $AllProperties = ("testRunId", "testName", "testCounter", "rampUpCompletedMinute", "vsiMaxReachedAt", "actualVsiMax")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

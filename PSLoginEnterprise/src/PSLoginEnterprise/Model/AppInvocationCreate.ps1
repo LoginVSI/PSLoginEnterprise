@@ -29,7 +29,7 @@ Do not close the application
 AppInvocationCreate<PSCustomObject>
 #>
 
-function Initialize-AppInvocationCreate {
+function Initialize-LEAppInvocationCreate {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -50,7 +50,7 @@ function Initialize-AppInvocationCreate {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => AppInvocationCreate' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEAppInvocationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($null -eq $Type) {
@@ -104,19 +104,19 @@ Json object
 
 AppInvocationCreate<PSCustomObject>
 #>
-function ConvertFrom-JsonToAppInvocationCreate {
+function ConvertFrom-LEJsonToAppInvocationCreate {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => AppInvocationCreate' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEAppInvocationCreate' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in AppInvocationCreate
+        # check if Json contains properties not defined in LEAppInvocationCreate
         $AllProperties = ("type", "isEnabled", "applicationId", "runOnce", "leaveRunning")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -37,7 +37,7 @@ Time series data points
 PlatformMetricSeries<PSCustomObject>
 #>
 
-function Initialize-PlatformMetricSeries {
+function Initialize-LEPlatformMetricSeries {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -70,7 +70,7 @@ function Initialize-PlatformMetricSeries {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => PlatformMetricSeries' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEPlatformMetricSeries' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -108,19 +108,19 @@ Json object
 
 PlatformMetricSeries<PSCustomObject>
 #>
-function ConvertFrom-JsonToPlatformMetricSeries {
+function ConvertFrom-LEJsonToPlatformMetricSeries {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => PlatformMetricSeries' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEPlatformMetricSeries' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PlatformMetricSeries
+        # check if Json contains properties not defined in LEPlatformMetricSeries
         $AllProperties = ("metricId", "environmentKey", "displayName", "unit", "instance", "group", "componentType", "customTags", "dataPoints")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

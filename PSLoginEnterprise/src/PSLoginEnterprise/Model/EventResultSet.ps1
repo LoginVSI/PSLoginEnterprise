@@ -25,7 +25,7 @@ Offset requested
 EventResultSet<PSCustomObject>
 #>
 
-function Initialize-EventResultSet {
+function Initialize-LEEventResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-EventResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EventResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEventResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 EventResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToEventResultSet {
+function ConvertFrom-LEJsonToEventResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EventResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEventResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EventResultSet
+        # check if Json contains properties not defined in LEEventResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

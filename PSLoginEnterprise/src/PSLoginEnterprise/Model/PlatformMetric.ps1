@@ -39,7 +39,7 @@ Additional custom tags associated with the metric.
 PlatformMetric<PSCustomObject>
 #>
 
-function Initialize-PlatformMetric {
+function Initialize-LEPlatformMetric {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -75,7 +75,7 @@ function Initialize-PlatformMetric {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => PlatformMetric' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEPlatformMetric' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -114,19 +114,19 @@ Json object
 
 PlatformMetric<PSCustomObject>
 #>
-function ConvertFrom-JsonToPlatformMetric {
+function ConvertFrom-LEJsonToPlatformMetric {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => PlatformMetric' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEPlatformMetric' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PlatformMetric
+        # check if Json contains properties not defined in LEPlatformMetric
         $AllProperties = ("metricId", "environmentKey", "timestamp", "displayName", "unit", "instance", "value", "group", "componentType", "customTags")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

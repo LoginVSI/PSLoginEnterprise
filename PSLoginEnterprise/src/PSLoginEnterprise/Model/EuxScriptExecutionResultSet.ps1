@@ -25,7 +25,7 @@ Offset requested
 EuxScriptExecutionResultSet<PSCustomObject>
 #>
 
-function Initialize-EuxScriptExecutionResultSet {
+function Initialize-LEEuxScriptExecutionResultSet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
@@ -40,7 +40,7 @@ function Initialize-EuxScriptExecutionResultSet {
     )
 
     Process {
-        'Creating PSCustomObject: PSLoginEnterprise => EuxScriptExecutionResultSet' | Write-Debug
+        'Creating PSCustomObject: PSLoginEnterprise => LEEuxScriptExecutionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -72,19 +72,19 @@ Json object
 
 EuxScriptExecutionResultSet<PSCustomObject>
 #>
-function ConvertFrom-JsonToEuxScriptExecutionResultSet {
+function ConvertFrom-LEJsonToEuxScriptExecutionResultSet {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: PSLoginEnterprise => EuxScriptExecutionResultSet' | Write-Debug
+        'Converting JSON to PSCustomObject: PSLoginEnterprise => LEEuxScriptExecutionResultSet' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in EuxScriptExecutionResultSet
+        # check if Json contains properties not defined in LEEuxScriptExecutionResultSet
         $AllProperties = ("items", "totalCount", "offset")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
